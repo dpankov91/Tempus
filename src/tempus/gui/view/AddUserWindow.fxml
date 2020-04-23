@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
@@ -39,5 +40,7 @@
          </image>
       </ImageView>
       <Label layoutX="144.0" layoutY="31.0" prefHeight="55.0" prefWidth="312.0" />
+      <JFXButton layoutX="358.0" layoutY="304.0" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Save" />
+      <JFXButton layoutX="469.0" layoutY="304.0" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Cancel" />
    </children>
 </AnchorPane>
