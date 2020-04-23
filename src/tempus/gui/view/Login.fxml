@@ -18,8 +18,8 @@
       </ImageView>
       <Button fx:id="btnLogin" layoutX="115.0" layoutY="357.0" mnemonicParsing="false" text="Log In" />
       <Button fx:id="btnCancel" layoutX="172.0" layoutY="357.0" mnemonicParsing="false" text="Cancel" />
-      <JFXRadioButton id="rdoButton" fx:id="rdoRememberMe" layoutX="224.0" layoutY="278.0" stylesheets="@../css/loginStyle.css" text="Remember me" />
-      <TextField layoutX="98.0" layoutY="185.0" promptText="Username" />
-      <PasswordField layoutX="98.0" layoutY="230.0" promptText="Password" />
+      <JFXRadioButton id="rdoButton" fx:id="rdoRememberMe" layoutX="223.0" layoutY="301.0" stylesheets="@../css/loginStyle.css" text="Remember me" />
+      <TextField fx:id="txtFieldUsername" layoutX="98.0" layoutY="185.0" promptText="Username" />
+      <PasswordField fx:id="pasPasswordField" layoutX="98.0" layoutY="243.0" promptText="Password" />
    </children>
 </AnchorPane>
