@@ -1,0 +1,26 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20 Feb 2020, 20:44:07
+    Author     : PC
+*/
+
+.buttons{
+    /* turquoise color */
+    -fx-background-color: linear-gradient( #3dd0e0,#3dd0e0);
+    -fx-background-radius: 10px;
+     
+}
+
+.table-view{
+    -fx-background-color: #282828;
+    -fx-text-fill: white;
+}
+
+.BackGround{
+    -fx-background-color: #008b8b, #008b8b;
+    }
+    
