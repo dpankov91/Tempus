@@ -3,7 +3,9 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -40,7 +42,23 @@
          </image>
       </ImageView>
       <Label layoutX="144.0" layoutY="31.0" prefHeight="55.0" prefWidth="312.0" />
-      <JFXButton layoutX="358.0" layoutY="304.0" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Save" />
-      <JFXButton layoutX="469.0" layoutY="304.0" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Cancel" />
+      <JFXButton layoutX="358.0" layoutY="304.0" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Save">
+         <effect>
+            <DropShadow />
+         </effect></JFXButton>
+      <JFXButton layoutX="469.0" layoutY="304.0" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Cancel">
+         <effect>
+            <DropShadow />
+         </effect></JFXButton>
+      <ComboBox layoutX="368.0" layoutY="177.0" prefWidth="150.0" style="-fx-background-color: #66ff66;">
+         <effect>
+            <DropShadow />
+         </effect>
+      </ComboBox>
+      <Label layoutX="402.0" layoutY="114.0" prefHeight="45.0" prefWidth="81.0" text="Choose*">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
