@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="736.0" prefWidth="188.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.EditUserController">
+   <children>
+      <AnchorPane prefHeight="736.0" prefWidth="364.0" styleClass="BackGround" stylesheets="@../css/style.css">
+         <children>
+            <JFXButton fx:id="btn_save" layoutX="27.0" layoutY="656.0" onAction="#handle_Save" prefHeight="51.0" prefWidth="103.0" styleClass="buttons" text="Save" />
+            <JFXButton fx:id="btn_cancel" layoutX="214.0" layoutY="656.0" onAction="#handle_Cancel" prefHeight="51.0" prefWidth="103.0" styleClass="buttons" text="Cancel" />
+            <JFXTextField layoutX="98.0" layoutY="63.0" text="First Name" />
+            <JFXTextField layoutX="98.0" layoutY="135.0" text="Second Name" />
+            <JFXTextField layoutX="98.0" layoutY="197.0" text="E-mail" />
+            <JFXTextField layoutX="98.0" layoutY="266.0" text="Phone" />
+            <JFXTextField layoutX="98.0" layoutY="328.0" text="Address" />
+            <JFXTextField layoutX="98.0" layoutY="392.0" text="Postcode" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
