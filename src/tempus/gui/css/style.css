@@ -39,6 +39,15 @@ and open the template in the editor.
 
 .toggleBtns:selected{
     -fx-background-color: #FFF594;
+ }
  
-}
-    
+ .deleteBackground{
+    -fx-background-color: #A3CCFA;
+ }
+ 
+ .btnDeleteWindow{
+     -fx-background-color: #C9E7F9;
+     -fx-background-radius: 8px;
+     -fx-border-radius: 8px;
+     -fx-border-color: black;
+ }
