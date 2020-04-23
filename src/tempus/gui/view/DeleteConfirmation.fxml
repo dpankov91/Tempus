@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane fx:id="tglBtnWeek" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="400.0" styleClass="confirmDeleteBackground" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="25.0" layoutY="23.0" prefHeight="46.0" prefWidth="350.0" styleClass="confirmDeleteLabel" stylesheets="@../css/style.css" text="Are you sure you want to delete &quot;Selected Item name&quot; ?" />
+      <JFXButton layoutX="243.0" layoutY="97.0" styleClass="confirmDeleteButton" stylesheets="@../css/style.css" text="Confirm" AnchorPane.leftAnchor="243.0" />
+      <JFXButton layoutX="313.0" layoutY="97.0" prefHeight="27.0" prefWidth="61.0" styleClass="confirmDeleteButton" stylesheets="@../css/style.css" text="Back" AnchorPane.rightAnchor="25.399999999999977" />
+   </children>
+</AnchorPane>

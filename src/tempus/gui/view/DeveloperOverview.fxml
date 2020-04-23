@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="tglBtnWeek" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="122.0" layoutY="26.0" prefHeight="29.0" prefWidth="212.0" styleClass="Headline" stylesheets="@../css/style.css" text="Overview" AnchorPane.bottomAnchor="345.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="15.0" />
+      <Label layoutX="194.0" layoutY="26.0" prefHeight="40.0" prefWidth="171.0" styleClass="Headline" stylesheets="@../css/style.css" text="My Overview" AnchorPane.bottomAnchor="345.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="15.0" />
       <ToggleButton layoutX="103.0" layoutY="69.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" styleClass="toggleBtns" stylesheets="@../css/style.css" text="Week" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="80.0" />
       <ToggleButton fx:id="tglBtnMonth" layoutX="349.0" layoutY="69.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" styleClass="toggleBtns" stylesheets="@../css/style.css" text="Month" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="80.0" />
    </children>
