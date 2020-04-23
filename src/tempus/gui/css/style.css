@@ -39,20 +39,6 @@ and open the template in the editor.
 
 .toggleBtns:selected{
     -fx-background-color: #FFF594;
- }
  
- .confirmDeleteLabel{   
-       -fx-font-size: 14;
- }
- 
- .confirmDeleteBackground{
-      -fx-background-color: #80CEFA; 
-      }
-      
- .confirmDeleteButton{
-        -fx-background-radius: 8px;
-        -fx-background-color: #ABE4FA;
-        -fx-border-radius: 8px;
-        -fx-border-color: black;    
-      }
+}
     
