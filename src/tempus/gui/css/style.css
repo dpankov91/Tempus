@@ -8,11 +8,12 @@ and open the template in the editor.
     Author     : PC
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Skranji&display=swap');
+
 .buttons{
     /* turquoise color */
     -fx-background-color: linear-gradient( #3dd0e0,#3dd0e0);
     -fx-background-radius: 10px;
-     
 }
 
 .table-view{
@@ -23,4 +24,21 @@ and open the template in the editor.
 .BackGround{
     -fx-background-color: #008b8b, #008b8b;
     }
+    
+.Headline{
+   -fx-font-family: "Skranji";    
+   -fx-font-size: 28;
+   -fx-font-color: linear-gradient( #3dd0e0,#3dd0e0);
+}
+
+.toggleBtns{
+    -fx-background-color: linear-gradient( #3dd0e0,#3dd0e0);
+    -fx-background-radius: 10px;
+    -fx-font-size: 12;
+}
+
+.toggleBtns:selected{
+    -fx-background-color: #FFF594;
+ 
+}
     

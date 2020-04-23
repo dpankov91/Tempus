@@ -17,25 +17,25 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="68.0" layoutY="167.0" prefHeight="45.0" prefWidth="81.0" text="Last Name*">
+      <Label layoutX="68.0" layoutY="166.0" prefHeight="45.0" prefWidth="81.0" text="Last Name*">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="68.0" layoutY="233.0" prefHeight="45.0" prefWidth="81.0" text="E-mail*">
+      <Label layoutX="68.0" layoutY="231.0" prefHeight="45.0" prefWidth="81.0" text="E-mail*">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="68.0" layoutY="294.0" prefHeight="45.0" prefWidth="81.0" text="Password*">
+      <Label layoutX="68.0" layoutY="296.0" prefHeight="45.0" prefWidth="81.0" text="Password*">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXPasswordField focusColor="#a64141" layoutX="149.0" layoutY="304.0" />
+      <JFXPasswordField focusColor="#a64141" layoutX="149.0" layoutY="306.0" />
       <JFXTextField layoutX="149.0" layoutY="111.0" unFocusColor="#a64141" />
-      <JFXTextField layoutX="149.0" layoutY="177.0" unFocusColor="#a64141" />
-      <JFXTextField layoutX="149.0" layoutY="243.0" unFocusColor="#a64141" />
+      <JFXTextField layoutX="149.0" layoutY="176.0" unFocusColor="#a64141" />
+      <JFXTextField layoutX="149.0" layoutY="241.0" unFocusColor="#a64141" />
       <ImageView fitHeight="116.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/94119488_281400346210241_4996574131064406016_n.png" />
