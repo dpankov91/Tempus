@@ -8,16 +8,16 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="344.0" stylesheets="@../css/loginStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="344.0" stylesheets="@../css/loginStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.view.LoginController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="97.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Tempus%20Logo.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnLogin" layoutX="117.0" layoutY="344.0" mnemonicParsing="false" text="Log In" />
-      <Button fx:id="btnCancel" layoutX="172.0" layoutY="344.0" mnemonicParsing="false" text="Cancel" />
-      <JFXRadioButton id="rdoButton" fx:id="rdoRememberMe" layoutX="117.0" layoutY="286.0" prefHeight="18.0" prefWidth="110.0" stylesheets="@../css/loginStyle.css" text="Remember me" />
+      <Button fx:id="btnLogin" layoutX="117.0" layoutY="344.0" mnemonicParsing="false" onAction="#clickLogIn" text="Log In" />
+      <Button fx:id="btnCancel" layoutX="172.0" layoutY="344.0" mnemonicParsing="false" onAction="#clickCancel" text="Cancel" />
+      <JFXRadioButton id="rdoButton" fx:id="rdoRememberMe" layoutX="117.0" layoutY="286.0" onAction="#clickRememberMe" prefHeight="18.0" prefWidth="110.0" stylesheets="@../css/loginStyle.css" text="Remember me" />
       <TextField fx:id="txtFieldUsername" layoutX="98.0" layoutY="185.0" promptText="Username" />
       <PasswordField fx:id="pasPasswordField" layoutX="98.0" layoutY="243.0" promptText="Password" />
    </children>
