@@ -11,11 +11,15 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -70,7 +74,29 @@ public class LoginController implements Initializable {
     }
 
     private void login() {
+        User us = model.loginUser(txtFieldUsername.getText(), pasPasswordField.getText());
+        if (us.getIsAdmin){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/AdminOverview.fxml"));
+            Parent z = loader.load();
+            Scene scene = new Scene(z);
+            Stage s = new Stage();
+            s.setScene(scene);
+            s.show();
+            closeWindow();
+        }else
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeveloperOverview.fxml"));
+            Parent z = loader.load();
+            Scene scene = new Scene(z);
+            Stage s = new Stage();
+                loader.<DeveloperOverviewController>getController().setUser(us); //Sets controler by default for both creating and editing categories
+       
+            s.setScene(scene);
+            s.show();
+            closeWindow();
+        }
         
+    
     }
 
     /*
@@ -85,5 +111,9 @@ public class LoginController implements Initializable {
         alert.showAndWait();
         
     }
+
+    private void closeWindow() {
+        Stage stage = (Stage) btnLogin.getScene().getWindow();
+        stage.close();    }
     
 }
