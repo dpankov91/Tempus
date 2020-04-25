@@ -30,6 +30,7 @@ public class UserDAO {
         
         Connection con = connector.getConnection();
         PreparedStatement pstmt = con.prepareStatement(sql);
+        
         pstmt.setString(1, username);
         pstmt.setString(2, password);
         ResultSet rs = pstmt.executeQuery();
@@ -44,6 +45,8 @@ public class UserDAO {
         User us = new User(id, firstName, lastName, isAdmin);
         
         return us;
+        
+    
         }    
             
     }
