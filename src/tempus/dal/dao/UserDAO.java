@@ -19,19 +19,14 @@ import tempus.dal.DbConnectionProvider;
 public class UserDAO {
     private final DbConnectionProvider connector;
     
-    public UserDAO(DbConnectionProvider connector)
+    public UserDAO()
     {
-        this.connector = connector;
+        this.connector = new DbConnectionProvider();
         //connector = new DbConnectionProvider();
     }
 
-    public UserDAO() 
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public User getUser(String username, String password) throws SQLException {
-        String sql = "SELECT * FROM [dbo].[User] WHERE userID = ? AND password = ? ";
+        String sql = "SELECT * FROM [dbo].[User] WHERE email = ? AND password = ? ";
         
         Connection con = connector.getConnection();
         PreparedStatement pstmt = con.prepareStatement(sql);
@@ -41,10 +36,10 @@ public class UserDAO {
         if(!rs.next()){
             return null;
         }else{
-        int id = rs.getInt("id");
-        String firstName = rs.getString("firstname");
-        String lastName = rs.getString("lastname");
-        boolean isAdmin = rs.getBoolean("admin");
+        int id = rs.getInt("userID");
+        String firstName = rs.getString("firstName");
+        String lastName = rs.getString("lastName");
+        boolean isAdmin = rs.getBoolean("isAdmin");
         
         User us = new User(id, firstName, lastName, isAdmin);
         
