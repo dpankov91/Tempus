@@ -6,6 +6,7 @@
 package tempus.gui.controller;
 
 import com.jfoenix.controls.JFXRadioButton;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -73,7 +74,7 @@ public class LoginController implements Initializable {
         }
     }
 
-    private void login() {
+    private void login() throws IOException {
         User us = model.loginUser(txtFieldUsername.getText(), pasPasswordField.getText());
         if (us.getIsAdmin){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/AdminOverview.fxml"));

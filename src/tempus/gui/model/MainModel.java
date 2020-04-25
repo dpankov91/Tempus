@@ -11,9 +11,13 @@ package tempus.gui.model;
  */
 public class MainModel 
 {
-    private User loggedInUser;
+    private BllFacade facade;
     
     static MainModel model = new MainModel();
+    
+     private MainModel(){
+        this.facade = new BllManager();
+    }
 }
         
 public static MainModel getInstance(){
