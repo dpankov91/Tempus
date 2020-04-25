@@ -5,10 +5,14 @@
  */
 package tempus.dal;
 
+import tempus.be.User;
+
 /**
  *
  * @author dpank
  */
 public interface IDalFacade {
+
+    public User getUser(String username, String password);
     
 }

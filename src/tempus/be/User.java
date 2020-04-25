@@ -15,7 +15,9 @@ public class User
     private String fName;
     private String lName;
     private boolean isAdmin;
+    public boolean getIsAdmin;
 
+    
     public User(int id, String fName, String lName, boolean isAdmin) {
         this.id = id;
         this.fName = fName;
@@ -35,9 +37,26 @@ public class User
         return lName;
     }
 
-    public boolean isIsAdmin() {
+    public boolean getIsAdmin() {
         return isAdmin;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+    
     
     
 }

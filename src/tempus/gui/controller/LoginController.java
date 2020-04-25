@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import tempus.be.User;
 import tempus.gui.model.MainModel;
 
 /**
@@ -41,6 +42,7 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField pasPasswordField;
     MainModel model;
+ 
 
     /**
      * Initializes the controller class.
@@ -51,7 +53,7 @@ public class LoginController implements Initializable {
     }    
 
     @FXML
-    private void clickLogIn(ActionEvent event) {
+    private void clickLogIn(ActionEvent event) throws IOException {
         checkIfFieldsAreEmpty();
         login();
     }
@@ -92,8 +94,6 @@ public class LoginController implements Initializable {
             Parent z = loader.load();
             Scene scene = new Scene(z);
             Stage s = new Stage();
-                loader.<DeveloperOverviewController>getController().setUser(us); //Sets controler by default for both creating and editing categories
-       
             s.setScene(scene);
             s.show();
             closeWindow();

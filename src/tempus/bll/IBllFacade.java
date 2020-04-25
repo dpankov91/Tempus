@@ -5,10 +5,14 @@
  */
 package tempus.bll;
 
+import tempus.be.User;
+
 /**
  *
  * @author dpank
  */
 public interface IBllFacade {
+
+    public User getUser(String username, String password);
     
 }
