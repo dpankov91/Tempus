@@ -11,23 +11,27 @@ package tempus.gui.model;
  */
 public class MainModel 
 {
+    static MainModel model = new MainModel();
+    
+    
+    public static MainModel getInstance() {
+        return model;
+    }
     private BllFacade facade;
     
-    static MainModel model = new MainModel();
+    
     
      private MainModel(){
         this.facade = new BllManager();
     }
-}
-        
-public static MainModel getInstance(){
-    return model;
-  
-}
-
-       
-        
-public User loginUser(String username, String password)
+     
+     public User loginUser(String username, String password)
     {
        return loggedInUser =  facade.getUser(username, password);
     } 
+
+}
+       
+
+       
+        
