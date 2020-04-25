@@ -8,10 +8,13 @@ package tempus.gui.controller;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -27,9 +30,13 @@ public class RootDeveloperController implements Initializable {
     @FXML
     private JFXButton btn_timesheet;
     @FXML
-    private Button btn_play;
+    private BorderPane mainPane;
     @FXML
-    private Button btn_pause;
+    private JFXButton btn_logout;
+    @FXML
+    private JFXButton btn_overview;
+    @FXML
+    private JFXButton btn_projects;
 
     /**
      * Initializes the controller class.
@@ -45,22 +52,39 @@ public class RootDeveloperController implements Initializable {
 
     @FXML
     private void handle_Settings(ActionEvent event) {
-    }
-
-    @FXML
-    private void handle_TimeSheet(ActionEvent event) {
-        btn_timesheet.setVisible(true);
-        btn_play.setVisible(true);
-        btn_pause.setVisible(true);
         
     }
 
     @FXML
-    private void handle_Play(ActionEvent event) {
+    private void handle_TimeSheet(ActionEvent event) {
+        
+        System.out.println("Clicked");
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPage("DeveloperTimeTracker");
+        mainPane.setCenter(view);  
     }
 
     @FXML
-    private void handle_Pause(ActionEvent event) {
+    private void handle_Overview(ActionEvent event) {
+        
+        System.out.println("Clicked");
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPage("DeveloperOverview");
+        mainPane.setCenter(view);  
     }
-    
+
+    @FXML
+    private void handle_Projects(ActionEvent event) {
+        
+        System.out.println("Clicked");
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPage("DeveloperProjectInfo");
+        mainPane.setCenter(view); 
+    }
+
+    @FXML
+    private void handle_Logout(ActionEvent event) {
+        
+        Platform.exit();
+    }
 }

@@ -1,47 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.RootAdminController">
    <children>
       <AnchorPane prefHeight="736.0" prefWidth="1257.0" style="-fx-background-color: #282828;">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#282828" height="125.0" layoutY="1.0" stroke="WHITE" strokeType="INSIDE" width="1257.0" />
-            <ListView layoutY="127.0" prefHeight="610.0" prefWidth="200.0" styleClass="BackGround" stylesheets="@../css/style.css" />
-            <Button fx:id="btn_editprofile" layoutX="108.0" layoutY="357.0" mnemonicParsing="false" onAction="#handle_editProfile" style="-fx-background-color: #121212;">
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/icons8-edit-50.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="btn_settings" layoutX="24.0" layoutY="357.0" mnemonicParsing="false" onAction="#handle_Settings" style="-fx-background-color: #121212;">
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/icons8-add-50.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Pane layoutX="3.0" layoutY="553.0" prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
+            <VBox layoutX="3.0" layoutY="129.0" prefHeight="601.0" prefWidth="180.0" styleClass="BackGround" stylesheets="@../css/style.css">
                <children>
-                  <JFXButton layoutX="-4.0" layoutY="-1.0" prefHeight="45.0" prefWidth="205.0" text="Projects" />
+                  <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
+                     <children>
+                        <JFXButton fx:id="btn_users" layoutX="1.0" layoutY="-1.0" onAction="#handle_Users" prefHeight="45.0" prefWidth="200.0" text="Users" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="200.0" />
+                     </VBox.margin>
+                  </Pane>
+                  <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
+                     <children>
+                        <JFXButton fx:id="btn_overview" layoutX="3.0" layoutY="-1.0" onAction="#handle_Overview" prefHeight="45.0" prefWidth="194.0" text="My Overview" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Pane>
+                  <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
+                     <children>
+                        <JFXButton fx:id="btn_projects" layoutX="-4.0" layoutY="-1.0" onAction="#handle_Projects" prefHeight="45.0" prefWidth="205.0" text="Projects" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Pane>
                </children>
-            </Pane>
+            </VBox>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#282828" height="125.0" layoutY="1.0" stroke="WHITE" strokeType="INSIDE" width="1257.0" />
             <ImageView fitHeight="105.0" fitWidth="187.0" layoutX="39.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/iconfinder_8_3898372.png" />
@@ -52,33 +55,28 @@
                   <Image url="@../assets/94119488_281400346210241_4996574131064406016_n.png" />
                </image>
             </ImageView>
-            <Pane layoutX="3.0" layoutY="442.0" prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
-               <children>
-                  <JFXButton fx:id="btn_users" layoutX="1.0" layoutY="-1.0" onAction="#handle_Users" prefHeight="45.0" prefWidth="200.0" text="Users" />
-               </children>
-            </Pane>
-            <Pane layoutX="4.0" layoutY="499.0" prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
-               <children>
-                  <JFXButton layoutX="3.0" layoutY="-1.0" prefHeight="45.0" prefWidth="194.0" text="My Overview" />
-               </children>
-            </Pane>
-            <JFXButton layoutX="371.0" layoutY="132.0" prefHeight="31.0" prefWidth="0.0" />
-            <JFXTextField layoutX="9.0" layoutY="287.0" prefHeight="31.0" prefWidth="178.0" promptText="Task Name" style="-fx-background-color: #FFFFFF;" text="User Name" />
-            <JFXButton layoutX="1026.0" layoutY="47.0" prefHeight="45.0" prefWidth="150.0" styleClass="buttons" stylesheets="@../css/style.css" text="Log Out" />
-            <JFXTextField layoutX="17.0" layoutY="131.0" prefHeight="31.0" prefWidth="172.0" promptText="Task Name" style="-fx-background-color: #FFFFFF;" text="           ADMIN">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </JFXTextField>
-            <TableView fx:id="tb_users" layoutX="286.0" layoutY="132.0" prefHeight="470.0" prefWidth="673.0" visible="false">
-              <columns>
-                <TableColumn prefWidth="215.0" text="First Name" />
-                <TableColumn prefWidth="245.0" text="Second Name" />
-              </columns>
-            </TableView>
-            <JFXButton fx:id="btn_edituser" layoutX="1026.0" layoutY="229.0" onAction="#handle_EditUser" prefHeight="45.0" prefWidth="150.0" styleClass="BackGround" stylesheets="@../css/style.css" text="Edit User" visible="false" />
-            <JFXButton fx:id="btn_deleteuser" layoutX="1026.0" layoutY="296.0" prefHeight="45.0" prefWidth="150.0" styleClass="BackGround" stylesheets="@../css/style.css" text="Delete User" visible="false" />
-            <JFXButton fx:id="btn_adduser" layoutX="1026.0" layoutY="169.0" prefHeight="45.0" prefWidth="150.0" styleClass="BackGround" stylesheets="@../css/style.css" text="Add User" visible="false" />
+            <JFXButton layoutX="1026.0" layoutY="47.0" onAction="#handle_Logout" prefHeight="45.0" prefWidth="150.0" styleClass="buttons" stylesheets="@../css/style.css" text="Log Out" />
+            <Label layoutX="68.0" layoutY="142.0" text="ADMIN" />
+            <Label layoutX="55.0" layoutY="285.0" text="User Name" />
+            <BorderPane fx:id="mainPane" layoutX="208.0" layoutY="142.0" prefHeight="560.0" prefWidth="1030.0" />
+            <Button fx:id="btn_settings" layoutX="522.0" layoutY="33.0" mnemonicParsing="false" onAction="#handle_Settings" style="-fx-background-color: #121212;">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/icons8-add-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_editprofile" layoutX="600.0" layoutY="33.0" mnemonicParsing="false" onAction="#handle_editProfile" style="-fx-background-color: #121212;">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/icons8-edit-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
    </children>

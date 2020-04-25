@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -33,13 +37,11 @@ public class RootAdminController implements Initializable {
     @FXML
     private JFXButton btn_users;
     @FXML
-    private TableView<?> tb_users;
+    private JFXButton btn_overview;
     @FXML
-    private JFXButton btn_edituser;
+    private JFXButton btn_projects;
     @FXML
-    private JFXButton btn_deleteuser;
-    @FXML
-    private JFXButton btn_adduser;
+    private BorderPane mainPane;
 
     /**
      * Initializes the controller class.
@@ -59,14 +61,32 @@ public class RootAdminController implements Initializable {
 
     @FXML
     private void handle_Users(ActionEvent event) {
-        tb_users.setVisible(true);
-        btn_adduser.setVisible(true);
-        btn_deleteuser.setVisible(true);
-        btn_edituser.setVisible(true);
+        System.out.println("Clicked");
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPage("AddUserWindow");
+        mainPane.setCenter(view);
     }
 
     @FXML
-    private void handle_EditUser(ActionEvent event) {
+    private void handle_Projects(ActionEvent event) {
+        System.out.println("Clicked");
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPage("DeveloperProjectInfo");
+        mainPane.setCenter(view);
     }
-    
+
+    @FXML
+    private void handle_Overview(ActionEvent event) {
+        System.out.println("Clicked");
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPage("AdminOverview");
+        mainPane.setCenter(view);
+    }
+
+    @FXML
+    private void handle_Logout(ActionEvent event) {
+        
+        Platform.exit();
+
+    } 
 }
