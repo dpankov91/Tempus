@@ -47,7 +47,11 @@ public class RootDeveloperController implements Initializable {
     }    
 
     @FXML
-    private void handle_editProfile(ActionEvent event) {
+    private void handle_editProfile(ActionEvent event) {   
+        System.out.println("Clicked");
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPage("EditUser");
+        mainPane.setCenter(view);
     }
 
     @FXML
@@ -56,8 +60,7 @@ public class RootDeveloperController implements Initializable {
     }
 
     @FXML
-    private void handle_TimeSheet(ActionEvent event) {
-        
+    private void handle_TimeSheet(ActionEvent event) {  
         System.out.println("Clicked");
         FxmlLoader object = new FxmlLoader();
         Pane view = object.getPage("DeveloperTimeTracker");
@@ -65,8 +68,7 @@ public class RootDeveloperController implements Initializable {
     }
 
     @FXML
-    private void handle_Overview(ActionEvent event) {
-        
+    private void handle_Overview(ActionEvent event) {     
         System.out.println("Clicked");
         FxmlLoader object = new FxmlLoader();
         Pane view = object.getPage("DeveloperOverview");
@@ -74,8 +76,7 @@ public class RootDeveloperController implements Initializable {
     }
 
     @FXML
-    private void handle_Projects(ActionEvent event) {
-        
+    private void handle_Projects(ActionEvent event) {       
         System.out.println("Clicked");
         FxmlLoader object = new FxmlLoader();
         Pane view = object.getPage("DeveloperProjectInfo");
@@ -83,8 +84,7 @@ public class RootDeveloperController implements Initializable {
     }
 
     @FXML
-    private void handle_Logout(ActionEvent event) {
-        
+    private void handle_Logout(ActionEvent event) {  
         Platform.exit();
     }
 }
