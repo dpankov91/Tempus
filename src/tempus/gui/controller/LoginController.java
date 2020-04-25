@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import tempus.gui.model.MainModel;
 
 /**
  * FXML Controller class
@@ -38,13 +39,14 @@ public class LoginController implements Initializable {
     private TextField txtFieldUsername;
     @FXML
     private PasswordField pasPasswordField;
+    MainModel model;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        model = MainModel.getInstance();
     }    
 
     @FXML
