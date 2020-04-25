@@ -67,7 +67,7 @@ public class RootAdminController implements Initializable {
     private void handle_Users(ActionEvent event) {
         System.out.println("Clicked");
         FxmlLoader object = new FxmlLoader();
-        Pane view = object.getPage("AddUserWindow");
+        Pane view = object.getPage("ManageUsersWindow");
         mainPane.setCenter(view);
     }
 

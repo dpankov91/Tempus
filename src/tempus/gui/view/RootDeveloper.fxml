@@ -80,7 +80,7 @@
                </image>
             </ImageView>
             <JFXButton layoutX="371.0" layoutY="132.0" prefHeight="31.0" prefWidth="0.0" />
-            <BorderPane fx:id="mainPane" layoutX="196.0" layoutY="135.0" prefHeight="560.0" prefWidth="1030.0" />
+            <BorderPane fx:id="mainPane" layoutX="188.0" layoutY="135.0" prefHeight="580.0" prefWidth="1060.0" />
             <JFXButton fx:id="btn_logout" layoutX="1011.0" layoutY="41.0" onAction="#handle_Logout" prefHeight="45.0" prefWidth="205.0" styleClass="buttons" stylesheets="@../css/style.css" text="Log Out" />
          </children>
       </AnchorPane>
