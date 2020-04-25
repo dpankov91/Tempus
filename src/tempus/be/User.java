@@ -9,6 +9,35 @@ package tempus.be;
  *
  * @author dpank
  */
-public class User {
+public class User 
+{
+    private int id;
+    private String fName;
+    private String lName;
+    private boolean isAdmin;
+
+    public User(int id, String fName, String lName, boolean isAdmin) {
+        this.id = id;
+        this.fName = fName;
+        this.lName = lName;
+        this.isAdmin = isAdmin;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public boolean isIsAdmin() {
+        return isAdmin;
+    }
+    
     
 }
