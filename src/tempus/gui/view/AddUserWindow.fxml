@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.AddUserWindowController">
    <children>
       <Label layoutX="68.0" layoutY="101.0" prefHeight="45.0" prefWidth="81.0" text="First Name*">
          <font>
@@ -32,30 +32,30 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXPasswordField focusColor="#a64141" layoutX="149.0" layoutY="306.0" />
-      <JFXTextField layoutX="149.0" layoutY="111.0" unFocusColor="#a64141" />
-      <JFXTextField layoutX="149.0" layoutY="176.0" unFocusColor="#a64141" />
-      <JFXTextField layoutX="149.0" layoutY="241.0" unFocusColor="#a64141" />
+      <JFXPasswordField fx:id="txtPassword" focusColor="#a64141" layoutX="149.0" layoutY="306.0" />
+      <JFXTextField fx:id="txtFirstName" layoutX="149.0" layoutY="111.0" unFocusColor="#a64141" />
+      <JFXTextField fx:id="txtLastName" layoutX="149.0" layoutY="176.0" unFocusColor="#a64141" />
+      <JFXTextField fx:id="txtEmail" layoutX="149.0" layoutY="241.0" unFocusColor="#a64141" />
       <ImageView fitHeight="116.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/94119488_281400346210241_4996574131064406016_n.png" />
          </image>
       </ImageView>
       <Label layoutX="144.0" layoutY="31.0" prefHeight="55.0" prefWidth="312.0" />
-      <JFXButton layoutX="358.0" layoutY="304.0" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Save">
+      <JFXButton fx:id="btnSave" layoutX="358.0" layoutY="304.0" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Save">
          <effect>
             <DropShadow />
          </effect></JFXButton>
-      <JFXButton layoutX="469.0" layoutY="304.0" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Cancel">
+      <JFXButton fx:id="btnCancel" layoutX="469.0" layoutY="304.0" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Cancel">
          <effect>
             <DropShadow />
          </effect></JFXButton>
-      <ComboBox layoutX="368.0" layoutY="177.0" prefWidth="150.0" style="-fx-background-color: #66ff66;">
+      <ComboBox fx:id="cmbChooseRole" layoutX="368.0" layoutY="177.0" prefWidth="150.0" promptText="Roles" style="-fx-background-color: #66ff66;">
          <effect>
             <DropShadow />
          </effect>
       </ComboBox>
-      <Label layoutX="415.0" layoutY="129.0" prefHeight="35.0" prefWidth="56.0" text="Choose*">
+      <Label layoutX="389.0" layoutY="129.0" prefHeight="35.0" prefWidth="90.0" text="Choose Role*">
          <font>
             <Font size="14.0" />
          </font>

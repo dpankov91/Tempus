@@ -13,17 +13,17 @@ import tempus.bll.IBllFacade;
  *
  * @author Tienesh
  */
-public class MainModel
+public class UserModel
 {
-    static MainModel model = new MainModel();
+    static UserModel model = new UserModel();
     private final IBllFacade facade;
     private User loggedInUser;
     
-    public static MainModel getInstance() {
+    public static UserModel getInstance() {
         return model;
     }
     
-    private MainModel(){
+    private UserModel(){
         this.facade = new BllManager();
     }
       

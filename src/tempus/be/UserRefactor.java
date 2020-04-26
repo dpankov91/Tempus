@@ -11,13 +11,13 @@ package tempus.be;
  */
         
 
-public class UserAuth{
+public class UserRefactor{
     
     
     private int id;
     private String rememberKey;
 
-    public UserAuth(int id, String rememberKey) {
+    public UserRefactor(int id, String rememberKey) {
         this.id = id;
         this.rememberKey = rememberKey;
     }

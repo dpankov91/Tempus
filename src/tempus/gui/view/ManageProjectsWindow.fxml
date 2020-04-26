@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ManageProjectsWindowController">
    <children>
       <TableView layoutY="98.0" prefHeight="320.0" prefWidth="330.0" stylesheets="@../css/style.css">
         <columns>
           <TableColumn prefWidth="75.0" text="Projects" />
           <TableColumn prefWidth="98.0" text="Spend Hours" />
-            <TableColumn prefWidth="99.0" text="Assigned To" />
+            <TableColumn prefWidth="87.99993896484375" text="Assigned To" />
         </columns>
       </TableView>
       <Label layoutX="238.0" layoutY="14.0" text="Manage Projects" textFill="#66ff66">

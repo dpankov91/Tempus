@@ -3,9 +3,16 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.DeveloperProjectInfoController">
    <children>
-      <Label layoutX="279.0" layoutY="36.0" prefHeight="38.0" prefWidth="177.0" styleClass="Headline" stylesheets="@../css/style.css" text="Projects Info" />
+      <Label layoutX="279.0" layoutY="36.0" prefHeight="38.0" prefWidth="177.0" styleClass="Headline" stylesheets="@../css/style.css" text="Projects Info" AnchorPane.topAnchor="27.0" />
+      <Label fx:id="lblName1" layoutX="85.0" layoutY="71.0" prefHeight="18.0" prefWidth="79.0" text="Project Name" />
+      <Label fx:id="lblName4" layoutX="475.0" layoutY="287.0" prefHeight="18.0" prefWidth="79.0" text="Project Name" />
+      <Label fx:id="lblName3" layoutX="85.0" layoutY="287.0" prefHeight="18.0" prefWidth="79.0" text="Project Name" />
+      <Label fx:id="lblName2" layoutX="475.0" layoutY="71.0" prefHeight="18.0" prefWidth="79.0" text="Project Name" />
+      <Label fx:id="lblDescr1" layoutX="26.0" layoutY="89.0" prefHeight="195.0" prefWidth="278.0" text="Project Description" />
+      <Label fx:id="lblDescr3" layoutX="14.0" layoutY="305.0" prefHeight="195.0" prefWidth="278.0" text="Project Description" />
+      <Label fx:id="lblDescr4" layoutX="375.0" layoutY="305.0" prefHeight="195.0" prefWidth="278.0" text="Project Description" />
+      <Label fx:id="lblDescr2" layoutX="375.0" layoutY="89.0" prefHeight="195.0" prefWidth="278.0" text="Project Description" />
    </children>
 </AnchorPane>

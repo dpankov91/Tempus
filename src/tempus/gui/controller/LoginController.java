@@ -22,7 +22,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import tempus.be.User;
-import tempus.gui.model.MainModel;
+import tempus.gui.model.UserModel;
 
 /**
  * FXML Controller class
@@ -41,7 +41,7 @@ public class LoginController implements Initializable {
     private TextField txtFieldUsername;
     @FXML
     private PasswordField pasPasswordField;
-    MainModel model;
+    UserModel model;
  
 
     /**
@@ -49,7 +49,7 @@ public class LoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        model = MainModel.getInstance();
+        model = UserModel.getInstance();
     }    
 
     @FXML
@@ -70,11 +70,11 @@ public class LoginController implements Initializable {
     private void checkIfFieldsAreEmpty() {
         if(txtFieldUsername.getText() == null || txtFieldUsername.getText().isEmpty())
         {
-            setUpAlert("No Username Error" , "Please insert Username.");
+            setUpAlert("No Username Error" , "Please insert Username");
         }
         else if(pasPasswordField.getText() == null || pasPasswordField.getText().isEmpty())
         {
-            setUpAlert("No Password Error" , "Please insert Password."); 
+            setUpAlert("No Password Error" , "Please insert Password"); 
         }
     }
 
