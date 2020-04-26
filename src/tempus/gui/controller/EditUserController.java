@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 /**
@@ -24,6 +25,8 @@ public class EditUserController implements Initializable {
     private JFXButton btn_save;
     @FXML
     private JFXButton btn_cancel;
+    @FXML
+    private ComboBox<?> chooseUserEditCombo;
 
     /**
      * Initializes the controller class.
@@ -41,6 +44,10 @@ public class EditUserController implements Initializable {
     private void handle_Cancel(ActionEvent event) {
            Stage stage = (Stage) btn_cancel.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void onActionChooseEditUser(ActionEvent event) {
     }
     
 }
