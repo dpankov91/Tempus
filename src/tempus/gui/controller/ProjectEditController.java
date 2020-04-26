@@ -5,11 +5,10 @@
  */
 package tempus.gui.controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -19,22 +18,16 @@ import javafx.scene.control.ComboBox;
  *
  * @author dpank
  */
-public class AddUserWindowController implements Initializable {
+public class ProjectEditController implements Initializable {
 
     @FXML
-    private JFXPasswordField txtPassword;
+    private ComboBox<?> cmbExistedProjects;
     @FXML
-    private JFXTextField txtFirstName;
+    private JFXTextField txtProjectName;
     @FXML
-    private JFXTextField txtLastName;
+    private JFXTextField txtClientName;
     @FXML
-    private JFXTextField txtEmail;
-    @FXML
-    private JFXButton btnSave;
-    @FXML
-    private JFXButton btnCancel;
-    @FXML
-    private ComboBox<?> cmbChooseRole;
+    private JFXTextField txtHourlyRate;
 
     /**
      * Initializes the controller class.
@@ -43,5 +36,13 @@ public class AddUserWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void handleSaveUpdates(ActionEvent event) {
+    }
+
+    @FXML
+    private void goBack(ActionEvent event) {
+    }
     
 }

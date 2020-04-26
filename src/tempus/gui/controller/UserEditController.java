@@ -5,7 +5,7 @@
  */
 package tempus.gui.controller;
 
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -18,16 +18,14 @@ import javafx.scene.control.ComboBox;
  *
  * @author dpank
  */
-public class EditProjectWindowController implements Initializable {
+public class UserEditController implements Initializable {
 
     @FXML
-    private ComboBox<?> cmbExistedProjects;
+    private JFXButton btn_save;
     @FXML
-    private JFXTextField txtProjectName;
+    private JFXButton btn_cancel;
     @FXML
-    private JFXTextField txtClientName;
-    @FXML
-    private JFXTextField txtHourlyRate;
+    private ComboBox<?> chooseUserEditCombo;
 
     /**
      * Initializes the controller class.
@@ -38,11 +36,15 @@ public class EditProjectWindowController implements Initializable {
     }    
 
     @FXML
-    private void handleSaveUpdates(ActionEvent event) {
+    private void handle_Save(ActionEvent event) {
     }
 
     @FXML
-    private void goBack(ActionEvent event) {
+    private void handle_Cancel(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionChooseEditUser(ActionEvent event) {
     }
     
 }

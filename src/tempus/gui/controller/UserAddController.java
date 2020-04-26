@@ -6,24 +6,35 @@
 package tempus.gui.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.stage.Stage;
+import javafx.scene.control.ComboBox;
 
 /**
  * FXML Controller class
  *
- * @author PC
+ * @author dpank
  */
-public class EditUserController implements Initializable {
+public class UserAddController implements Initializable {
 
     @FXML
-    private JFXButton btn_save;
+    private JFXPasswordField txtPassword;
     @FXML
-    private JFXButton btn_cancel;
+    private JFXTextField txtFirstName;
+    @FXML
+    private JFXTextField txtLastName;
+    @FXML
+    private JFXTextField txtEmail;
+    @FXML
+    private JFXButton btnSave;
+    @FXML
+    private JFXButton btnCancel;
+    @FXML
+    private ComboBox<?> cmbChooseRole;
 
     /**
      * Initializes the controller class.
@@ -32,15 +43,5 @@ public class EditUserController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    @FXML
-    private void handle_Save(ActionEvent event) {
-    }
-
-    @FXML
-    private void handle_Cancel(ActionEvent event) {
-           Stage stage = (Stage) btn_cancel.getScene().getWindow();
-        stage.close();
-    }
     
 }
