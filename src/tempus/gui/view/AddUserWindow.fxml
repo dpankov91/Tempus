@@ -55,7 +55,7 @@
             <DropShadow />
          </effect>
       </ComboBox>
-      <Label layoutX="402.0" layoutY="114.0" prefHeight="45.0" prefWidth="81.0" text="Choose*">
+      <Label layoutX="415.0" layoutY="129.0" prefHeight="35.0" prefWidth="56.0" text="Choose*">
          <font>
             <Font size="14.0" />
          </font>

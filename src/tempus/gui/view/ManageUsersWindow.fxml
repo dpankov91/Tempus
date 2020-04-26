@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/loginStyle.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+   <children>
+      <TableView layoutY="79.0" prefHeight="320.0" prefWidth="330.0" stylesheets="@../css/style.css">
+        <columns>
+          <TableColumn fx:id="firstName" prefWidth="110.0" text="First Name" />
+            <TableColumn fx:id="lastName" prefWidth="110.0" text="Last Name" />
+            <TableColumn fx:id="userID" prefWidth="110.0" text="User ID" />
+        </columns>
+      </TableView>
+      <ImageView fitHeight="80.0" fitWidth="95.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/94119488_281400346210241_4996574131064406016_n.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="366.0" layoutY="175.0" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" AnchorPane.bottomAnchor="185.0" />
+      <JFXButton fx:id="addUser" layoutX="366.0" layoutY="228.0" onAction="#onActionAddUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="ADD" AnchorPane.bottomAnchor="185.0" />
+      <JFXButton fx:id="editUser" layoutX="366.0" layoutY="280.0" onAction="#onActionEditUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="EDIT" />
+      <JFXButton fx:id="deleteUser" layoutX="366.0" layoutY="228.0" onAction="#onActionDeleteUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="DELETE" />
+   </children>
+</AnchorPane>
