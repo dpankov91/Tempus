@@ -6,6 +6,9 @@
 package tempus.bll;
 
 import tempus.be.User;
+import tempus.bll.security.ISecurityManager;
+import tempus.bll.security.SecurityManager;
+
 import tempus.dal.DalManager;
 import tempus.dal.IDalFacade;
 
@@ -16,15 +19,17 @@ import tempus.dal.IDalFacade;
 public class BllManager implements IBllFacade {
     
     IDalFacade facade;
+    ISecurityManager securityManager;
 
     public BllManager() {   
         facade = new DalManager();
+        securityManager = new SecurityManager();
     }
 
     @Override
     public User getUser(String username, String password) {
-
-        return facade.getUser(username, password);
+        String hashedPassword = securityManager.hashPassword(password);
+        return facade.getUser(username, hashedPassword);
     }
 
     
