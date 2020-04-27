@@ -17,5 +17,7 @@ public interface IBllFacade {
 
     public void createProject(String name, String client, String rate, String description);
 
+    public void deleteProject(String name, String client, String rate, String description);
+
     
 }
