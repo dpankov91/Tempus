@@ -44,6 +44,7 @@ public class ProjectCreateWindowController implements Initializable {
     private UserModel userModel;
     
     
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
