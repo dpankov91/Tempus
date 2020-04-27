@@ -41,6 +41,8 @@ public class RootAdminController implements Initializable {
     private JFXButton btn_projects;
     @FXML
     private BorderPane mainPane;
+    @FXML
+    private JFXButton btnLogOut;
 
     /**
      * Initializes the controller class.
@@ -83,8 +85,15 @@ public class RootAdminController implements Initializable {
     }
 
     @FXML
-    private void handle_Logout(ActionEvent event) {
-        Platform.exit();
+    private void handle_Logout(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/Login.fxml"));
+        Parent z = loader.load();
+        Scene scene = new Scene(z);
+        Stage s = new Stage();
+        s.setScene(scene);
+        s.show();
+        Stage stage = (Stage) btnLogOut.getScene().getWindow();
+        stage.close();
     }
     
 }
