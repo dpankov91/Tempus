@@ -14,5 +14,8 @@ import tempus.be.User;
 public interface IBllFacade {
 
     public User getUser(String username, String password);
+
+    public void createProject(String name, String client, String rate, String description);
+
     
 }

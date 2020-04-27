@@ -36,6 +36,11 @@ public class UserModel
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public void createProject(String name, String client, String rate, String description) {
+        
+        facade.createProject(name, client, rate, description);
+    }
+
 }
        
 

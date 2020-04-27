@@ -27,5 +27,12 @@ public class BllManager implements IBllFacade {
         return facade.getUser(username, password);
     }
 
+    @Override
+    public void createProject(String name, String client, String rate, String description) {
+        
+        facade.createProject(name, client, rate, description);
+                
+    }
+
     
 }
