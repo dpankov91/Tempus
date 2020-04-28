@@ -6,9 +6,12 @@
 package tempus.gui.controller;
 
 import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXToggleButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,13 +39,12 @@ public class LoginController implements Initializable {
     @FXML
     private Button btnCancel;
     @FXML
-    private JFXRadioButton rdoRememberMe;
-    @FXML
     private TextField txtFieldUsername;
     @FXML
     private PasswordField pasPasswordField;
     UserModel model;
- 
+    @FXML
+    private JFXRadioButton rdoRememberMe;
 
     /**
      * Initializes the controller class.
@@ -50,12 +52,14 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         model = UserModel.getInstance();
-    }    
+        checkRememberMe();
+    }
 
     @FXML
     private void clickLogIn(ActionEvent event) throws IOException {
-        checkIfFieldsAreEmpty();
-        login();
+        if (!checkIfFieldsAreEmpty()) {
+            login();
+        }
     }
 
     @FXML
@@ -63,25 +67,21 @@ public class LoginController implements Initializable {
         Platform.exit();
     }
 
-    @FXML
-    private void clickRememberMe(ActionEvent event) {
+    private boolean checkIfFieldsAreEmpty() {
+        if (txtFieldUsername.getText() == null || txtFieldUsername.getText().isEmpty()) {
+            setUpAlert("No Username Error", "Please insert Username");
+            return true;
+        } else if (pasPasswordField.getText() == null || pasPasswordField.getText().isEmpty()) {
+            setUpAlert("No Password Error", "Please insert Password");
+            return true;
+        }
+        return false;
     }
 
-    private void checkIfFieldsAreEmpty() {
-        if(txtFieldUsername.getText() == null || txtFieldUsername.getText().isEmpty())
-        {
-            setUpAlert("No Username Error" , "Please insert Username");
-        }
-        else if(pasPasswordField.getText() == null || pasPasswordField.getText().isEmpty())
-        {
-            setUpAlert("No Password Error" , "Please insert Password"); 
-        }
-    }
-
-    private void login() throws IOException 
-    {
+    private void login() throws IOException {
         User us = model.loginUser(txtFieldUsername.getText(), pasPasswordField.getText());
-        if (us.getIsAdmin()){
+        setRememberMe();
+        if (us.getIsAdmin()) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/RootAdmin.fxml"));
             Parent z = loader.load();
             Scene scene = new Scene(z);
@@ -89,8 +89,7 @@ public class LoginController implements Initializable {
             s.setScene(scene);
             s.show();
             closeWindow();
-        }else
-        {
+        } else {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/RootDeveloper.fxml"));
             Parent z = loader.load();
             Scene scene = new Scene(z);
@@ -99,25 +98,51 @@ public class LoginController implements Initializable {
             s.show();
             closeWindow();
         }
-        
-    
+    }
+
+    private void checkRememberMe() {
+        Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
+        String username = prefs.get("email", null);
+        String password = prefs.get("password", null);
+        if (username != null) {
+            txtFieldUsername.setText(username);
+        }
+        if (password != null) {
+            rdoRememberMe.setSelected(true);
+            pasPasswordField.setText(password);
+        }
+    }
+
+    private void setRememberMe() {
+
+        Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
+        prefs.put("email", txtFieldUsername.getText());
+        if (rdoRememberMe.isSelected()) {
+            prefs.put("password", pasPasswordField.getText());
+        } else {
+            prefs.remove("password");
+        }
     }
 
     /*
     The setUpAlert method is used to alert the user, be it developer or admin, if either their password or username is not inserted into the right text fields-
     With a title and a message showing, the user is admin is notified to input the password or username if the fields are empty
-    */
-    
+     */
     private void setUpAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(message);
         alert.showAndWait();
-        
+
     }
 
     private void closeWindow() {
         Stage stage = (Stage) btnLogin.getScene().getWindow();
-        stage.close();    }
-    
+        stage.close();
+    }
+
+    @FXML
+    private void clickRememberMe(ActionEvent event) {
+    }
+
 }

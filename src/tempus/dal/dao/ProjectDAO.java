@@ -46,5 +46,22 @@ public class ProjectDAO {
         
         
     }
+
+    public void deleteProject(String name, String client, String rate, String description) {
+        try {
+            String sql = "DELETE * FROM [dbo].[Project] VALUES ProjectName = ? AND ClientName = ? AND HourlyRate = ? AND Description =? ";
+            
+            Connection con = connector.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            
+            pstmt.setString(1, name);
+            pstmt.setString(2, client);
+            pstmt.setString(3, rate);
+            pstmt.setString(4, description);
+            ResultSet rs = pstmt.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }

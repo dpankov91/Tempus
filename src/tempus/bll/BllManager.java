@@ -39,5 +39,10 @@ public class BllManager implements IBllFacade {
                 
     }
 
+    @Override
+    public void deleteProject(String name, String client, String rate, String description) {
+        facade.deleteProject(name, client, rate, description);
+    }
+
     
 }

@@ -19,11 +19,16 @@ public class UserModel
     private final IBllFacade facade;
     private User loggedInUser;
     
+    
+     public void deleteProject(String name, String client, String rate, String description) {
+        facade.deleteProject(name, client, rate, description);
+    }
+    
     public static UserModel getInstance() {
         return model;
     }
     
-    private UserModel(){
+    public UserModel(){
         this.facade = new BllManager();
     }
       
@@ -39,6 +44,10 @@ public class UserModel
     public void createProject(String name, String client, String rate, String description) {
         
         facade.createProject(name, client, rate, description);
+    }
+
+    public void deleteProject(Object selectedProjectT) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
