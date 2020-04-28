@@ -5,8 +5,11 @@
  */
 package tempus.gui.model;
 
+import java.util.List;
+import tempus.be.Project;
 import tempus.bll.BllManager;
 import tempus.bll.IBllFacade;
+import static tempus.gui.model.UserModel.model;
 
 /**
  *
@@ -14,25 +17,26 @@ import tempus.bll.IBllFacade;
  */
 public class ProjectModel {
     
-    static ProjectModel model = new ProjectModel();
-    private final IBllFacade facade;
-    
-    public static ProjectModel getInstance() {
-        
-        return model;
-        
+ static ProjectModel projmodel = new ProjectModel();
+ private final IBllFacade facade;
+ 
+  public static ProjectModel getInstance() {
+        return projmodel;
     }
     
-    public ProjectModel(){
-        
+   public ProjectModel(){
         this.facade = new BllManager();
-        
     }
+
     
     public void createProject(String projectName, String clientName, String hourlyRate, String description) {
         
         facade.createProject(projectName, clientName, hourlyRate, description);
     }
       
+     public List<Project> getAllProjects() {
+        return facade.getAllProjects();
+          
+    }
     
 }

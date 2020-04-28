@@ -5,6 +5,8 @@
  */
 package tempus.bll;
 
+import java.util.List;
+import tempus.be.Project;
 import tempus.be.User;
 import tempus.bll.security.ISecurityManager;
 import tempus.bll.security.SecurityManager;
@@ -42,6 +44,11 @@ public class BllManager implements IBllFacade {
     @Override
     public void deleteProject(String name, String client, String rate, String description) {
         facade.deleteProject(name, client, rate, description);
+    }
+
+    @Override
+    public List<Project> getAllProjects() {
+      return facade.getAllProjects();
     }
 
     
