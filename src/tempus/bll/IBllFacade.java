@@ -5,6 +5,8 @@
  */
 package tempus.bll;
 
+import java.util.List;
+import tempus.be.Client;
 import tempus.be.User;
 
 /**
@@ -18,6 +20,8 @@ public interface IBllFacade {
     public void createProject(String projectName, String clientName, String hourlyRate, String description);
 
     public void deleteProject(String projectName, String clientName, String hourlyRate, String description);
+
+    public List<Client> getAllClientss();
 
     
 }
