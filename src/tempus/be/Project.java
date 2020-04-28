@@ -20,13 +20,21 @@ public class Project {
     private final IntegerProperty projectID = new SimpleIntegerProperty();
     private final IntegerProperty hourlyRate = new SimpleIntegerProperty();
     private final StringProperty description = new SimpleStringProperty();
-    private final StringProperty clientName = new SimpleStringProperty();
+    private final IntegerProperty clientID = new SimpleIntegerProperty();
 
-    public Project(int projectID, String projectName, String clientName, int hourlyRate, String description) {
+    public Project(int projectID, String projectName, Integer clientID, int hourlyRate, String description) {
         this.projectID.set(projectID);
-        setProjectName(projectName);
+        this.projectName.set(projectName);
+        this.clientID.set(clientID);
+        this.hourlyRate.set(hourlyRate);
+        this.description.set(description);
+        
+       // setProjectName(projectName);
         
     }
+
+    
+    
 
     public String getProjectName() {
         return projectName.get();
@@ -72,16 +80,16 @@ public class Project {
         return description;
     }
     
-    public String getClientName() {
-        return clientName.get();
+    public int getClientID() {
+        return clientID.get();
     }
 
-    public void setClientName(String value) {
-        clientName.set(value);
+    public void setClientID(Integer value) {
+        clientID.set(value);
     }
 
-    public StringProperty clientNameProperty() {
-        return clientName;
+    public IntegerProperty clientIDProperty() {
+        return clientID;
     }
     
     

@@ -35,11 +35,15 @@ public class ManageProjectsWindowController implements Initializable {
     @FXML
     private TableView<Project> tableViewProjects;
     @FXML
-    private TableColumn<?, ?> columnProject;
+    private TableColumn<Project,String> columnProject;
     @FXML
-    private TableColumn<?, ?> columnSpendHours;
+    private TableColumn<Project,Integer> columnProjectID;
     @FXML
-    private TableColumn<?, ?> columnAssignedTo;
+    private TableColumn<Project,Integer> columnHourlyRate;
+     @FXML
+    private TableColumn<Project,Integer> columnClientID;
+      @FXML
+    private TableColumn<Project,String> columnDescription;
     @FXML
     private JFXButton deleteButton;
     @FXML
@@ -55,7 +59,7 @@ public class ManageProjectsWindowController implements Initializable {
     Object selectedProject = tableViewProjects.getSelectionModel().getSelectedItem();
     ProjectModel projModel;
 
-    Project selectedProject = tableViewProjects.getSelectionModel().getSelectedItem();
+   
 
     /**
      * Initializes the controller class.
@@ -78,8 +82,11 @@ public class ManageProjectsWindowController implements Initializable {
     }
     private void setUpTableView()
     {
-        columnProject.setCellValueFactory(new PropertyValueFactory<>("Project"));
-       
+        columnProject.setCellValueFactory(new PropertyValueFactory<>("projectName"));
+         columnProjectID.setCellValueFactory(new PropertyValueFactory<>("projectID"));
+          columnHourlyRate.setCellValueFactory(new PropertyValueFactory<>("hourlyRate"));
+            columnClientID.setCellValueFactory(new PropertyValueFactory<>("clientID"));
+       columnDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         loadTableView();
     }
 
