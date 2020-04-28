@@ -5,6 +5,11 @@
  */
 package tempus.dal.dao;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import tempus.be.Client;
 import tempus.dal.DbConnectionProvider;
@@ -23,8 +28,23 @@ public class ClientDAO {
     }
 
 
-    public List<Client> getAllClientss() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Client> getAllClientss() throws SQLException 
+    {
+        List<Client> allClientNames = new ArrayList<>();
+
+        String sql = "Select [clientName] From [dbo].[Client]";
+
+            Connection con = connector.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                String name = rs.getString("clientName");
+
+                allClientNames.add(new Client(name));
+            }
+            return allClientNames;
+       
     }
     
     
