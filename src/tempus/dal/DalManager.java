@@ -6,9 +6,12 @@
 package tempus.dal;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import tempus.be.Client;
 import tempus.be.User;
+import tempus.dal.dao.ClientDAO;
 import tempus.dal.dao.ProjectDAO;
 import tempus.dal.dao.UserDAO;
 
@@ -20,10 +23,12 @@ public class DalManager implements IDalFacade{
     
     UserDAO userDao;
     ProjectDAO projectDao;
+    ClientDAO clientDao;
 
     public DalManager() {
         userDao = new UserDAO();
         projectDao = new ProjectDAO();
+        clientDao = new ClientDAO();
     }
 
     @Override
@@ -46,6 +51,13 @@ public class DalManager implements IDalFacade{
     @Override
     public void deleteProject(String projectName, String clientName, String hourlyRate, String description) {
         projectDao.deleteProject(projectName, clientName, hourlyRate, description);
+    }
+
+    @Override
+    public List<Client> getAllClientss() 
+    {
+       List<Client> allCategories = clientDao.getAllClientss();
+       return allCategories;
     }
     
 }
