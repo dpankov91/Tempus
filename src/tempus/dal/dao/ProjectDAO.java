@@ -9,6 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import tempus.be.Project;
@@ -61,6 +64,29 @@ public class ProjectDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public List<Project> getAllProjects() throws SQLException {
+        ArrayList<Project> allProjects = new ArrayList<>();
+        
+        String sql = "SELECT * FROM [dbo].[Project]";
+        
+        Connection con = connector.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        
+        while (rs.next()) 
+            {
+                
+                String projectName = rs.getString("projectName");
+                Integer projectID = rs.getInt("projectID");
+                Integer hourlyRate = rs.getInt("hourlyRate");
+                Integer clientID = rs.getInt("clientID");
+                String description = rs.getString("description");
+               
+               
+            }
+                return allProjects;
     }
     
 }

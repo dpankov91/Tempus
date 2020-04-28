@@ -6,8 +6,14 @@
 package tempus.bll;
 
 import java.util.List;
-import tempus.be.Client;
 import tempus.be.Project;
+
+import tempus.be.Client;
+
+
+
+import tempus.be.Project;
+
 import tempus.be.User;
 import tempus.bll.security.ISecurityManager;
 import tempus.bll.security.SecurityManager;
@@ -48,10 +54,17 @@ public class BllManager implements IBllFacade {
     }
 
     @Override
+
+    public List<Project> getAllProjects() {
+      return facade.getAllProjects();
+    }
+
+
     public List<Client> getAllClientss() 
     {
         return facade.getAllClientss();
     }
+
 
 
 
