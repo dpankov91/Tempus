@@ -5,8 +5,6 @@
  */
 package tempus.dal;
 
-import java.util.List;
-import tempus.be.Client;
 import tempus.be.User;
 
 /**
@@ -20,7 +18,5 @@ public interface IDalFacade {
     public void createProject(String name, String client, String rate, String description);
 
     public void deleteProject(String name, String client, String rate, String description);
-
-    public List<Client> getAllClientNames();
     
 }
