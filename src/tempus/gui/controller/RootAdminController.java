@@ -80,7 +80,7 @@ public class RootAdminController implements Initializable {
     private void handle_Projects(ActionEvent event) {
         System.out.println("Clicked");
         FxmlLoader object = new FxmlLoader();
-        Pane view = object.getPage("DeveloperProjectInfo");
+        Pane view = object.getPage("ManageProjectsWindow");
         mainPane.setCenter(view);
     }
 
