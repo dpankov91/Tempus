@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import tempus.be.Client;
+import tempus.be.Project;
 import tempus.be.User;
 import tempus.dal.dao.ClientDAO;
 import tempus.dal.dao.ProjectDAO;
@@ -49,8 +50,8 @@ public class DalManager implements IDalFacade{
     }
 
     @Override
-    public void deleteProject(String projectName, String clientName, String hourlyRate, String description) {
-        projectDao.deleteProject(projectName, clientName, hourlyRate, description);
+    public void deleteProject(Project projectToDelete) {
+        projectDao.deleteProject(projectToDelete);
     }
 
     @Override

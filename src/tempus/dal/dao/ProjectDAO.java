@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import tempus.be.Project;
 import tempus.dal.DbConnectionProvider;
 
 /**
@@ -47,17 +48,15 @@ public class ProjectDAO {
         
     }
 
-    public void deleteProject(String projectName, String clientName, String hourlyRate, String description) {
+    public void deleteProject(Project projectToDelete) {
         try {
-            String sql = "DELETE * FROM [dbo].[Project] VALUES ProjectName = ? AND ClientName = ? AND HourlyRate = ? AND Description =? ";
+            String sql = "DELETE * FROM [dbo].[Project] WHERE id=? ";
             
             Connection con = connector.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);
             
-            pstmt.setString(1, projectName);
-            pstmt.setString(2, clientName);
-            pstmt.setString(3, hourlyRate);
-            pstmt.setString(4, description);
+            pstmt.setInt(1, projectToDelete.getProjectID());
+
             ResultSet rs = pstmt.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);

@@ -28,7 +28,7 @@ import tempus.be.Project;
 public class ManageProjectsWindowController implements Initializable {
 
     @FXML
-    private TableView<?> tableViewProjects;
+    private TableView<Project> tableViewProjects;
     @FXML
     private TableColumn<?, ?> columnProject;
     @FXML
@@ -46,7 +46,7 @@ public class ManageProjectsWindowController implements Initializable {
     @FXML
     private JFXButton goBackButton;
 
-    Object selectedProject = tableViewProjects.getSelectionModel().getSelectedItem();
+    Project selectedProject = tableViewProjects.getSelectionModel().getSelectedItem();
     /**
      * Initializes the controller class.
      */
