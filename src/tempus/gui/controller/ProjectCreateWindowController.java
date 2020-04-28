@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import tempus.gui.model.UserModel;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import tempus.gui.model.ProjectModel;
 
 /**
  * FXML Controller class
@@ -41,7 +42,7 @@ public class ProjectCreateWindowController implements Initializable {
      * Initializes the controller class.
      */
     
-    private UserModel userModel;
+    private ProjectModel projectModel;
     
     
     
@@ -54,23 +55,23 @@ public class ProjectCreateWindowController implements Initializable {
         
         if (txtProjectName.getText() == null || txtProjectName.getText().trim().isEmpty())
      {
-         setUpAlert("Incorrect Info Error" , "You forgot to add the Project name.");
+         setUpAlert("Incorrect Info Error" , "Add text please.");
      
      }
      else if (txtClientName.getText() == null || txtClientName.getText().trim().isEmpty())
      {
          
-        setUpAlert("Incorrect Info Error" , "You forgot to add the Client name.");
+        setUpAlert("Incorrect Info Error" , "Add text please.");
         
      }
      else if (txtHourlyRate.getText() == null || txtHourlyRate.getText().trim().isEmpty())
      {
-        setUpAlert("Incorrect Info Error" , "You forgot to add the Hourly Rate.");
+        setUpAlert("Incorrect Info Error" , "Add text please.");
        
      }
      else if (txtDescription.getText() == null || txtDescription.getText().trim().isEmpty())
      {
-        setUpAlert("Incorrect Info Error" , "You forgot the description of the Project.");
+        setUpAlert("Incorrect Info Error" , "Add text please.");
      }
      return true;
         
@@ -81,34 +82,23 @@ public class ProjectCreateWindowController implements Initializable {
         
         if (checkIfFilled())
         {
-            String name = txtProjectName.getText();
-            String client = txtClientName.getText();
-            String rate = txtHourlyRate.getText();
+            String projectName = txtProjectName.getText();
+            String clientName = txtClientName.getText();
+            String hourlyRate = txtHourlyRate.getText();
             String description = txtDescription.getText();
             
-            userModel.createProject(name, client, rate, description);
+            projectModel.createProject(projectName, clientName, hourlyRate, description);
             
-            setUpAlert("Project is created")
+            setUpAlert("Project is created");
             
         }
    
     }
-    
-    
 
     @FXML
     private void handleGoBack(ActionEvent event) {
         
         closeWindow(event);
-        
-    }
-
-    private void setUpAlert(String incorrect_Info_Error, String manYou_forgot_to_choose_IMDb_rating) {
-        
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(message);
-        alert.showAndWait();
         
     }
 
@@ -118,5 +108,22 @@ public class ProjectCreateWindowController implements Initializable {
         stage.close();
         
     }
-    
+
+    private void setUpAlert(String project_is_created) {
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(message);
+        alert.showAndWait();
+    }
+
+    private void setUpAlert(String incorrect_Info_Error, String add_text_please) {
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(message);
+        alert.showAndWait();
+        
+    }
+
 }

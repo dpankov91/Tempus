@@ -51,6 +51,7 @@ public class ManageUsersWindowController implements Initializable {
 
     @FXML
     private void onActionDeleteUser(ActionEvent event) {
+        
     }
     
 }
