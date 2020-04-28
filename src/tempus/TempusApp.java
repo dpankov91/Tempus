@@ -19,8 +19,10 @@ public class TempusApp extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("gui/view/ProjectCreateWindowController.fxml"));
-        
+
+
+        Parent root = FXMLLoader.load(getClass().getResource("gui/view/ProjectCreateWindow.fxml"));
+
         Scene scene = new Scene(root);
         
         stage.setScene(scene);

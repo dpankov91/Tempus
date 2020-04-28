@@ -7,7 +7,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
+
 <AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="1060.0" stylesheets="@../css/loginStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ManageUsersWindowController">
+
    <children>
       <TableView fx:id="tableViewUsers" layoutY="79.0" prefHeight="320.0" prefWidth="330.0" stylesheets="@../css/style.css">
         <columns>
