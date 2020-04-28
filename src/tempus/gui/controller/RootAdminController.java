@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -32,8 +33,6 @@ public class RootAdminController implements Initializable {
     @FXML
     private Button btn_editprofile;
     @FXML
-    private Button btn_settings;
-    @FXML
     private JFXButton btn_users;
     @FXML
     private JFXButton btn_overview;
@@ -43,6 +42,10 @@ public class RootAdminController implements Initializable {
     private BorderPane mainPane;
     @FXML
     private JFXButton btnLogOut;
+    @FXML
+    private Button btn_help;
+    @FXML
+    private Label lbl_username;
 
     /**
      * Initializes the controller class.
@@ -54,12 +57,17 @@ public class RootAdminController implements Initializable {
 
     @FXML
     private void handle_editProfile(ActionEvent event) {
+        System.out.println("Clicked");
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPage("UserEditWindow");
+        mainPane.setCenter(view); 
     }
 
     @FXML
-    private void handle_Settings(ActionEvent event) {
+    private void handle_Help(ActionEvent event) {
+        
     }
-
+ 
     @FXML
     private void handle_Users(ActionEvent event) {
         System.out.println("Clicked");
@@ -67,7 +75,7 @@ public class RootAdminController implements Initializable {
         Pane view = object.getPage("ManageUsersWindow");
         mainPane.setCenter(view);
     }
-
+    
     @FXML
     private void handle_Overview(ActionEvent event) {
         System.out.println("Clicked");
@@ -80,7 +88,7 @@ public class RootAdminController implements Initializable {
     private void handle_Projects(ActionEvent event) {
         System.out.println("Clicked");
         FxmlLoader object = new FxmlLoader();
-        Pane view = object.getPage("DeveloperProjectInfo");
+        Pane view = object.getPage("ProjectCreateWindow");
         mainPane.setCenter(view);
     }
 

@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
@@ -26,8 +27,6 @@ public class RootDeveloperController implements Initializable {
     @FXML
     private Button btn_editprofile;
     @FXML
-    private Button btn_settings;
-    @FXML
     private JFXButton btn_timesheet;
     @FXML
     private JFXButton btn_overview;
@@ -37,6 +36,10 @@ public class RootDeveloperController implements Initializable {
     private BorderPane mainPane;
     @FXML
     private JFXButton btn_logout;
+    @FXML
+    private Button btn_help;
+    @FXML
+    private Label lbl_username;
 
     /**
      * Initializes the controller class.
@@ -48,15 +51,23 @@ public class RootDeveloperController implements Initializable {
 
     @FXML
     private void handle_editProfile(ActionEvent event) {
+        System.out.println("Clicked");
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPage("UserEditWindow");
+        mainPane.setCenter(view); 
     }
 
     @FXML
-    private void handle_Settings(ActionEvent event) {
+    private void handle_Help(ActionEvent event) {
+        System.out.println("Clicked");
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPage("");
+        mainPane.setCenter(view); 
     }
-
+    
     @FXML
     private void handle_TimeSheet(ActionEvent event) {
-         System.out.println("Clicked");
+        System.out.println("Clicked");
         FxmlLoader object = new FxmlLoader();
         Pane view = object.getPage("DeveloperTimeTracker");
         mainPane.setCenter(view);  

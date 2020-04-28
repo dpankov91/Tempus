@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,14 +18,14 @@
    <children>
       <AnchorPane prefHeight="736.0" prefWidth="1257.0" style="-fx-background-color: #282828;">
          <children>
-            <VBox layoutX="5.0" layoutY="135.0" prefHeight="580.0" prefWidth="182.0" styleClass="BackGround" stylesheets="@../css/style.css">
+            <VBox layoutX="-1.0" layoutY="128.0" prefHeight="610.0" prefWidth="188.0" styleClass="BackGround" stylesheets="@../css/style.css">
                <children>
-                  <Label prefHeight="76.0" prefWidth="160.0" text="DEVELOPER">
+                  <Label prefHeight="46.0" prefWidth="160.0" text="DEVELOPER">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="53.0" prefWidth="179.0" text="User Name">
+                  <Label fx:id="lbl_username" prefHeight="43.0" prefWidth="179.0">
                      <VBox.margin>
                         <Insets top="100.0" />
                      </VBox.margin>
@@ -59,25 +60,25 @@
                </children>
             </VBox>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#282828" height="125.0" layoutY="1.0" stroke="WHITE" strokeType="INSIDE" width="1257.0" />
-            <Button fx:id="btn_editprofile" layoutX="468.0" layoutY="31.0" mnemonicParsing="false" onAction="#handle_editProfile" style="-fx-background-color: #121212;">
+            <Button fx:id="btn_editprofile" layoutX="629.0" layoutY="31.0" mnemonicParsing="false" onAction="#handle_editProfile" style="-fx-background-color: #ffffff #ffffff;">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../assets/icons8-edit-50.png" />
+                        <Image url="@../assets/iconfinder_ic_mode_edit_48px_352547.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btn_settings" layoutX="386.0" layoutY="31.0" mnemonicParsing="false" onAction="#handle_Settings" style="-fx-background-color: #121212;">
+            <Button fx:id="btn_help" layoutX="566.0" layoutY="31.0" mnemonicParsing="false" onAction="#handle_Help" style="-fx-background-color: #ffffff #ffffff;">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../assets/icons8-add-50.png" />
+                        <Image url="@../assets/help-button-speech-bubble-with-question-mark_icon-icons.com_72707.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <ImageView fitHeight="105.0" fitWidth="187.0" layoutX="39.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="100.0" fitWidth="110.0" layoutX="39.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/iconfinder_8_3898372.png" />
                </image>
@@ -87,9 +88,9 @@
                   <Image url="@../assets/94119488_281400346210241_4996574131064406016_n.png" />
                </image>
             </ImageView>
-            <JFXButton layoutX="371.0" layoutY="132.0" prefHeight="31.0" prefWidth="0.0" />
-            <BorderPane fx:id="mainPane" layoutX="190.0" layoutY="135.0" prefHeight="580.0" prefWidth="1065.0" />
-            <JFXButton fx:id="btn_logout" layoutX="1011.0" layoutY="41.0" onAction="#handle_Logout" prefHeight="45.0" prefWidth="205.0" styleClass="buttons" stylesheets="@../css/style.css" text="Log Out" />
+            <BorderPane fx:id="mainPane" layoutX="194.0" layoutY="128.0" prefHeight="610.0" prefWidth="1060.0" />
+            <JFXButton fx:id="btn_logout" layoutX="1138.0" layoutY="41.0" onAction="#handle_Logout" prefHeight="45.0" prefWidth="108.0" styleClass="buttons" stylesheets="@../css/style.css" text="Log Out" />
+            <ListView layoutX="186.0" layoutY="127.0" prefHeight="610.0" prefWidth="11.0" />
          </children>
       </AnchorPane>
    </children>

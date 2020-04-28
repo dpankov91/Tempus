@@ -33,6 +33,10 @@ public class ProjectModel {
         
         facade.createProject(projectName, clientName, hourlyRate, description);
     }
+
+    public void deleteProject(String projectName, String clientName, String hourlyRate, String description) {
+        facade.deleteProject(projectName, clientName, hourlyRate, description);
+    }
       
      public List<Project> getAllProjects() {
         return facade.getAllProjects();
