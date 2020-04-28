@@ -17,6 +17,8 @@ import tempus.gui.model.UserModel;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
+import tempus.be.Client;
+import tempus.gui.model.ClientModel;
 import tempus.gui.model.ProjectModel;
 
 /**
@@ -44,56 +46,58 @@ public class ProjectCreateWindowController implements Initializable {
     
     private ProjectModel projectModel;
     @FXML
-    private ComboBox<?> cmbClient;
+    private ComboBox<Client> cmbClient;
+    
+    ClientModel clientModel;
     
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        clientModel = new ClientModel();
     }
     
-    private boolean checkIfFilled() {
-        
-        if (txtProjectName.getText() == null || txtProjectName.getText().trim().isEmpty())
-     {
-         setUpAlert("Incorrect Info Error" , "Add text please.");
-     
-     }
-     else if (txtClientName.getText() == null || txtClientName.getText().trim().isEmpty())
-     {
-         
-        setUpAlert("Incorrect Info Error" , "Add text please.");
-        
-     }
-     else if (txtHourlyRate.getText() == null || txtHourlyRate.getText().trim().isEmpty())
-     {
-        setUpAlert("Incorrect Info Error" , "Add text please.");
-       
-     }
-     else if (txtDescription.getText() == null || txtDescription.getText().trim().isEmpty())
-     {
-        setUpAlert("Incorrect Info Error" , "Add text please.");
-     }
-     return true;
-        
-    }
+//    private boolean checkIfFilled() {
+//        
+//        if (txtProjectName.getText() == null || txtProjectName.getText().trim().isEmpty())
+//     {
+//         setUpAlert("Incorrect Info Error" , "Add text please.");
+//     
+//     }
+//     else if (txtClientName.getText() == null || txtClientName.getText().trim().isEmpty())
+//     {
+//         
+//        setUpAlert("Incorrect Info Error" , "Add text please.");
+//        
+//     }
+//     else if (txtHourlyRate.getText() == null || txtHourlyRate.getText().trim().isEmpty())
+//     {
+//        setUpAlert("Incorrect Info Error" , "Add text please.");
+//       
+//     }
+//     else if (txtDescription.getText() == null || txtDescription.getText().trim().isEmpty())
+//     {
+//        setUpAlert("Incorrect Info Error" , "Add text please.");
+//     }
+//     return true;
+//        
+//    }
 
     @FXML
     private void handleSave(ActionEvent event) {
-        
-        if (checkIfFilled())
-        {
-            String projectName = txtProjectName.getText();
-            String clientName = txtClientName.getText();
-            String hourlyRate = txtHourlyRate.getText();
-            String description = txtDescription.getText();
-            
-            projectModel.createProject(projectName, clientName, hourlyRate, description);
-            
-            setUpAlert("Project is created");
-            
-        }
+//        
+//        if (checkIfFilled())
+//        {
+//            String projectName = txtProjectName.getText();
+//            String clientName = txtClientName.getText();
+//            String hourlyRate = txtHourlyRate.getText();
+//            String description = txtDescription.getText();
+//            
+//            projectModel.createProject(projectName, clientName, hourlyRate, description);
+//            
+//            setUpAlert("Project is created");
+//            
+//        }
    
     }
 
@@ -111,20 +115,29 @@ public class ProjectCreateWindowController implements Initializable {
         
     }
 
-    private void setUpAlert(String project_is_created) {
-        
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(message);
-        alert.showAndWait();
+//    private void setUpAlert(String project_is_created) {
+//        
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle(title);
+//        alert.setHeaderText(message);
+//        alert.showAndWait();
+//    }
+//
+//    private void setUpAlert(String incorrect_Info_Error, String add_text_please) {
+//        
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle(title);
+//        alert.setHeaderText(message);
+//        alert.showAndWait();
+//    }
+    
+    public void loadClientsToComboBox() 
+    { 
+        allClients = clientModel.getObsClients();
+        for (Client cl : allClients) {
+            cmbClient.setItems(allClients);
+        }    
     }
-
-    private void setUpAlert(String incorrect_Info_Error, String add_text_please) {
-        
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(message);
-        alert.showAndWait();
-    }
+    
 
 }
