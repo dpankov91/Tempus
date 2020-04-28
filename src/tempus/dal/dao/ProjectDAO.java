@@ -69,6 +69,7 @@ public class ProjectDAO {
     public List<Project> getAllProjects() throws SQLException {
         ArrayList<Project> allProjects = new ArrayList<>();
         
+        
         String sql = "SELECT * FROM [dbo].[Project]";
         
         Connection con = connector.getConnection();
@@ -79,11 +80,11 @@ public class ProjectDAO {
             {
                 
                 String projectName = rs.getString("projectName");
-                Integer projectID = rs.getInt("projectID");
-                Integer hourlyRate = rs.getInt("hourlyRate");
-                Integer clientID = rs.getInt("clientID");
+                int projectID = rs.getInt("projectID");
+                int hourlyRate = rs.getInt("hourlyRate");
+                int clientID = rs.getInt("clientID");
                 String description = rs.getString("description");
-               
+               allProjects.add(new Project(projectName, projectID, hourlyRate, clientID, description));
                
             }
                 return allProjects;
