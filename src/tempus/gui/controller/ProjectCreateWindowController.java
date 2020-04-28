@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import tempus.gui.model.UserModel;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import tempus.gui.model.ProjectModel;
 
@@ -27,7 +28,6 @@ public class ProjectCreateWindowController implements Initializable {
 
     @FXML
     private JFXTextField txtProjectName;
-    @FXML
     private JFXTextField txtClientName;
     @FXML
     private JFXTextField txtHourlyRate;
@@ -43,6 +43,8 @@ public class ProjectCreateWindowController implements Initializable {
      */
     
     private ProjectModel projectModel;
+    @FXML
+    private ComboBox<?> cmbClient;
     
     
     
@@ -123,7 +125,6 @@ public class ProjectCreateWindowController implements Initializable {
         alert.setTitle(title);
         alert.setHeaderText(message);
         alert.showAndWait();
-        
     }
 
 }
