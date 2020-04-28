@@ -51,12 +51,13 @@ public class ProjectCreateWindowController implements Initializable {
     private ComboBox<Client> cmbClient;
     
     ClientModel clientModel;
-    
     ObservableList<Client>  allClients = FXCollections.observableArrayList();
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) 
+    {
         clientModel = new ClientModel();
+        loadClientsToComboBox(); 
     }
     
 //    private boolean checkIfFilled() {
