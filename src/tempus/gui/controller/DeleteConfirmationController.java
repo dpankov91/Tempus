@@ -41,7 +41,7 @@ public class DeleteConfirmationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         model = new ProjectModel();
         projContr = new ManageProjectsWindowController();
-        selectedProject= projContr.selectedProject;
+        selectedProject= (Project) projContr.selectedProject;
         lblName.setText(selectedProject.getProjectName());
     }    
 
