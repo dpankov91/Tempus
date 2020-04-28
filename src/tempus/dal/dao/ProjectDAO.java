@@ -27,7 +27,7 @@ public class ProjectDAO {
         //connector = new DbConnectionProvider();
     }
     
-    public void createProject(String name, String client, String rate, String description) {
+    public void createProject(String projectName, String clientName, String hourlyRate, String description) {
         
         try {
             String sql = "INSERT * FROM [dbo].[Project] VALUES ProjectName = ? AND ClientName = ? AND HourlyRate = ? AND Description =? ";
@@ -35,9 +35,9 @@ public class ProjectDAO {
             Connection con = connector.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);
             
-            pstmt.setString(1, name);
-            pstmt.setString(2, client);
-            pstmt.setString(3, rate);
+            pstmt.setString(1, projectName);
+            pstmt.setString(2, clientName);
+            pstmt.setString(3, hourlyRate);
             pstmt.setString(4, description);
             ResultSet rs = pstmt.executeQuery();
         } catch (SQLException ex) {

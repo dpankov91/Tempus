@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import tempus.gui.model.UserModel;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import tempus.gui.model.ProjectModel;
 
 /**
  * FXML Controller class
@@ -41,7 +42,7 @@ public class ProjectCreateWindowController implements Initializable {
      * Initializes the controller class.
      */
     
-    private UserModel userModel;
+    private ProjectModel projectModel;
     
     
     
@@ -81,12 +82,12 @@ public class ProjectCreateWindowController implements Initializable {
         
         if (checkIfFilled())
         {
-            String name = txtProjectName.getText();
-            String client = txtClientName.getText();
-            String rate = txtHourlyRate.getText();
+            String projectName = txtProjectName.getText();
+            String clientName = txtClientName.getText();
+            String hourlyRate = txtHourlyRate.getText();
             String description = txtDescription.getText();
             
-            userModel.createProject(name, client, rate, description);
+            projectModel.createProject(projectName, clientName, hourlyRate, description);
             
             setUpAlert("Project is created");
             
