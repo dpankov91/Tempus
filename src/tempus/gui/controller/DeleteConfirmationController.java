@@ -32,6 +32,8 @@ public class DeleteConfirmationController implements Initializable {
     ProjectModel model;
     ManageProjectsWindowController projContr;
     
+    
+   private Project selectedProject;
     /**
      * Initializes the controller class.
      */
@@ -39,7 +41,8 @@ public class DeleteConfirmationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         model = new ProjectModel();
         projContr = new ManageProjectsWindowController();
-        
+        selectedProject= projContr.selectedProject;
+        lblName.setText(selectedProject.getProjectName());
     }    
 
     @FXML
@@ -54,10 +57,15 @@ public class DeleteConfirmationController implements Initializable {
 
     @FXML
     private void handleConfirmDeleting(ActionEvent event) {
+
         
 //        Project selectedProjectT = projContr.selectedProject;
 //        
 //        model.deleteProject(selectedProjectT);
+
+      
+        model.deleteProject(selectedProject);
+
         
     }
     

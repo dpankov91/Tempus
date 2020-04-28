@@ -23,7 +23,8 @@ public class Project {
     private final StringProperty clientName = new SimpleStringProperty();
 
     public Project(int projectID, String projectName, String clientName, int hourlyRate, String description) {
-        
+        this.projectID.set(projectID);
+        setProjectName(projectName);
         
     }
 

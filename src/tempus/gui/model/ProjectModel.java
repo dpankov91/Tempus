@@ -5,6 +5,7 @@
  */
 package tempus.gui.model;
 
+import tempus.be.Project;
 import tempus.bll.BllManager;
 import tempus.bll.IBllFacade;
 
@@ -34,8 +35,8 @@ public class ProjectModel {
         facade.createProject(projectName, clientName, hourlyRate, description);
     }
 
-    public void deleteProject(String projectName, String clientName, String hourlyRate, String description) {
-        facade.deleteProject(projectName, clientName, hourlyRate, description);
+    public void deleteProject(Project pToDelete) {
+        facade.deleteProject(pToDelete);
     }
       
     
