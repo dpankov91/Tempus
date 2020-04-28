@@ -10,6 +10,10 @@ import tempus.be.Project;
 
 import tempus.be.Client;
 
+
+
+import tempus.be.Project;
+
 import tempus.be.User;
 import tempus.bll.security.ISecurityManager;
 import tempus.bll.security.SecurityManager;
@@ -45,8 +49,8 @@ public class BllManager implements IBllFacade {
     }
 
     @Override
-    public void deleteProject(String projectName, String clientName, String hourlyRate, String description) {
-        facade.deleteProject(projectName, clientName, hourlyRate, description);
+    public void deleteProject(Project projectToDelete) {
+        facade.deleteProject(projectToDelete);
     }
 
     @Override

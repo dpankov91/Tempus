@@ -14,6 +14,10 @@ import tempus.be.Project;
 
 import tempus.be.Client;
 
+
+
+import tempus.be.Project;
+
 import tempus.be.User;
 import tempus.dal.dao.ClientDAO;
 import tempus.dal.dao.ProjectDAO;
@@ -53,20 +57,24 @@ public class DalManager implements IDalFacade{
     }
 
     @Override
-    public void deleteProject(String projectName, String clientName, String hourlyRate, String description) {
-        projectDao.deleteProject(projectName, clientName, hourlyRate, description);
+    public void deleteProject(Project projectToDelete) {
+        projectDao.deleteProject(projectToDelete);
     }
 
     @Override
     public List<Client> getAllClientss() 
     {
+        
+            
         try {
-            List<Client> allCategories = clientDao.getAllClientss();
-            return allCategories;
+            List<Client> allClientss = clientDao.getAllClientss();
+            return allClientss;
+            
         } catch (SQLException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+            return null;
+        
     }
 
     @Override

@@ -6,12 +6,18 @@
 package tempus.gui.controller;
 
 import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -32,6 +38,10 @@ public class ManageUsersWindowController implements Initializable {
     private JFXButton editUser;
     @FXML
     private JFXButton deleteUser;
+    @FXML
+    private TableView<?> tableViewUsers;
+    
+    Object selectedUser = tableViewUsers.getSelectionModel().getSelectedItem();
 
     /**
      * Initializes the controller class.
@@ -50,7 +60,15 @@ public class ManageUsersWindowController implements Initializable {
     }
 
     @FXML
-    private void onActionDeleteUser(ActionEvent event) {
+    private void onActionDeleteUser(ActionEvent event) throws IOException {
+        if(selectedUser !=null){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmation.fxml"));
+            Parent z = loader.load();
+            Scene scene = new Scene(z);
+            Stage s = new Stage();
+            s.setScene(scene);
+            s.show();
+        }
         
     }
     
