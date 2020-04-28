@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import tempus.be.Project;
 import tempus.gui.model.ProjectModel;
 import tempus.gui.model.UserModel;
 
@@ -54,9 +55,9 @@ public class DeleteConfirmationController implements Initializable {
     @FXML
     private void handleConfirmDeleting(ActionEvent event) {
         
-        Object selectedProjectT = projContr.selectedProject;
-        
-        //model.deleteProject(selectedProjectT);
+//        Project selectedProjectT = projContr.selectedProject;
+//        
+//        model.deleteProject(selectedProjectT);
         
     }
     

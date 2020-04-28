@@ -56,13 +56,17 @@ public class DalManager implements IDalFacade{
     @Override
     public List<Client> getAllClientss() 
     {
+        
+            
         try {
-            List<Client> allCategories = clientDao.getAllClientss();
-            return allCategories;
+            List<Client> allClientss = clientDao.getAllClientss();
+            return allClientss;
+            
         } catch (SQLException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+            return null;
+        
     }
     
 }

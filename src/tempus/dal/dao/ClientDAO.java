@@ -30,20 +30,25 @@ public class ClientDAO {
 
     public List<Client> getAllClientss() throws SQLException 
     {
-        List<Client> allClientNames = new ArrayList<>();
 
-        String sql = "Select [clientName] From [dbo].[Client]";
+        List<Client> allClientss = new ArrayList<>();
 
+        String sql = "Select * From [dbo].[Client]";
+        
             Connection con = connector.getConnection();
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-
             while (rs.next()) {
+                int id = rs.getInt("clientID");
                 String name = rs.getString("clientName");
-
-                allClientNames.add(new Client(name));
+                String city = rs.getString("clientCity");
+                int phone = rs.getInt("clientPhone");
+                allClientss.add(new Client(id, name, city, phone));
             }
-            return allClientNames;
+           
+            return allClientss;
+            
+            
        
     }
     
