@@ -40,8 +40,8 @@ public class BllManager implements IBllFacade {
     }
 
     @Override
-    public void deleteProject(String name, String client, String rate, String description) {
-        facade.deleteProject(name, client, rate, description);
+    public void deleteProject(String projectName, String clientName, String hourlyRate, String description) {
+        facade.deleteProject(projectName, clientName, hourlyRate, description);
     }
 
     

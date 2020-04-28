@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import tempus.gui.model.ProjectModel;
 import tempus.gui.model.UserModel;
 
 /**
@@ -27,7 +28,7 @@ public class DeleteConfirmationController implements Initializable {
 
     @FXML
     private Label lblName;
-    UserModel model;
+    ProjectModel model;
     ManageProjectsWindowController projContr;
     
     /**
@@ -35,7 +36,7 @@ public class DeleteConfirmationController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        model = new UserModel();
+        model = new ProjectModel();
         projContr = new ManageProjectsWindowController();
         
     }    
