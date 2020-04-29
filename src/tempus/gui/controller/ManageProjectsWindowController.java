@@ -8,7 +8,10 @@ package tempus.gui.controller;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,8 +20,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import tempus.be.Project;
+import tempus.gui.model.ProjectModel;
 
 /**
  * FXML Controller class
@@ -28,13 +33,17 @@ import tempus.be.Project;
 public class ManageProjectsWindowController implements Initializable {
 
     @FXML
-    private TableView<?> tableViewProjects;
+    private TableView<Project> tableViewProjects;
     @FXML
-    private TableColumn<?, ?> columnProject;
+    private TableColumn<Project,String> columnProject;
     @FXML
-    private TableColumn<?, ?> columnSpendHours;
+    private TableColumn<Project,Integer> columnProjectID;
     @FXML
-    private TableColumn<?, ?> columnAssignedTo;
+    private TableColumn<Project,Integer> columnHourlyRate;
+     @FXML
+    private TableColumn<Project,Integer> columnClientID;
+      @FXML
+    private TableColumn<Project,String> columnDescription;
     @FXML
     private JFXButton deleteButton;
     @FXML
@@ -46,21 +55,24 @@ public class ManageProjectsWindowController implements Initializable {
     @FXML
     private JFXButton goBackButton;
 
+
     Object selectedProject = tableViewProjects.getSelectionModel().getSelectedItem();
+    ProjectModel projModel;
+
+   
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+         projModel = ProjectModel.getInstance();
+         setUpTableView();
     }    
 
     @FXML
     private void handleDelete(ActionEvent event) throws IOException {
-        
-        
-        
-        if (selectedProject != null) {
+            if (selectedProject != null) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmation.fxml"));
             Parent z = loader.load();
             Scene scene = new Scene(z);
@@ -68,6 +80,15 @@ public class ManageProjectsWindowController implements Initializable {
             s.setScene(scene);
             s.show();
         }
+    }
+    private void setUpTableView()
+    {
+        columnProject.setCellValueFactory(new PropertyValueFactory<>("projectName"));
+         columnProjectID.setCellValueFactory(new PropertyValueFactory<>("projectID"));
+          columnHourlyRate.setCellValueFactory(new PropertyValueFactory<>("hourlyRate"));
+            columnClientID.setCellValueFactory(new PropertyValueFactory<>("clientID"));
+       columnDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        loadTableView();
     }
 
     @FXML
@@ -84,6 +105,15 @@ public class ManageProjectsWindowController implements Initializable {
 
     @FXML
     private void handleGoBack(ActionEvent event) {
+    }
+
+    private void loadTableView() {
+         tableViewProjects.getItems().clear();
+        List<Project> allProjects = projModel.getAllProjects();
+        ObservableList<Project> projects = FXCollections.observableArrayList();
+        projects.addAll(allProjects);
+        tableViewProjects.setItems(projects);
+        
     }
     
 }

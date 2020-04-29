@@ -9,8 +9,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import tempus.be.Project;
 import tempus.dal.DbConnectionProvider;
 
 /**
@@ -47,21 +51,43 @@ public class ProjectDAO {
         
     }
 
-    public void deleteProject(String projectName, String clientName, String hourlyRate, String description) {
+    public void deleteProject(Project projectToDelete) {
         try {
-            String sql = "DELETE * FROM [dbo].[Project] VALUES ProjectName = ? AND ClientName = ? AND HourlyRate = ? AND Description =? ";
+            String sql = "DELETE * FROM [dbo].[Project] WHERE id=? ";
             
             Connection con = connector.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);
             
-            pstmt.setString(1, projectName);
-            pstmt.setString(2, clientName);
-            pstmt.setString(3, hourlyRate);
-            pstmt.setString(4, description);
+            pstmt.setInt(1, projectToDelete.getProjectID());
+
             ResultSet rs = pstmt.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public List<Project> getAllProjects() throws SQLException {
+        ArrayList<Project> allProjects = new ArrayList<>();
+        
+        
+        String sql = "SELECT * FROM [dbo].[Project]";
+        
+        Connection con = connector.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        
+        while (rs.next()) 
+            {
+                
+                String projectName = rs.getString("projectName");
+                int projectID = rs.getInt("projectID");
+                int hourlyRate = rs.getInt("hourlyRate");
+                int clientID = rs.getInt("clientID");
+                String description = rs.getString("description");
+               allProjects.add(new Project(projectName, projectID, hourlyRate, clientID, description));
+               
+            }
+                return allProjects;
     }
     
 }

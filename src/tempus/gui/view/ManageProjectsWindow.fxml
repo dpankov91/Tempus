@@ -10,13 +10,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="1065.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ManageProjectsWindowController">
+<AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="1065.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ManageProjectsWindowController">
    <children>
-      <TableView fx:id="tableViewProjects" layoutY="98.0" prefHeight="320.0" prefWidth="330.0" stylesheets="@../css/style.css">
+      <TableView fx:id="tableViewProjects" layoutY="98.0" prefHeight="320.0" prefWidth="470.0" stylesheets="@../css/style.css">
         <columns>
-          <TableColumn fx:id="columnProject" prefWidth="75.0" text="Projects" />
-          <TableColumn fx:id="columnSpendHours" prefWidth="98.0" text="Spend Hours" />
-            <TableColumn fx:id="columnAssignedTo" prefWidth="87.99993896484375" text="Assigned To" />
+          <TableColumn fx:id="columnProject" prefWidth="112.0" text="Project name" />
+          <TableColumn fx:id="columnProjectID" prefWidth="61.0" text="ProjectID" />
+            <TableColumn fx:id="columnHourlyRate" prefWidth="87.99993896484375" text="Hourly Rate" />
+            <TableColumn fx:id="columnClientID" prefWidth="75.0" text="client ID" />
+            <TableColumn fx:id="columnDescription" prefWidth="133.0" text="Description" />
         </columns>
       </TableView>
       <Label layoutX="238.0" layoutY="14.0" text="Manage Projects" textFill="#66ff66">
@@ -29,11 +31,11 @@
             <Image url="@../assets/Tempus%20Logo.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="deleteButton" layoutX="387.0" layoutY="231.0" onAction="#handleDelete" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="DELETE" />
-      <JFXButton fx:id="createButton" layoutX="387.0" layoutY="121.0" onAction="#handleCreate" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="CREATE" />
-      <JFXButton fx:id="editButton" layoutX="387.0" layoutY="176.0" onAction="#handleEdit" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="EDIT" />
-      <JFXButton fx:id="assignToButton" layoutX="387.0" layoutY="288.0" onAction="#handleAssigningTo" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="ASSIGN TO" />
-      <JFXButton fx:id="goBackButton" layoutX="387.0" layoutY="342.0" onAction="#handleGoBack" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="GO BACK" />
+      <JFXButton fx:id="deleteButton" layoutX="533.0" layoutY="238.0" onAction="#handleDelete" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="DELETE" />
+      <JFXButton fx:id="createButton" layoutX="533.0" layoutY="128.0" onAction="#handleCreate" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="CREATE" />
+      <JFXButton fx:id="editButton" layoutX="533.0" layoutY="183.0" onAction="#handleEdit" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="EDIT" />
+      <JFXButton fx:id="assignToButton" layoutX="533.0" layoutY="295.0" onAction="#handleAssigningTo" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="ASSIGN TO" />
+      <JFXButton fx:id="goBackButton" layoutX="533.0" layoutY="349.0" onAction="#handleGoBack" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="GO BACK" />
    </children>
    <styleClass>
       <String fx:value="BackGround" />

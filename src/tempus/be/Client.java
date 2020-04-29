@@ -23,6 +23,10 @@ public class Client {
         this.phone = phone;
     }
 
+    public Client(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
@@ -57,7 +61,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" + "name=" + name + '}';
+        return name;
     }
     
     

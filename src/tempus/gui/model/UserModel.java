@@ -20,9 +20,7 @@ public class UserModel
     private User loggedInUser;
     
     
-     public void deleteProject(String name, String client, String rate, String description) {
-        facade.deleteProject(name, client, rate, description);
-    }
+  
     
     public static UserModel getInstance() {
         return model;
