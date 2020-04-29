@@ -88,6 +88,11 @@ public class DalManager implements IDalFacade{
             return allProjects;
     }
 
+    @Override
+    public void deleteUser(User userToDelete) {
+        userDao.deleteUser(userToDelete);
+    }
+
    
     
 }

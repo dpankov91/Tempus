@@ -65,6 +65,11 @@ public class BllManager implements IBllFacade {
         return facade.getAllClientss();
     }
 
+    @Override
+    public void deleteUser(User userToDelete) {
+        facade.deleteUser(userToDelete);
+    }
+
 
 
 

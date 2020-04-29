@@ -18,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import tempus.be.User;
+import tempus.gui.model.UserModel;
 
 /**
  * FXML Controller class
@@ -39,10 +41,10 @@ public class ManageUsersWindowController implements Initializable {
     @FXML
     private JFXButton deleteUser;
     @FXML
-    private TableView<?> tableViewUsers;
+    private TableView<User> tableViewUsers;
     
     Object selectedUser = tableViewUsers.getSelectionModel().getSelectedItem();
-
+    UserModel useModel;
     /**
      * Initializes the controller class.
      */

@@ -43,6 +43,10 @@ public class UserModel
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+        public void deleteUser(User useDelete) {
+            facade.deleteUser(useDelete);
+    }
+
 }
        
 

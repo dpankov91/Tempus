@@ -14,40 +14,38 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import tempus.be.Project;
-import tempus.gui.model.ProjectModel;
+import tempus.be.User;
 import tempus.gui.model.UserModel;
-
 /**
  * FXML Controller class
  *
- * @author dpank
+ * @author Tienesh
  */
-public class DeleteConfirmationController implements Initializable {
+public class DeleteConfirmationUserController implements Initializable {
+
 
     @FXML
     private Label lblName;
-    ProjectModel model;
-    ManageProjectsWindowController projContr;
+    UserModel model;
+    ManageUsersWindowController userContr;
     
     
-    private Project selectedProject;
+    private User selectedUser;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        model = new ProjectModel();
-        projContr = new ManageProjectsWindowController();
-        selectedProject= (Project) projContr.selectedProject;
-        lblName.setText(selectedProject.getProjectName());
+        model = new UserModel();
+        userContr = new ManageUsersWindowController();
     }    
-
+    
     @FXML
     private void goBack(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/ManageProjectsWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/ManageUsersWindow.fxml"));
           Parent z = loader.load();
           Scene scene = new Scene(z);
           Stage s = new Stage();
@@ -57,16 +55,7 @@ public class DeleteConfirmationController implements Initializable {
 
     @FXML
     private void handleConfirmDeleting(ActionEvent event) {
-
-        
-//        Project selectedProjectT = projContr.selectedProject;
-//        
-//        model.deleteProject(selectedProjectT);
-
-      
-        model.deleteProject(selectedProject);
-
-        
+        model.deleteUser(selectedUser);
     }
-    
+
 }

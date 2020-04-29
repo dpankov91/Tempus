@@ -35,5 +35,7 @@ public interface IDalFacade {
 
     public List<Client> getAllClientss();
 
+    public void deleteUser(User userToDelete);
+
     
 }

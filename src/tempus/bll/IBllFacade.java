@@ -41,5 +41,7 @@ public interface IBllFacade {
 
     public List<Project> getAllProjects();
 
+    public void deleteUser(User useDelete);
+
     
 }
