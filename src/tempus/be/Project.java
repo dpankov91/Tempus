@@ -16,137 +16,80 @@ import javafx.beans.property.StringProperty;
  */
 public class Project {
 
-//    private final StringProperty projectName = new SimpleStringProperty();
-//    private final IntegerProperty projectID = new SimpleIntegerProperty();
-//    private final IntegerProperty hourlyRate = new SimpleIntegerProperty();
-//    private final StringProperty description = new SimpleStringProperty();
-//    private final IntegerProperty clientID = new SimpleIntegerProperty();
-//
-//    public Project(int projectID, String projectName, int clientID, int hourlyRate, String description) {
-//        this.projectID.set(projectID);
-//        this.projectName.set(projectName);
-//        this.clientID.set(clientID);
-//        this.hourlyRate.set(hourlyRate);
-//        this.description.set(description);
-//        
-//       // setProjectName(projectName);
-//        
-//    }
+    private final StringProperty projectName = new SimpleStringProperty();
+    private final IntegerProperty projectID = new SimpleIntegerProperty();
+    private final IntegerProperty hourlyRate = new SimpleIntegerProperty();
+    private final StringProperty description = new SimpleStringProperty();
+    private final IntegerProperty clientID = new SimpleIntegerProperty();
 
-   int projectID;
-   String projectName;
-   int clientID;
-   int hourlyRate;
-   String descrip;
-   
-          
-
-    
-    
-
-//    public String getProjectName() {
-//        return projectName.get();
-//    }
-//
-//    public void setProjectName(String value) {
-//        projectName.set(value);
-//    }
-//
-//    public StringProperty projectNameProperty() {
-//        return projectName;
-//    }
-//
-//    public int getProjectID() {
-//        return projectID.get();
-//    }
-//
-//    public IntegerProperty projectIDProperty() {
-//        return projectID;
-//    }
-//    
-//    public int getHourlyRate() {
-//        return hourlyRate.get();
-//    }
-//
-//    public void setHourlyRate(int value) {
-//        hourlyRate.set(value);
-//    }
-//
-//    public IntegerProperty hourlyRateProperty() {
-//        return hourlyRate;
-//    }
-//    
-//    public String getDescription() {
-//        return description.get();
-//    }
-//
-//    public void setDescription(String value) {
-//        description.set(value);
-//    }
-//
-//    public StringProperty descriptionProperty() {
-//        return description;
-//    }
-//    
-//    public int getClientID() {
-//        return clientID.get();
-//    }
-//
-//    public void setClientID(Integer value) {
-//        clientID.set(value);
-//    }
-//
-//    public IntegerProperty clientIDProperty() {
-//        return clientID;
-//    }
-
-    public Project(String projectName, int projectID, int clientID, int hourlyRate, String descrip) {
-        this.projectName = projectName;
-        this.projectID = projectID;
+    public Project(String projectName, int projectID,  int clientID, int hourlyRate, String description) {
+        this.projectName.set(projectName);
+          this.projectID.set(projectID);
+        this.projectName.set(projectName);
+        this.clientID.set(clientID);
+        this.hourlyRate.set(hourlyRate);
+        this.description.set(description);
         
-        this.clientID = clientID;
-        this.hourlyRate = hourlyRate;
-        this.descrip = descrip;
+       // setProjectName(projectName);
+        
     }
-
-    public int getProjectID() {
-        return projectID;
-    }
-
-    public void setProjectID(int projectID) {
-        this.projectID = projectID;
-    }
+    
+    
 
     public String getProjectName() {
+        return projectName.get();
+    }
+
+    public void setProjectName(String value) {
+        projectName.set(value);
+    }
+
+    public StringProperty projectNameProperty() {
         return projectName;
     }
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
+    public int getProjectID() {
+        return projectID.get();
     }
 
-    public int getClientID() {
-        return clientID;
+    public IntegerProperty projectIDProperty() {
+        return projectID;
     }
-
-    public void setClientID(int clientID) {
-        this.clientID = clientID;
-    }
-
+    
     public int getHourlyRate() {
+        return hourlyRate.get();
+    }
+
+    public void setHourlyRate(int value) {
+        hourlyRate.set(value);
+    }
+
+    public IntegerProperty hourlyRateProperty() {
         return hourlyRate;
     }
-
-    public void setHourlyRate(int hourlyRate) {
-        this.hourlyRate = hourlyRate;
+    
+    public String getDescription() {
+        return description.get();
     }
 
-    public String getDescrip() {
-        return descrip;
+    public void setDescription(String value) {
+        description.set(value);
     }
 
-    public void setDescrip(String descrip) {
-        this.descrip = descrip;
+    public StringProperty descriptionProperty() {
+        return description;
+    }
+    
+    public int getClientID() {
+        return clientID.get();
+    }
+
+    public void setClientID(Integer value) {
+        clientID.set(value);
+    }
+
+    public IntegerProperty clientIDProperty() {
+        return clientID;
     }
     
     
