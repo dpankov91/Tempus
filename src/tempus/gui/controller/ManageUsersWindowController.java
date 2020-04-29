@@ -50,7 +50,6 @@ public class ManageUsersWindowController implements Initializable {
     private JFXButton deleteUser;
     @FXML
 
-    private TableView<User> tableViewUsers;
 
   
     
@@ -77,7 +76,7 @@ public class ManageUsersWindowController implements Initializable {
     @FXML
     private void onActionDeleteUser(ActionEvent event) throws IOException {
         if(selectedUser !=null){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmation.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmationUser.fxml"));
             Parent z = loader.load();
             Scene scene = new Scene(z);
             Stage s = new Stage();

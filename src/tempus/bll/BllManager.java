@@ -69,7 +69,7 @@ public class BllManager implements IBllFacade {
 
     public void deleteUser(User userToDelete) {
         facade.deleteUser(userToDelete);
-
+    }
     @Override    
     public List<User> getAllUsers() {
         return facade.getAllUsers();
