@@ -9,6 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import tempus.be.User;
 import tempus.dal.DbConnectionProvider;
 
@@ -49,5 +52,29 @@ public class UserDAO {
     
         }    
             
+    }
+
+    public List<User> getAllUsers() throws SQLException {
+         ArrayList<User> allUsers = new ArrayList<>();
+        
+        
+        String sql = "SELECT * FROM [dbo].[User]";
+        
+        Connection con = connector.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        
+        while (rs.next()) 
+            {
+                
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                int userID = rs.getInt("userID");
+                String idEmail = rs.getString("email");
+               
+               allUsers.add(new User(firstName, lastName, userID, idEmail));
+               
+            }
+                return allUsers;
     }
 }

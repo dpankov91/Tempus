@@ -7,7 +7,6 @@ package tempus.bll;
 
 import java.util.List;
 
-import tempus.be.Project;
 
 import tempus.be.Client;
 
@@ -40,6 +39,8 @@ public interface IBllFacade {
     public List<Client> getAllClientss();
 
     public List<Project> getAllProjects();
+
+    public List<User> getAllUsers();
 
     
 }

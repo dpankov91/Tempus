@@ -88,6 +88,18 @@ public class DalManager implements IDalFacade{
             return allProjects;
     }
 
+    @Override
+    public List<User> getAllUsers() {
+         List<User> allUsers = null; 
+        try {
+            allUsers = userDao.getAllUsers();
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return allUsers;
+       
+    }
+
    
     
 }

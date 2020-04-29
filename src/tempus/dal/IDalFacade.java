@@ -7,7 +7,6 @@ package tempus.dal;
 
 import java.util.List;
 
-import tempus.be.Project;
 
 import tempus.be.Client;
 
@@ -34,6 +33,8 @@ public interface IDalFacade {
 
 
     public List<Client> getAllClientss();
+
+    public List<User> getAllUsers();
 
     
 }
