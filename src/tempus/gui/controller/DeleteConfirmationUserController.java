@@ -41,6 +41,8 @@ public class DeleteConfirmationUserController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         model = new UserModel();
         userContr = new ManageUsersWindowController();
+        selectedUser = (User) userContr.selectedUser;
+        lblName.setText(selectedUser.getfName());
     }    
     
     @FXML

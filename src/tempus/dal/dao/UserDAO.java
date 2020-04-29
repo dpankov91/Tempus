@@ -67,14 +67,14 @@ public class UserDAO {
                 Connection con = connector.getConnection();
                 PreparedStatement pstmt = con.prepareStatement(sql);
                 
-                pstmt.setInt(1, userToDelete.getUser());
+                pstmt.setInt(1, userToDelete.getId());
 
                 ResultSet rs = pstmt.executeQuery();
                 
             } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+    }
     public List<User> getAllUsers() throws SQLException {
          ArrayList<User> allUsers = new ArrayList<>();
         
