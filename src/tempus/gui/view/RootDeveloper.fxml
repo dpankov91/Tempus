@@ -25,10 +25,15 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_username" prefHeight="43.0" prefWidth="179.0">
+                  <Label fx:id="lbl_fname" prefHeight="43.0" prefWidth="179.0">
                      <VBox.margin>
                         <Insets top="100.0" />
                      </VBox.margin>
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl_lname" prefHeight="43.0" prefWidth="179.0">
                      <font>
                         <Font size="21.0" />
                      </font>

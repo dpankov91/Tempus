@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import tempus.be.User;
 
 /**
  * FXML Controller class
@@ -39,7 +40,13 @@ public class RootDeveloperController implements Initializable {
     @FXML
     private Button btn_help;
     @FXML
-    private Label lbl_username;
+    private Label lbl_fname;
+    @FXML
+    private Label lbl_lname;
+
+    private User user;
+
+
 
     /**
      * Initializes the controller class.
@@ -47,7 +54,17 @@ public class RootDeveloperController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }  
+    
+    public void setFirstName(User currentUser) {
+        this.user = currentUser;
+        lbl_fname.setText(user.getfName());
+    }
+    
+    public void setLastName(User currentUser) {
+        this.user = currentUser;
+        lbl_lname.setText(user.getlName());
+    }
 
     @FXML
     private void handle_editProfile(ActionEvent event) {

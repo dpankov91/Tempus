@@ -25,12 +25,25 @@
                         <Font size="19.0" />
                      </font>
                   </Label>
+                  <Label fx:id="lbl_fname" prefHeight="43.0" prefWidth="179.0">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="100.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="lbl_lname" prefHeight="43.0" prefWidth="179.0">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
                   <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
                      <children>
                         <JFXButton fx:id="btn_users" layoutX="1.0" layoutY="-1.0" onAction="#handle_Users" prefHeight="45.0" prefWidth="200.0" text="Users" />
                      </children>
                      <VBox.margin>
-                        <Insets top="200.0" />
+                        <Insets top="50.0" />
                      </VBox.margin>
                   </Pane>
                   <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
@@ -63,11 +76,6 @@
                </image>
             </ImageView>
             <JFXButton fx:id="btnLogOut" layoutX="1133.0" layoutY="41.0" onAction="#handle_Logout" prefHeight="45.0" prefWidth="110.0" styleClass="buttons" stylesheets="@../css/style.css" text="Log Out" />
-            <Label fx:id="lbl_username" layoutX="2.0" layoutY="278.0" prefHeight="47.0" prefWidth="180.0">
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Label>
             <BorderPane fx:id="mainPane" layoutX="197.0" layoutY="127.0" prefHeight="610.0" prefWidth="1060.0" />
             <Button fx:id="btn_help" layoutX="565.0" layoutY="33.0" mnemonicParsing="false" onAction="#handle_Help" style="-fx-background-color: #ffffff #ffffff;">
                <graphic>
