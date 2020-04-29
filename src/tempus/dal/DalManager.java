@@ -89,8 +89,21 @@ public class DalManager implements IDalFacade{
     }
 
     @Override
+
     public void deleteUser(User userToDelete) {
         userDao.deleteUser(userToDelete);
+    }
+
+    public List<User> getAllUsers() {
+         List<User> allUsers = null; 
+        try {
+            allUsers = userDao.getAllUsers();
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return allUsers;
+       
+
     }
 
    

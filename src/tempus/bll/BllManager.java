@@ -6,7 +6,6 @@
 package tempus.bll;
 
 import java.util.List;
-import tempus.be.Project;
 
 import tempus.be.Client;
 
@@ -60,14 +59,21 @@ public class BllManager implements IBllFacade {
     }
 
 
+    @Override
     public List<Client> getAllClientss() 
     {
         return facade.getAllClientss();
     }
 
     @Override
+
     public void deleteUser(User userToDelete) {
         facade.deleteUser(userToDelete);
+
+    @Override    
+    public List<User> getAllUsers() {
+        return facade.getAllUsers();
+
     }
 
 

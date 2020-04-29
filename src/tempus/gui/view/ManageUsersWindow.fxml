@@ -7,15 +7,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="1060.0" stylesheets="@../css/loginStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ManageUsersWindowController">
 
    <children>
-      <TableView fx:id="tableViewUsers" layoutY="79.0" prefHeight="320.0" prefWidth="330.0" stylesheets="@../css/style.css">
+      <TableView fx:id="tableViewUsers" layoutY="79.0" prefHeight="320.0" prefWidth="434.0" stylesheets="@../css/style.css">
         <columns>
           <TableColumn fx:id="firstName" prefWidth="110.0" text="First Name" />
             <TableColumn fx:id="lastName" prefWidth="110.0" text="Last Name" />
             <TableColumn fx:id="userID" prefWidth="110.0" text="User ID" />
+            <TableColumn fx:id="idEmail" prefWidth="103.0" text="e-mail" />
         </columns>
       </TableView>
       <ImageView fitHeight="80.0" fitWidth="95.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
@@ -23,9 +23,9 @@
             <Image url="@../assets/94119488_281400346210241_4996574131064406016_n.png" />
          </image>
       </ImageView>
-      <JFXButton layoutX="366.0" layoutY="175.0" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" AnchorPane.bottomAnchor="185.0" />
-      <JFXButton fx:id="addUser" layoutX="366.0" layoutY="228.0" onAction="#onActionAddUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="ADD" AnchorPane.bottomAnchor="185.0" />
-      <JFXButton fx:id="editUser" layoutX="366.0" layoutY="280.0" onAction="#onActionEditUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="EDIT" />
-      <JFXButton fx:id="deleteUser" layoutX="366.0" layoutY="228.0" onAction="#onActionDeleteUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="DELETE" />
+      <JFXButton layoutX="530.0" layoutY="153.0" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" AnchorPane.bottomAnchor="387.0" />
+      <JFXButton fx:id="addUser" layoutX="530.0" layoutY="343.0" onAction="#onActionAddUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="ADD" AnchorPane.bottomAnchor="197.0" />
+      <JFXButton fx:id="editUser" layoutX="530.0" layoutY="268.0" onAction="#onActionEditUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="EDIT" />
+      <JFXButton fx:id="deleteUser" layoutX="530.0" layoutY="216.0" onAction="#onActionDeleteUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="DELETE" />
    </children>
 </AnchorPane>
