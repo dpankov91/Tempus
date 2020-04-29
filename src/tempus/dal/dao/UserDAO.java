@@ -67,7 +67,7 @@ public class UserDAO {
                 Connection con = connector.getConnection();
                 PreparedStatement pstmt = con.prepareStatement(sql);
                 
-                pstmt.setInt(1, userToDelete.getUserID());
+                pstmt.setInt(1, userToDelete.getUser());
 
                 ResultSet rs = pstmt.executeQuery();
                 
