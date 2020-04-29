@@ -22,6 +22,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import tempus.be.User;
 
 /**
  * FXML Controller class
@@ -45,8 +46,14 @@ public class RootAdminController implements Initializable {
     @FXML
     private Button btn_help;
     @FXML
-    private Label lbl_username;
+    private Label lbl_fname;
+    @FXML
+    private Label lbl_lname;
 
+    private User user;
+
+
+ 
     /**
      * Initializes the controller class.
      */
@@ -55,6 +62,16 @@ public class RootAdminController implements Initializable {
         // TODO
     }    
 
+    public void setFirstName(User currentUser) {
+        this.user = currentUser;
+        lbl_fname.setText(user.getfName());
+    }
+    
+    public void setLastName(User currentUser) {
+        this.user = currentUser;
+        lbl_lname.setText(user.getlName());
+    }
+    
     @FXML
     private void handle_editProfile(ActionEvent event) {
         System.out.println("Clicked");
