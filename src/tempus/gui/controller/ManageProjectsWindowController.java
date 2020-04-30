@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,24 +39,22 @@ public class ManageProjectsWindowController implements Initializable {
     private TableColumn<Project,String> columnProject;
     @FXML
     private TableColumn<Project,Integer> columnHourlyRate;
-      @FXML
+    @FXML
     private TableColumn<Project,String> columnDescription;
     @FXML
-    private JFXButton deleteButton;
+    private TableColumn<?, ?> colClientName;
     @FXML
     private JFXButton createButton;
     @FXML
     private JFXButton editButton;
     @FXML
     private JFXButton assignToButton;
-    @FXML
-    private JFXButton goBackButton;
 
 
     Project selectedProject;
     ProjectModel projModel;
     @FXML
-    private TableColumn<?, ?> colClientName;
+    private JFXButton deleteButton;
 
    
 
@@ -66,7 +65,7 @@ public class ManageProjectsWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         projModel = ProjectModel.getInstance();
-         setUpTableView();
+        setUpTableView();
         selectedProject = tableViewProjects.getSelectionModel().getSelectedItem();
        
     }    
@@ -84,16 +83,21 @@ public class ManageProjectsWindowController implements Initializable {
     }
     private void setUpTableView()
     {
-        
         columnProject.setCellValueFactory(new PropertyValueFactory<>("name"));
-          columnHourlyRate.setCellValueFactory(new PropertyValueFactory<>("hRate"));
-            colClientName.setCellValueFactory(new PropertyValueFactory<>("clientName"));
-       columnDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        columnHourlyRate.setCellValueFactory(new PropertyValueFactory<>("hRate"));
+        colClientName.setCellValueFactory(new PropertyValueFactory<>("clientName"));
+        columnDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         loadTableView();
     }
 
     @FXML
-    private void handleCreate(ActionEvent event) {
+    private void handleCreate(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("gui/view/ProjectCreateWindow.fxml"));
+        Parent z = loader.load();
+        Scene scene = new Scene(z);
+        Stage s = new Stage();
+        s.setScene(scene);
+        s.show();
     }
 
     @FXML
@@ -104,17 +108,12 @@ public class ManageProjectsWindowController implements Initializable {
     private void handleAssigningTo(ActionEvent event) {
     }
 
-    @FXML
-    private void handleGoBack(ActionEvent event) {
-    }
-
     private void loadTableView() {
-         tableViewProjects.getItems().clear();
+        tableViewProjects.getItems().clear();
         List<Project> allProjects = projModel.getAllProjects();
         ObservableList<Project> projects = FXCollections.observableArrayList();
         projects.addAll(allProjects);
         tableViewProjects.setItems(projects);
-        
     }
     
 }

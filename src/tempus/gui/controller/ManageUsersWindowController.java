@@ -39,6 +39,8 @@ public class ManageUsersWindowController implements Initializable {
     private TableColumn<User,String> lastName;
     @FXML
     private TableColumn<User, String> idEmail;
+    @FXML
+    private TableColumn<?, ?> col_role;
    
     @FXML
     private JFXButton addUser;
@@ -48,8 +50,7 @@ public class ManageUsersWindowController implements Initializable {
     private JFXButton deleteUser;
     User selectedUser;
     UserModel userModel;
-    @FXML
-    private TableColumn<?, ?> col_role;
+    
     /**
      * Initializes the controller class.
      * @param url

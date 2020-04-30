@@ -42,14 +42,14 @@ public class ProjectCreateWindowController implements Initializable {
     private Button goBackButton;
     @FXML
     private JFXTextArea txtDescription;
+    @FXML
+    private ComboBox<Client> cmbClient;
 
     /**
      * Initializes the controller class.
      */
     
     private ProjectModel projectModel;
-    @FXML
-    private ComboBox<Client> cmbClient;
     
     ClientModel cmodel;
     ObservableList<Client>  allClients = FXCollections.observableArrayList();
@@ -58,6 +58,7 @@ public class ProjectCreateWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        projectModel = ProjectModel.getInstance();
         cmodel = ClientModel.getInstance();
         loadClientsToComboBox(); 
     }
