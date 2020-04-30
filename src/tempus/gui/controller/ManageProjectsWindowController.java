@@ -56,7 +56,7 @@ public class ManageProjectsWindowController implements Initializable {
     private JFXButton goBackButton;
 
 
-    Object selectedProject = tableViewProjects.getSelectionModel().getSelectedItem();
+    Project selectedProject;
     ProjectModel projModel;
 
    
@@ -66,14 +66,17 @@ public class ManageProjectsWindowController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         projModel = ProjectModel.getInstance();
+        
+        projModel = ProjectModel.getInstance();
          setUpTableView();
+        selectedProject = tableViewProjects.getSelectionModel().getSelectedItem();
+       
     }    
 
     @FXML
     private void handleDelete(ActionEvent event) throws IOException {
             if (selectedProject != null) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmation.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("gui/view/DeleteConfirmation.fxml"));
             Parent z = loader.load();
             Scene scene = new Scene(z);
             Stage s = new Stage();

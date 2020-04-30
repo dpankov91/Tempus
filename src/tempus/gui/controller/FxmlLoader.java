@@ -30,7 +30,7 @@ public Pane getPage(String fileName){
             view = new FXMLLoader().load(fileUrl);
             
         }  catch (Exception e){
-                    System.out.println("No page " + fileName + " please check FxmlLoader.");
+                    System.out.println("No page " + fileName + " please check FxmlLoader." + e);
                     }
    return view;
     }
