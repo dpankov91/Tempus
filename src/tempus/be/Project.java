@@ -17,74 +17,80 @@ import javafx.beans.property.StringProperty;
  */
 public class Project {
 
-    private final StringProperty projectNameProperty;
-    private final ReadOnlyIntegerWrapper projectIDProperty;
-    private final IntegerProperty hourlyRateProperty;
-    private final StringProperty descriptionProperty;
-    private final StringProperty clientNameProperty;
+    private final StringProperty projectName = new SimpleStringProperty();
+    private final IntegerProperty projectID = new SimpleIntegerProperty();
+    private final IntegerProperty hourlyRate = new SimpleIntegerProperty();
+    private final StringProperty description = new SimpleStringProperty();
+    private final IntegerProperty clientID = new SimpleIntegerProperty();
 
-    public Project(String projectName, int projectID,  String clientName, int hourlyRate, String description) {
+    public Project(String projectName, int projectID,  int clientID, int hourlyRate, String description) {
+        this.projectName.set(projectName);
+          this.projectID.set(projectID);
+        this.projectName.set(projectName);
+        this.clientID.set(clientID);
+        this.hourlyRate.set(hourlyRate);
+        this.description.set(description);
         
-        projectNameProperty = new SimpleStringProperty(projectName);
-        projectIDProperty = new ReadOnlyIntegerWrapper(projectID);
-        hourlyRateProperty = new SimpleIntegerProperty(hourlyRate);
-        descriptionProperty = new SimpleStringProperty(description);
-        clientNameProperty = new SimpleStringProperty(clientName);
+       // setProjectName(projectName);
         
     }
     
     
 
     public String getProjectName() {
-        return projectNameProperty.get();
+        return projectName.get();
     }
 
     public void setProjectName(String value) {
-        projectNameProperty.set(value);
+        projectName.set(value);
     }
 
     public StringProperty projectNameProperty() {
-        return projectNameProperty;
+        return projectName;
     }
 
     public int getProjectID() {
-        return projectIDProperty.get();
+        return projectID.get();
+    }
+
+    public IntegerProperty projectIDProperty() {
+        return projectID;
     }
     
     public int getHourlyRate() {
-        return hourlyRateProperty.get();
+        return hourlyRate.get();
     }
 
     public void setHourlyRate(int value) {
-        hourlyRateProperty.set(value);
+        hourlyRate.set(value);
     }
 
     public IntegerProperty hourlyRateProperty() {
-        return hourlyRateProperty;
+        return hourlyRate;
     }
     
     public String getDescription() {
-        return descriptionProperty.get();
+        return description.get();
     }
 
     public void setDescription(String value) {
-        descriptionProperty.set(value);
+        description.set(value);
     }
 
     public StringProperty descriptionProperty() {
-        return descriptionProperty;
+        return description;
     }
     
-    public String getClientName() {
-        return clientNameProperty.get();
-    }
-    
-    public void setClientName(String value) {
-        clientNameProperty.set(value);
+    public int getClientID() {
+        return clientID.get();
     }
 
-    public StringProperty clientNameProperty() {
-        return clientNameProperty;
+    public void setClientID(Integer value) {
+        clientID.set(value);
+    }
+
+    public IntegerProperty clientIDProperty() {
+        return clientID;
     }
     
     

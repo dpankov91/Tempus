@@ -5,11 +5,6 @@
  */
 package tempus.be;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ReadOnlyIntegerWrapper;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -17,58 +12,47 @@ import javafx.beans.property.StringProperty;
  */
 public class Client {
     
-    private final ReadOnlyIntegerWrapper idProperty;
-    private final StringProperty nameProperty; 
-    private final StringProperty cityProperty; 
-    private final IntegerProperty phoneProperty; 
+    private int id;
+    private String name;
+    private String city;
+    int phone;
 
     public Client(int id, String name, String city, int phone) {
-        
-        idProperty = new ReadOnlyIntegerWrapper(id);
-        nameProperty = new SimpleStringProperty(name);
-        cityProperty = new SimpleStringProperty(city);
-        phoneProperty = new SimpleIntegerProperty(phone);
-        
+        this.id = id;
+        this.name = name;
+        this.city = city;
+        this.phone = phone;
     }
 
-    public Integer getId() {
-        return idProperty.get();
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
-        return nameProperty.get();
+        return name;
     }
 
-    public void setName(String value) {
-        nameProperty.set(value);
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public StringProperty nameProperty() {
-        return nameProperty;
-    }
-    
-    public String getProjectCity() {
-        return cityProperty.get();
+    public String getCity() {
+        return city;
     }
 
-    public void setCity(String value) {
-        cityProperty.set(value);
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public StringProperty cityProperty() {
-        return cityProperty;
-    }
-    
-    public Integer getPhone() {
-        return phoneProperty.get();
+    public int getPhone() {
+        return phone;
     }
 
-    public void setPhone (Integer value) {
-        phoneProperty.set(value);
+    public void setPhone(int phone) {
+        this.phone = phone;
     }
-
-    public IntegerProperty phoneProperty() {
-        return phoneProperty;
-    }
-    
 }

@@ -19,73 +19,67 @@ public class User
 {
 
     
-    private final ReadOnlyIntegerWrapper idProperty;
-    private final StringProperty fNameProperty;
-    private final StringProperty lNameProperty;
-    private final StringProperty emailProperty;
-    private final BooleanProperty isAdminProperty;
-    public final BooleanProperty getIsAdminProperty;
+    private int id;
+    private String fName;
+    private String lName;
+    private String email;
+    private boolean isAdmin;
+    
 
     
     public User(int id, String fName, String lName, boolean isAdmin) {
-        
-        idProperty = new ReadOnlyIntegerWrapper(id);
-        fNameProperty = new SimpleStringProperty(fName);
-        lNameProperty = new SimpleStringProperty(lName);
-        isAdminProperty = new SimpleBooleanProperty(isAdmin);
-        
+        this.id = id;
+        this.fName = fName;
+        this.lName = lName;
+        this.isAdmin = isAdmin;
     }
 
     public User(String fName, String lName, String email) {
-        
-        fNameProperty = new SimpleStringProperty(fName);
-        lNameProperty = new SimpleStringProperty(lName);
-        emailProperty = new SimpleStringProperty(email);
-        
-    }
-   
-
-
-    public StringProperty fNameProperty() {
-        return fNameProperty;
-    }
-    
-
-
-
-    public StringProperty lNameProperty() {
-        return lNameProperty;
-    }
-   
+        this.fName = fName;
+        this.lName = lName;
+        this.email = email;
     }
 
-    public StringProperty emailProperty() {
-        return emailProperty;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
+    
+
+    public int getId() {
+        return id;
+    }
+
+    public String getFName() {
+        return fName;
+    }
+
+    public String getLName() {
+        return lName;
+    }
+
     public boolean getIsAdmin() {
-        return isAdminProperty.get();
+        return isAdmin;
     }
 
-    public void setIsAdmin(boolean value) {
-        isAdminProperty.set(value);
-
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public BooleanProperty isAdminProperty() {
-        return isAdminProperty;
+    public void setfName(String fName) {
+        this.fName = fName;
     }
 
-     public boolean getGetIsAdmin() {
-        return getIsAdminProperty.get();
+    public void setLName(String lName) {
+        this.lName = lName;
     }
 
-    public void setGetIsAdmin(boolean value) {
-        getIsAdminProperty.set(value);
-    }
-
-    public BooleanProperty getIsAdminProperty() {
-        return getIsAdminProperty;
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
 }
