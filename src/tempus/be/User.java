@@ -5,93 +5,106 @@
  */
 package tempus.be;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ReadOnlyIntegerWrapper;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  *
  * @author dpank
  */
 public class User 
 {
-    private int id;
-    private String fName;
-    private String lName;
-    private String email;
-    private boolean isAdmin;
-    public boolean getIsAdmin;
+    
+    private final ReadOnlyIntegerWrapper idProperty;
+    private final StringProperty fNameProperty;
+    private final StringProperty lNameProperty;
+    private final StringProperty emailProperty;
+    private final BooleanProperty isAdminProperty;
+    public final BooleanProperty getIsAdminProperty;
 
     
     public User(int id, String fName, String lName, boolean isAdmin) {
-        this.id = id;
-        this.fName = fName;
-        this.lName = lName;
-        this.isAdmin = isAdmin;
+        
+        idProperty = new ReadOnlyIntegerWrapper(id);
+        fNameProperty = new SimpleStringProperty(fName);
+        lNameProperty = new SimpleStringProperty(lName);
+        isAdminProperty = new SimpleBooleanProperty(isAdmin);
+        
     }
 
     public User(String fName, String lName, String email) {
-        this.fName = fName;
-        this.lName = lName;
-        this.email = email;
+        
+        fNameProperty = new SimpleStringProperty(fName);
+        lNameProperty = new SimpleStringProperty(lName);
+        emailProperty = new SimpleStringProperty(email);
+        
     }
    
+    public Integer getId() {
+        return idProperty.get();
+    }
+
+    public String getFName() {
+        return fNameProperty.get();
+    }
+
+    public void setFNAme(String value) {
+        fNameProperty.set(value);
+    }
+
+    public StringProperty fNameProperty() {
+        return fNameProperty;
+    }
     
-  
-
-
-    public int getId() {
-        return id;
+    public String getLName() {
+        return lNameProperty.get();
     }
 
-    public String getfName() {
-        return fName;
+    public void setLName(String value) {
+        lNameProperty.set(value);
     }
 
-    public String getlName() {
-        return lName;
+    public StringProperty lNameProperty() {
+        return lNameProperty;
     }
-
-    public void setfName(String fName) {
-        this.fName = fName;
-    }
-
-    public void setlName(String lName) {
-        this.lName = lName;
-    }
- 
     
-    
+    public String getEmail() {
+        return emailProperty.get();
+    }
 
+    public void setEmail(String value) {
+        emailProperty.set(value);
+    }
+
+    public StringProperty emailProperty() {
+        return emailProperty;
+    }
     
     public boolean getIsAdmin() {
-        return isAdmin;
+        return isAdminProperty.get();
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIsAdmin(boolean value) {
+        isAdminProperty.set(value);
     }
 
+    public BooleanProperty isAdminProperty() {
+        return isAdminProperty;
+    }
     
-
-    public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
+    public boolean getGetIsAdmin() {
+        return getIsAdminProperty.get();
     }
 
-    public String getEmail() {
-        return email;
+    public void setGetIsAdmin(boolean value) {
+        getIsAdminProperty.set(value);
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public BooleanProperty getIsAdminProperty() {
+        return getIsAdminProperty;
     }
-
-    public boolean isGetIsAdmin() {
-        return getIsAdmin;
-    }
-
-    public void setGetIsAdmin(boolean getIsAdmin) {
-        this.getIsAdmin = getIsAdmin;
-    }
-
-
-    
-    
     
 }
