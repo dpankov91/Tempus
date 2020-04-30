@@ -95,7 +95,7 @@ public class UserDAO {
                 
                
                allUsers.add(new User(fName, lName, email));
-               System.out.println("dao");
+               
             }
                 return allUsers;
     }

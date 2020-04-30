@@ -5,11 +5,6 @@
  */
 package tempus.be;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ReadOnlyIntegerWrapper;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -17,82 +12,71 @@ import javafx.beans.property.StringProperty;
  */
 public class Project {
 
-    private final StringProperty projectName = new SimpleStringProperty();
-    private final IntegerProperty projectID = new SimpleIntegerProperty();
-    private final IntegerProperty hourlyRate = new SimpleIntegerProperty();
-    private final StringProperty description = new SimpleStringProperty();
-    private final IntegerProperty clientID = new SimpleIntegerProperty();
+    private int id;
+    private String name;
+    private int hRate;
+    private int clientID;
+    private String description;
 
-    public Project(String projectName, int projectID,  int clientID, int hourlyRate, String description) {
-        this.projectName.set(projectName);
-          this.projectID.set(projectID);
-        this.projectName.set(projectName);
-        this.clientID.set(clientID);
-        this.hourlyRate.set(hourlyRate);
-        this.description.set(description);
-        
-       // setProjectName(projectName);
-        
+    public Project(int id, String name, int hRate, int clientID, String description) {
+        this.id = id;
+        this.name = name;
+        this.hRate = hRate;
+        this.clientID = clientID;
+        this.description = description;
     }
+
+    public Project(String name, int id, int hRate, int clientID, String description) {
+        this.name = name;
+        this.id = id;
+        this.hRate = hRate;
+        this.clientID=clientID;
+        this.description=description;
+    }
+
+
     
-    
-
-    public String getProjectName() {
-        return projectName.get();
+    public int getId() {
+        return id;
     }
 
-    public void setProjectName(String value) {
-        projectName.set(value);
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public StringProperty projectNameProperty() {
-        return projectName;
+    public String getName() {
+        return name;
     }
 
-    public int getProjectID() {
-        return projectID.get();
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public IntegerProperty projectIDProperty() {
-        return projectID;
-    }
-    
-    public int getHourlyRate() {
-        return hourlyRate.get();
+    public int gethRate() {
+        return hRate;
     }
 
-    public void setHourlyRate(int value) {
-        hourlyRate.set(value);
+    public void sethRate(int hRate) {
+        this.hRate = hRate;
     }
 
-    public IntegerProperty hourlyRateProperty() {
-        return hourlyRate;
-    }
-    
-    public String getDescription() {
-        return description.get();
-    }
-
-    public void setDescription(String value) {
-        description.set(value);
-    }
-
-    public StringProperty descriptionProperty() {
-        return description;
-    }
-    
     public int getClientID() {
-        return clientID.get();
-    }
-
-    public void setClientID(Integer value) {
-        clientID.set(value);
-    }
-
-    public IntegerProperty clientIDProperty() {
         return clientID;
     }
+
+    public void setClientID(int clientID) {
+        this.clientID = clientID;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
     
     
     
+
 }

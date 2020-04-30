@@ -58,7 +58,7 @@ public class ProjectDAO {
             Connection con = connector.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);
             
-            pstmt.setInt(1, projectToDelete.getProjectID());
+            pstmt.setInt(1, projectToDelete.getId());
 
             ResultSet rs = pstmt.executeQuery();
         } catch (SQLException ex) {
@@ -79,12 +79,12 @@ public class ProjectDAO {
         while (rs.next()) 
             {
                 
-                String projectName = rs.getString("projectName");
-                int projectID = rs.getInt("projectID");
-                int hourlyRate = rs.getInt("hourlyRate");
+                String name = rs.getString("projectName");
+                int id = rs.getInt("projectID");
+                int hRate = rs.getInt("hourlyRate");
                 int clientID = rs.getInt("clientID");
                 String description = rs.getString("description");
-               allProjects.add(new Project(projectName, projectID, hourlyRate, clientID, description));
+                allProjects.add(new Project(name, id, hRate, clientID, description));
                
             }
                 return allProjects;

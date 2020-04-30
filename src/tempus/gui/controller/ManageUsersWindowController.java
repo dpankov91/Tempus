@@ -91,21 +91,15 @@ public class ManageUsersWindowController implements Initializable {
      private void loadTableView() {
          tableViewUsers.getItems().clear();
          List<User> allUsers = userModel.getAllUsers();
-         System.out.println("user");
          ObservableList<User> users = FXCollections.observableArrayList();
          users.addAll(allUsers);
-         System.out.println("user1");
          tableViewUsers.setItems(users);
-         System.out.println("user2");
     }
      private void setUpTableView()
     {
-        System.out.println("user3");
         firstName.setCellValueFactory(new PropertyValueFactory<>("fName"));
         lastName.setCellValueFactory(new PropertyValueFactory<>("lName"));
-         // userID.setCellValueFactory(new PropertyValueFactory<>("userID"));
             idEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-            System.out.println("user3");
        
         loadTableView();
     }

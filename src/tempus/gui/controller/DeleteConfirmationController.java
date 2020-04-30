@@ -42,7 +42,7 @@ public class DeleteConfirmationController implements Initializable {
         model = new ProjectModel();
         projContr = new ManageProjectsWindowController();
         selectedProject= (Project) projContr.selectedProject;
-        lblName.setText(selectedProject.getProjectName());
+        lblName.setText(selectedProject.getName());
     }    
 
     @FXML
