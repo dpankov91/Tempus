@@ -61,7 +61,7 @@ public class UserDAO {
 
     public void deleteUser(User userToDelete) {
             try{
-                String sql = "DELETE * FROM [dbo].[Project] WHERE id=? ";
+                String sql = "DELETE  FROM [dbo].[User] WHERE userID=? ";
             
                 Connection con = connector.getConnection();
                 PreparedStatement pstmt = con.prepareStatement(sql);
