@@ -87,7 +87,7 @@ public class ManageProjectsWindowController implements Initializable {
         
         columnProject.setCellValueFactory(new PropertyValueFactory<>("name"));
           columnHourlyRate.setCellValueFactory(new PropertyValueFactory<>("hRate"));
-            colClientName.setCellValueFactory(new PropertyValueFactory<>("clientID"));
+            colClientName.setCellValueFactory(new PropertyValueFactory<>("clientName"));
        columnDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         loadTableView();
     }

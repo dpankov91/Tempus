@@ -17,6 +17,7 @@ public class Project {
     private int hRate;
     private int clientID;
     private String description;
+    private String clientName;
 
     public Project(int id, String name, int hRate, int clientID, String description) {
         this.id = id;
@@ -32,6 +33,22 @@ public class Project {
         this.hRate = hRate;
         this.clientID=clientID;
         this.description=description;
+    }
+
+    public Project(String name, int hRate, String clientName, String description) 
+    {
+        this.name = name;
+        this.hRate = hRate;
+        this.clientName = clientName;
+        this.description = description;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
 

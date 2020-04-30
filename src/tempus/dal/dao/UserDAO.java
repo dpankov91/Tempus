@@ -30,7 +30,6 @@ public class UserDAO {
     public UserDAO()
     {
         this.connector = new DbConnectionProvider();
-        //connector = new DbConnectionProvider();
     }
 
     public User getUser(String username, String password) throws SQLException {

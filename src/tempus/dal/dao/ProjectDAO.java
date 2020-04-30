@@ -28,7 +28,6 @@ public class ProjectDAO {
     public ProjectDAO()
     {
         this.connector = new DbConnectionProvider();
-        //connector = new DbConnectionProvider();
     }
     
     public void createProject(String projectName, String clientName, String hourlyRate, String description) {
@@ -70,7 +69,11 @@ public class ProjectDAO {
         ArrayList<Project> allProjects = new ArrayList<>();
         
         
-        String sql = "SELECT * FROM [dbo].[Project]";
+        String sql = "SELECT [dbo].[Client].[clientName], [dbo].[Project].*"
+                   + "FROM [dbo].[Project]"
+                   + "JOIN [dbo].[Client] ON [dbo].[Client].[clientID] = [dbo].[Project].[clientID]";
+                   
+                    
         
         Connection con = connector.getConnection();
         Statement stmt = con.createStatement();
@@ -80,11 +83,10 @@ public class ProjectDAO {
             {
                 
                 String name = rs.getString("projectName");
-                int id = rs.getInt("projectID");
+                String clientName = rs.getString("clientName");
                 int hRate = rs.getInt("hourlyRate");
-                int clientID = rs.getInt("clientID");
                 String description = rs.getString("description");
-                allProjects.add(new Project(name, id, hRate, clientID, description));
+                allProjects.add(new Project(name, hRate, clientName, description));
                
             }
                 return allProjects;
