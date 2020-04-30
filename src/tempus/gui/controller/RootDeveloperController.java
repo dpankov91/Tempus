@@ -58,12 +58,12 @@ public class RootDeveloperController implements Initializable {
     
     public void setFirstName(User currentUser) {
         this.user = currentUser;
-        lbl_fname.setText(user.getfName());
+        lbl_fname.setText(user.getLName());
     }
     
     public void setLastName(User currentUser) {
         this.user = currentUser;
-        lbl_lname.setText(user.getlName());
+        lbl_lname.setText(user.getLName());
     }
 
     @FXML

@@ -42,7 +42,7 @@ public class DeleteConfirmationUserController implements Initializable {
         model = new UserModel();
         userContr = new ManageUsersWindowController();
         selectedUser = (User) userContr.selectedUser;
-        lblName.setText(selectedUser.getfName());
+        lblName.setText(selectedUser.getFName());
     }    
     
     @FXML
