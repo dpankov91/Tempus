@@ -52,7 +52,7 @@ public class ProjectDAO {
 
     public void deleteProject(Project projectToDelete) {
         try {
-            String sql = "DELETE * FROM [dbo].[Project] WHERE id=? ";
+            String sql = "DELETE FROM [dbo].[Project] WHERE projectID=? ";
             
             Connection con = connector.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);
