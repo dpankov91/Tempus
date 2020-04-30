@@ -78,7 +78,7 @@ public class RootDeveloperController implements Initializable {
     private void handle_Help(ActionEvent event) {
         System.out.println("Clicked");
         FxmlLoader object = new FxmlLoader();
-        Pane view = object.getPage("");
+        Pane view = object.getPage("HelpWindow");
         mainPane.setCenter(view); 
     }
     
