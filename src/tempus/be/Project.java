@@ -50,10 +50,6 @@ public class Project {
     public int getProjectID() {
         return projectIDProperty.get();
     }
-
-    public IntegerProperty projectIDProperty() {
-        return projectIDProperty;
-    }
     
     public int getHourlyRate() {
         return hourlyRateProperty.get();
