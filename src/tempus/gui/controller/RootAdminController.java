@@ -74,14 +74,18 @@ public class RootAdminController implements Initializable {
     
     @FXML
     private void handle_editProfile(ActionEvent event) {
-        System.out.println("Clicked");
-        FxmlLoader object = new FxmlLoader();
-        Pane view = object.getPage("UserEditWindow");
-        mainPane.setCenter(view); 
+//        System.out.println("Clicked");
+//        FxmlLoader object = new FxmlLoader();
+//        Pane view = object.getPage("");
+//        mainPane.setCenter(view); 
     }
 
     @FXML
     private void handle_Help(ActionEvent event) {
+//        System.out.println("Clicked");
+//        FxmlLoader object = new FxmlLoader();
+//        Pane view = object.getPage("");
+//        mainPane.setCenter(view); 
         
     }
  
@@ -105,7 +109,7 @@ public class RootAdminController implements Initializable {
     private void handle_Projects(ActionEvent event) {
         System.out.println("Clicked");
         FxmlLoader object = new FxmlLoader();
-        Pane view = object.getPage("ProjectCreateWindow");
+        Pane view = object.getPage("ManageProjectsWindow");
         mainPane.setCenter(view);
     }
 

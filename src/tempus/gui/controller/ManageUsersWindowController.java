@@ -53,8 +53,8 @@ public class ManageUsersWindowController implements Initializable {
 
   
     
-    Object selectedUser = tableViewUsers.getSelectionModel().getSelectedItem();
-    UserModel useModel;
+    User selectedUser;
+    UserModel userModel;
     /**
      * Initializes the controller class.
      * @param url
@@ -62,7 +62,9 @@ public class ManageUsersWindowController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        userModel = UserModel.getInstance();
+        setUpTableView();
+        selectedUser = tableViewUsers.getSelectionModel().getSelectedItem();
     }    
 
     @FXML
@@ -85,22 +87,28 @@ public class ManageUsersWindowController implements Initializable {
         }
         
     }
+    
+     private void loadTableView() {
+         tableViewUsers.getItems().clear();
+         List<User> allUsers = userModel.getAllUsers();
+         System.out.println("user");
+         ObservableList<User> users = FXCollections.observableArrayList();
+         users.addAll(allUsers);
+         System.out.println("user1");
+         tableViewUsers.setItems(users);
+         System.out.println("user2");
+    }
      private void setUpTableView()
     {
-        firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-          userID.setCellValueFactory(new PropertyValueFactory<>("userID"));
-            idEmail.setCellValueFactory(new PropertyValueFactory<>("idEmail"));
+        System.out.println("user3");
+        firstName.setCellValueFactory(new PropertyValueFactory<>("fName"));
+        lastName.setCellValueFactory(new PropertyValueFactory<>("lName"));
+         // userID.setCellValueFactory(new PropertyValueFactory<>("userID"));
+            idEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+            System.out.println("user3");
        
         loadTableView();
     }
 
-    private void loadTableView() {
-         tableViewUsers.getItems().clear();
-        List<User> allUsers = UserModel.getAllUsers();
-        ObservableList<User> users = FXCollections.observableArrayList();
-       users.addAll(allUsers);
-        tableViewUsers.setItems(users);
-    }
     
 }
