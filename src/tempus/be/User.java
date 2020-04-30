@@ -24,6 +24,7 @@ public class User
     private String lName;
     private String email;
     private boolean isAdmin;
+    private String role;
     
 
     
@@ -34,12 +35,31 @@ public class User
         this.isAdmin = isAdmin;
     }
 
-    public User(String fName, String lName, String email) {
+    public User(String fName, String lName, String email, boolean isAdmin) {
         this.fName = fName;
         this.lName = lName;
         this.email = email;
+        this.isAdmin = isAdmin;
     }
 
+    public User(String fName, String lName, String email, String role) {
+        this.fName = fName;
+        this.lName = lName;
+        this.email = email;
+        this.role = role;
+        
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+ 
+    
+    
     public String getEmail() {
         return email;
     }

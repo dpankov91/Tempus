@@ -38,8 +38,6 @@ public class ManageUsersWindowController implements Initializable {
     @FXML
     private TableColumn<User,String> lastName;
     @FXML
-    private TableColumn<User,Integer> userID;
-    @FXML
     private TableColumn<User, String> idEmail;
    
     @FXML
@@ -48,13 +46,10 @@ public class ManageUsersWindowController implements Initializable {
     private JFXButton editUser;
     @FXML
     private JFXButton deleteUser;
-    @FXML
-
-
-  
-    
     User selectedUser;
     UserModel userModel;
+    @FXML
+    private TableColumn<?, ?> col_role;
     /**
      * Initializes the controller class.
      * @param url
@@ -77,7 +72,7 @@ public class ManageUsersWindowController implements Initializable {
 
     @FXML
     private void onActionDeleteUser(ActionEvent event) throws IOException {
-        if(selectedUser !=null){
+        if(selectedUser != null){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmationUser.fxml"));
             Parent z = loader.load();
             Scene scene = new Scene(z);
@@ -97,8 +92,11 @@ public class ManageUsersWindowController implements Initializable {
     }
      private void setUpTableView()
     {
+
+                
         firstName.setCellValueFactory(new PropertyValueFactory<>("fName"));
         lastName.setCellValueFactory(new PropertyValueFactory<>("lName"));
+         col_role.setCellValueFactory(new PropertyValueFactory<>("role"));
             idEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
        
         loadTableView();

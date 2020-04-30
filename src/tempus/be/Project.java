@@ -52,7 +52,7 @@ public class Project {
         this.name = name;
     }
 
-    public int gethRate() {
+    public int getHRate() {
         return hRate;
     }
 

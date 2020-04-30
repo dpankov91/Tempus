@@ -37,11 +37,7 @@ public class ManageProjectsWindowController implements Initializable {
     @FXML
     private TableColumn<Project,String> columnProject;
     @FXML
-    private TableColumn<Project,Integer> columnProjectID;
-    @FXML
     private TableColumn<Project,Integer> columnHourlyRate;
-     @FXML
-    private TableColumn<Project,Integer> columnClientID;
       @FXML
     private TableColumn<Project,String> columnDescription;
     @FXML
@@ -58,6 +54,8 @@ public class ManageProjectsWindowController implements Initializable {
 
     Project selectedProject;
     ProjectModel projModel;
+    @FXML
+    private TableColumn<?, ?> colClientName;
 
    
 
@@ -86,10 +84,10 @@ public class ManageProjectsWindowController implements Initializable {
     }
     private void setUpTableView()
     {
+        
         columnProject.setCellValueFactory(new PropertyValueFactory<>("name"));
-         columnProjectID.setCellValueFactory(new PropertyValueFactory<>("id"));
           columnHourlyRate.setCellValueFactory(new PropertyValueFactory<>("hRate"));
-            columnClientID.setCellValueFactory(new PropertyValueFactory<>("clientID"));
+            colClientName.setCellValueFactory(new PropertyValueFactory<>("clientID"));
        columnDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         loadTableView();
     }

@@ -92,9 +92,15 @@ public class UserDAO {
                 String fName = rs.getString("firstName");
                 String lName = rs.getString("lastName");
                 String email = rs.getString("email");
+                Boolean isAdmin = rs.getBoolean("isAdmin");
+                String role;
+                if(isAdmin){
+                    role="Admin";
+                        }else{
+                     role="Developer";}
                 
                
-               allUsers.add(new User(fName, lName, email));
+               allUsers.add(new User(fName, lName, email, role));
                
             }
                 return allUsers;

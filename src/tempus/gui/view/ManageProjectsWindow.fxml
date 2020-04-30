@@ -12,13 +12,12 @@
 
 <AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="1065.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ManageProjectsWindowController">
    <children>
-      <TableView fx:id="tableViewProjects" layoutY="98.0" prefHeight="320.0" prefWidth="470.0" stylesheets="@../css/style.css">
+      <TableView fx:id="tableViewProjects" layoutX="14.0" layoutY="98.0" prefHeight="320.0" prefWidth="470.0" stylesheets="@../css/style.css">
         <columns>
-          <TableColumn fx:id="columnProject" prefWidth="112.0" text="Project name" />
-          <TableColumn fx:id="columnProjectID" prefWidth="61.0" text="ProjectID" />
-            <TableColumn fx:id="columnHourlyRate" prefWidth="87.99993896484375" text="Hourly Rate" />
-            <TableColumn fx:id="columnClientID" prefWidth="75.0" text="client ID" />
-            <TableColumn fx:id="columnDescription" prefWidth="133.0" text="Description" />
+          <TableColumn fx:id="columnProject" prefWidth="100.79998475313187" text="Project name" />
+            <TableColumn fx:id="columnHourlyRate" prefWidth="106.4000244140625" text="Hourly Rate" />
+            <TableColumn fx:id="colClientName" prefWidth="101.60002136230469" text="Client" />
+            <TableColumn fx:id="columnDescription" prefWidth="163.20001220703125" text="Description" />
         </columns>
       </TableView>
       <Label layoutX="238.0" layoutY="14.0" text="Manage Projects" textFill="#66ff66">
