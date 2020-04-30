@@ -14,6 +14,7 @@ public class User
     private int id;
     private String fName;
     private String lName;
+    private String email;
     private boolean isAdmin;
     public boolean getIsAdmin;
 
@@ -24,6 +25,16 @@ public class User
         this.lName = lName;
         this.isAdmin = isAdmin;
     }
+
+    public User(String fName, String lName, String email) {
+        this.fName = fName;
+        this.lName = lName;
+        this.email = email;
+    }
+   
+    
+  
+
 
     public int getId() {
         return id;
@@ -37,6 +48,18 @@ public class User
         return lName;
     }
 
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
+    }
+ 
+    
+    
+
+    
     public boolean getIsAdmin() {
         return isAdmin;
     }
@@ -45,17 +68,28 @@ public class User
         this.id = id;
     }
 
-    public void setfName(String fName) {
-        this.fName = fName;
-    }
-
-    public void setlName(String lName) {
-        this.lName = lName;
-    }
+    
 
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isGetIsAdmin() {
+        return getIsAdmin;
+    }
+
+    public void setGetIsAdmin(boolean getIsAdmin) {
+        this.getIsAdmin = getIsAdmin;
+    }
+    
     
     
     
