@@ -84,10 +84,6 @@ public class Project {
         return clientID.get();
     }
 
-    public void setClientID(Integer value) {
-        clientID.set(value);
-    }
-
     public IntegerProperty clientIDProperty() {
         return clientID;
     }
