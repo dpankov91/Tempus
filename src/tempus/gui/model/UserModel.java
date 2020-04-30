@@ -5,6 +5,7 @@
  */
 package tempus.gui.model;
 
+import java.util.List;
 import tempus.be.User;
 import tempus.bll.BllManager;
 import tempus.bll.IBllFacade;
@@ -16,6 +17,10 @@ import tempus.bll.IBllFacade;
 public class UserModel
 {
     static UserModel model = new UserModel();
+
+    public  List<User> getAllUsers() {
+        return facade.getAllUsers();
+    }
     private final IBllFacade facade;
     private User loggedInUser;
     
@@ -41,6 +46,10 @@ public class UserModel
     
     public void deleteProject(Object selectedProjectT) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+        public void deleteUser(User useDelete) {
+            facade.deleteUser(useDelete);
     }
 
 }
