@@ -30,17 +30,17 @@ public class ProjectDAO {
         this.connector = new DbConnectionProvider();
     }
     
-    public void createProject(String projectName, String clientName, String hourlyRate, String description) {
+    public void createProject(String name, String clientName, String hRate, String description) {
         
         try {
-            String sql = "INSERT * FROM [dbo].[Project] VALUES ProjectName = ? AND ClientName = ? AND HourlyRate = ? AND Description =? ";
+            String sql = "INSERT Project.ProjectName, Project.HourlyRate, Project.Description, Client.ClientName FROM Project INNER JOIN Client ON Project.ClientID=Client.ProjectID VALUES ProjectName = ? AND ClientName = ? AND HourlyRate = ? AND Description =? ";
             
             Connection con = connector.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);
             
-            pstmt.setString(1, projectName);
+            pstmt.setString(1, name);
             pstmt.setString(2, clientName);
-            pstmt.setString(3, hourlyRate);
+            pstmt.setString(3, hRate);
             pstmt.setString(4, description);
             ResultSet rs = pstmt.executeQuery();
         } catch (SQLException ex) {

@@ -19,6 +19,7 @@ import tempus.gui.model.UserModel;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
+import javax.swing.JComboBox;
 import tempus.be.Client;
 import tempus.gui.model.ClientModel;
 import tempus.gui.model.ProjectModel;
@@ -92,12 +93,14 @@ public class ProjectCreateWindowController implements Initializable {
         
         if (checkIfFilled())
         {
-            String projectName = txtProjectName.getText();
-            String clientName = txtClientName.getText();
-            String hourlyRate = txtHourlyRate.getText();
-            String description = txtDescription.getText();
+            JComboBox comboBox = (JComboBox) event.getSource();
             
-            projectModel.createProject(projectName, clientName, hourlyRate, description);
+            String name = txtProjectName.getText();
+            String hRate = txtHourlyRate.getText();
+            String description = txtDescription.getText();
+            String clientName = comboBox.getSelectedItem().toString();
+            
+            projectModel.createProject(name, clientName, hRate, description);
             
             //setUpAlert("Project is created");
             

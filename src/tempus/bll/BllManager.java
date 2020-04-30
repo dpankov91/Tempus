@@ -41,9 +41,9 @@ public class BllManager implements IBllFacade {
     }
 
     @Override
-    public void createProject(String projectName, String clientName, String hourlyRate, String description) {
+    public void createProject(String name, String clientName, String hRate, String description) {
         
-        facade.createProject(projectName, clientName, hourlyRate, description);
+        facade.createProject(name, clientName, hRate, description);
                 
     }
 
