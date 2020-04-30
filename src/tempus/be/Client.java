@@ -5,65 +5,70 @@
  */
 package tempus.be;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ReadOnlyIntegerWrapper;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  *
  * @author dpank
  */
 public class Client {
     
-    int id;
-    String name;
-    String city;
-    int phone;
+    private final ReadOnlyIntegerWrapper idProperty;
+    private final StringProperty nameProperty; 
+    private final StringProperty cityProperty; 
+    private final IntegerProperty phoneProperty; 
 
     public Client(int id, String name, String city, int phone) {
-        this.id = id;
-        this.name = name;
-        this.city = city;
-        this.phone = phone;
+        
+        idProperty = new ReadOnlyIntegerWrapper(id);
+        nameProperty = new SimpleStringProperty(name);
+        cityProperty = new SimpleStringProperty(city);
+        phoneProperty = new SimpleIntegerProperty(phone);
+        
     }
 
-    public Client(String name) {
-        this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public Integer getId() {
+        return idProperty.get();
     }
 
     public String getName() {
-        return name;
+        return nameProperty.get();
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String value) {
+        nameProperty.set(value);
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public int getPhone() {
-        return phone;
-    }
-
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
-
-    @Override
-    public String toString() {
-        return name;
+    public StringProperty nameProperty() {
+        return nameProperty;
     }
     
+    public String getProjectCity() {
+        return cityProperty.get();
+    }
+
+    public void setCity(String value) {
+        cityProperty.set(value);
+    }
+
+    public StringProperty cityProperty() {
+        return cityProperty;
+    }
     
+    public Integer getPhone() {
+        return phoneProperty.get();
+    }
+
+    public void setPhone (Integer value) {
+        phoneProperty.set(value);
+    }
+
+    public IntegerProperty phoneProperty() {
+        return phoneProperty;
+    }
     
 }
