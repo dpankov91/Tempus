@@ -52,6 +52,10 @@ public class UserModel
             facade.deleteUser(useDelete);
     }
 
+    public void createUser(String fName, String lName, String password, String email, String role) {
+        facade.createUser(fName, lName, password, email, role);
+    }
+
 }
        
 

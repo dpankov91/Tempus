@@ -45,6 +45,8 @@ public interface IBllFacade {
 
     public List<User> getAllUsers();
 
+    public void createUser(String fName, String lName, String password, String email, String role);
+
 
     
 }
