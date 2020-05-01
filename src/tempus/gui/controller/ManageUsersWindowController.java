@@ -73,7 +73,7 @@ public class ManageUsersWindowController implements Initializable {
 
     @FXML
     private void onActionDeleteUser(ActionEvent event) throws IOException {
-        if(selectedUser != null){
+        {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmationUser.fxml"));
             Parent z = loader.load();
             Scene scene = new Scene(z);

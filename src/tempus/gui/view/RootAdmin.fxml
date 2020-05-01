@@ -41,6 +41,11 @@
                         <Font size="21.0" />
                      </font>
                   </Label>
+                  <Label fx:id="lblTodaysDate" prefHeight="43.0" prefWidth="179.0">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
                   <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
                      <children>
                         <JFXButton fx:id="btn_users" layoutX="1.0" layoutY="-1.0" onAction="#handle_Users" prefHeight="45.0" prefWidth="200.0" text="Users" />
@@ -68,7 +73,7 @@
                </children>
             </VBox>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#282828" height="125.0" layoutY="1.0" stroke="WHITE" strokeType="INSIDE" width="1257.0" />
-            <ImageView fitHeight="100.0" fitWidth="105.0" layoutX="39.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageUser" fitHeight="100.0" fitWidth="105.0" layoutX="39.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/iconfinder_8_3898372.png" />
                </image>

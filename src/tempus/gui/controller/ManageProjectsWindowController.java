@@ -72,8 +72,8 @@ public class ManageProjectsWindowController implements Initializable {
 
     @FXML
     private void handleDelete(ActionEvent event) throws IOException {
-            if (selectedProject != null) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("gui/view/DeleteConfirmation.fxml"));
+            {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("tempus/gui/view/DeleteConfirmation.fxml"));
             Parent z = loader.load();
             Scene scene = new Scene(z);
             Stage s = new Stage();

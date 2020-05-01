@@ -7,6 +7,9 @@ package tempus.gui.controller;
 
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -45,6 +48,8 @@ public class RootDeveloperController implements Initializable {
     private Label lbl_lname;
 
     private User user;
+    @FXML
+    private Label lblTodaysDate;
 
 
 
@@ -53,7 +58,7 @@ public class RootDeveloperController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        showDate();
     }  
     
     public void setFirstName(User currentUser) {
@@ -109,6 +114,12 @@ public class RootDeveloperController implements Initializable {
     @FXML
     private void handle_Logout(ActionEvent event) {
         Platform.exit();
+    }
+
+    private void showDate() {
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        lblTodaysDate.setText(dateFormat.format(date));
     }
     
 }
