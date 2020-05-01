@@ -30,7 +30,7 @@ public class ProjectDAO {
         this.connector = new DbConnectionProvider();
     }
     
-    public void createProject(String name, String clientName, String hRate, String description) {
+    public void createProject(String name, String clientName, int hRate, String description) {
         
         try {
             String sql = "INSERT Project.ProjectName, Project.HourlyRate, Project.Description, Client.ClientName FROM Project INNER JOIN Client ON Project.ClientID=Client.ProjectID VALUES ProjectName = ? AND ClientName = ? AND HourlyRate = ? AND Description =? ";
@@ -40,7 +40,7 @@ public class ProjectDAO {
             
             pstmt.setString(1, name);
             pstmt.setString(2, clientName);
-            pstmt.setString(3, hRate);
+            pstmt.setInt(3, hRate);
             pstmt.setString(4, description);
             ResultSet rs = pstmt.executeQuery();
         } catch (SQLException ex) {

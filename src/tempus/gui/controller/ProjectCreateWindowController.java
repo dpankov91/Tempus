@@ -97,7 +97,7 @@ public class ProjectCreateWindowController implements Initializable {
             JComboBox comboBox = (JComboBox) event.getSource();
             
             String name = txtProjectName.getText();
-            String hRate = txtHourlyRate.getText();
+            int hRate = Integer.parseInt(txtHourlyRate.getText());
             String description = txtDescription.getText();
             String clientName = comboBox.getSelectedItem().toString();
             
