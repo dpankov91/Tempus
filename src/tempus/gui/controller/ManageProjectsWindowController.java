@@ -72,6 +72,7 @@ public class ManageProjectsWindowController implements Initializable {
 
     @FXML
     private void handleDelete(ActionEvent event) throws IOException {
+
             {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("tempus/gui/view/DeleteConfirmation.fxml"));
             Parent z = loader.load();
@@ -80,9 +81,13 @@ public class ManageProjectsWindowController implements Initializable {
             s.setScene(scene);
             s.show();
         }
-    }
-    private void setUpTableView()
-    {
+
+        
+        
+       }
+
+    
+    private void setUpTableView(){
         columnProject.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnHourlyRate.setCellValueFactory(new PropertyValueFactory<>("hRate"));
         colClientName.setCellValueFactory(new PropertyValueFactory<>("clientName"));
@@ -92,7 +97,7 @@ public class ManageProjectsWindowController implements Initializable {
 
     @FXML
     private void handleCreate(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("gui/view/ProjectCreateWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/ProjectCreateWindow.fxml"));
         Parent z = loader.load();
         Scene scene = new Scene(z);
         Stage s = new Stage();

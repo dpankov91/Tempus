@@ -32,7 +32,7 @@ public interface IBllFacade {
     
      public User getUser(String username, String password);
 
-    public void createProject(String name, String clientName, String hRate, String description);
+    public void createProject(String name, String clientName, int hRate, String description);
 
     public void deleteProject(Project  pro);
 
@@ -44,6 +44,8 @@ public interface IBllFacade {
     public void deleteUser(User useDelete);
 
     public List<User> getAllUsers();
+
+    public void createUser(String fName, String lName, String password, String email, String role);
 
 
     

@@ -104,5 +104,23 @@ public class UserDAO {
             }
                 return allUsers;
     }
+
+    public void createUser(String fName, String lName, String password, String email, String role) {
+        try {
+            String sql = "INSERT Project.ProjectName, Client.ClientName, Project.HourlyRate, Project.Description FROM Project INNER JOIN Client ON Project.ClientID=Client.ProjectID VALUES (?,?,?,?) ";
+            
+            Connection con = connector.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            
+            pstmt.setString(1, fName);
+            pstmt.setString(2, lName);
+            pstmt.setString(3, password);
+            pstmt.setString(4, email);
+            pstmt.setString(5, role);
+            ResultSet rs = pstmt.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }

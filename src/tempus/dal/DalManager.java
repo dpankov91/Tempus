@@ -50,7 +50,7 @@ public class DalManager implements IDalFacade{
     }
 
     @Override
-    public void createProject(String name, String clientName, String hRate, String description) {
+    public void createProject(String name, String clientName, int hRate, String description) {
         
         projectDao.createProject(name, clientName, hRate, description);
         
@@ -104,6 +104,11 @@ public class DalManager implements IDalFacade{
             return allUsers;
        
 
+    }
+
+    @Override
+    public void createUser(String fName, String lName, String password, String email, String role) {
+        userDao.createUser(fName, lName, password, email, role);
     }
 
    

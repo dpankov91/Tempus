@@ -60,7 +60,8 @@ public class ProjectCreateWindowController implements Initializable {
     {
         projectModel = ProjectModel.getInstance();
         cmodel = ClientModel.getInstance();
-        loadClientsToComboBox(); 
+        loadClientsToComboBox();
+        
     }
     
     private boolean checkIfFilled() {
@@ -97,7 +98,7 @@ public class ProjectCreateWindowController implements Initializable {
             JComboBox comboBox = (JComboBox) event.getSource();
             
             String name = txtProjectName.getText();
-            String hRate = txtHourlyRate.getText();
+            int hRate = Integer.parseInt(txtHourlyRate.getText());
             String description = txtDescription.getText();
             String clientName = comboBox.getSelectedItem().toString();
             
@@ -105,6 +106,9 @@ public class ProjectCreateWindowController implements Initializable {
             
             //setUpAlert("Project is created");
             
+        }
+        else{
+            setUpAlert("Blabla" , "BlabBLaBla.");
         }
    
     }

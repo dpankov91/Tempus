@@ -5,6 +5,7 @@
  */
 package tempus.gui.controller;
 
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,30 +30,33 @@ public class DeleteConfirmationController implements Initializable {
 
     @FXML
     private Label lblName;
+    @FXML
+    private JFXButton btnCancel;
+    @FXML
+    private JFXButton btnConfirm;
+
+    
+    
     ProjectModel model;
     ManageProjectsWindowController projContr;
-    
-    
     private Project selectedProject;
+ 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        model = new ProjectModel();
+        model=ProjectModel.getInstance();
         projContr = new ManageProjectsWindowController();
         selectedProject= (Project) projContr.selectedProject;
         lblName.setText(selectedProject.getName());
     }    
 
     @FXML
-    private void goBack(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/ManageProjectsWindow.fxml"));
-          Parent z = loader.load();
-          Scene scene = new Scene(z);
-          Stage s = new Stage();
-          s.setScene(scene);
-          s.show();
+    private void goBack(ActionEvent event)
+    {
+        Stage stage = (Stage) btnCancel.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -63,8 +67,8 @@ public class DeleteConfirmationController implements Initializable {
 //        
 //        model.deleteProject(selectedProjectT);
 
-      
-        model.deleteProject(selectedProject);
+//      
+            model.deleteProject(selectedProject);
 
         
     }
