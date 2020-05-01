@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+   <children>
+      <ImageView fitHeight="101.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/94119488_281400346210241_4996574131064406016_n.png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="firstNameNewClient" layoutX="94.0" layoutY="139.0" text="First Name" />
+      <JFXTextField fx:id="lastNameNewClient" layoutX="94.0" layoutY="220.0" text="Last Name" />
+      <JFXTextField fx:id="cityNewClient" layoutX="286.0" layoutY="139.0" text="City" />
+      <JFXTextField fx:id="phoneNewClient" layoutX="286.0" layoutY="220.0" text="Phone Number" />
+      <JFXButton fx:id="saveNewClient" layoutX="120.0" layoutY="283.0" onAction="#onActionSaveNewClient" prefHeight="42.0" prefWidth="83.0" styleClass="buttons" text="SAVE" />
+      <JFXButton fx:id="cancelAddingClient" layoutX="312.0" layoutY="283.0" onAction="#onActionCancelAdding" prefHeight="42.0" prefWidth="83.0" styleClass="buttons" text="CANCEL" />
+   </children>
+</AnchorPane>
