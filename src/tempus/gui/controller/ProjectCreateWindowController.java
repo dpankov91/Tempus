@@ -106,6 +106,9 @@ public class ProjectCreateWindowController implements Initializable {
             //setUpAlert("Project is created");
             
         }
+        else{
+            setUpAlert("Blabla" , "BlabBLaBla.");
+        }
    
     }
 
