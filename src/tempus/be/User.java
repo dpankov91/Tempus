@@ -24,11 +24,42 @@ public class User
     private String lName;
     private String password;
     private String email;
+    private String address;
+    private int phone;
+    private int postcode;
     private boolean isAdmin;
     private String role;
-    
 
-    
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    public int getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(int postcode) {
+        this.postcode = postcode;
+    }
+    //Nedas edit 
+    public User(int id, String fName, String lName) {
+        this.id = id;
+        this.fName = fName;
+        this.lName = lName;
+    }
+    /*
     public User(int id, String fName, String lName, boolean isAdmin) {
         this.id = id;
         this.fName = fName;
@@ -57,6 +88,11 @@ public class User
         this.password = password;
         this.email =  email;
         this.role = role;
+    }*/
+
+    @Override
+    public String toString() {
+        return  fName + " " + lName ;
     }
 
     public String getPassword() {

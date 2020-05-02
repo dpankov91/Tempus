@@ -81,6 +81,11 @@ public class BllManager implements IBllFacade {
         facade.createUser(fName, lName, password, email, role);
     }
 
+    @Override
+    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address) {
+     facade.editUser(id, name, Lname, email, realphone, realpostcode, address);
+    }
+
 
 
 
