@@ -112,7 +112,7 @@ public class UserDAO {
 
     public void createUser(String fName, String lName, String password, String email, String role) {
         try {
-            String sql = "INSERT Project.ProjectName, Client.ClientName, Project.HourlyRate, Project.Description FROM Project INNER JOIN Client ON Project.ClientID=Client.ProjectID VALUES (?,?,?,?) ";
+            String sql = "INSERT User.FirstName, User.LastName, User.Password, User.Email, User.Role FROM User VALUES (?,?,?,?,?) ";
 
             Connection con = connector.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);
