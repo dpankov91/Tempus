@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import java.lang.String?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -10,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="1065.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ManageProjectsWindowController">
+<AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="1065.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ManageProjectsWindowController">
    <children>
       <TableView fx:id="tableViewProjects" layoutX="14.0" layoutY="98.0" prefHeight="346.0" prefWidth="514.0">
         <columns>
@@ -35,8 +34,4 @@
       <JFXButton fx:id="editButton" layoutX="575.0" layoutY="201.0" onAction="#handleEdit" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="EDIT" />
       <JFXButton fx:id="assignToButton" layoutX="575.0" layoutY="319.0" onAction="#handleAssigningTo" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="ASSIGN TO" />
    </children>
-   <styleClass>
-      <String fx:value="BackGround" />
-      <String fx:value="buttons" />
-   </styleClass>
 </AnchorPane>

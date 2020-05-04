@@ -12,7 +12,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXButton layoutX="296.0" layoutY="81.0" onAction="#goBack" prefHeight="27.0" prefWidth="61.0" styleClass="btnDeleteWindow" stylesheets="@../css/style.css" text="Cancel" />
+      <JFXButton fx:id="btnCancel" layoutX="296.0" layoutY="81.0" onAction="#goBack" prefHeight="27.0" prefWidth="61.0" styleClass="btnDeleteWindow" stylesheets="@../css/style.css" text="Cancel" />
       <JFXButton layoutX="228.0" layoutY="81.0" onAction="#handleConfirmDeleting" styleClass="btnDeleteWindow" stylesheets="@../css/style.css" text="Confirm" />
       <Label fx:id="lblName" layoutX="225.0" layoutY="16.0" prefHeight="27.0" prefWidth="142.0" text="&quot;Selected item name&quot;" />
    </children>

@@ -51,7 +51,7 @@ public class ProjectCreateWindowController implements Initializable {
     
     private ProjectModel projectModel;
     
-    ClientModel cmodel;
+    private ClientModel cmodel;
     ObservableList<Client>  allClients = FXCollections.observableArrayList();
     
     

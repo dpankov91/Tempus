@@ -24,9 +24,9 @@
             <Image url="@../assets/94119488_281400346210241_4996574131064406016_n.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="addUser" layoutX="555.0" layoutY="154.0" onAction="#onActionAddUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="ADD" AnchorPane.bottomAnchor="386.0" />
-      <JFXButton fx:id="editUser" layoutX="555.0" layoutY="224.0" onAction="#onActionEditUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="EDIT" />
-      <JFXButton fx:id="deleteUser" layoutX="555.0" layoutY="299.0" onAction="#onActionDeleteUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="DELETE" />
+      <JFXButton fx:id="addUser" layoutX="555.0" layoutY="175.0" onAction="#onActionAddUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="ADD" AnchorPane.bottomAnchor="360.0" />
+      <JFXButton fx:id="editUser" layoutX="555.0" layoutY="241.0" onAction="#onActionEditUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="EDIT" AnchorPane.bottomAnchor="300.0" />
+      <JFXButton fx:id="deleteUser" layoutX="555.0" layoutY="303.0" onAction="#onActionDeleteUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="DELETE" AnchorPane.bottomAnchor="240.0" />
       <Label layoutX="314.0" layoutY="28.0" styleClass="Headline" stylesheets="@../css/style.css" text="User Manager" />
    </children>
 </AnchorPane>

@@ -10,9 +10,11 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import tempus.be.User;
 
 /**
  * FXML Controller class
@@ -34,14 +36,17 @@ public class UserAddController implements Initializable {
     @FXML
     private JFXButton btnCancel;
     @FXML
-    private ComboBox<?> cmbChooseRole;
+    private ComboBox<String> cmbChooseRole;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+      
+        
+        cmbChooseRole.setItems(FXCollections.observableArrayList(
+                "Admin", "Developer"));
     }    
     
 }
