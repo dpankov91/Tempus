@@ -42,14 +42,15 @@ public class ManageUsersWindowController implements Initializable {
     @FXML
     private TableColumn<?, ?> col_role;
    
+   
+    User selectedUser;
+    UserModel userModel;
     @FXML
     private JFXButton addUser;
     @FXML
     private JFXButton editUser;
     @FXML
     private JFXButton deleteUser;
-    User selectedUser;
-    UserModel userModel;
     
     /**
      * Initializes the controller class.
@@ -61,14 +62,28 @@ public class ManageUsersWindowController implements Initializable {
         userModel = UserModel.getInstance();
         setUpTableView();
         selectedUser = tableViewUsers.getSelectionModel().getSelectedItem();
+        
+       
     }    
 
     @FXML
-    private void onActionAddUser(ActionEvent event) {
+    private void onActionAddUser(ActionEvent event) throws IOException {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("tempus/gui/view/UserAdd.fxml"));
+            Parent z = loader.load();
+            Scene scene = new Scene(z);
+            Stage s = new Stage();
+            s.setScene(scene);
+            s.show();
     }
 
     @FXML
-    private void onActionEditUser(ActionEvent event) {
+    private void onActionEditUser(ActionEvent event) throws IOException {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("tempus/gui/view/UserEdit.fxml"));
+            Parent z = loader.load();
+            Scene scene = new Scene(z);
+            Stage s = new Stage();
+            s.setScene(scene);
+            s.show();
     }
 
     @FXML

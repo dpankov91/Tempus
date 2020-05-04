@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -42,7 +45,7 @@ public class ManageProjectsWindowController implements Initializable {
     @FXML
     private TableColumn<Project,String> columnDescription;
     @FXML
-    private TableColumn<?, ?> colClientName;
+    private TableColumn<Project, String> colClientName;
     @FXML
     private JFXButton createButton;
     @FXML
@@ -51,8 +54,8 @@ public class ManageProjectsWindowController implements Initializable {
     private JFXButton assignToButton;
 
 
-    Project selectedProject;
-    ProjectModel projModel;
+    public Project selectedProject;
+    private ProjectModel projModel;
     @FXML
     private JFXButton deleteButton;
 
@@ -73,18 +76,18 @@ public class ManageProjectsWindowController implements Initializable {
     @FXML
     private void handleDelete(ActionEvent event) throws IOException {
 
-            {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("tempus/gui/view/DeleteConfirmation.fxml"));
-            Parent z = loader.load();
-            Scene scene = new Scene(z);
-            Stage s = new Stage();
-            s.setScene(scene);
-            s.show();
-        }
-
-        
-        
-       }
+       // Project selectedProjectT = tableViewProjects.getSelectionModel().getSelectedItem();
+            if (selectedProject != null) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmation.fxml"));
+        Parent z = loader.load();
+        Scene scene = new Scene(z);
+        Stage s = new Stage();
+        s.setScene(scene);
+        s.show();
+      }else{
+                setUpAlert("Choose project error" , "Choose  project from Table View");
+            }
+    }
 
     
     private void setUpTableView(){
@@ -119,6 +122,14 @@ public class ManageProjectsWindowController implements Initializable {
         ObservableList<Project> projects = FXCollections.observableArrayList();
         projects.addAll(allProjects);
         tableViewProjects.setItems(projects);
+    }
+    
+     private void setUpAlert(String title, String message){
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(message);
+        alert.showAndWait();
     }
     
 }

@@ -68,7 +68,7 @@ public class DeleteConfirmationController implements Initializable {
 //        model.deleteProject(selectedProjectT);
 
 //      
-            model.deleteProject(selectedProject);
+           model.deleteProject(selectedProject);
 
         
     }

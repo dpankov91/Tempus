@@ -10,14 +10,22 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+
+import tempus.be.User;
+
 import javax.swing.JComboBox;
 import tempus.be.User;
 import tempus.gui.model.UserModel;
+
 
 /**
  * FXML Controller class
@@ -39,7 +47,7 @@ public class UserAddController implements Initializable {
     @FXML
     private JFXButton btnCancel;
     @FXML
-    private ComboBox<?> cmbChooseRole;
+    private ComboBox<String> cmbChooseRole;
 
     /**
      * Initializes the controller class.
@@ -50,16 +58,24 @@ public class UserAddController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
 
-    private boolean checkIfFilled() {
+      
+        
+        cmbChooseRole.setItems(FXCollections.observableArrayList(
+                "Admin", "Developer"));
+    }    
+        // TODO
+   
+
+    private boolean checkIfFilled() 
+      {
         
         if (txtPassword.getText() == null || txtPassword.getText().trim().isEmpty())
+        
      {
          setUpAlert("Incorrect Info Error" , "Add text please.");
-     
-     }
+        
+    }
      else if (txtFirstName.getText() == null || txtFirstName.getText().trim().isEmpty())
      {
          
@@ -99,8 +115,8 @@ public class UserAddController implements Initializable {
         else{
             setUpAlert("Blabla" , "BlabBLaBla.");
         }
+        }
         
-    }
 
     @FXML
     private void handleCancel(ActionEvent event) {

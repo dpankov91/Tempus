@@ -5,6 +5,7 @@
  */
 package tempus.gui.controller;
 
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,6 +35,8 @@ public class DeleteConfirmationUserController implements Initializable {
     
     
     private User selectedUser;
+    @FXML
+    private JFXButton btnCancel;
     /**
      * Initializes the controller class.
      */
@@ -41,18 +44,14 @@ public class DeleteConfirmationUserController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         model = new UserModel();
         userContr = new ManageUsersWindowController();
-        selectedUser = (User) userContr.selectedUser;
+        selectedUser = userContr.selectedUser;
         lblName.setText(selectedUser.getFName());
     }    
     
     @FXML
     private void goBack(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/ManageUsersWindow.fxml"));
-          Parent z = loader.load();
-          Scene scene = new Scene(z);
-          Stage s = new Stage();
-          s.setScene(scene);
-          s.show();
+        Stage stage = (Stage) btnCancel.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
