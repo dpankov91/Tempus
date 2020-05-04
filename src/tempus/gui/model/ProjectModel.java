@@ -23,6 +23,16 @@ public class ProjectModel {
  static ProjectModel projmodel = new ProjectModel();
  private final IBllFacade facade;
  
+    private Project selectedProject;
+
+    public Project getSelectedProject() {
+        return selectedProject;
+    }
+
+    public void setSelectedProject(Project selectedProject) {
+        this.selectedProject = selectedProject;
+    }
+
   public static ProjectModel getInstance() {
         return projmodel;
     }
@@ -45,5 +55,9 @@ public class ProjectModel {
         return facade.getAllProjects();
           
     }
-    
+
+    public void deleteSelectedProject() {
+        facade.deleteProject(selectedProject);
+    }
+
 }

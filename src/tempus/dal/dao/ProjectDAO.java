@@ -53,14 +53,14 @@ public class ProjectDAO {
 
     public void deleteProject(Project projectToDelete) {
         try {
-            String sql = "DELETE FROM [dbo].[Project] WHERE projectID=? ";
+            String sql = "DELETE FROM [dbo].[Project] WHERE projectID=?";
             
             Connection con = connector.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);
             
             pstmt.setInt(1, projectToDelete.getId());
 
-            ResultSet rs = pstmt.executeQuery();
+            pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,8 +77,8 @@ public class ProjectDAO {
                     
         
         Connection con = connector.getConnection();
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(sql);
+        PreparedStatement stmt = con.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
         
         while (rs.next()) 
             {
@@ -87,7 +87,9 @@ public class ProjectDAO {
                 String clientName = rs.getString("clientName");
                 int hRate = rs.getInt("hourlyRate");
                 String description = rs.getString("description");
-                allProjects.add(new Project(name, hRate, clientName, description));
+                Project proj = new Project(name, hRate, clientName, description);
+                proj.setId(rs.getInt("projectID"));
+                allProjects.add(proj);
                
             }
                 return allProjects;

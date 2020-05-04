@@ -39,11 +39,11 @@ public class ManageProjectsWindowController implements Initializable {
     @FXML
     private TableView<Project> tableViewProjects;
     @FXML
-    private TableColumn<Project,String> columnProject;
+    private TableColumn<Project, String> columnProject;
     @FXML
-    private TableColumn<Project,Integer> columnHourlyRate;
+    private TableColumn<Project, Integer> columnHourlyRate;
     @FXML
-    private TableColumn<Project,String> columnDescription;
+    private TableColumn<Project, String> columnDescription;
     @FXML
     private TableColumn<Project, String> colClientName;
     @FXML
@@ -53,44 +53,39 @@ public class ManageProjectsWindowController implements Initializable {
     @FXML
     private JFXButton assignToButton;
 
-
     public Project selectedProject;
     private ProjectModel projModel;
     @FXML
     private JFXButton deleteButton;
-
-   
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         projModel = ProjectModel.getInstance();
         setUpTableView();
-        selectedProject = tableViewProjects.getSelectionModel().getSelectedItem();
-       
-    }    
+
+    }
 
     @FXML
     private void handleDelete(ActionEvent event) throws IOException {
 
-       // Project selectedProjectT = tableViewProjects.getSelectionModel().getSelectedItem();
-            if (selectedProject != null) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmation.fxml"));
-        Parent z = loader.load();
-        Scene scene = new Scene(z);
-        Stage s = new Stage();
-        s.setScene(scene);
-        s.show();
-      }else{
-                setUpAlert("Choose project error" , "Choose  project from Table View");
-            }
+        projModel.setSelectedProject(tableViewProjects.getSelectionModel().getSelectedItem());
+        if (projModel.getSelectedProject() != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmation.fxml"));
+            Parent z = loader.load();
+            Scene scene = new Scene(z);
+            Stage s = new Stage();
+            s.setScene(scene);
+            s.show();
+        } else {
+            setUpAlert("Choose project error", "Choose  project from Table View");
+        }
     }
 
-    
-    private void setUpTableView(){
+    private void setUpTableView() {
         columnProject.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnHourlyRate.setCellValueFactory(new PropertyValueFactory<>("hRate"));
         colClientName.setCellValueFactory(new PropertyValueFactory<>("clientName"));
@@ -123,13 +118,13 @@ public class ManageProjectsWindowController implements Initializable {
         projects.addAll(allProjects);
         tableViewProjects.setItems(projects);
     }
-    
-     private void setUpAlert(String title, String message){
-        
+
+    private void setUpAlert(String title, String message) {
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(message);
         alert.showAndWait();
     }
-    
+
 }
