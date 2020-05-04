@@ -1,0 +1,41 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 4, 2020, 5:39:40 PM
+    Author     : dpank
+*/
+
+
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
+
+
+.assignWindow{
+     -fx-background-color: #2B9898;
+ }   
+
+.assignBtn{
+     -fx-background-color: #2BD4C7;
+     -fx-background-radius: 8px;
+     -fx-border-radius: 8px;
+     -fx-border-color: black;
+     -fx-font-size: 12;
+}
+
+.assignCmb{
+    -fx-background-color: #2FC7CB;
+    -fx-font-size: 12;
+}
+ 
+.assignHead{   
+   -fx-font-size: 20;
+   -fx-font-color: black;
+}
+
+.assignProjName{
+    -fx-font-family: "Serif:Serif;1";    
+   -fx-font-size: 20;
+   -fx-font-color: black;
+}

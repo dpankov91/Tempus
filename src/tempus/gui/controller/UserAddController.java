@@ -20,10 +20,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 
-import tempus.be.User;
-
-import javax.swing.JComboBox;
-import tempus.be.User;
 import tempus.gui.model.UserModel;
 
 

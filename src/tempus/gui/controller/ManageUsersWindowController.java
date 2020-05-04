@@ -40,7 +40,7 @@ public class ManageUsersWindowController implements Initializable {
     @FXML
     private TableColumn<User, String> idEmail;
     @FXML
-    private TableColumn<?, ?> col_role;
+    private TableColumn<User, String> col_role;
    
    
     public User selectedUser;
@@ -68,7 +68,7 @@ public class ManageUsersWindowController implements Initializable {
 
     @FXML
     private void onActionAddUser(ActionEvent event) throws IOException {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("tempus/gui/view/UserAdd.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/UserAdd.fxml"));
             Parent z = loader.load();
             Scene scene = new Scene(z);
             Stage s = new Stage();
@@ -78,7 +78,7 @@ public class ManageUsersWindowController implements Initializable {
 
     @FXML
     private void onActionEditUser(ActionEvent event) throws IOException {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("tempus/gui/view/UserEdit.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/UserEdit.fxml"));
             Parent z = loader.load();
             Scene scene = new Scene(z);
             Stage s = new Stage();

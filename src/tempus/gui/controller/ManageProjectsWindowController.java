@@ -85,7 +85,7 @@ public class ManageProjectsWindowController implements Initializable {
         }
     }
 
-    private void setUpTableView() {
+    void setUpTableView() {
         columnProject.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnHourlyRate.setCellValueFactory(new PropertyValueFactory<>("hRate"));
         colClientName.setCellValueFactory(new PropertyValueFactory<>("clientName"));
@@ -111,7 +111,7 @@ public class ManageProjectsWindowController implements Initializable {
     private void handleAssigningTo(ActionEvent event) {
     }
 
-    private void loadTableView() {
+    void loadTableView() {
         tableViewProjects.getItems().clear();
         List<Project> allProjects = projModel.getAllProjects();
         ObservableList<Project> projects = FXCollections.observableArrayList();
