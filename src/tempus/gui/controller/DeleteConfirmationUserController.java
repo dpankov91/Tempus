@@ -31,7 +31,7 @@ public class DeleteConfirmationUserController implements Initializable {
     @FXML
     private Label lblName;
     UserModel model;
-    ManageUsersWindowController userContr;
+    
     
     
     private User selectedUser;
@@ -42,10 +42,8 @@ public class DeleteConfirmationUserController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        model = new UserModel();
-        userContr = new ManageUsersWindowController();
-        selectedUser = userContr.selectedUser;
-        lblName.setText(selectedUser.getFName());
+        model = new UserModel().getInstance();
+        lblName.setText(model.getSelectedUser().getFName());
     }    
     
     @FXML
@@ -55,8 +53,9 @@ public class DeleteConfirmationUserController implements Initializable {
     }
 
     @FXML
-    private void handleConfirmDeleting(ActionEvent event) {
-        model.deleteUser(selectedUser);
+    private void handleConfirmDeleting(ActionEvent event) throws IOException {
+        model.deleteSelectedUser();
+        goBack(event);
     }
 
 }

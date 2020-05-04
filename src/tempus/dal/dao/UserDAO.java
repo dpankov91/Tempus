@@ -59,15 +59,14 @@ public class UserDAO {
 
     public void deleteUser(User userToDelete) {
         try {
-            String sql = "DELETE  FROM [dbo].[User] WHERE userID=? ";
+            String sql = "DELETE  FROM [dbo].[User] WHERE userID=?";
 
             Connection con = connector.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);
 
             pstmt.setInt(1, userToDelete.getId());
 
-            ResultSet rs = pstmt.executeQuery();
-
+            pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

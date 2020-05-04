@@ -43,8 +43,8 @@ public class ManageUsersWindowController implements Initializable {
     private TableColumn<?, ?> col_role;
    
    
-    User selectedUser;
-    UserModel userModel;
+    public User selectedUser;
+    private UserModel userModel;
     @FXML
     private JFXButton addUser;
     @FXML
@@ -61,7 +61,7 @@ public class ManageUsersWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         userModel = UserModel.getInstance();
         setUpTableView();
-        selectedUser = tableViewUsers.getSelectionModel().getSelectedItem();
+        
         
        
     }    
@@ -89,6 +89,8 @@ public class ManageUsersWindowController implements Initializable {
     @FXML
     private void onActionDeleteUser(ActionEvent event) throws IOException {
         {
+            userModel.setSelectedUser(tableViewUsers.getSelectionModel().getSelectedItem());
+            if(userModel.getSelectedUser() !=null) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmationUser.fxml"));
             Parent z = loader.load();
             Scene scene = new Scene(z);
@@ -96,7 +98,7 @@ public class ManageUsersWindowController implements Initializable {
             s.setScene(scene);
             s.show();
         }
-        
+        }
     }
     
      private void loadTableView() {

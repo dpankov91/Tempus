@@ -17,6 +17,7 @@ import tempus.bll.IBllFacade;
 public class UserModel {
 
     static UserModel model = new UserModel();
+    private User selectedUser;
 
     public List<User> getAllUsers() {
         return facade.getAllUsers();
@@ -40,10 +41,6 @@ public class UserModel {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void deleteProject(Object selectedProjectT) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public void deleteUser(User useDelete) {
         facade.deleteUser(useDelete);
     }
@@ -56,4 +53,15 @@ public class UserModel {
         facade.editUser(id, name, Lname, email, realphone, realpostcode, address);
     }
 
+    public void setSelectedUser(User selectedUser) {
+        this.selectedUser = selectedUser;
+    }
+
+    public User getSelectedUser() {
+        return selectedUser;
+    }
+    
+    public void deleteSelectedUser(){
+        facade.deleteUser(selectedUser);
+    }
 }
