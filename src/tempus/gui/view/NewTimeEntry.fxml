@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1065.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.DeveloperOverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1065.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.NewTimeEntryController">
    <children>
+      <ListView layoutX="348.0" layoutY="89.0" prefHeight="368.0" prefWidth="362.0" style="-fx-background-color: #d3d3d3;" />
       <Label layoutX="408.0" layoutY="33.0" prefHeight="43.0" prefWidth="249.0" styleClass="Headline" stylesheets="@../css/style.css" text="New Time Entry" />
+      <JFXComboBox fx:id="cb_box" layoutX="441.0" layoutY="157.0" onAction="#handle_ProjectName" prefHeight="31.0" prefWidth="176.0" promptText="Project Name" />
+      <JFXComboBox fx:id="cb_task" layoutX="445.0" layoutY="219.0" onAction="#handle_TaskName" prefHeight="31.0" prefWidth="176.0" promptText="Task Name" />
+      <JFXTextField fx:id="txt_notes" layoutX="445.0" layoutY="264.0" onAction="#handle_Notes" prefHeight="81.0" prefWidth="169.0" promptText="Notes..." />
+      <JFXButton fx:id="btn_save" layoutX="409.0" layoutY="368.0" onAction="#handle_Save" prefHeight="64.0" prefWidth="110.0" styleClass="buttons" text="Save Entry" />
+      <JFXButton fx:id="btn_cancel" layoutX="547.0" layoutY="368.0" onAction="#handle_Cancel" prefHeight="64.0" prefWidth="110.0" styleClass="buttons" text="Cancel" />
    </children>
 </AnchorPane>

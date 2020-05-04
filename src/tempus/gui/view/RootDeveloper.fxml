@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.RootDeveloperController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.RootDeveloperController">
    <children>
       <AnchorPane prefHeight="736.0" prefWidth="1257.0" style="-fx-background-color: #282828;">
          <children>
@@ -34,6 +34,11 @@
                      </font>
                   </Label>
                   <Label fx:id="lbl_lname" prefHeight="43.0" prefWidth="179.0">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTodaysDate" prefHeight="43.0" prefWidth="179.0">
                      <font>
                         <Font size="21.0" />
                      </font>

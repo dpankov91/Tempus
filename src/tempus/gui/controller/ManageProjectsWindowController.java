@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -73,6 +75,7 @@ public class ManageProjectsWindowController implements Initializable {
 
     @FXML
     private void handleDelete(ActionEvent event) throws IOException {
+
        // Project selectedProjectT = tableViewProjects.getSelectionModel().getSelectedItem();
             if (selectedProject != null) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmation.fxml"));
@@ -85,8 +88,9 @@ public class ManageProjectsWindowController implements Initializable {
                 setUpAlert("Choose project error" , "Choose  project from Table View");
             }
     }
-    private void setUpTableView()
-    {
+
+    
+    private void setUpTableView(){
         columnProject.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnHourlyRate.setCellValueFactory(new PropertyValueFactory<>("hRate"));
         colClientName.setCellValueFactory(new PropertyValueFactory<>("clientName"));

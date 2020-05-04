@@ -5,8 +5,13 @@
  */
 package tempus.gui.controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -16,6 +21,17 @@ import javafx.fxml.Initializable;
  */
 public class NewTimeEntryController implements Initializable {
 
+    @FXML
+    private JFXComboBox<?> cb_box;
+    @FXML
+    private JFXComboBox<?> cb_task;
+    @FXML
+    private JFXTextField txt_notes;
+    @FXML
+    private JFXButton btn_save;
+    @FXML
+    private JFXButton btn_cancel;
+
     /**
      * Initializes the controller class.
      */
@@ -23,5 +39,25 @@ public class NewTimeEntryController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void handle_ProjectName(ActionEvent event) {
+    }
+
+    @FXML
+    private void handle_TaskName(ActionEvent event) {
+    }
+
+    @FXML
+    private void handle_Notes(ActionEvent event) {
+    }
+
+    @FXML
+    private void handle_Save(ActionEvent event) {
+    }
+
+    @FXML
+    private void handle_Cancel(ActionEvent event) {
+    }
     
 }

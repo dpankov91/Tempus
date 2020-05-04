@@ -60,7 +60,8 @@ public class ProjectCreateWindowController implements Initializable {
     {
         projectModel = ProjectModel.getInstance();
         cmodel = ClientModel.getInstance();
-        loadClientsToComboBox(); 
+        loadClientsToComboBox();
+        
     }
     
     private boolean checkIfFilled() {

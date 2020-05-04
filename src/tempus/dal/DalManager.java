@@ -14,8 +14,6 @@ import tempus.be.Project;
 
 import tempus.be.Client;
 
-
-
 import tempus.be.Project;
 
 import tempus.be.User;
@@ -27,8 +25,8 @@ import tempus.dal.dao.UserDAO;
  *
  * @author dpank
  */
-public class DalManager implements IDalFacade{
-    
+public class DalManager implements IDalFacade {
+
     UserDAO userDao;
     ProjectDAO projectDao;
     ClientDAO clientDao;
@@ -42,7 +40,7 @@ public class DalManager implements IDalFacade{
     @Override
     public User getUser(String username, String password) {
         try {
-            return  userDao.getUser(username, password);
+            return userDao.getUser(username, password);
         } catch (SQLException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,9 +49,9 @@ public class DalManager implements IDalFacade{
 
     @Override
     public void createProject(String name, String clientName, int hRate, String description) {
-        
+
         projectDao.createProject(name, clientName, hRate, description);
-        
+
     }
 
     @Override
@@ -62,30 +60,28 @@ public class DalManager implements IDalFacade{
     }
 
     @Override
-    public List<Client> getAllClientss() 
-    {
-        
-            
+    public List<Client> getAllClientss() {
+
         try {
             List<Client> allClientss = clientDao.getAllClientss();
             return allClientss;
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-            return null;
-        
+        return null;
+
     }
 
     @Override
-    public List<Project> getAllProjects(){
-        List<Project> allProjects = null; 
+    public List<Project> getAllProjects() {
+        List<Project> allProjects = null;
         try {
             allProjects = projectDao.getAllProjects();
         } catch (SQLException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-            return allProjects;
+        return allProjects;
     }
 
     @Override
@@ -95,17 +91,24 @@ public class DalManager implements IDalFacade{
     }
 
     public List<User> getAllUsers() {
-         List<User> allUsers = null; 
+        List<User> allUsers = null;
         try {
             allUsers = userDao.getAllUsers();
         } catch (SQLException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-            return allUsers;
-       
+        return allUsers;
 
     }
 
-   
-    
+    @Override
+    public void createUser(String fName, String lName, String password, String email, String role) {
+        userDao.createUser(fName, lName, password, email, role);
+    }
+
+    @Override
+    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address) {
+        userDao.editUser(id, name, Lname, email, realphone, realpostcode, address);
+    }
+
 }

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="1070.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.UserAddController">
+<AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="1070.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.UserAddController">
    <children>
       <Label layoutX="68.0" layoutY="101.0" prefHeight="45.0" prefWidth="81.0" text="First Name*">
          <font>
@@ -42,11 +42,11 @@
          </image>
       </ImageView>
       <Label layoutX="144.0" layoutY="31.0" prefHeight="55.0" prefWidth="312.0" />
-      <JFXButton fx:id="btnSave" layoutX="358.0" layoutY="304.0" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Save">
+      <JFXButton fx:id="btnSave" layoutX="358.0" layoutY="304.0" onAction="#handleSave" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Save">
          <effect>
             <DropShadow />
          </effect></JFXButton>
-      <JFXButton fx:id="btnCancel" layoutX="469.0" layoutY="304.0" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Cancel">
+      <JFXButton fx:id="btnCancel" layoutX="469.0" layoutY="304.0" onAction="#handleCancel" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Cancel">
          <effect>
             <DropShadow />
          </effect></JFXButton>

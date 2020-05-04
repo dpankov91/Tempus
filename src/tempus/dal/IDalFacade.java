@@ -39,6 +39,10 @@ public interface IDalFacade {
 
     public List<User> getAllUsers();
 
+    public void createUser(String fName, String lName, String password, String email, String role);
+
+    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address);
+
 
     
 }

@@ -33,7 +33,7 @@ public class ProjectDAO {
     public void createProject(String name, String clientName, int hRate, String description) {
         
         try {
-            String sql = "INSERT Project.ProjectName, Project.HourlyRate, Project.Description, Client.ClientName FROM Project INNER JOIN Client ON Project.ClientID=Client.ProjectID VALUES ProjectName = ? AND ClientName = ? AND HourlyRate = ? AND Description =? ";
+            String sql = "INSERT Project.ProjectName, Client.ClientName, Project.HourlyRate, Project.Description FROM Project INNER JOIN Client ON Project.ClientID=Client.ProjectID VALUES (?,?,?,?) ";
             
             Connection con = connector.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);
@@ -43,6 +43,7 @@ public class ProjectDAO {
             pstmt.setInt(3, hRate);
             pstmt.setString(4, description);
             ResultSet rs = pstmt.executeQuery();
+            
         } catch (SQLException ex) {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
