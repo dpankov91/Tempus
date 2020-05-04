@@ -50,6 +50,12 @@ public class UserAddController implements Initializable {
      */
     
     private UserModel userModel;
+    @FXML
+    private JFXPasswordField txtPassword1;
+    @FXML
+    private JFXPasswordField txtPassword11;
+    @FXML
+    private JFXPasswordField txtPassword111;
     
     
     @Override

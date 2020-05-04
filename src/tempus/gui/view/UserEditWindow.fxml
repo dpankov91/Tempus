@@ -8,10 +8,10 @@
 
 <AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="362.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.UserEditController">
    <children>
-      <AnchorPane prefHeight="610.0" prefWidth="1065.0" styleClass="BackGround" stylesheets="@../css/style.css">
+      <AnchorPane prefHeight="610.0" prefWidth="363.0" styleClass="BackGround" stylesheets="@../css/style.css">
          <children>
-            <JFXButton fx:id="btn_save" layoutX="47.0" layoutY="486.0" onAction="#handle_Save" prefHeight="51.0" prefWidth="103.0" styleClass="buttons" text="Save" />
-            <JFXButton fx:id="btn_cancel" layoutX="213.0" layoutY="486.0" onAction="#handle_Cancel" prefHeight="51.0" prefWidth="103.0" styleClass="buttons" text="Cancel" />
+            <JFXButton fx:id="btn_save" layoutX="41.0" layoutY="503.0" onAction="#handle_Save" prefHeight="51.0" prefWidth="103.0" styleClass="buttons" text="Save" />
+            <JFXButton fx:id="btn_cancel" layoutX="221.0" layoutY="503.0" onAction="#handle_Cancel" prefHeight="51.0" prefWidth="103.0" styleClass="buttons" text="Cancel" />
             <JFXTextField fx:id="txt_name" layoutX="115.0" layoutY="116.0" text="First Name" />
             <JFXTextField fx:id="txt_Lname" layoutX="115.0" layoutY="188.0" text="Second Name" />
             <JFXTextField fx:id="txt_email" layoutX="115.0" layoutY="250.0" text="E-mail" />
