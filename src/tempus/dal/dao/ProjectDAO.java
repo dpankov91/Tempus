@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import tempus.be.Client;
 import tempus.be.Project;
 import tempus.dal.DbConnectionProvider;
 
@@ -30,19 +31,33 @@ public class ProjectDAO {
         this.connector = new DbConnectionProvider();
     }
     
-    public void createProject(String name, String clientName, int hRate, String description) {
+    public void createProject(String name, Client client, int hRate, String description) {
         
         try {
-            String sql = "INSERT Project.ProjectName, Client.ClientName, Project.HourlyRate, Project.Description FROM Project INNER JOIN Client ON Project.ClientID=Client.ProjectID VALUES (?,?,?,?) ";
+            Connection con = connector.getConnection();/*
+            String sqlClient = "INSERT INTO Client(clientName) VALUES (?)";
+            PreparedStatement pstmt = con.prepareStatement(sqlClient, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, clientName);
+            pstmt.executeUpdate();
             
-            Connection con = connector.getConnection();
-            PreparedStatement pstmt = con.prepareStatement(sql);
+            ResultSet genKeys = pstmt.getGeneratedKeys();
+            int clientId = -1;
+            if (genKeys.next()) {
+                clientId = genKeys.getInt(1);
+            }
+            else {
+                throw new SQLException("Creating client failed, no ID obtained.");
+            }
+            */
+            String sqlProject = "INSERT INTO Project (ProjectName, ClientId, HourlyRate, Description) "
+                    + "VALUES(?,?,?,?)";
+            PreparedStatement pstmt = con.prepareStatement(sqlProject);
             
             pstmt.setString(1, name);
-            pstmt.setString(2, clientName);
+            pstmt.setInt(2, client.getId());
             pstmt.setInt(3, hRate);
             pstmt.setString(4, description);
-            ResultSet rs = pstmt.executeQuery();
+            pstmt.executeUpdate();
             
         } catch (SQLException ex) {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);

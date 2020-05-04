@@ -7,6 +7,7 @@ package tempus.gui.model;
 
 
 import java.util.List;
+import tempus.be.Client;
 
 
 import tempus.be.Project;
@@ -42,9 +43,9 @@ public class ProjectModel {
     }
 
     
-    public void createProject(String name, String clientName, int hRate, String description) {
+    public void createProject(String name, Client client, int hRate, String description) {
         
-        facade.createProject(name, clientName, hRate, description);
+        facade.createProject(name, client, hRate, description);
     }
 
     public void deleteProject(Project pToDelete) {

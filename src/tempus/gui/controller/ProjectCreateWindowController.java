@@ -21,6 +21,7 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import javax.swing.JComboBox;
 import tempus.be.Client;
+import tempus.be.Project;
 import tempus.gui.model.ClientModel;
 import tempus.gui.model.ProjectModel;
 
@@ -33,7 +34,6 @@ public class ProjectCreateWindowController implements Initializable {
 
     @FXML
     private JFXTextField txtProjectName;
-    private JFXTextField txtClientName;
     @FXML
     private JFXTextField txtHourlyRate;
     @FXML
@@ -71,10 +71,10 @@ public class ProjectCreateWindowController implements Initializable {
          setUpAlert("Incorrect Info Error" , "Add text please.");
      
      }
-     else if (txtClientName.getText() == null || txtClientName.getText().trim().isEmpty())
+     else if (cmbClient.getSelectionModel().getSelectedItem()== null)
      {
          
-        setUpAlert("Incorrect Info Error" , "Add text please.");
+        setUpAlert("Incorrect Info Error" , "Select client please.");
         
      }
      else if (txtHourlyRate.getText() == null || txtHourlyRate.getText().trim().isEmpty())
@@ -95,14 +95,12 @@ public class ProjectCreateWindowController implements Initializable {
         
         if (checkIfFilled())
         {
-            JComboBox comboBox = (JComboBox) event.getSource();
-            
             String name = txtProjectName.getText();
             int hRate = Integer.parseInt(txtHourlyRate.getText());
             String description = txtDescription.getText();
-            String clientName = comboBox.getSelectedItem().toString();
+            Client client = cmbClient.getSelectionModel().getSelectedItem();
             
-            projectModel.createProject(name, clientName, hRate, description);
+            projectModel.createProject(name, client, hRate, description);
             
             //setUpAlert("Project is created");
             

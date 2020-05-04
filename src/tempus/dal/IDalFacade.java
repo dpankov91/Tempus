@@ -24,7 +24,7 @@ public interface IDalFacade {
 
     public User getUser(String username, String password);
 
-    public void createProject(String name, String clientName, int hRate, String description);
+    public void createProject(String name, Client client, int hRate, String description);
 
     public List<Project> getAllProjects();
 
