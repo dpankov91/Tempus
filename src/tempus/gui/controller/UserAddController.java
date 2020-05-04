@@ -105,9 +105,9 @@ public class UserAddController implements Initializable {
             String fName = txtFirstName.getText();
             String lName = txtLastName.getText();
             String email = txtEmail.getText();
-            User user = (User) cmbChooseRole.getSelectionModel().getSelectedItem();
+            String role = cmbChooseRole.getSelectionModel().getSelectedItem();
            
-            userModel.createUser(fName, lName, password, email, user);
+            userModel.createUser(fName, lName, password, email, role);
             
             //setUpAlert("Project is created");
             

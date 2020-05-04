@@ -48,8 +48,8 @@ public class UserModel {
         facade.deleteUser(useDelete);
     }
 
-    public void createUser(String fName, String lName, String password, String email, User user) {
-        facade.createUser(fName, lName, password, email, user);
+    public void createUser(String fName, String lName, String password, String email, String role) {
+        facade.createUser(fName, lName, password, email, role);
     }
 
     public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address) {

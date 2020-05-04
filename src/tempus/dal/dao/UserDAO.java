@@ -110,7 +110,7 @@ public class UserDAO {
         return allUsers;
     }
 
-    public void createUser(String fName, String lName, String password, String email, User user) {
+    public void createUser(String fName, String lName, String password, String email, String role) {
 
         try {
             Connection con = connector.getConnection();
@@ -122,7 +122,7 @@ public class UserDAO {
             pstmt.setString(2, lName);
             pstmt.setString(3, password);
             pstmt.setString(4, email);
-            pstmt.setInt(5, user.getId());
+            pstmt.setString(5, role);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
