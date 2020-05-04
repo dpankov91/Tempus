@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="1070.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.UserAddController">
+<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="566.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.UserAddController">
    <children>
-      <Label layoutX="68.0" layoutY="101.0" prefHeight="45.0" prefWidth="81.0" text="First Name*">
+      <Label layoutX="68.0" layoutY="101.0" prefHeight="45.0" prefWidth="81.0" text="Phone*" AnchorPane.leftAnchor="68.0" AnchorPane.topAnchor="356.0">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="68.0" layoutY="166.0" prefHeight="45.0" prefWidth="81.0" text="Last Name*">
+      <Label layoutX="68.0" layoutY="166.0" prefHeight="45.0" prefWidth="81.0" text="Last Name*" AnchorPane.topAnchor="165.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -32,33 +32,51 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXPasswordField fx:id="txtPassword" focusColor="#a64141" layoutX="149.0" layoutY="306.0" />
-      <JFXTextField fx:id="txtFirstName" layoutX="149.0" layoutY="111.0" unFocusColor="#a64141" />
-      <JFXTextField fx:id="txtLastName" layoutX="149.0" layoutY="176.0" unFocusColor="#a64141" />
-      <JFXTextField fx:id="txtEmail" layoutX="149.0" layoutY="241.0" unFocusColor="#a64141" />
+      <JFXPasswordField fx:id="txtPassword" focusColor="#a64141" layoutX="149.0" layoutY="306.0" AnchorPane.topAnchor="306.0" />
+      <JFXTextField fx:id="txtFirstName" layoutX="149.0" layoutY="111.0" unFocusColor="#a64141" AnchorPane.topAnchor="176.0" />
+      <JFXTextField fx:id="txtLastName" layoutX="149.0" layoutY="111.0" unFocusColor="#a64141" AnchorPane.topAnchor="111.0" />
+      <JFXTextField fx:id="txtEmail" layoutX="149.0" layoutY="241.0" unFocusColor="#a64141" AnchorPane.topAnchor="241.0" />
       <ImageView fitHeight="116.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/94119488_281400346210241_4996574131064406016_n.png" />
          </image>
       </ImageView>
-      <Label layoutX="144.0" layoutY="31.0" prefHeight="55.0" prefWidth="312.0" />
-      <JFXButton fx:id="btnSave" layoutX="358.0" layoutY="304.0" onAction="#handleSave" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Save">
+      <Label layoutX="201.0" layoutY="14.0" prefHeight="55.0" prefWidth="163.0" styleClass="Headline" stylesheets="@../css/style.css" text="Create User" />
+      <JFXButton fx:id="btnSave" layoutX="334.0" layoutY="484.0" onAction="#handleSave" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Save">
          <effect>
             <DropShadow />
          </effect></JFXButton>
-      <JFXButton fx:id="btnCancel" layoutX="469.0" layoutY="304.0" onAction="#handleCancel" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Cancel">
+      <JFXButton fx:id="btnCancel" layoutX="472.0" layoutY="484.0" onAction="#handleCancel" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: #66ff66;" text="Cancel">
          <effect>
             <DropShadow />
          </effect></JFXButton>
-      <ComboBox fx:id="cmbChooseRole" layoutX="368.0" layoutY="177.0" prefWidth="150.0" promptText="Roles" style="-fx-background-color: #66ff66;">
+      <ComboBox fx:id="cmbChooseRole" layoutX="368.0" layoutY="293.0" prefWidth="150.0" promptText="Roles" style="-fx-background-color: #66ff66;">
          <effect>
             <DropShadow />
          </effect>
       </ComboBox>
-      <Label layoutX="389.0" layoutY="129.0" prefHeight="35.0" prefWidth="90.0" text="Choose Role*">
+      <Label layoutX="381.0" layoutY="249.0" prefHeight="35.0" prefWidth="90.0" text="Choose Role*">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
+      <Label layoutX="68.0" layoutY="101.0" prefHeight="45.0" prefWidth="81.0" text="First Name*">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <JFXPasswordField fx:id="txtPassword1" focusColor="#a64141" layoutX="149.0" layoutY="366.0" AnchorPane.topAnchor="371.0" />
+      <Label layoutX="68.0" layoutY="417.0" prefHeight="45.0" prefWidth="81.0" text="Address*" AnchorPane.leftAnchor="68.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <JFXPasswordField fx:id="txtPassword11" focusColor="#a64141" layoutX="149.0" layoutY="427.0" />
+      <Label layoutX="58.0" layoutY="479.0" prefHeight="45.0" prefWidth="81.0" text="Postcode*" AnchorPane.leftAnchor="68.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <JFXPasswordField fx:id="txtPassword111" focusColor="#a64141" layoutX="149.0" layoutY="489.0" />
    </children>
 </AnchorPane>

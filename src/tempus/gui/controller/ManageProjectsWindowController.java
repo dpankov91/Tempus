@@ -85,7 +85,7 @@ public class ManageProjectsWindowController implements Initializable {
         }
     }
 
-    private void setUpTableView() {
+    void setUpTableView() {
         columnProject.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnHourlyRate.setCellValueFactory(new PropertyValueFactory<>("hRate"));
         colClientName.setCellValueFactory(new PropertyValueFactory<>("clientName"));
@@ -108,10 +108,16 @@ public class ManageProjectsWindowController implements Initializable {
     }
 
     @FXML
-    private void handleAssigningTo(ActionEvent event) {
+    private void handleAssigningTo(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/ProjectAssign.fxml"));
+            Parent z = loader.load();
+            Scene scene = new Scene(z);
+            Stage s = new Stage();
+            s.setScene(scene);
+            s.show();
     }
 
-    private void loadTableView() {
+    void loadTableView() {
         tableViewProjects.getItems().clear();
         List<Project> allProjects = projModel.getAllProjects();
         ObservableList<Project> projects = FXCollections.observableArrayList();

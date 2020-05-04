@@ -25,6 +25,14 @@ public class ProjectModel {
  private final IBllFacade facade;
  
     private Project selectedProject;
+    
+   public static ProjectModel getInstance() {
+        return projmodel;
+    }
+    
+   public ProjectModel(){
+        this.facade = new BllManager();
+    }
 
     public Project getSelectedProject() {
         return selectedProject;
@@ -32,14 +40,6 @@ public class ProjectModel {
 
     public void setSelectedProject(Project selectedProject) {
         this.selectedProject = selectedProject;
-    }
-
-  public static ProjectModel getInstance() {
-        return projmodel;
-    }
-    
-   public ProjectModel(){
-        this.facade = new BllManager();
     }
 
     

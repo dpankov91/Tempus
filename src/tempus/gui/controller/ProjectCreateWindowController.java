@@ -24,7 +24,6 @@ import tempus.be.Client;
 import tempus.be.Project;
 import tempus.gui.model.ClientModel;
 import tempus.gui.model.ProjectModel;
-
 /**
  * FXML Controller class
  *
@@ -50,7 +49,7 @@ public class ProjectCreateWindowController implements Initializable {
      */
     
     private ProjectModel projectModel;
-    
+    private ManageProjectsWindowController manageProjectsController;
     private ClientModel cmodel;
     ObservableList<Client>  allClients = FXCollections.observableArrayList();
     
@@ -58,6 +57,7 @@ public class ProjectCreateWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        manageProjectsController = new ManageProjectsWindowController();
         projectModel = ProjectModel.getInstance();
         cmodel = ClientModel.getInstance();
         loadClientsToComboBox();
@@ -101,13 +101,14 @@ public class ProjectCreateWindowController implements Initializable {
             Client client = cmbClient.getSelectionModel().getSelectedItem();
             
             projectModel.createProject(name, client, hRate, description);
-            
-            //setUpAlert("Project is created");
-            
+            manageProjectsController.setUpTableView();
+            setUpAlert("Project Information" , "Project is created.");
+            closeWindow(event);           
         }
         else{
             setUpAlert("Blabla" , "BlabBLaBla.");
         }
+        
    
     }
 

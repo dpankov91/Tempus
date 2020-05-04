@@ -20,10 +20,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 
-import tempus.be.User;
-
-import javax.swing.JComboBox;
-import tempus.be.User;
 import tempus.gui.model.UserModel;
 
 
@@ -54,6 +50,12 @@ public class UserAddController implements Initializable {
      */
     
     private UserModel userModel;
+    @FXML
+    private JFXPasswordField txtPassword1;
+    @FXML
+    private JFXPasswordField txtPassword11;
+    @FXML
+    private JFXPasswordField txtPassword111;
     
     
     @Override
