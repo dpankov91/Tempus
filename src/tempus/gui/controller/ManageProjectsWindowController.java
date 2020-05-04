@@ -108,7 +108,13 @@ public class ManageProjectsWindowController implements Initializable {
     }
 
     @FXML
-    private void handleAssigningTo(ActionEvent event) {
+    private void handleAssigningTo(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/ProjectAssign.fxml"));
+            Parent z = loader.load();
+            Scene scene = new Scene(z);
+            Stage s = new Stage();
+            s.setScene(scene);
+            s.show();
     }
 
     void loadTableView() {
