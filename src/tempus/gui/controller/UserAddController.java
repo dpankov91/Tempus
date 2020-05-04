@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javax.swing.JComboBox;
+import tempus.be.User;
 import tempus.gui.model.UserModel;
 
 /**
@@ -83,15 +84,14 @@ public class UserAddController implements Initializable {
         
         if (checkIfFilled())
         {
-            JComboBox comboBox = (JComboBox) event.getSource();
             
             String password = txtPassword.getText();
             String fName = txtFirstName.getText();
             String lName = txtLastName.getText();
             String email = txtEmail.getText();
-            String role = comboBox.getSelectedItem().toString();
-            
-            userModel.createUser(fName, lName, password, email, role);
+            User user = (User) cmbChooseRole.getSelectionModel().getSelectedItem();
+           
+            userModel.createUser(fName, lName, password, email, user);
             
             //setUpAlert("Project is created");
             

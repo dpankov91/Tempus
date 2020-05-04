@@ -41,9 +41,9 @@ public class BllManager implements IBllFacade {
     }
 
     @Override
-    public void createProject(String name, String clientName, int hRate, String description) {
+    public void createProject(String name, Client client, int hRate, String description) {
         
-        facade.createProject(name, clientName, hRate, description);
+        facade.createProject(name, client, hRate, description);
                 
     }
 
@@ -77,8 +77,8 @@ public class BllManager implements IBllFacade {
     }
 
     @Override
-    public void createUser(String fName, String lName, String password, String email, String role) {
-        facade.createUser(fName, lName, password, email, role);
+    public void createUser(String fName, String lName, String password, String email, User user) {
+        facade.createUser(fName, lName, password, email, user);
     }
 
     @Override

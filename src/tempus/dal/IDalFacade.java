@@ -24,7 +24,7 @@ public interface IDalFacade {
 
     public User getUser(String username, String password);
 
-    public void createProject(String name, String clientName, int hRate, String description);
+    public void createProject(String name, Client client, int hRate, String description);
 
     public List<Project> getAllProjects();
 
@@ -39,7 +39,7 @@ public interface IDalFacade {
 
     public List<User> getAllUsers();
 
-    public void createUser(String fName, String lName, String password, String email, String role);
+    public void createUser(String fName, String lName, String password, String email, User user);
 
     public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address);
 

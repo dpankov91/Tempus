@@ -110,22 +110,24 @@ public class UserDAO {
         return allUsers;
     }
 
-    public void createUser(String fName, String lName, String password, String email, String role) {
+    public void createUser(String fName, String lName, String password, String email, User user) {
+
         try {
-            String sql = "INSERT User.FirstName, User.LastName, User.Password, User.Email, User.Role FROM User VALUES (?,?,?,?,?) ";
-
             Connection con = connector.getConnection();
-            PreparedStatement pstmt = con.prepareStatement(sql);
-
+            String sqlUser = "INSERT INTO User (firstName, lastName, password, email, role) "
+                    + "VALUES(?,?,?,?,?)";
+            PreparedStatement pstmt = con.prepareStatement(sqlUser);
+            
             pstmt.setString(1, fName);
             pstmt.setString(2, lName);
             pstmt.setString(3, password);
             pstmt.setString(4, email);
-            pstmt.setString(5, role);
-            ResultSet rs = pstmt.executeQuery();
+            pstmt.setInt(5, user.getId());
+            pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+            
     }
 
     public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address) {
