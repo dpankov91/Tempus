@@ -69,6 +69,11 @@ public class Project {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return  name;
+    }
+
     public int getHRate() {
         return hRate;
     }

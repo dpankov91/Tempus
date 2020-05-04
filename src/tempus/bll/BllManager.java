@@ -9,8 +9,6 @@ import java.util.List;
 
 import tempus.be.Client;
 
-
-
 import tempus.be.Project;
 
 import tempus.be.User;
@@ -25,11 +23,11 @@ import tempus.dal.IDalFacade;
  * @author dpank
  */
 public class BllManager implements IBllFacade {
-    
+
     IDalFacade facade;
     ISecurityManager securityManager;
 
-    public BllManager() {   
+    public BllManager() {
         facade = new DalManager();
         securityManager = new SecurityManager();
     }
@@ -42,9 +40,9 @@ public class BllManager implements IBllFacade {
 
     @Override
     public void createProject(String name, Client client, int hRate, String description) {
-        
+
         facade.createProject(name, client, hRate, description);
-                
+
     }
 
     @Override
@@ -55,13 +53,11 @@ public class BllManager implements IBllFacade {
     @Override
 
     public List<Project> getAllProjects() {
-      return facade.getAllProjects();
+        return facade.getAllProjects();
     }
 
-
     @Override
-    public List<Client> getAllClientss() 
-    {
+    public List<Client> getAllClientss() {
         return facade.getAllClientss();
     }
 
@@ -70,7 +66,8 @@ public class BllManager implements IBllFacade {
     public void deleteUser(User userToDelete) {
         facade.deleteUser(userToDelete);
     }
-    @Override    
+
+    @Override
     public List<User> getAllUsers() {
         return facade.getAllUsers();
 
@@ -83,11 +80,12 @@ public class BllManager implements IBllFacade {
 
     @Override
     public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address) {
-     facade.editUser(id, name, Lname, email, realphone, realpostcode, address);
+        facade.editUser(id, name, Lname, email, realphone, realpostcode, address);
     }
 
+    @Override
+    public void editProject(int id, String projectName, String clientName, String hourlyRate, String description) {
+        facade.editProject( id,projectName, clientName, hourlyRate, description);
+    }
 
-
-
-    
 }

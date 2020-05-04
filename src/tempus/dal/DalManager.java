@@ -111,4 +111,13 @@ public class DalManager implements IDalFacade {
         userDao.editUser(id, name, Lname, email, realphone, realpostcode, address);
     }
 
+    @Override
+    public void editProject(int id,String projectName, String clientName, String hourlyRate, String description) {
+        try {
+            projectDao.editProject(id,projectName, clientName, hourlyRate, description);
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
+
 }

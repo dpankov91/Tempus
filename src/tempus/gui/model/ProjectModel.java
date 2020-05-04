@@ -61,4 +61,8 @@ public class ProjectModel {
         facade.deleteProject(selectedProject);
     }
 
+    public void editProject(int id,String projectName, String clientName, String hourlyRate, String description) {
+     facade.editProject(id,projectName, clientName, hourlyRate, description);
+    }
+
 }
