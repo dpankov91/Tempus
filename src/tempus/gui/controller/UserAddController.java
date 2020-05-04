@@ -90,6 +90,13 @@ public class UserAddController implements Initializable {
      else if (txtEmail.getText() == null || txtEmail.getText().trim().isEmpty())
      {
         setUpAlert("Incorrect Info Error" , "Add text please.");
+        
+     }
+     else if (cmbChooseRole.getSelectionModel().getSelectedItem()== null)
+     {
+         
+        setUpAlert("Incorrect Info Error" , "Select client please.");
+        
      }
      return true;
         
