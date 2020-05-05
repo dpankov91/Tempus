@@ -120,4 +120,9 @@ public class DalManager implements IDalFacade {
         }
    }
 
+    @Override
+    public void assignUsersToProj(List<User> usersAssign) {
+        userDao.assignUsersToProj(usersAssign);
+    }
+
 }

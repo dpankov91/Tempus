@@ -88,4 +88,9 @@ public class BllManager implements IBllFacade {
         facade.editProject( id,projectName, clientName, hourlyRate, description);
     }
 
+    @Override
+    public void assignUsersToProj(List<User> usersAssign) {
+        facade.assignUsersToProj(usersAssign);
+    }
+
 }

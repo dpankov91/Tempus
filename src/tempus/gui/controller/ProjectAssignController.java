@@ -9,12 +9,14 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import tempus.be.User;
@@ -34,11 +36,11 @@ public class ProjectAssignController implements Initializable {
     private JFXComboBox<User> cmbDevelopers;
     @FXML
     private Label lblProjName;
+    @FXML
+    private JFXButton btnCancel;
     
     private UserModel userModel;
     private ProjectModel projModel;
-    @FXML
-    private JFXButton btnCancel;
     
     /**
      * Initializes the controller class.
@@ -54,6 +56,17 @@ public class ProjectAssignController implements Initializable {
 
     @FXML
     private void handleConfirm(ActionEvent event) {
+        
+    if(lstAddedDevelopers.getItems() != null){
+        List<User> usersAssign = lstAddedDevelopers.getItems();
+        userModel.assignUsersToProj(usersAssign);
+        setUpAlert("Users are assigned", "Selected users are assigned to project");
+        handleClose(event);
+    }
+    else{
+        setUpAlert("User not assigned", "Noone is selected");
+        handleClose(event);
+    }   
     }
 
     @FXML
@@ -78,4 +91,11 @@ public class ProjectAssignController implements Initializable {
         }   
     }
     
+     private void setUpAlert(String title, String message){
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(message);
+        alert.showAndWait();
+    }
 }

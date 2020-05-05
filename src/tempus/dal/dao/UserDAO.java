@@ -149,4 +149,8 @@ public class UserDAO {
         }
     }
 
+    public void assignUsersToProj(List<User> usersAssign) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
