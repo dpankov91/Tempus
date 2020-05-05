@@ -51,11 +51,11 @@ public class UserAddController implements Initializable {
     
     private UserModel userModel;
     @FXML
-    private JFXPasswordField txtPassword1;
+    private JFXTextField txtPhone;
     @FXML
-    private JFXPasswordField txtPassword11;
+    private JFXTextField txtPostcode;
     @FXML
-    private JFXPasswordField txtPassword111;
+    private JFXTextField txtAddress;
     
     
     @Override
@@ -94,6 +94,18 @@ public class UserAddController implements Initializable {
         setUpAlert("Incorrect Info Error" , "Add text please.");
         
      }
+     else if (txtAddress.getText() == null || txtAddress.getText().trim().isEmpty())
+     {
+        setUpAlert("Incorrect Info Error" , "Add text please.");
+     }
+     else if (txtPhone.getText() == null || txtPhone.getText().trim().isEmpty())
+     {
+        setUpAlert("Incorrect Info Error" , "Add text please.");
+     }
+     else if (txtPostcode.getText() == null || txtPostcode.getText().trim().isEmpty())
+     {
+        setUpAlert("Incorrect Info Error" , "Add text please.");
+     }
      else if (cmbChooseRole.getSelectionModel().getSelectedItem()== null)
      {
          
@@ -114,9 +126,12 @@ public class UserAddController implements Initializable {
             String fName = txtFirstName.getText();
             String lName = txtLastName.getText();
             String email = txtEmail.getText();
+            String address = txtAddress.getText();
+            int phone = Integer.parseInt(txtPhone.getText());
+            int postcode = Integer.parseInt(txtPostcode.getText());
             String role = cmbChooseRole.getSelectionModel().getSelectedItem();
            
-            userModel.createUser(fName, lName, password, email, role);
+            userModel.createUser(fName, lName, password, email, role, address, phone, postcode);
             
             //setUpAlert("Project is created");
             

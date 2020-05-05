@@ -59,7 +59,7 @@ public class User
         this.fName = fName;
         this.lName = lName;
     }
-    /*
+    
     public User(int id, String fName, String lName, boolean isAdmin) {
         this.id = id;
         this.fName = fName;
@@ -82,13 +82,16 @@ public class User
         
     }
     
-    public User(String fName, String lName, String password, String email, String role) {
+    public User(String fName, String lName, String password, String email, String role, String address, int phone, int postcode) {
         this.fName = fName;
         this.lName = lName;
         this.password = password;
         this.email =  email;
         this.role = role;
-    }*/
+        this.address = address;
+        this.phone = phone;
+        this.postcode = postcode;
+    }
 
     @Override
     public String toString() {
