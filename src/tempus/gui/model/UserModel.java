@@ -69,4 +69,8 @@ public class UserModel {
     public void deleteSelectedUser() {
         facade.deleteUser(selectedUser);
     }
+
+    public void assignUsersToProj(List<User> usersAssign) {
+        facade.assignUsersToProj(usersAssign);
+    }
 }
