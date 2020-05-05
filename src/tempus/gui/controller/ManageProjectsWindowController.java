@@ -132,5 +132,6 @@ public class ManageProjectsWindowController implements Initializable {
         alert.setHeaderText(message);
         alert.showAndWait();
     }
+ 
 
 }

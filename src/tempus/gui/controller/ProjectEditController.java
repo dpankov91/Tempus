@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
 import tempus.be.Project;
 import tempus.be.User;
 import tempus.gui.model.ProjectModel;
@@ -44,6 +45,8 @@ public class ProjectEditController implements Initializable {
      
     @FXML
     private Button saveUpdates;
+    @FXML
+    private Button btnClose;
 
     /**
      * Initializes the controller class.
@@ -71,6 +74,8 @@ public class ProjectEditController implements Initializable {
 
     @FXML
     private void goBack(ActionEvent event) {
+         Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
     }
     
     private int convertToInt(String gottentString) {

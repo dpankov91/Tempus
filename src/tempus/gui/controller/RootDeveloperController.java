@@ -6,6 +6,7 @@
 package tempus.gui.controller;
 
 import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -14,12 +15,16 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import tempus.be.User;
 import tempus.gui.model.UserModel;
 
@@ -121,8 +126,15 @@ public class RootDeveloperController implements Initializable {
     }
 
     @FXML
-    private void handle_Logout(ActionEvent event) {
-        Platform.exit();
+    private void handle_Logout(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/Login.fxml"));
+        Parent z = loader.load();
+        Scene scene = new Scene(z);
+        Stage s = new Stage();
+        s.setScene(scene);
+        s.show();
+        Stage stage = (Stage) btn_logout.getScene().getWindow();
+        stage.close();
     }
 
     private void showDate() {

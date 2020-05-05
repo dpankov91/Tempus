@@ -7,7 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="1065.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ProjectEditController">
+<AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="349.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ProjectEditController">
    <children>
       <AnchorPane prefHeight="585.0" prefWidth="364.0">
          <children>
@@ -17,7 +17,7 @@
             <JFXTextField fx:id="txtClientName" layoutX="115.0" layoutY="237.0" text="Client Name" />
             <JFXTextField fx:id="txtHourlyRate" layoutX="115.0" layoutY="338.0" text="Hourly Rate" />
             <Button fx:id="saveUpdates" layoutX="47.0" layoutY="508.0" mnemonicParsing="false" onAction="#onActionSaveUpdates" prefHeight="51.0" prefWidth="103.0" styleClass="buttons" stylesheets="@../css/style.css" text="Save" />
-            <Button layoutX="213.0" layoutY="508.0" mnemonicParsing="false" onAction="#goBack" prefHeight="51.0" prefWidth="103.0" styleClass="buttons" stylesheets="@../css/style.css" text="Go Back" />
+            <Button fx:id="btnClose" layoutX="213.0" layoutY="508.0" mnemonicParsing="false" onAction="#goBack" prefHeight="51.0" prefWidth="103.0" styleClass="buttons" stylesheets="@../css/style.css" text="Back" />
             <JFXTextArea fx:id="txtDescription" layoutX="115.0" layoutY="418.0" prefHeight="50.0" prefWidth="135.0" text="Description" />
          </children>
       </AnchorPane>

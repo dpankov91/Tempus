@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
 
 import tempus.gui.model.UserModel;
 
@@ -144,6 +145,8 @@ public class UserAddController implements Initializable {
 
     @FXML
     private void handleCancel(ActionEvent event) {
+         Stage stage = (Stage) btnCancel.getScene().getWindow();
+        stage.close();
     }
 
     private void setUpAlert(String title, String message) {
