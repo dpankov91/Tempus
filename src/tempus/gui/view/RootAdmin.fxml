@@ -28,7 +28,7 @@
                         <Insets left="45.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lbl_fname" prefHeight="43.0" prefWidth="179.0">
+                  <Label fx:id="lbl_fname" alignment="CENTER" prefHeight="43.0" prefWidth="179.0">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -36,7 +36,7 @@
                         <Insets top="100.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lbl_lname" prefHeight="43.0" prefWidth="179.0">
+                  <Label fx:id="lbl_lname" alignment="CENTER" prefHeight="43.0" prefWidth="179.0">
                      <font>
                         <Font size="21.0" />
                      </font>

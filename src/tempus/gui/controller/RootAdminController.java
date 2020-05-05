@@ -27,6 +27,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import tempus.be.User;
+import tempus.gui.model.UserModel;
 
 /**
  * FXML Controller class
@@ -60,26 +61,35 @@ public class RootAdminController implements Initializable {
     @FXML
     private Label lblTodaysDate;
 
+    private UserModel userModel;
 
- 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        userModel = UserModel.getInstance();
         showDate();
-    }    
+        setUpimg();
+        setFirstName();
+        setLastName();
+    }
 
-    public void setFirstName(User currentUser) {
-        this.user = currentUser;
-        lbl_fname.setText(user.getFName());
+    public void setFirstName() {
+      User us = userModel.getloggedInUser();
+        lbl_fname.setText(us.getFName());
     }
-    
-    public void setLastName(User currentUser) {
-        this.user = currentUser;
-        lbl_lname.setText(user.getLName());
+
+    public void setLastName() {
+        User us = userModel.getloggedInUser();
+        lbl_lname.setText(us.getLName());
     }
-    
+
+    public void setUpimg() {
+        User us = userModel.getloggedInUser();
+        imageUser.setImage(us.getPhotoURL());
+    }
+
     @FXML
     private void handle_editProfile(ActionEvent event) {
 //        System.out.println("Clicked");
@@ -94,9 +104,9 @@ public class RootAdminController implements Initializable {
 //        FxmlLoader object = new FxmlLoader();
 //        Pane view = object.getPage("");
 //        mainPane.setCenter(view); 
-        
+
     }
- 
+
     @FXML
     private void handle_Users(ActionEvent event) {
         System.out.println("Clicked");
@@ -104,7 +114,7 @@ public class RootAdminController implements Initializable {
         Pane view = object.getPage("ManageUsersWindow");
         mainPane.setCenter(view);
     }
-    
+
     @FXML
     private void handle_Overview(ActionEvent event) {
         System.out.println("Clicked");
@@ -138,5 +148,5 @@ public class RootAdminController implements Initializable {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         lblTodaysDate.setText(dateFormat.format(date));
     }
-    
+
 }

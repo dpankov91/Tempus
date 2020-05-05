@@ -20,12 +20,12 @@
          <children>
             <VBox layoutX="-1.0" layoutY="128.0" prefHeight="610.0" prefWidth="188.0" styleClass="BackGround" stylesheets="@../css/style.css">
                <children>
-                  <Label prefHeight="46.0" prefWidth="160.0" text="DEVELOPER">
+                  <Label alignment="CENTER" prefHeight="46.0" prefWidth="186.0" text="DEVELOPER">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_fname" prefHeight="43.0" prefWidth="179.0">
+                  <Label fx:id="lbl_fname" alignment="CENTER" prefHeight="43.0" prefWidth="186.0">
                      <VBox.margin>
                         <Insets top="100.0" />
                      </VBox.margin>
@@ -33,12 +33,12 @@
                         <Font size="21.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_lname" prefHeight="43.0" prefWidth="179.0">
+                  <Label fx:id="lbl_lname" alignment="CENTER" prefHeight="43.0" prefWidth="191.0">
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblTodaysDate" alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="179.0" textAlignment="CENTER">
+                  <Label fx:id="lblTodaysDate" alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="185.0" textAlignment="CENTER">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -88,7 +88,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ImageView fitHeight="100.0" fitWidth="110.0" layoutX="39.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageUser" fitHeight="100.0" fitWidth="110.0" layoutX="39.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/iconfinder_8_3898372.png" />
                </image>

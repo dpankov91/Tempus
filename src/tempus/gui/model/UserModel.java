@@ -34,7 +34,8 @@ public class UserModel {
     }
 
     public User loginUser(String username, String password) {
-        return loggedInUser = facade.getUser(username, password);
+        loggedInUser = facade.getUser(username, password);
+        return loggedInUser;
     }
 
     public void login() {
@@ -60,8 +61,12 @@ public class UserModel {
     public User getSelectedUser() {
         return selectedUser;
     }
-    
-    public void deleteSelectedUser(){
+
+    public User getloggedInUser() {
+        return loggedInUser;
+    }
+
+    public void deleteSelectedUser() {
         facade.deleteUser(selectedUser);
     }
 }

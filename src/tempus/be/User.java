@@ -5,20 +5,21 @@
  */
 package tempus.be;
 
+import java.io.File;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyIntegerWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.image.Image;
+import javax.imageio.ImageIO;
 
 /**
  *
  * @author dpank
  */
-public class User 
-{
+public class User {
 
-    
     private int id;
     private String fName;
     private String lName;
@@ -29,6 +30,17 @@ public class User
     private int postcode;
     private boolean isAdmin;
     private String role;
+    private Image photoURL;
+
+    public Image getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        File file = new File(photoURL);
+        Image image = new Image(file.toURI().toString());
+        this.photoURL = image;
+    }
 
     public String getAddress() {
         return address;
@@ -53,13 +65,14 @@ public class User
     public void setPostcode(int postcode) {
         this.postcode = postcode;
     }
+
     //Nedas edit 
     public User(int id, String fName, String lName) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
     }
-    
+
     public User(int id, String fName, String lName, boolean isAdmin) {
         this.id = id;
         this.fName = fName;
@@ -79,14 +92,14 @@ public class User
         this.lName = lName;
         this.email = email;
         this.role = role;
-        
+
     }
-    
+
     public User(String fName, String lName, String password, String email, String role, String address, int phone, int postcode) {
         this.fName = fName;
         this.lName = lName;
         this.password = password;
-        this.email =  email;
+        this.email = email;
         this.role = role;
         this.address = address;
         this.phone = phone;
@@ -95,7 +108,7 @@ public class User
 
     @Override
     public String toString() {
-        return  fName + " " + lName ;
+        return fName + " " + lName;
     }
 
     public String getPassword() {
@@ -105,7 +118,7 @@ public class User
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String getRole() {
         return role;
     }
@@ -113,10 +126,7 @@ public class User
     public void setRole(String role) {
         this.role = role;
     }
- 
-    
-    
-    
+
     public String getEmail() {
         return email;
     }
@@ -124,8 +134,6 @@ public class User
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
 
     public int getId() {
         return id;

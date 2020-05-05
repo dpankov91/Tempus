@@ -48,9 +48,12 @@ public class UserDAO {
             String firstName = rs.getString("firstName");
             String lastName = rs.getString("lastName");
             boolean isAdmin = rs.getBoolean("isAdmin");
+            
+            String photoURL = rs.getString("userPhoto");
 
             User us = new User(id, firstName, lastName);
             us.setIsAdmin(isAdmin);
+            us.setPhotoURL(photoURL);
             return us;
 
         }
@@ -91,6 +94,7 @@ public class UserDAO {
             int phone = rs.getInt("phoneNumber");
             int postC = rs.getInt("postcode");
             Boolean isAdmin = rs.getBoolean("isAdmin");
+            String photoURL = rs.getString("userPhoto");
             String role;
             if (isAdmin) {
                 role = "Admin";
@@ -104,6 +108,7 @@ public class UserDAO {
             us.setPostcode(postC);
             us.setPhone(phone);
             us.setAddress(address);
+            us.setPhotoURL(photoURL);
             allUsers.add(us);
         }
         return allUsers;

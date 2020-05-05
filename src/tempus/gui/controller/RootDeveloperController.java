@@ -17,9 +17,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import tempus.be.User;
+import tempus.gui.model.UserModel;
 
 /**
  * FXML Controller class
@@ -50,7 +52,10 @@ public class RootDeveloperController implements Initializable {
     private User user;
     @FXML
     private Label lblTodaysDate;
+    @FXML
+    private ImageView imageUser;
 
+    private UserModel userModel;
 
 
     /**
@@ -58,17 +63,21 @@ public class RootDeveloperController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        userModel = UserModel.getInstance();
         showDate();
+        setUpimg();
+        setFirstName();
+        setLastName();
     }  
     
-    public void setFirstName(User currentUser) {
-        this.user = currentUser;
-        lbl_fname.setText(user.getLName());
+    public void setFirstName() {
+        User us = userModel.getloggedInUser();
+        lbl_fname.setText(us.getFName());
     }
     
-    public void setLastName(User currentUser) {
-        this.user = currentUser;
-        lbl_lname.setText(user.getLName());
+    public void setLastName() {
+        User us = userModel.getloggedInUser();
+        lbl_lname.setText(us.getLName());
     }
 
     @FXML
@@ -120,6 +129,11 @@ public class RootDeveloperController implements Initializable {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         lblTodaysDate.setText(dateFormat.format(date));
+    }
+
+    private void setUpimg() {
+        User us = userModel.getloggedInUser();
+        imageUser.setImage(us.getPhotoURL());
     }
     
 }
