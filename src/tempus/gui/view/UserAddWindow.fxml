@@ -65,18 +65,18 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXPasswordField fx:id="txtPassword1" focusColor="#a64141" layoutX="149.0" layoutY="366.0" AnchorPane.topAnchor="371.0" />
       <Label layoutX="68.0" layoutY="417.0" prefHeight="45.0" prefWidth="81.0" text="Address*" AnchorPane.leftAnchor="68.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXPasswordField fx:id="txtPassword11" focusColor="#a64141" layoutX="149.0" layoutY="427.0" />
       <Label layoutX="58.0" layoutY="479.0" prefHeight="45.0" prefWidth="81.0" text="Postcode*" AnchorPane.leftAnchor="68.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXPasswordField fx:id="txtPassword111" focusColor="#a64141" layoutX="149.0" layoutY="489.0" />
+      <JFXTextField fx:id="txtPhone" layoutX="149.0" layoutY="366.0" />
+      <JFXTextField fx:id="txtAddress" layoutX="149.0" layoutY="428.0" />
+      <JFXTextField fx:id="txtPostcode" layoutX="149.0" layoutY="489.0" />
    </children>
 </AnchorPane>

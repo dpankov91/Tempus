@@ -109,12 +109,12 @@ public class UserDAO {
         return allUsers;
     }
 
-    public void createUser(String fName, String lName, String password, String email, String role) {
+    public void createUser(String fName, String lName, String password, String email, String role, String address, int phone, int postcode) {
 
         try {
             Connection con = connector.getConnection();
-            String sqlUser = "INSERT INTO User (firstName, lastName, password, email, role) "
-                    + "VALUES(?,?,?,?,?)";
+            String sqlUser = "INSERT INTO User (firstName, lastName, password, email, role, address, phoneNumber, postcode) "
+                    + "VALUES(?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = con.prepareStatement(sqlUser);
             
             pstmt.setString(1, fName);
@@ -122,6 +122,9 @@ public class UserDAO {
             pstmt.setString(3, password);
             pstmt.setString(4, email);
             pstmt.setString(5, role);
+            pstmt.setString(6, address);
+            pstmt.setInt(7, phone);
+            pstmt.setInt(8, postcode);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
