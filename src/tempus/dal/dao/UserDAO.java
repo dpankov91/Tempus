@@ -119,8 +119,8 @@ public class UserDAO {
 
         try {
             Connection con = connector.getConnection();
-            String sqlUser = "INSERT INTO User (firstName, lastName, password, email, role, address, phoneNumber, postcode) "
-                    + "VALUES(?,?,?,?,?,?,?,?)";
+            String sqlUser = "INSERT INTO [User] "
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = con.prepareStatement(sqlUser);
 
             pstmt.setString(1, fName);
@@ -128,9 +128,19 @@ public class UserDAO {
             pstmt.setString(3, password);
             pstmt.setString(4, email);
             pstmt.setString(5, role);
+
+            //INSERT INTO [User] 
+            //VALUES (?,'password','firstName','lastname',5555,'address',6700,1,'Admin','')
+            pstmt.setString(1, email);
+            pstmt.setString(2, password);
+            pstmt.setString(3, fName);
+            pstmt.setString(4, lName);
+            pstmt.setInt(5, phone);
             pstmt.setString(6, address);
-            pstmt.setInt(7, phone);
-            pstmt.setInt(8, postcode);
+            pstmt.setInt(7, postcode);
+            pstmt.setInt(8, (role == "Admin" ?  1 : 0) );
+            pstmt.setString(9, role);
+            pstmt.setString(10, "");
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);

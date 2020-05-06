@@ -62,7 +62,7 @@ public class UserAddController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-      
+        userModel = new UserModel();
         
         cmbChooseRole.setItems(FXCollections.observableArrayList(
                 "Admin", "Developer"));
