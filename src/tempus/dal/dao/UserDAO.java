@@ -124,6 +124,7 @@ public class UserDAO {
             PreparedStatement pstmt = con.prepareStatement(sqlUser);
             //INSERT INTO [User] 
             //VALUES (?,'password','firstName','lastname',5555,'address',6700,1,'Admin','')
+            
             pstmt.setString(1, email);
             pstmt.setString(2, password);
             pstmt.setString(3, fName);
