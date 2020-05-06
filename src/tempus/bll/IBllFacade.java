@@ -22,15 +22,7 @@ import tempus.be.User;
  */
 public interface IBllFacade {
 
-    
-
-   
-
-    
-
-    
-    
-     public User getUser(String username, String password);
+    public User getUser(String username, String password);
 
     public void createProject(String name, Client client, int hRate, String description);
 
@@ -39,7 +31,6 @@ public interface IBllFacade {
     public List<Client> getAllClientss();
 
     public List<Project> getAllProjects();
-
 
     public void deleteUser(User useDelete);
 
@@ -51,7 +42,7 @@ public interface IBllFacade {
 
     public void editProject(int id,String projectName, String clientName, String hourlyRate, String description);
 
-    public void assignUsersToProj(List<User> usersAssign);
+    public void assignUsersToProj(Project selectedProject, List<User> usersAssign);
 
 
     

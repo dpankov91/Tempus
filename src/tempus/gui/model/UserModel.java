@@ -6,6 +6,7 @@
 package tempus.gui.model;
 
 import java.util.List;
+import tempus.be.Project;
 import tempus.be.User;
 import tempus.bll.BllManager;
 import tempus.bll.IBllFacade;
@@ -70,7 +71,7 @@ public class UserModel {
         facade.deleteUser(selectedUser);
     }
 
-    public void assignUsersToProj(List<User> usersAssign) {
-        facade.assignUsersToProj(usersAssign);
+    public void assignUsersToProj(Project selectedProject, List<User> usersAssign) {
+         facade.assignUsersToProj(selectedProject, usersAssign);
     }
 }

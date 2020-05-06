@@ -45,7 +45,7 @@ public class RootAdminController implements Initializable {
     @FXML
     private JFXButton btn_projects;
     @FXML
-    private BorderPane mainPane;
+    BorderPane mainPane;
     @FXML
     private JFXButton btnLogOut;
     @FXML
@@ -124,7 +124,7 @@ public class RootAdminController implements Initializable {
     }
 
     @FXML
-    private void handle_Projects(ActionEvent event) {
+    void handle_Projects(ActionEvent event) {
         System.out.println("Clicked");
         FxmlLoader object = new FxmlLoader();
         Pane view = object.getPage("ManageProjectsWindow");

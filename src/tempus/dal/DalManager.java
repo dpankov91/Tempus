@@ -121,8 +121,12 @@ public class DalManager implements IDalFacade {
    }
 
     @Override
-    public void assignUsersToProj(List<User> usersAssign) {
-        userDao.assignUsersToProj(usersAssign);
+    public void assignUsersToProj(Project selectedProject, List<User> usersAssign) {
+        try {
+            userDao.assignUsersToProj(selectedProject, usersAssign);
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

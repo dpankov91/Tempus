@@ -38,7 +38,7 @@ public class DeleteConfirmationController implements Initializable {
     
     
     ProjectModel model;
- 
+    ManageProjectsWindowController prevContrl;
     /**
      * Initializes the controller class.
      */
@@ -59,8 +59,13 @@ public class DeleteConfirmationController implements Initializable {
     private void handleConfirmDeleting(ActionEvent event) {
 
            model.deleteSelectedProject();
+           prevContrl.loadTableView();
            goBack(event);
         
     }
+    
+     void setInfo(ManageProjectsWindowController aThis) {
+    prevContrl = aThis;
+            }
     
 }

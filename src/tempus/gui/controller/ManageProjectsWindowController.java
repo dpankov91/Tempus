@@ -76,6 +76,7 @@ public class ManageProjectsWindowController implements Initializable {
         if (projModel.getSelectedProject() != null) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmation.fxml"));
             Parent z = loader.load();
+            loader.<DeleteConfirmationController>getController().setInfo(this);
             Scene scene = new Scene(z);
             Stage s = new Stage();
             s.setScene(scene);
@@ -97,6 +98,7 @@ public class ManageProjectsWindowController implements Initializable {
     private void handleCreate(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/ProjectCreateWindow.fxml"));
         Parent z = loader.load();
+        loader.<ProjectCreateWindowController>getController().setInfo(this);
         Scene scene = new Scene(z);
         Stage s = new Stage();
         s.setScene(scene);
@@ -109,12 +111,16 @@ public class ManageProjectsWindowController implements Initializable {
 
     @FXML
     private void handleAssigningTo(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/ProjectAssign.fxml"));
+        projModel.setSelectedProject(tableViewProjects.getSelectionModel().getSelectedItem());
+        if (projModel.getSelectedProject() != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/ProjectAssign.fxml"));
+            loader.<ProjectCreateWindowController>getController().setInfo(this);
             Parent z = loader.load();
             Scene scene = new Scene(z);
             Stage s = new Stage();
             s.setScene(scene);
             s.show();
+        }
     }
 
     void loadTableView() {
@@ -132,6 +138,5 @@ public class ManageProjectsWindowController implements Initializable {
         alert.setHeaderText(message);
         alert.showAndWait();
     }
- 
 
 }

@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import tempus.be.Project;
 
 import tempus.be.User;
 import tempus.dal.DbConnectionProvider;
@@ -48,7 +49,7 @@ public class UserDAO {
             String firstName = rs.getString("firstName");
             String lastName = rs.getString("lastName");
             boolean isAdmin = rs.getBoolean("isAdmin");
-            
+
             String photoURL = rs.getString("userPhoto");
 
             User us = new User(id, firstName, lastName);
@@ -121,7 +122,7 @@ public class UserDAO {
             String sqlUser = "INSERT INTO User (firstName, lastName, password, email, role, address, phoneNumber, postcode) "
                     + "VALUES(?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = con.prepareStatement(sqlUser);
-            
+
             pstmt.setString(1, fName);
             pstmt.setString(2, lName);
             pstmt.setString(3, password);
@@ -134,11 +135,11 @@ public class UserDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+
     }
 
     public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address) {
-    try {
+        try {
             String sql = "UPDATE [dbo].[User] SET [email] = ?, [firstName] = ?, [lastName] = ?, [phoneNumber] = ?, [address] = ?, [postcode] = ? WHERE [userID] = ?";
 
             Connection con = connector.getConnection();
@@ -157,8 +158,20 @@ public class UserDAO {
         }
     }
 
-    public void assignUsersToProj(List<User> usersAssign) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void assignUsersToProj(Project selectedProject, List<User> usersAssign) throws SQLException {
+
+        String sql = "INSERT INTO UserAndProject (projectID, userID) VALUES (?, ?)";
+
+        Connection con = connector.getConnection();
+        PreparedStatement pstmt = con.prepareStatement(sql);
+
+        for (User us : usersAssign) {
+            pstmt.setInt(1, selectedProject.getId());
+            pstmt.setInt(2, us.getId());
+            pstmt.addBatch();
+
+        }
+        pstmt.executeBatch();
     }
 
 }

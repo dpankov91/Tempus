@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import tempus.gui.model.UserModel;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javax.swing.JComboBox;
 import tempus.be.Client;
@@ -44,12 +45,17 @@ public class ProjectCreateWindowController implements Initializable {
     @FXML
     private ComboBox<Client> cmbClient;
 
+    
+    
+    ManageProjectsWindowController prevContrl;
+    
     /**
      * Initializes the controller class.
      */
     
     private ProjectModel projectModel;
     private ManageProjectsWindowController manageProjectsController;
+    private RootAdminController rootAdminContr;
     private ClientModel cmodel;
     ObservableList<Client>  allClients = FXCollections.observableArrayList();
     
@@ -89,6 +95,7 @@ public class ProjectCreateWindowController implements Initializable {
      return true;
         
     }
+    
 
     @FXML
     private void handleSave(ActionEvent event) {
@@ -101,8 +108,9 @@ public class ProjectCreateWindowController implements Initializable {
             Client client = cmbClient.getSelectionModel().getSelectedItem();
             
             projectModel.createProject(name, client, hRate, description);
-            manageProjectsController.setUpTableView();
+            prevContrl.loadTableView();
             setUpAlert("Project Information" , "Project is created.");
+            
             closeWindow(event);           
         }
         else{
@@ -142,6 +150,10 @@ public class ProjectCreateWindowController implements Initializable {
             cmbClient.setItems(allClients);
         }    
     }
+
+    void setInfo(ManageProjectsWindowController aThis) {
+    prevContrl = aThis;
+            }
     
 
 }

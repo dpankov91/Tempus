@@ -51,22 +51,25 @@ public class ProjectAssignController implements Initializable {
         projModel = ProjectModel.getInstance();
         ObservableList<User> obsUsers = FXCollections.observableArrayList(userModel.getAllUsers());
         cmbDevelopers.setItems(obsUsers);
-        //lblProjName.setText(projModel.getSelectedProject().getName());
+        
+        lblProjName.setText(projModel.getSelectedProject().getName());
     }    
 
     @FXML
     private void handleConfirm(ActionEvent event) {
         
     if(lstAddedDevelopers.getItems() != null){
+//        projModel.getSelectedProject(), 
         List<User> usersAssign = lstAddedDevelopers.getItems();
-        userModel.assignUsersToProj(usersAssign);
+        userModel.assignUsersToProj(projModel.getSelectedProject(), usersAssign);
+        
         setUpAlert("Users are assigned", "Selected users are assigned to project");
         handleClose(event);
-    }
+        }
     else{
         setUpAlert("User not assigned", "Noone is selected");
         handleClose(event);
-    }   
+        }   
     }
 
     @FXML

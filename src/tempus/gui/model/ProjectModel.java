@@ -13,7 +13,6 @@ import tempus.be.Client;
 import tempus.be.Project;
 import tempus.bll.BllManager;
 import tempus.bll.IBllFacade;
-import static tempus.gui.model.UserModel.model;
 
 /**
  *
