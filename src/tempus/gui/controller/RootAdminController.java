@@ -62,6 +62,8 @@ public class RootAdminController implements Initializable {
     private Label lblTodaysDate;
 
     private UserModel userModel;
+    @FXML
+    private JFXButton btn_timesheet;
 
     /**
      * Initializes the controller class.
@@ -147,6 +149,14 @@ public class RootAdminController implements Initializable {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         lblTodaysDate.setText(dateFormat.format(date));
+    }
+
+    @FXML
+    private void handle_timesheet(ActionEvent event) 
+    {
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPage("DeveloperTimeTracker");
+        mainPane.setCenter(view);  
     }
 
 }
