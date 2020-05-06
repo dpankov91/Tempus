@@ -58,6 +58,8 @@ public class UserAddController implements Initializable {
     @FXML
     private JFXTextField txtAddress;
     
+    ManageUsersWindowController prevContrl;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -134,7 +136,9 @@ public class UserAddController implements Initializable {
            
             userModel.createUser(fName, lName, password, email, role, address, phone, postcode);
             
-            //setUpAlert("Project is created");
+            prevContrl.loadTableView();
+            
+            handleCancel(event);  
             
         }
         else{
@@ -146,7 +150,8 @@ public class UserAddController implements Initializable {
     @FXML
     private void handleCancel(ActionEvent event) {
          Stage stage = (Stage) btnCancel.getScene().getWindow();
-        stage.close();
+         prevContrl.loadTableView();
+         stage.close();
     }
 
     private void setUpAlert(String title, String message) {
@@ -157,5 +162,11 @@ public class UserAddController implements Initializable {
         alert.showAndWait();
         
     }
+
+    void setInfo(ManageUsersWindowController aThis) {
+        prevContrl = aThis;
+    }
+    
+
     
 }

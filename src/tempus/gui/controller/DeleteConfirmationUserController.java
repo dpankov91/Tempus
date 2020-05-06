@@ -37,6 +37,8 @@ public class DeleteConfirmationUserController implements Initializable {
     private User selectedUser;
     @FXML
     private JFXButton btnCancel;
+    
+    ManageUsersWindowController prevContrl;
     /**
      * Initializes the controller class.
      */
@@ -55,7 +57,14 @@ public class DeleteConfirmationUserController implements Initializable {
     @FXML
     private void handleConfirmDeleting(ActionEvent event) throws IOException {
         model.deleteSelectedUser();
+        prevContrl.loadTableView();
         goBack(event);
     }
+
+    void setInfo(ManageUsersWindowController aThis) {
+        prevContrl = aThis;
+    }
+    
+
 
 }

@@ -70,6 +70,7 @@ public class ManageUsersWindowController implements Initializable {
     private void onActionAddUser(ActionEvent event) throws IOException {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/UserAddWindow.fxml"));
             Parent z = loader.load();
+            loader.<UserAddController>getController().setInfo(this);
             Scene scene = new Scene(z);
             Stage s = new Stage();
             s.setScene(scene);
@@ -93,6 +94,7 @@ public class ManageUsersWindowController implements Initializable {
             if(userModel.getSelectedUser() !=null) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmationUser.fxml"));
             Parent z = loader.load();
+            loader.<DeleteConfirmationUserController>getController().setInfo(this);
             Scene scene = new Scene(z);
             Stage s = new Stage();
             s.setScene(scene);
@@ -101,22 +103,21 @@ public class ManageUsersWindowController implements Initializable {
         }
     }
     
-     private void loadTableView() {
+    void loadTableView() {
          tableViewUsers.getItems().clear();
          List<User> allUsers = userModel.getAllUsers();
          ObservableList<User> users = FXCollections.observableArrayList();
          users.addAll(allUsers);
          tableViewUsers.setItems(users);
     }
-     private void setUpTableView()
+    
+    private void setUpTableView()
     {
-
-                
         firstName.setCellValueFactory(new PropertyValueFactory<>("fName"));
         lastName.setCellValueFactory(new PropertyValueFactory<>("lName"));
-         col_role.setCellValueFactory(new PropertyValueFactory<>("role"));
-            idEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-       
+        col_role.setCellValueFactory(new PropertyValueFactory<>("role"));
+        idEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+
         loadTableView();
     }
 
