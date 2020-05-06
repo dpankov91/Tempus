@@ -81,6 +81,7 @@ public class ManageUsersWindowController implements Initializable {
     private void onActionEditUser(ActionEvent event) throws IOException {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/UserEditWindow.fxml"));
             Parent z = loader.load();
+            loader.<UserEditController>getController().setInfo(this);
             Scene scene = new Scene(z);
             Stage s = new Stage();
             s.setScene(scene);

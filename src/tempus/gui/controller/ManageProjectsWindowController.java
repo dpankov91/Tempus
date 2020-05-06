@@ -106,7 +106,14 @@ public class ManageProjectsWindowController implements Initializable {
     }
 
     @FXML
-    private void handleEdit(ActionEvent event) {
+    private void handleEdit(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/ProjectEditWindow.fxml"));
+        Parent z = loader.load();
+        loader.<ProjectEditController>getController().setInfo(this);
+        Scene scene = new Scene(z);
+        Stage s = new Stage();
+        s.setScene(scene);
+        s.show();
     }
 
     @FXML

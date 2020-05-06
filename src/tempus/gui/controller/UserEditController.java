@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
 import tempus.be.User;
 import tempus.gui.model.UserModel;
 
@@ -31,11 +32,7 @@ public class UserEditController implements Initializable {
     private JFXButton btn_cancel;
     @FXML
     private ComboBox<User> chooseUserEditCombo;
-
-    UserModel userModel;
-    User currentSelectedUser ;
-
-    @FXML
+     @FXML
     private JFXTextField txt_name;
     @FXML
     private JFXTextField txt_Lname;
@@ -48,12 +45,16 @@ public class UserEditController implements Initializable {
     @FXML
     private JFXTextField txt_postcode;
 
+    UserModel userModel;
+    User currentSelectedUser ;
+    ManageUsersWindowController prevContrl;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       
         userModel = UserModel.getInstance();
         ObservableList<User> obsUsers = FXCollections.observableArrayList(userModel.getAllUsers());
         chooseUserEditCombo.setItems(obsUsers);
@@ -84,6 +85,10 @@ public class UserEditController implements Initializable {
                 address="";
             }
             userModel.editUser(currentSelectedUser.getId(),name,Lname,email,realphone,realpostcode,address);
+            
+            prevContrl.loadTableView();
+            handle_Cancel(event);  
+            
         } else {
             // Error
         }
@@ -95,6 +100,9 @@ public class UserEditController implements Initializable {
 
     @FXML
     private void handle_Cancel(ActionEvent event) {
+         Stage stage = (Stage) btn_cancel.getScene().getWindow();
+         prevContrl.loadTableView();
+         stage.close();
     }
 
     @FXML
@@ -107,6 +115,10 @@ public class UserEditController implements Initializable {
         txt_address.setText(currentSelectedUser.getAddress());
         txt_postcode.setText(Integer.toString(currentSelectedUser.getPostcode()));
 
+    }
+
+    void setInfo(ManageUsersWindowController aThis) {
+        prevContrl = aThis;
     }
 
 }

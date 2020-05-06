@@ -39,14 +39,16 @@ public class ProjectEditController implements Initializable {
     private JFXTextField txtHourlyRate;
     @FXML
     private JFXTextArea txtDescription;
-    
-     ProjectModel projectModel;
-     Project currentSelectedProject ;
-     
-    @FXML
+      @FXML
     private Button saveUpdates;
     @FXML
     private Button btnClose;
+    
+     
+    ProjectModel projectModel;
+    Project currentSelectedProject ;
+    ManageProjectsWindowController prevContrl;
+
 
     /**
      * Initializes the controller class.
@@ -68,7 +70,8 @@ public class ProjectEditController implements Initializable {
          
         projectModel.editProject(currentSelectedProject.getId(),projectName, clientName, hourlyRate, description);
         
-        
+        prevContrl.loadTableView();
+        goBack(event); 
         
     }
 
@@ -91,5 +94,9 @@ public class ProjectEditController implements Initializable {
         txtHourlyRate.setText(Integer.toString(currentSelectedProject.getHRate()));
         txtDescription.setText(currentSelectedProject.getDescription());
        
+    }
+
+    void setInfo(ManageProjectsWindowController aThis) {
+        prevContrl = aThis;
     }
 }

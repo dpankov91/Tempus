@@ -54,7 +54,6 @@ public class ProjectCreateWindowController implements Initializable {
      */
     
     private ProjectModel projectModel;
-    private ManageProjectsWindowController manageProjectsController;
     private RootAdminController rootAdminContr;
     private ClientModel cmodel;
     ObservableList<Client>  allClients = FXCollections.observableArrayList();
@@ -63,7 +62,6 @@ public class ProjectCreateWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        manageProjectsController = new ManageProjectsWindowController();
         projectModel = ProjectModel.getInstance();
         cmodel = ClientModel.getInstance();
         loadClientsToComboBox();
@@ -108,9 +106,8 @@ public class ProjectCreateWindowController implements Initializable {
             Client client = cmbClient.getSelectionModel().getSelectedItem();
             
             projectModel.createProject(name, client, hRate, description);
-            prevContrl.loadTableView();
-            setUpAlert("Project Information" , "Project is created.");
             
+            prevContrl.loadTableView();
             closeWindow(event);           
         }
         else{
