@@ -70,21 +70,25 @@ public class RootDeveloperController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         userModel = UserModel.getInstance();
         showDate();
-        setUpimg();
-        setFirstName();
-        setLastName();
+        //setUpimg();
+        //setFirstName();
+        //setLastName();
     }  
     
+    /**
     public void setFirstName() {
         User us = userModel.getloggedInUser();
         lbl_fname.setText(us.getFName());
     }
+    */
     
+    /**
     public void setLastName() {
         User us = userModel.getloggedInUser();
         lbl_lname.setText(us.getLName());
     }
-
+    */
+    
     @FXML
     private void handle_editProfile(ActionEvent event) {
         System.out.println("Clicked");
@@ -142,10 +146,12 @@ public class RootDeveloperController implements Initializable {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         lblTodaysDate.setText(dateFormat.format(date));
     }
-
+    
+    /**
     private void setUpimg() {
         User us = userModel.getloggedInUser();
-        imageUser.setImage(us.getPhotoURL());
+        //imageUser.setImage(us.getPhotoURL());
     }
+    */
     
 }

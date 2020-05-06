@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.RootAdminController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.RootAdminController">
    <children>
       <AnchorPane prefHeight="736.0" prefWidth="1257.0" style="-fx-background-color: #282828;">
          <children>
@@ -75,7 +75,7 @@
                   </Pane>
                   <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
                      <children>
-                        <JFXButton fx:id="btn_timesheet" layoutX="-4.0" layoutY="-1.0" onAction="#handle_timesheet" prefHeight="45.0" prefWidth="205.0" text="Timesheet" />
+                        <JFXButton fx:id="btn_timesheet" layoutX="-4.0" layoutY="-1.0" onAction="#handle_Timesheet" prefHeight="45.0" prefWidth="205.0" text="Timesheet" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -95,7 +95,7 @@
                </image>
             </ImageView>
             <JFXButton fx:id="btnLogOut" layoutX="1132.0" layoutY="19.0" onAction="#handle_Logout" prefHeight="34.0" prefWidth="110.0" styleClass="buttons" stylesheets="@../css/style.css" text="Log Out" />
-            <BorderPane fx:id="mainPane" layoutX="197.0" layoutY="127.0" prefHeight="610.0" prefWidth="1072.0" />
+            <BorderPane fx:id="mainPane" layoutX="197.0" layoutY="127.0" prefHeight="610.0" prefWidth="1075.0" />
             <Button fx:id="btn_help" layoutX="1141.0" layoutY="66.0" mnemonicParsing="false" onAction="#handle_Help" prefHeight="25.0" prefWidth="39.0" style="-fx-background-color: #ffffff #ffffff;" />
             <Button fx:id="btn_editprofile" layoutX="1196.0" layoutY="65.0" mnemonicParsing="false" onAction="#handle_editProfile" prefHeight="19.0" prefWidth="39.0" style="-fx-background-color: #ffffff #ffffff;">
                <graphic>
@@ -112,6 +112,7 @@
                   <Image url="@../assets/help-button-speech-bubble-with-question-mark_icon-icons.com_72707.png" />
                </image>
             </ImageView>
+            <ListView layoutX="186.0" layoutY="127.0" prefHeight="610.0" prefWidth="11.0" />
          </children>
       </AnchorPane>
    </children>
