@@ -41,9 +41,14 @@ public class ManageUsersWindowController implements Initializable {
     private TableColumn<User, String> idEmail;
     @FXML
     private TableColumn<User, String> col_role;
+    @FXML
+    private TableColumn<User, Integer> colPhone;
+    @FXML
+    private TableColumn<User, String> colAddress;
+    @FXML
+    private TableColumn<User, Integer> colPostcode;
    
-   
-    public User selectedUser;
+    
     private UserModel userModel;
     @FXML
     private JFXButton addUser;
@@ -51,6 +56,9 @@ public class ManageUsersWindowController implements Initializable {
     private JFXButton editUser;
     @FXML
     private JFXButton deleteUser;
+    
+    public User selectedUser;
+    
     
     /**
      * Initializes the controller class.

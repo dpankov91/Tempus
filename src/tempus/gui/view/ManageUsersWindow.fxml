@@ -4,29 +4,25 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="1075.0" stylesheets="@../css/loginStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ManageUsersWindowController">
+<AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="1075.0" stylesheets="@../css/loginStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ManageUsersWindowController">
 
    <children>
-      <TableView fx:id="tableViewUsers" layoutX="14.0" layoutY="104.0" prefHeight="372.0" prefWidth="494.0" stylesheets="@../css/style.css">
+      <TableView fx:id="tableViewUsers" layoutX="14.0" layoutY="104.0" prefHeight="372.0" prefWidth="787.0" stylesheets="@../css/style.css">
         <columns>
-          <TableColumn fx:id="firstName" prefWidth="110.0" text="First Name" />
-            <TableColumn fx:id="lastName" prefWidth="110.0" text="Last Name" />
-            <TableColumn fx:id="col_role" prefWidth="110.0" text="Role" />
-            <TableColumn fx:id="idEmail" prefWidth="162.39999999999998" text="E-Mail" />
+          <TableColumn fx:id="firstName" prefWidth="95.19997882843018" text="First Name" />
+            <TableColumn fx:id="lastName" prefWidth="104.00006103515625" text="Last Name" />
+            <TableColumn fx:id="col_role" prefWidth="103.20008850097656" text="Role" />
+            <TableColumn fx:id="idEmail" prefWidth="147.20001220703125" text="E-Mail" />
+            <TableColumn fx:id="colPhone" prefWidth="123.20001220703125" text="Phone" />
+            <TableColumn fx:id="colAddress" prefWidth="123.20001220703125" text="Address" />
+            <TableColumn fx:id="colPostcode" prefWidth="94.4000244140625" text="Postcode" />
         </columns>
       </TableView>
-      <ImageView fitHeight="80.0" fitWidth="95.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/94119488_281400346210241_4996574131064406016_n.png" />
-         </image>
-      </ImageView>
-      <JFXButton fx:id="addUser" layoutX="555.0" layoutY="175.0" onAction="#onActionAddUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="ADD" AnchorPane.bottomAnchor="360.0" />
-      <JFXButton fx:id="editUser" layoutX="555.0" layoutY="241.0" onAction="#onActionEditUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="EDIT" AnchorPane.bottomAnchor="300.0" />
-      <JFXButton fx:id="deleteUser" layoutX="555.0" layoutY="303.0" onAction="#onActionDeleteUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="DELETE" AnchorPane.bottomAnchor="240.0" />
+      <JFXButton fx:id="addUser" layoutX="844.0" layoutY="209.0" onAction="#onActionAddUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="ADD" AnchorPane.bottomAnchor="361.0" />
+      <JFXButton fx:id="editUser" layoutX="844.0" layoutY="270.0" onAction="#onActionEditUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="EDIT" AnchorPane.bottomAnchor="300.0" />
+      <JFXButton fx:id="deleteUser" layoutX="844.0" layoutY="330.0" onAction="#onActionDeleteUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="DELETE" AnchorPane.bottomAnchor="240.0" />
       <Label layoutX="314.0" layoutY="28.0" styleClass="Headline" stylesheets="@../css/style.css" text="User Manager" />
    </children>
 </AnchorPane>
