@@ -5,6 +5,8 @@
  */
 package tempus.gui.controller;
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -19,21 +21,17 @@ import javafx.scene.control.Label;
 public class DeveloperProjectInfoController implements Initializable {
 
     @FXML
-    private Label lblName1;
+    private JFXPasswordField txt_password;
     @FXML
-    private Label lblName4;
+    private JFXTextField txt_author;
     @FXML
-    private Label lblName3;
+    private JFXTextField txt_company;
     @FXML
-    private Label lblName2;
+    private JFXTextField txt_email;
     @FXML
-    private Label lblDescr1;
+    private JFXTextField txt_address;
     @FXML
-    private Label lblDescr3;
-    @FXML
-    private Label lblDescr4;
-    @FXML
-    private Label lblDescr2;
+    private JFXTextField txt_date;
 
     /**
      * Initializes the controller class.

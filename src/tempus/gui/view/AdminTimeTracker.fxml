@@ -18,9 +18,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1065.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.DeveloperTimeTrackerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1075.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.AdminTimeTrackerController">
    <children>
-      <Label layoutX="14.0" layoutY="6.0" prefHeight="43.0" prefWidth="312.0" styleClass="Headline" stylesheets="@../css/style.css" text="Time Tracker" />
+      <Label layoutX="14.0" layoutY="6.0" prefHeight="43.0" prefWidth="277.0" styleClass="Headline" stylesheets="@../css/style.css" text="Time Tracker" />
       <Button fx:id="btn_createtask" layoutX="31.0" layoutY="71.0" mnemonicParsing="false" onAction="#handle_CreateTask" prefHeight="43.0" prefWidth="55.0" style="-fx-background-color: #000000#000000;">
          <graphic>
             <ImageView fitHeight="52.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">

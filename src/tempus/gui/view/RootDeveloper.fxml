@@ -14,13 +14,13 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.RootDeveloperController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.RootDeveloperController">
    <children>
       <AnchorPane prefHeight="736.0" prefWidth="1257.0" style="-fx-background-color: #282828;">
          <children>
             <VBox layoutX="-1.0" layoutY="128.0" prefHeight="610.0" prefWidth="188.0" styleClass="BackGround" stylesheets="@../css/style.css">
                <children>
-                  <Label alignment="CENTER" prefHeight="46.0" prefWidth="186.0" text="DEVELOPER">
+                  <Label alignment="CENTER" prefHeight="46.0" prefWidth="186.0" styleClass="Headline" stylesheets="@../css/assignStyle.css" text="DEVELOPER">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -70,7 +70,7 @@
                </children>
             </VBox>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#282828" height="125.0" layoutY="1.0" stroke="WHITE" strokeType="INSIDE" width="1257.0" />
-            <Button fx:id="btn_editprofile" layoutX="629.0" layoutY="31.0" mnemonicParsing="false" onAction="#handle_editProfile" style="-fx-background-color: #ffffff #ffffff;">
+            <Button fx:id="btn_editprofile" layoutX="1181.0" layoutY="76.0" mnemonicParsing="false" onAction="#handle_editProfile" style="-fx-background-color: #ffffff #ffffff;">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -79,7 +79,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btn_help" layoutX="566.0" layoutY="31.0" mnemonicParsing="false" onAction="#handle_Help" style="-fx-background-color: #ffffff #ffffff;">
+            <Button fx:id="btn_help" layoutX="1117.0" layoutY="76.0" mnemonicParsing="false" onAction="#handle_Help" style="-fx-background-color: #ffffff #ffffff;">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -99,7 +99,7 @@
                </image>
             </ImageView>
             <BorderPane fx:id="mainPane" layoutX="194.0" layoutY="128.0" prefHeight="610.0" prefWidth="1060.0" />
-            <JFXButton fx:id="btn_logout" layoutX="1138.0" layoutY="41.0" onAction="#handle_Logout" prefHeight="45.0" prefWidth="108.0" styleClass="buttons" stylesheets="@../css/style.css" text="Log Out" />
+            <JFXButton fx:id="btn_logout" layoutX="1118.0" layoutY="9.0" onAction="#handle_Logout" prefHeight="45.0" prefWidth="108.0" styleClass="buttons" stylesheets="@../css/style.css" text="Log Out" />
             <ListView layoutX="186.0" layoutY="127.0" prefHeight="610.0" prefWidth="11.0" />
          </children>
       </AnchorPane>
