@@ -5,6 +5,7 @@
  */
 package tempus.dal;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -33,7 +34,11 @@ public class DalManager implements IDalFacade {
 
     public DalManager() {
         userDao = new UserDAO();
-        projectDao = new ProjectDAO();
+        try {
+            projectDao = new ProjectDAO();
+        } catch (IOException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
         clientDao = new ClientDAO();
     }
 

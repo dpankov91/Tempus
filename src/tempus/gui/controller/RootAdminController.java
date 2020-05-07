@@ -74,7 +74,7 @@ public class RootAdminController implements Initializable {
         showDate();
         setUpimg();
         setFirstName();
-
+        loadUpTimesheet();
     }
 
     public void setFirstName() {
@@ -87,6 +87,12 @@ public class RootAdminController implements Initializable {
     public void setUpimg() {
         User us = userModel.getloggedInUser();
         imageUser.setImage(us.getPhotoURL());
+    }
+    
+    private void loadUpTimesheet(){
+                FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPage("AdminTimeTracker");
+        mainPane.setCenter(view);  
     }
 
     @FXML
@@ -151,9 +157,7 @@ public class RootAdminController implements Initializable {
     @FXML
     private void handle_Timesheet(ActionEvent event) 
     {
-        FxmlLoader object = new FxmlLoader();
-        Pane view = object.getPage("AdminTimeTracker");
-        mainPane.setCenter(view);  
+        loadUpTimesheet();
     }
 
     @FXML

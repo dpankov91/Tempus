@@ -5,6 +5,7 @@
  */
 package tempus.bll;
 
+import java.io.IOException;
 import java.util.List;
 
 import tempus.be.Client;

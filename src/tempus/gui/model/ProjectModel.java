@@ -6,6 +6,7 @@
 package tempus.gui.model;
 
 
+import java.io.IOException;
 import java.util.List;
 import tempus.be.Client;
 
@@ -20,16 +21,19 @@ import tempus.bll.IBllFacade;
  */
 public class ProjectModel {
     
- static ProjectModel projmodel = new ProjectModel();
+ static ProjectModel projmodel = new ProjectModel() ;
+ 
  private final IBllFacade facade;
  
     private Project selectedProject;
     
-   public static ProjectModel getInstance() {
+   public static ProjectModel getInstance() 
+   {
         return projmodel;
     }
     
-   public ProjectModel(){
+   public ProjectModel() {
+       
         this.facade = new BllManager();
     }
 

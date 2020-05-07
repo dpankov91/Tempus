@@ -70,6 +70,7 @@ public class RootDeveloperController implements Initializable {
         showDate();
         setUpimg();
         setFirstName();
+        loadUpTimesheet();
         
     }  
     
@@ -79,7 +80,11 @@ public class RootDeveloperController implements Initializable {
         lbl_fname.setText(us.getFName()+" "+us.getLName());
     }
     
-    
+    private void loadUpTimesheet(){
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPage("DeveloperTimeTracker");
+        mainPane.setCenter(view);  
+    }
    
     
     @FXML
@@ -100,10 +105,7 @@ public class RootDeveloperController implements Initializable {
     
     @FXML
     private void handle_TimeSheet(ActionEvent event) {
-        System.out.println("Clicked");
-        FxmlLoader object = new FxmlLoader();
-        Pane view = object.getPage("DeveloperTimeTracker");
-        mainPane.setCenter(view);  
+        loadUpTimesheet();
     }
 
     @FXML

@@ -5,6 +5,8 @@
  */
 package tempus.dal.dao;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import tempus.be.Client;
 import tempus.be.Project;
+import tempus.be.User;
 import tempus.dal.DbConnectionProvider;
 
 /**
@@ -25,10 +28,12 @@ import tempus.dal.DbConnectionProvider;
 public class ProjectDAO {
 
     private final DbConnectionProvider connector;
+    private ProjectUserDAO projUsDao;
     
-    public ProjectDAO()
+    public ProjectDAO() throws IOException
     {
         this.connector = new DbConnectionProvider();
+        projUsDao = new ProjectUserDAO();
     }
     
     public void createProject(String name, Client client, int hRate, String description) {
@@ -97,12 +102,13 @@ public class ProjectDAO {
         
         while (rs.next()) 
             {
-                
+                int id = rs.getInt("projectID");
                 String name = rs.getString("projectName");
                 String clientName = rs.getString("clientName");
                 int hRate = rs.getInt("hourlyRate");
                 String description = rs.getString("description");
-                Project proj = new Project(name, hRate, clientName, description);
+                List<User> userList = projUsDao.getUserProject(id);
+                Project proj = new Project(name, hRate, clientName, description, userList);
                 proj.setId(rs.getInt("projectID"));
                 allProjects.add(proj);
                
@@ -128,5 +134,6 @@ public class ProjectDAO {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
      }
     }
+
 }
     

@@ -5,6 +5,8 @@
  */
 package tempus.be;
 
+import java.util.List;
+
 
 /**
  *
@@ -18,28 +20,40 @@ public class Project {
     private int clientID;
     private String description;
     private String clientName;
+    private String usString;
+    List<User> userList;
+
+    public Project(String name, int hRate, String clientName, String description, List<User> userList) {
+        
+        this.name = name;
+        this.hRate = hRate;
+        this.clientName = clientName;
+        this.description = description;
+        this.userList = userList;
+    }
+    
+    public String getCatString() {
+        String finalString = "";
+        for (int i = 0; i<userList.size();i++) {
+            if(i == 0) finalString = userList.get(i).getFName()+" "+userList.get(i).getLName();
+            else finalString = finalString +  " , " +userList.get(i).getFName()+" "+userList.get(i).getLName();
+        }
+        return finalString;
+    }
+
+    public String getUsString() {
+        return getCatString();
+    }
+
+    public void setUsString(String usString) {
+        this.usString = usString;
+    }
 
     public Project(int id, String name, int hRate, int clientID, String description) {
         this.id = id;
         this.name = name;
         this.hRate = hRate;
         this.clientID = clientID;
-        this.description = description;
-    }
-
-    public Project(String name, int id, int hRate, int clientID, String description) {
-        this.name = name;
-        this.id = id;
-        this.hRate = hRate;
-        this.clientID=clientID;
-        this.description=description;
-    }
-
-    public Project(String name, int hRate, String clientName, String description) 
-    {
-        this.name = name;
-        this.hRate = hRate;
-        this.clientName = clientName;
         this.description = description;
     }
 

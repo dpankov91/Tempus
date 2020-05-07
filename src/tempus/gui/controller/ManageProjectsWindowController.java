@@ -27,6 +27,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import tempus.be.Project;
+import tempus.be.User;
 import tempus.gui.model.ProjectModel;
 
 /**
@@ -47,6 +48,8 @@ public class ManageProjectsWindowController implements Initializable {
     @FXML
     private TableColumn<Project, String> colClientName;
     @FXML
+    private TableColumn<User, ?> colAssignedUsers;
+    @FXML
     private JFXButton createButton;
     @FXML
     private JFXButton editButton;
@@ -57,6 +60,7 @@ public class ManageProjectsWindowController implements Initializable {
     private ProjectModel projModel;
     @FXML
     private JFXButton deleteButton;
+   
 
     /**
      * Initializes the controller class.
@@ -91,6 +95,7 @@ public class ManageProjectsWindowController implements Initializable {
         columnHourlyRate.setCellValueFactory(new PropertyValueFactory<>("hRate"));
         colClientName.setCellValueFactory(new PropertyValueFactory<>("clientName"));
         columnDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colAssignedUsers.setCellValueFactory(new PropertyValueFactory<>("usString"));
         loadTableView();
     }
 
