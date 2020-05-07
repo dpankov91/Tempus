@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="1075.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ManageClientsWindowController">
+   <children>
+      <TableView fx:id="tableViewProjects" layoutX="14.0" layoutY="98.0" prefHeight="346.0" prefWidth="514.0">
+        <columns>
+          <TableColumn fx:id="colName" prefWidth="136.7999849319458" text="Client Name" />
+            <TableColumn fx:id="colAddress" prefWidth="87.19998168945312" text="Address" />
+            <TableColumn fx:id="colPhone" prefWidth="96.80006408691406" text="Phone" />
+            <TableColumn fx:id="colEmail" prefWidth="193.60003662109375" text="Email" />
+        </columns>
+      </TableView>
+      <Label layoutX="238.0" layoutY="14.0" styleClass="Headline" stylesheets="@../css/style.css" text="Client Manager">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="deleteButton" layoutX="575.0" layoutY="305.0" onAction="#handleDelete" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="DELETE" />
+      <JFXButton fx:id="createButton" layoutX="575.0" layoutY="175.0" onAction="#handleCreate" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="CREATE" />
+      <JFXButton fx:id="editButton" layoutX="575.0" layoutY="240.0" onAction="#handleEdit" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="EDIT" />
+   </children>
+</AnchorPane>

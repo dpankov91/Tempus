@@ -157,7 +157,11 @@ public class RootAdminController implements Initializable {
     }
 
     @FXML
-    private void handle_clients(ActionEvent event) {
+    private void handle_clients(ActionEvent event) 
+    {
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPage("ManageClientsWindow");
+        mainPane.setCenter(view); 
     }
 
 }
