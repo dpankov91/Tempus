@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="1060.0" stylesheets="@../css/loginStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ManageUsersWindowController">
@@ -17,6 +19,11 @@
             <TableColumn fx:id="idEmail" prefWidth="162.39999999999998" text="E-Mail" />
         </columns>
       </TableView>
+      <ImageView fitHeight="80.0" fitWidth="95.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/94119488_281400346210241_4996574131064406016_n.png" />
+         </image>
+      </ImageView>
       <JFXButton fx:id="addUser" layoutX="555.0" layoutY="175.0" onAction="#onActionAddUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="ADD" AnchorPane.bottomAnchor="360.0" />
       <JFXButton fx:id="editUser" layoutX="555.0" layoutY="241.0" onAction="#onActionEditUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="EDIT" AnchorPane.bottomAnchor="300.0" />
       <JFXButton fx:id="deleteUser" layoutX="555.0" layoutY="303.0" onAction="#onActionDeleteUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="DELETE" AnchorPane.bottomAnchor="240.0" />

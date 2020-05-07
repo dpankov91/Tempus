@@ -18,7 +18,7 @@
    <children>
       <AnchorPane prefHeight="736.0" prefWidth="1257.0" style="-fx-background-color: #282828;">
          <children>
-            <VBox layoutX="-5.0" layoutY="127.0" prefHeight="611.0" prefWidth="187.0" styleClass="BackGround" stylesheets="@../css/style.css">
+            <VBox layoutY="126.0" prefHeight="611.0" prefWidth="187.0" styleClass="BackGround" stylesheets="@../css/style.css">
                <children>
                   <Label prefHeight="47.0" prefWidth="109.0" styleClass="Headline" stylesheets="@../css/style.css" text="ADMIN">
                      <font>
@@ -28,33 +28,38 @@
                         <Insets left="45.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lbl_fname" alignment="CENTER" prefHeight="41.0" prefWidth="187.0" styleClass="menuBtns">
+                  <Label fx:id="lbl_fname" alignment="CENTER" prefHeight="22.0" prefWidth="107.0">
                      <font>
                         <Font size="21.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="120.0" />
+                        <Insets top="100.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lblTodaysDate" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="194.0" styleClass="menuBtns" textAlignment="CENTER">
+                  <Label fx:id="lbl_lname" alignment="CENTER" prefHeight="31.0" prefWidth="143.0">
                      <font>
                         <Font size="21.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets left="50.0" />
                      </VBox.margin>
                   </Label>
-                  <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;" styleClass="menuBtns" stylesheets="@../css/style.css">
+                  <Label fx:id="lblTodaysDate" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="179.0" textAlignment="CENTER">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
                      <children>
                         <JFXButton fx:id="btn_users" layoutX="1.0" layoutY="-1.0" onAction="#handle_Users" prefHeight="45.0" prefWidth="200.0" text="Users" />
                      </children>
                      <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top="50.0" />
                      </VBox.margin>
                   </Pane>
                   <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
                      <children>
-                        <JFXButton fx:id="btn_overview" layoutX="3.0" layoutY="-1.0" onAction="#handle_Overview" prefHeight="45.0" prefWidth="194.0" styleClass="menuBtns" text="Overview" />
+                        <JFXButton fx:id="btn_overview" layoutX="3.0" layoutY="-1.0" onAction="#handle_Overview" prefHeight="45.0" prefWidth="194.0" text="Overview" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -62,7 +67,7 @@
                   </Pane>
                   <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
                      <children>
-                        <JFXButton fx:id="btn_projects" layoutX="-4.0" layoutY="-1.0" onAction="#handle_Projects" prefHeight="45.0" prefWidth="205.0" styleClass="menuBtns" text="Projects" />
+                        <JFXButton fx:id="btn_projects" layoutX="-4.0" layoutY="-1.0" onAction="#handle_Projects" prefHeight="45.0" prefWidth="205.0" text="Projects" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -70,15 +75,7 @@
                   </Pane>
                   <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
                      <children>
-                        <JFXButton fx:id="btn_timesheet" layoutX="-4.0" layoutY="-1.0" onAction="#handle_timesheet" prefHeight="45.0" prefWidth="205.0" styleClass="menuBtns" text="Timesheet" />
-                     </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Pane>
-                  <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
-                     <children>
-                        <JFXButton fx:id="btn_clients" layoutX="-4.0" layoutY="-1.0" onAction="#handle_clients" prefHeight="45.0" prefWidth="205.0" styleClass="menuBtns" text="Clients" />
+                        <JFXButton fx:id="btn_timesheet" layoutX="-4.0" layoutY="-1.0" onAction="#handle_timesheet" prefHeight="45.0" prefWidth="205.0" text="Timesheet" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -87,7 +84,7 @@
                </children>
             </VBox>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#282828" height="125.0" layoutY="1.0" stroke="WHITE" strokeType="INSIDE" width="1270.0" />
-            <ImageView fx:id="imageUser" fitHeight="100.0" fitWidth="105.0" layoutX="39.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="180.0">
+            <ImageView fx:id="imageUser" fitHeight="100.0" fitWidth="105.0" layoutX="39.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/iconfinder_8_3898372.png" />
                </image>
@@ -99,8 +96,8 @@
             </ImageView>
             <JFXButton fx:id="btnLogOut" layoutX="1132.0" layoutY="19.0" onAction="#handle_Logout" prefHeight="34.0" prefWidth="110.0" styleClass="buttons" stylesheets="@../css/style.css" text="Log Out" />
             <BorderPane fx:id="mainPane" layoutX="197.0" layoutY="127.0" prefHeight="610.0" prefWidth="1072.0" />
-            <Button fx:id="btn_help" layoutX="1141.0" layoutY="66.0" mnemonicParsing="false" onAction="#handle_Help" prefHeight="25.0" prefWidth="39.0" styleClass="helpAndSet" stylesheets="@../css/style.css" />
-            <Button fx:id="btn_editprofile" layoutX="1196.0" layoutY="65.0" mnemonicParsing="false" onAction="#handle_editProfile" prefHeight="19.0" prefWidth="39.0" styleClass="helpAndSet" stylesheets="@../css/style.css">
+            <Button fx:id="btn_help" layoutX="1141.0" layoutY="66.0" mnemonicParsing="false" onAction="#handle_Help" prefHeight="25.0" prefWidth="39.0" style="-fx-background-color: #ffffff #ffffff;" />
+            <Button fx:id="btn_editprofile" layoutX="1196.0" layoutY="65.0" mnemonicParsing="false" onAction="#handle_editProfile" prefHeight="19.0" prefWidth="39.0" style="-fx-background-color: #ffffff #ffffff;">
                <graphic>
                   <ImageView fitHeight="19.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -113,12 +110,6 @@
             <ImageView fitHeight="19.0" fitWidth="30.0" layoutX="1151.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/help-button-speech-bubble-with-question-mark_icon-icons.com_72707.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="416.0" layoutY="6.0" prefHeight="116.0" prefWidth="346.0" styleClass="timeIsMoney" stylesheets="@../css/style.css" text="Time Is Money" textFill="#474a56" AnchorPane.bottomAnchor="616.0" AnchorPane.topAnchor="6.0" />
-            <ImageView fitHeight="106.0" fitWidth="110.0" layoutX="752.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/watch-icon-1.png" />
                </image>
             </ImageView>
          </children>

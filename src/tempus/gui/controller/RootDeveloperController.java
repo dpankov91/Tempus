@@ -51,6 +51,7 @@ public class RootDeveloperController implements Initializable {
     private Button btn_help;
     @FXML
     private Label lbl_fname;
+    @FXML
     private Label lbl_lname;
 
     private User user;
@@ -71,11 +72,17 @@ public class RootDeveloperController implements Initializable {
         showDate();
         setUpimg();
         setFirstName();
+        setLastName();
     }  
     
     public void setFirstName() {
         User us = userModel.getloggedInUser();
-        lbl_fname.setText(us.getFName()+" "+us.getLName());
+        lbl_fname.setText(us.getFName());
+    }
+    
+    public void setLastName() {
+        User us = userModel.getloggedInUser();
+        lbl_lname.setText(us.getLName());
     }
 
     @FXML
