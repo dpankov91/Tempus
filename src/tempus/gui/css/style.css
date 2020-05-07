@@ -9,6 +9,7 @@ and open the template in the editor.
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Skranji&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 .buttons{
     /* turquoise color */
@@ -51,5 +52,10 @@ and open the template in the editor.
      -fx-border-radius: 8px;
      -fx-border-color: black;
  }
+ 
+ .timeIsMoney{
+    -fx-font-family: "Pacifico";    
+    -fx-font-size: 50;
+    }
  
  
