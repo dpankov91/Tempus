@@ -121,7 +121,7 @@ public class ManageProjectsWindowController implements Initializable {
         projModel.setSelectedProject(tableViewProjects.getSelectionModel().getSelectedItem());
         if (projModel.getSelectedProject() != null) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/ProjectAssign.fxml"));
-            loader.<ProjectCreateWindowController>getController().setInfo(this);
+            loader.<ProjectAssignController>getController().setInfo(this);
             Parent z = loader.load();
             Scene scene = new Scene(z);
             Stage s = new Stage();

@@ -62,6 +62,8 @@ public class RootAdminController implements Initializable {
     private UserModel userModel;
     @FXML
     private JFXButton btn_timesheet;
+    @FXML
+    private JFXButton btn_clients;
 
     /**
      * Initializes the controller class.
@@ -152,6 +154,10 @@ public class RootAdminController implements Initializable {
         FxmlLoader object = new FxmlLoader();
         Pane view = object.getPage("AdminTimeTracker");
         mainPane.setCenter(view);  
+    }
+
+    @FXML
+    private void handle_clients(ActionEvent event) {
     }
 
 }

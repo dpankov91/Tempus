@@ -43,7 +43,7 @@
                   </Label>
                   <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
                      <children>
-                        <JFXButton fx:id="btn_users" layoutX="1.0" layoutY="-1.0" onAction="#handle_Users" prefHeight="45.0" prefWidth="200.0" text="Users" />
+                        <JFXButton fx:id="btn_timesheet" layoutX="1.0" layoutY="-1.0" onAction="#handle_Timesheet" prefHeight="45.0" prefWidth="200.0" text="Timesheet" />
                      </children>
                      <VBox.margin>
                         <Insets top="50.0" />
@@ -67,7 +67,15 @@
                   </Pane>
                   <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
                      <children>
-                        <JFXButton fx:id="btn_timesheet" layoutX="-4.0" layoutY="-1.0" onAction="#handle_Timesheet" prefHeight="45.0" prefWidth="205.0" text="Timesheet" />
+                        <JFXButton fx:id="btn_users" layoutX="-4.0" layoutY="-1.0" onAction="#handle_Users" prefHeight="45.0" prefWidth="205.0" text="Users" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Pane>
+                  <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
+                     <children>
+                        <JFXButton fx:id="btn_clients" layoutX="-4.0" layoutY="-1.0" onAction="#handle_clients" prefHeight="45.0" prefWidth="205.0" text="Clients" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
