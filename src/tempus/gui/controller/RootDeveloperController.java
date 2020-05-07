@@ -51,8 +51,6 @@ public class RootDeveloperController implements Initializable {
     private Button btn_help;
     @FXML
     private Label lbl_fname;
-    @FXML
-    private Label lbl_lname;
 
     private User user;
     @FXML
@@ -70,24 +68,19 @@ public class RootDeveloperController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         userModel = UserModel.getInstance();
         showDate();
-        //setUpimg();
-        //setFirstName();
-        //setLastName();
+        setUpimg();
+        setFirstName();
+        
     }  
     
-    /**
+    
     public void setFirstName() {
         User us = userModel.getloggedInUser();
-        lbl_fname.setText(us.getFName());
+        lbl_fname.setText(us.getFName()+" "+us.getLName());
     }
-    */
     
-    /**
-    public void setLastName() {
-        User us = userModel.getloggedInUser();
-        lbl_lname.setText(us.getLName());
-    }
-    */
+    
+   
     
     @FXML
     private void handle_editProfile(ActionEvent event) {
@@ -147,11 +140,11 @@ public class RootDeveloperController implements Initializable {
         lblTodaysDate.setText(dateFormat.format(date));
     }
     
-    /**
+    
     private void setUpimg() {
         User us = userModel.getloggedInUser();
-        //imageUser.setImage(us.getPhotoURL());
+        imageUser.setImage(us.getPhotoURL());
     }
-    */
+    
     
 }

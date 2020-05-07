@@ -70,7 +70,7 @@ public class RootAdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         userModel = UserModel.getInstance();
         showDate();
-       setUpimg();
+        setUpimg();
         setFirstName();
 
     }
