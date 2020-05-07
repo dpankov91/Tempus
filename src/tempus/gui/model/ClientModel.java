@@ -5,6 +5,7 @@
  */
 package tempus.gui.model;
 
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tempus.be.Client;
@@ -36,6 +37,10 @@ public class ClientModel {
     public ObservableList<Client> getObsClients() 
     {
         return clientList;
+    }
+
+    public List<Client> getAllClients() {
+        return bllManager.getAllClientss();
     }
     
 }

@@ -23,6 +23,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import tempus.be.User;
 import tempus.gui.model.UserModel;
@@ -45,6 +46,8 @@ public class LoginController implements Initializable {
     UserModel model;
     @FXML
     private JFXRadioButton rdoRememberMe;
+    
+    private RootAdminController rtcontroller;
 
     /**
      * Initializes the controller class.
@@ -52,6 +55,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         model = UserModel.getInstance();
+        rtcontroller = new RootAdminController();
         checkRememberMe();
     }
 
@@ -98,6 +102,12 @@ public class LoginController implements Initializable {
             s.show();
             closeWindow();
         }
+    }
+    
+    void loadTimesheetWhenLogin(){
+//            FxmlLoader object = new FxmlLoader();
+//            Pane view = object.getPage("AdminTimeTracker");
+//            mainPane.setCenter(view);  
     }
 
     private void checkRememberMe() {

@@ -126,6 +126,10 @@ public class ManageUsersWindowController implements Initializable {
         lastName.setCellValueFactory(new PropertyValueFactory<>("lName"));
         col_role.setCellValueFactory(new PropertyValueFactory<>("role"));
         idEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colPostcode.setCellValueFactory(new PropertyValueFactory<>("postcode"));
+        colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        
 
         loadTableView();
     }

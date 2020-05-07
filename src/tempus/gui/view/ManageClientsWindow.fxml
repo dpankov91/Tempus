@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="1075.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ManageClientsWindowController">
    <children>
-      <TableView fx:id="tableViewProjects" layoutX="14.0" layoutY="98.0" prefHeight="346.0" prefWidth="514.0">
+      <TableView fx:id="tableViewClients" layoutX="14.0" layoutY="98.0" prefHeight="346.0" prefWidth="514.0">
         <columns>
           <TableColumn fx:id="colName" prefWidth="136.7999849319458" text="Client Name" />
             <TableColumn fx:id="colAddress" prefWidth="87.19998168945312" text="Address" />
