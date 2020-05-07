@@ -52,8 +52,6 @@ public class RootAdminController implements Initializable {
     private Button btn_help;
     @FXML
     private Label lbl_fname;
-    @FXML
-    private Label lbl_lname;
 
     private User user;
     @FXML
@@ -64,6 +62,8 @@ public class RootAdminController implements Initializable {
     private UserModel userModel;
     @FXML
     private JFXButton btn_timesheet;
+    @FXML
+    private JFXButton btn_clients;
 
     /**
      * Initializes the controller class.
@@ -79,12 +79,12 @@ public class RootAdminController implements Initializable {
 
     public void setFirstName() {
       User us = userModel.getloggedInUser();
-        lbl_fname.setText(us.getFName());
+        lbl_fname.setText(us.getFName()+" "+us.getLName());
     }
 
     public void setLastName() {
-        User us = userModel.getloggedInUser();
-        lbl_lname.setText(us.getLName());
+//        User us = userModel.getloggedInUser();
+//        lbl_lname.setText(us.getLName());
     }
 
     public void setUpimg() {
@@ -156,6 +156,13 @@ public class RootAdminController implements Initializable {
     {
         FxmlLoader object = new FxmlLoader();
         Pane view = object.getPage("DeveloperTimeTracker");
+        mainPane.setCenter(view);  
+    }
+
+    @FXML
+    private void handle_clients(ActionEvent event) {
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPage("ManageClientsWindow");
         mainPane.setCenter(view);  
     }
 

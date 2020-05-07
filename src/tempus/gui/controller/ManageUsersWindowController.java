@@ -52,6 +52,7 @@ public class ManageUsersWindowController implements Initializable {
     @FXML
     private JFXButton deleteUser;
     
+    
     /**
      * Initializes the controller class.
      * @param url
@@ -122,5 +123,6 @@ public class ManageUsersWindowController implements Initializable {
         loadTableView();
     }
 
+ 
     
 }

@@ -9,6 +9,9 @@ and open the template in the editor.
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Skranji&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap');
 
 .buttons{
     /* turquoise color */
@@ -52,4 +55,19 @@ and open the template in the editor.
      -fx-border-color: black;
  }
  
+ .timeIsMoney{
+   -fx-font-family: "Pacifico";    
+   -fx-font-size: 50;
+   -fx-font-color: #474A56;
+ }
  
+ .helpAndSet{
+     -fx-background-radius: 18px;
+     -fx-border-radius: 18px;
+ }
+ 
+ .menuBtns{
+    -fx-font-size: 20;
+    -fx-font-family: "Noto+Sans+SC"; 
+     
+ }

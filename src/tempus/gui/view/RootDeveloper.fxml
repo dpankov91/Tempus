@@ -20,7 +20,7 @@
          <children>
             <VBox layoutX="-1.0" layoutY="128.0" prefHeight="610.0" prefWidth="188.0" styleClass="BackGround" stylesheets="@../css/style.css">
                <children>
-                  <Label alignment="CENTER" prefHeight="46.0" prefWidth="186.0" text="DEVELOPER">
+                  <Label alignment="CENTER" prefHeight="46.0" prefWidth="186.0" styleClass="Headline" text="DEVELOPER">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -33,19 +33,14 @@
                         <Font size="21.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_lname" alignment="CENTER" prefHeight="43.0" prefWidth="191.0">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lblTodaysDate" alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="185.0" textAlignment="CENTER">
+                  <Label fx:id="lblTodaysDate" alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="185.0" styleClass="menuBtns" textAlignment="CENTER">
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Label>
                   <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
                      <children>
-                        <JFXButton fx:id="btn_timesheet" layoutX="1.0" layoutY="-1.0" onAction="#handle_TimeSheet" prefHeight="45.0" prefWidth="200.0" text="Timesheet" />
+                        <JFXButton fx:id="btn_timesheet" layoutX="1.0" layoutY="-1.0" onAction="#handle_TimeSheet" prefHeight="45.0" prefWidth="200.0" styleClass="menuBtns" text="Timesheet" />
                      </children>
                      <VBox.margin>
                         <Insets top="50.0" />
@@ -53,7 +48,7 @@
                   </Pane>
                   <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
                      <children>
-                        <JFXButton fx:id="btn_overview" layoutX="3.0" layoutY="-1.0" onAction="#handle_Overview" prefHeight="45.0" prefWidth="194.0" text="My Overview" />
+                        <JFXButton fx:id="btn_overview" layoutX="3.0" layoutY="-1.0" onAction="#handle_Overview" prefHeight="45.0" prefWidth="194.0" styleClass="menuBtns" text="My Overview" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -61,7 +56,7 @@
                   </Pane>
                   <Pane prefHeight="45.0" prefWidth="194.0" style="-fx-background-color: #3dd0e0#3dd0e0;">
                      <children>
-                        <JFXButton fx:id="btn_projects" layoutX="-4.0" layoutY="-1.0" onAction="#handle_Projects" prefHeight="45.0" prefWidth="205.0" text="Projects" />
+                        <JFXButton fx:id="btn_projects" layoutX="-4.0" layoutY="-1.0" onAction="#handle_Projects" prefHeight="45.0" prefWidth="205.0" styleClass="menuBtns" text="Projects" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -70,18 +65,18 @@
                </children>
             </VBox>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#282828" height="125.0" layoutY="1.0" stroke="WHITE" strokeType="INSIDE" width="1257.0" />
-            <Button fx:id="btn_editprofile" layoutX="629.0" layoutY="31.0" mnemonicParsing="false" onAction="#handle_editProfile" style="-fx-background-color: #ffffff #ffffff;">
+            <Button fx:id="btn_editprofile" layoutX="1200.0" layoutY="81.0" mnemonicParsing="false" onAction="#handle_editProfile" prefHeight="30.0" prefWidth="26.0" style="-fx-background-color: #ffffff #ffffff;" styleClass="helpAndSet" stylesheets="@../css/style.css">
                <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="19.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/iconfinder_ic_mode_edit_48px_352547.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btn_help" layoutX="566.0" layoutY="31.0" mnemonicParsing="false" onAction="#handle_Help" style="-fx-background-color: #ffffff #ffffff;">
+            <Button fx:id="btn_help" layoutX="1143.0" layoutY="81.0" mnemonicParsing="false" onAction="#handle_Help" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: #ffffff #ffffff;" styleClass="helpAndSet" stylesheets="@../css/style.css">
                <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/help-button-speech-bubble-with-question-mark_icon-icons.com_72707.png" />
                      </image>
@@ -99,8 +94,14 @@
                </image>
             </ImageView>
             <BorderPane fx:id="mainPane" layoutX="194.0" layoutY="128.0" prefHeight="610.0" prefWidth="1060.0" />
-            <JFXButton fx:id="btn_logout" layoutX="1138.0" layoutY="41.0" onAction="#handle_Logout" prefHeight="45.0" prefWidth="108.0" styleClass="buttons" stylesheets="@../css/style.css" text="Log Out" />
-            <ListView layoutX="186.0" layoutY="127.0" prefHeight="610.0" prefWidth="11.0" />
+            <JFXButton fx:id="btn_logout" layoutX="1136.0" layoutY="31.0" onAction="#handle_Logout" prefHeight="36.0" prefWidth="108.0" styleClass="buttons" stylesheets="@../css/style.css" text="Log Out" />
+            <ListView layoutX="186.0" layoutY="127.0" prefHeight="610.0" prefWidth="0.0" />
+            <Label layoutX="351.0" layoutY="15.0" prefHeight="100.0" prefWidth="348.0" styleClass="timeIsMoney" stylesheets="@../css/style.css" text="Time Is Money" textFill="#474a56" />
+            <ImageView fitHeight="118.0" fitWidth="200.0" layoutX="687.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/watch-icon-1.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

@@ -57,6 +57,8 @@ public class ManageProjectsWindowController implements Initializable {
     private ProjectModel projModel;
     @FXML
     private JFXButton deleteButton;
+    @FXML
+    private TableColumn<?, ?> colAssignedUsers;
 
     /**
      * Initializes the controller class.
