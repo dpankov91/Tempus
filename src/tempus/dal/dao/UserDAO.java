@@ -95,7 +95,7 @@ public class UserDAO {
             int phone = rs.getInt("phoneNumber");
             int postC = rs.getInt("postcode");
             Boolean isAdmin = rs.getBoolean("isAdmin");
-            String photoURL = rs.getString("userPhoto");
+  //          String photoURL = rs.getString("userPhoto");
             String role;
             if (isAdmin) {
                 role = "Admin";
@@ -109,7 +109,7 @@ public class UserDAO {
             us.setPostcode(postC);
             us.setPhone(phone);
             us.setAddress(address);
-            us.setPhotoURL(photoURL);
+//            us.setPhotoURL(photoURL);
             allUsers.add(us);
         }
         return allUsers;
@@ -120,7 +120,7 @@ public class UserDAO {
         try {
             Connection con = connector.getConnection();
             String sqlUser = "INSERT INTO [User] "
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+                    + "VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = con.prepareStatement(sqlUser);
             //INSERT INTO [User] 
             //VALUES (?,'password','firstName','lastname',5555,'address',6700,1,'Admin','')
@@ -133,13 +133,11 @@ public class UserDAO {
             pstmt.setString(6, address);
             pstmt.setInt(7, postcode);
             pstmt.setInt(8, (role == "Admin" ?  1 : 0) );
-            pstmt.setString(9, role);
-            pstmt.setString(10, "");
+            pstmt.setString(9, "");
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address) {

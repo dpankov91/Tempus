@@ -41,6 +41,7 @@ public class ProjectAssignController implements Initializable {
     
     private UserModel userModel;
     private ProjectModel projModel;
+    ManageProjectsWindowController prevContrl;
     
     /**
      * Initializes the controller class.
@@ -64,6 +65,7 @@ public class ProjectAssignController implements Initializable {
         userModel.assignUsersToProj(projModel.getSelectedProject(), usersAssign);
         
         setUpAlert("Users are assigned", "Selected users are assigned to project");
+        prevContrl.loadTableView();
         handleClose(event);
         }
     else{
@@ -103,6 +105,6 @@ public class ProjectAssignController implements Initializable {
     }
 
     void setInfo(ManageProjectsWindowController aThis) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        prevContrl = aThis;
     }
 }
