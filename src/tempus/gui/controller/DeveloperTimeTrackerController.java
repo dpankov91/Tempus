@@ -94,7 +94,7 @@ public class DeveloperTimeTrackerController implements Initializable {
     
     Map<Integer, String> numberMap;
     Integer currSeconds;
-    Thread thrd;
+    Thread thread;
 
     
      /**
@@ -183,13 +183,13 @@ public class DeveloperTimeTrackerController implements Initializable {
 
     @FXML
     private void handle_PauseTask(ActionEvent event) {
-        thrd.suspend();
+        thread.suspend();
     
     }
     
     @FXML
     private void handle_ResumeTask(ActionEvent event) {
-        thrd.resume();
+        thread.resume();
     }
 
     @FXML
@@ -200,7 +200,7 @@ public class DeveloperTimeTrackerController implements Initializable {
     private void handle_Cancel(ActionEvent event) {
         timerPane.setVisible(false);
         menuPane.setVisible(true);
-        thrd.stop();
+        thread.stop();
         scrollDown();
     }
 
@@ -216,7 +216,7 @@ public class DeveloperTimeTrackerController implements Initializable {
     }
     
     void startCountDown() {
-        thrd = new Thread(new Runnable() {
+        thread = new Thread(new Runnable() {
             
             @Override
             public void run() {
@@ -227,7 +227,7 @@ public class DeveloperTimeTrackerController implements Initializable {
                         if(currSeconds == 0) {
                             System.out.println("Finished");
                             scrollDown();
-                            thrd.stop();
+                            thread.stop();
                         }
                           currSeconds -= 1;
                     }
@@ -236,7 +236,7 @@ public class DeveloperTimeTrackerController implements Initializable {
                 }
             }
         });
-        thrd.start();
+        thread.start();
     }
     
     void setOutput() {
