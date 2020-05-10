@@ -6,19 +6,18 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<AnchorPane id="AnchorPane" prefHeight="436.0" prefWidth="311.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.AddClientController">
    <children>
       <ImageView fitHeight="101.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/94119488_281400346210241_4996574131064406016_n.png" />
          </image>
       </ImageView>
-      <JFXTextField fx:id="firstNameNewClient" layoutX="94.0" layoutY="139.0" text="First Name" />
-      <JFXTextField fx:id="lastNameNewClient" layoutX="94.0" layoutY="220.0" text="Last Name" />
-      <JFXTextField fx:id="cityNewClient" layoutX="286.0" layoutY="139.0" text="City" />
-      <JFXTextField fx:id="phoneNewClient" layoutX="286.0" layoutY="220.0" text="Phone Number" />
-      <JFXButton fx:id="saveNewClient" layoutX="120.0" layoutY="283.0" onAction="#onActionSaveNewClient" prefHeight="42.0" prefWidth="83.0" styleClass="buttons" text="SAVE" />
-      <JFXButton fx:id="cancelAddingClient" layoutX="312.0" layoutY="283.0" onAction="#onActionCancelAdding" prefHeight="42.0" prefWidth="83.0" styleClass="buttons" text="CANCEL" />
+      <JFXTextField fx:id="txtName" layoutX="80.0" layoutY="116.0" promptText="Name" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="110.0" />
+      <JFXTextField fx:id="txtAddress" layoutX="94.0" layoutY="174.0" promptText="Address" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="170.0" />
+      <JFXTextField fx:id="txtPhone" layoutX="93.0" layoutY="246.0" promptText="Phone" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="230.0" />
+      <JFXTextField fx:id="txtEmail" layoutX="92.0" layoutY="312.0" promptText="E-Mail" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="290.0" />
+      <JFXButton fx:id="btnSave" layoutX="38.0" layoutY="377.0" onAction="#onActionSaveClient" prefHeight="35.0" prefWidth="83.0" styleClass="buttons" text="Save" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="189.8" />
+      <JFXButton fx:id="btnCancel" layoutX="185.0" layoutY="371.0" onAction="#onActionCancel" prefHeight="35.0" prefWidth="83.0" styleClass="buttons" text="Cancel" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="40.0" />
    </children>
 </AnchorPane>

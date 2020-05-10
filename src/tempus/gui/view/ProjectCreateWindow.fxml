@@ -7,17 +7,18 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="350.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ProjectCreateWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="350.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ProjectCreateWindowController">
    <children>
-      <AnchorPane prefHeight="550.0" prefWidth="350.0">
+      <AnchorPane prefHeight="530.0" prefWidth="350.0">
          <children>
             <Label layoutX="59.0" layoutY="14.0" prefHeight="40.0" styleClass="Headline" stylesheets="@../css/style.css" text="Creating Project" textFill="#66ff66" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="14.0" />
             <JFXTextField fx:id="txtProjectName" layoutX="107.0" layoutY="107.0" prefHeight="26.0" prefWidth="150.0" promptText="Project Name" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="100.0" />
-            <JFXTextField fx:id="txtHourlyRate" layoutX="114.0" layoutY="234.0" prefHeight="26.0" prefWidth="150.0" promptText="Hourly Rate" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="240.0" />
-            <Button fx:id="saveButton" layoutX="48.0" layoutY="436.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="40.0" prefWidth="103.0" styleClass="buttons" stylesheets="@../css/style.css" text="Save" AnchorPane.bottomAnchor="70.0" />
-            <Button fx:id="goBackButton" layoutX="190.0" layoutY="436.0" mnemonicParsing="false" onAction="#handleGoBack" prefHeight="40.0" prefWidth="103.0" styleClass="buttons" stylesheets="@../css/style.css" text="Go Back" AnchorPane.bottomAnchor="70.0" />
+            <JFXTextField fx:id="txtHourlyRate" layoutX="100.0" layoutY="170.0" prefHeight="26.0" prefWidth="150.0" promptText="Hourly Rate" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="170.0" />
+            <Button fx:id="saveButton" layoutX="48.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="40.0" prefWidth="103.0" styleClass="buttons" stylesheets="@../css/style.css" text="Save" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" />
+            <Button fx:id="goBackButton" layoutX="189.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleGoBack" prefHeight="40.0" prefWidth="103.0" styleClass="buttons" stylesheets="@../css/style.css" text="Back" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
             <JFXTextArea fx:id="txtDescription" layoutX="65.0" layoutY="313.0" prefHeight="82.0" prefWidth="216.0" promptText="Description" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="310.0" />
-            <ComboBox fx:id="cmbClient" layoutX="107.0" layoutY="177.0" prefWidth="150.0" promptText="Client" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="170.0" />
+            <ComboBox fx:id="cmbClient" layoutX="67.0" layoutY="249.0" prefWidth="150.0" promptText="Client" AnchorPane.leftAnchor="67.0" AnchorPane.topAnchor="240.0" />
+            <Button layoutX="235.0" layoutY="248.0" mnemonicParsing="false" onAction="#btnAddClient" prefHeight="26.0" prefWidth="47.0" text="New" AnchorPane.topAnchor="240.0" />
          </children>
       </AnchorPane>
    </children>

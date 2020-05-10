@@ -7,13 +7,17 @@ package tempus.gui.controller;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import tempus.gui.model.UserModel;
 import javafx.scene.control.Alert;
@@ -45,7 +49,6 @@ public class ProjectCreateWindowController implements Initializable {
     @FXML
     private ComboBox<Client> cmbClient;
 
-    
     
     ManageProjectsWindowController prevContrl;
     
@@ -111,7 +114,7 @@ public class ProjectCreateWindowController implements Initializable {
             closeWindow(event);           
         }
         else{
-            setUpAlert("Blabla" , "BlabBLaBla.");
+            setUpAlert("Check fields" , "Forgot to fill some fields");
         }
         
    
@@ -151,6 +154,16 @@ public class ProjectCreateWindowController implements Initializable {
     void setInfo(ManageProjectsWindowController aThis) {
     prevContrl = aThis;
             }
+
+    @FXML
+    private void btnAddClient(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/AddClient.fxml"));
+        Parent z = loader.load();
+        Scene scene = new Scene(z);
+        Stage s = new Stage();
+        s.setScene(scene);
+        s.show();
+    }
     
 
 }
