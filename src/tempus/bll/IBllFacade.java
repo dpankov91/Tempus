@@ -46,6 +46,8 @@ public interface IBllFacade {
 
     public List<Project> getAllProjectsOverview();
 
+    public void deleteClient(Client selectedClient);
+
 
     
 }

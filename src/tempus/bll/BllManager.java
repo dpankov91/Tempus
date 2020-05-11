@@ -97,6 +97,11 @@ public class BllManager implements IBllFacade {
         return facade.getAllProjectsOverview();
     }
 
+    @Override
+    public void deleteClient(Client selectedClient) {
+        facade.deleteClient(selectedClient);
+    }
+
  
 
 }
