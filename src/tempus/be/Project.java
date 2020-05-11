@@ -57,6 +57,48 @@ public class Project {
         return finalString;
     }
 
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
+
+    public String getUserLastName() {
+        return userLastName;
+    }
+
+    public void setUserLastName(String userLastName) {
+        this.userLastName = userLastName;
+    }
+
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+
+    public Date getTaskDate() {
+        return taskDate;
+    }
+
+    public void setTaskDate(Date taskDate) {
+        this.taskDate = taskDate;
+    }
+
+    public int getSpentTime() {
+        return spentTime;
+    }
+
+    public void setSpentTime(int spentTime) {
+        this.spentTime = spentTime;
+    }
+
+    
+    
     public String getUsString() {
         return getCatString();
     }

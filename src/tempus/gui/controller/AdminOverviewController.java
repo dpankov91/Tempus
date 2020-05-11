@@ -8,6 +8,7 @@ package tempus.gui.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -40,15 +41,15 @@ public class AdminOverviewController implements Initializable {
     @FXML
     private TableView<Project> tableProject;
     @FXML
-    private TableColumn<?, ?> colName;
+    private TableColumn<Project, String> colName;
     @FXML
-    private TableColumn<?, ?> colTask;
+    private TableColumn<Project, String> colTask;
     @FXML
-    private TableColumn<?, ?> colUser;
+    private TableColumn<Project, String> colUser;
     @FXML
-    private TableColumn<?, ?> colDate;
+    private TableColumn<Project, Date> colDate;
     @FXML
-    private TableColumn<?, ?> colTime;
+    private TableColumn<Project, Integer> colTime;
     @FXML
     private JFXComboBox<Project> cmbProjectName;
     @FXML
@@ -85,6 +86,7 @@ public class AdminOverviewController implements Initializable {
 
     @FXML
     private void onClickLoadAllProjectsTable(ActionEvent event) {
+        setUpTableView();
     }
 
     @FXML

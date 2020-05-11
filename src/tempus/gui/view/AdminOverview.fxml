@@ -15,7 +15,7 @@
       <Label layoutX="432.0" layoutY="51.0" prefHeight="51.0" prefWidth="223.0" styleClass="Headline" stylesheets="@../css/style.css" text="Admin Overview" AnchorPane.bottomAnchor="529.0" AnchorPane.leftAnchor="432.0" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="30.0" />
       <JFXComboBox fx:id="cmbDateRange" layoutX="656.0" layoutY="110.0" onAction="#onSelectSetDateRangeChartBar" promptText="Date Range" />
       <JFXComboBox fx:id="cmbUserOrProject" layoutX="80.0" layoutY="110.0" onAction="#onSelectAppearUserOrProjectTable" promptText="User Or Project Table" />
-      <StackedBarChart fx:id="chartBar" layoutX="487.0" layoutY="157.0" prefHeight="441.0" prefWidth="620.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="5.0">
+      <StackedBarChart fx:id="chartBar" layoutX="466.0" layoutY="157.0" prefHeight="442.0" prefWidth="618.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="466.0" AnchorPane.rightAnchor="-9.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -23,15 +23,15 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </StackedBarChart>
-      <AnchorPane layoutX="21.0" layoutY="157.0" prefHeight="442.0" prefWidth="449.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="610.0">
+      <AnchorPane layoutX="21.0" layoutY="157.0" prefHeight="442.0" prefWidth="477.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="593.0">
          <children>
-            <TableView fx:id="tableProject" prefHeight="283.0" prefWidth="468.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="55.0">
+            <TableView fx:id="tableProject" prefHeight="283.0" prefWidth="468.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="55.0">
               <columns>
-                <TableColumn fx:id="colName" prefWidth="99.99999713897705" text="Project name" />
-                <TableColumn fx:id="colTask" prefWidth="92.0" text="Task" />
-                  <TableColumn fx:id="colUser" prefWidth="95.99998474121094" text="User" />
-                  <TableColumn fx:id="colDate" prefWidth="90.4000244140625" text="Date" />
-                  <TableColumn fx:id="colTime" prefWidth="88.80006408691406" text="Time" />
+                <TableColumn fx:id="colName" prefWidth="110.40002155303955" text="Project name" />
+                <TableColumn fx:id="colTask" prefWidth="110.39999389648438" text="Task" />
+                  <TableColumn fx:id="colUser" prefWidth="97.60002136230469" text="User" />
+                  <TableColumn fx:id="colDate" prefWidth="93.60003662109375" text="Date" />
+                  <TableColumn fx:id="colTime" prefWidth="63.20001220703125" text="Time" />
               </columns>
             </TableView>
             <JFXComboBox fx:id="cmbProjectName" layoutX="14.0" layoutY="14.0" onAction="#onSelectLoadSelectedProjectTable" prefHeight="26.0" prefWidth="154.0" promptText="Project Name" />
