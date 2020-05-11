@@ -16,10 +16,12 @@ import tempus.be.Project;
 import tempus.be.Client;
 
 import tempus.be.Project;
+import tempus.be.Task;
 
 import tempus.be.User;
 import tempus.dal.dao.ClientDAO;
 import tempus.dal.dao.ProjectDAO;
+import tempus.dal.dao.TaskDAO;
 import tempus.dal.dao.UserDAO;
 
 /**
@@ -31,8 +33,9 @@ public class DalManager implements IDalFacade {
     UserDAO userDao;
     ProjectDAO projectDao;
     ClientDAO clientDao;
+    TaskDAO taskDao;
 
-    public DalManager() {
+    public DalManager(){
         userDao = new UserDAO();
         try {
             projectDao = new ProjectDAO();
@@ -40,6 +43,11 @@ public class DalManager implements IDalFacade {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         clientDao = new ClientDAO();
+        try {
+            taskDao = new TaskDAO();
+        } catch (IOException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -134,16 +142,28 @@ public class DalManager implements IDalFacade {
         }
     }
 
+
+
     @Override
-    public List<Project> getAllProjectsOverview() 
-    {
-        List<Project> allProjectsOverview = null;
+    public List<Task> getAllTasksOverview() {
+        List<Task> allTasksOverview = null;
         try {
-            allProjectsOverview = projectDao.getAllProjectsOverview();
+            allTasksOverview = taskDao.getAllTasksOverview();
         } catch (SQLException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return allProjectsOverview;
+        return allTasksOverview;
+    }
+
+    @Override
+    public List<Task> getTasksOfSelectedProject(Project selectedProject) {
+        List<Task> TasksOfSelectedProject = null;
+        try {
+            TasksOfSelectedProject = taskDao.getTasksOfSelectedProject(selectedProject);
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return TasksOfSelectedProject;
     }
 
 }

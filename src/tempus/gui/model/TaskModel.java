@@ -5,6 +5,9 @@
  */
 package tempus.gui.model;
 
+import java.util.List;
+import tempus.be.Project;
+import tempus.be.Task;
 import tempus.bll.BllManager;
 import tempus.bll.IBllFacade;
 
@@ -23,6 +26,15 @@ public class TaskModel {
 
     public TaskModel() {
         this.bllManager = new BllManager();
+    }
+
+    public List<Task> getAllTasksOverview() {
+        return bllManager.getAllTasksOverview();
+    }
+
+
+    public List<Task> getTasksOfSelectedProject(Project selectedProject) {
+        return bllManager.getTasksOfSelectedProject(selectedProject);
     }
     
     

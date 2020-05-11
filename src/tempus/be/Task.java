@@ -20,6 +20,9 @@ public class Task {
     private Time startTime;
     private Time endTime;
     private int spentTime;
+    
+    private String projName;
+    private String userLastName;
 
     public Task(String task, String note, Date createdDate, Time startTime, Time endTime, int spentTime) {
         this.task = task;
@@ -29,6 +32,33 @@ public class Task {
         this.endTime = endTime;
         this.spentTime = spentTime;
     }
+
+    public Task(String projName, String userLastName, String task, Date createdDate, int spentTime)
+    {
+        this.task = task;
+        this.createdDate = createdDate;
+        this.spentTime = spentTime;
+        this.projName = projName;
+        this.userLastName = userLastName;
+    }
+
+    public String getProjName() {
+        return projName;
+    }
+
+    public void setProjName(String projName) {
+        this.projName = projName;
+    }
+
+    public String getUserLastName() {
+        return userLastName;
+    }
+
+    public void setUserLastName(String userLastName) {
+        this.userLastName = userLastName;
+    }
+    
+    
 
     public String getTask() {
         return task;

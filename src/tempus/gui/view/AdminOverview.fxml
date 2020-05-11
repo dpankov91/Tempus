@@ -34,7 +34,7 @@
                   <TableColumn fx:id="colTime" prefWidth="63.20001220703125" text="Time" />
               </columns>
             </TableView>
-            <JFXComboBox fx:id="cmbProjectName" layoutX="14.0" layoutY="14.0" onAction="#onSelectLoadSelectedProjectTable" prefHeight="26.0" prefWidth="154.0" promptText="Project Name" />
+            <JFXComboBox fx:id="cmbProjects" layoutX="14.0" layoutY="14.0" onAction="#onSelectLoadSelectedProjectTable" prefHeight="26.0" prefWidth="154.0" promptText="Project Name" />
             <JFXButton fx:id="btnAllProjects" layoutX="370.0" layoutY="14.0" onAction="#onClickLoadAllProjectsTable" text="All Projects" />
          </children>
       </AnchorPane>
