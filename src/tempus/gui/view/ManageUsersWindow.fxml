@@ -11,17 +11,16 @@
    <children>
       <TableView fx:id="tableViewUsers" layoutX="14.0" layoutY="104.0" prefHeight="372.0" prefWidth="787.0" stylesheets="@../css/style.css">
         <columns>
-          <TableColumn fx:id="firstName" prefWidth="95.19997882843018" text="First Name" />
-            <TableColumn fx:id="lastName" prefWidth="104.00006103515625" text="Last Name" />
-            <TableColumn fx:id="col_role" prefWidth="103.20008850097656" text="Role" />
-            <TableColumn fx:id="idEmail" prefWidth="147.20001220703125" text="E-Mail" />
-            <TableColumn fx:id="colPhone" prefWidth="123.20001220703125" text="Phone" />
-            <TableColumn fx:id="colAddress" prefWidth="123.20001220703125" text="Address" />
-            <TableColumn fx:id="colPostcode" prefWidth="94.4000244140625" text="Postcode" />
+          <TableColumn fx:id="firstName" onEditCommit="#writeToDatabase" prefWidth="95.19997882843018" text="First Name" />
+            <TableColumn fx:id="lastName" onEditCommit="#writeToDatabase" prefWidth="104.00006103515625" text="Last Name" />
+            <TableColumn fx:id="col_role" onEditCommit="#writeToDatabase" prefWidth="103.20008850097656" text="Role" />
+            <TableColumn fx:id="idEmail" onEditCommit="#writeToDatabase" prefWidth="147.20001220703125" text="E-Mail" />
+            <TableColumn fx:id="colPhone" onEditCommit="#writeToDatabaseNumber" prefWidth="123.20001220703125" text="Phone" />
+            <TableColumn fx:id="colAddress" onEditCommit="#writeToDatabase" prefWidth="123.20001220703125" text="Address" />
+            <TableColumn fx:id="colPostcode" onEditCommit="#writeToDatabaseNumber" prefWidth="94.4000244140625" text="Postcode" />
         </columns>
       </TableView>
       <JFXButton fx:id="addUser" layoutX="844.0" layoutY="209.0" onAction="#onActionAddUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="ADD" AnchorPane.bottomAnchor="361.0" />
-      <JFXButton fx:id="editUser" layoutX="844.0" layoutY="270.0" onAction="#onActionEditUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="EDIT" AnchorPane.bottomAnchor="300.0" />
       <JFXButton fx:id="deleteUser" layoutX="844.0" layoutY="330.0" onAction="#onActionDeleteUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="DELETE" AnchorPane.bottomAnchor="240.0" />
       <Label layoutX="314.0" layoutY="28.0" styleClass="Headline" stylesheets="@../css/style.css" text="User Manager" />
    </children>
