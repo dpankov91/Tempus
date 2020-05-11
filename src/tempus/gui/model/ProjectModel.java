@@ -8,6 +8,8 @@ package tempus.gui.model;
 
 import java.io.IOException;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import tempus.be.Client;
 
 
@@ -22,6 +24,7 @@ import tempus.bll.IBllFacade;
 public class ProjectModel {
     
  static ProjectModel projmodel = new ProjectModel() ;
+ private final ObservableList<Project> projectList = FXCollections.observableArrayList();
  
  private final IBllFacade facade;
  
@@ -35,6 +38,7 @@ public class ProjectModel {
    public ProjectModel() {
        
         this.facade = new BllManager();
+        projectList.addAll(facade.getAllProjects());
     }
 
     public Project getSelectedProject() {
@@ -66,6 +70,14 @@ public class ProjectModel {
 
     public void editProject(int id,String projectName, String clientName, String hourlyRate, String description) {
      facade.editProject(id,projectName, clientName, hourlyRate, description);
+    }
+
+    public ObservableList<Project> getObsProjects() {
+        return projectList;
+    }
+
+    public List<Project> getAllProjectsOverview() {
+        return facade.getAllProjectsOverview();
     }
 
 }

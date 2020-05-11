@@ -44,6 +44,8 @@ public interface IBllFacade {
 
     public void assignUsersToProj(Project selectedProject, List<User> usersAssign);
 
+    public List<Project> getAllProjectsOverview();
+
 
     
 }

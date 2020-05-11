@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -11,10 +12,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1075.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.AdminOverviewController">
    <children>
-      <Label layoutX="432.0" layoutY="14.0" prefHeight="96.0" prefWidth="268.0" styleClass="Headline" stylesheets="@../css/style.css" text="Admin Overview" AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="432.0" AnchorPane.rightAnchor="375.0" AnchorPane.topAnchor="14.0" />
-      <JFXComboBox layoutX="538.0" layoutY="110.0" promptText="Date Range" />
-      <JFXComboBox layoutX="21.0" layoutY="110.0" promptText="User" />
-      <StackedBarChart layoutX="487.0" layoutY="157.0" prefHeight="388.0" prefWidth="538.0">
+      <Label layoutX="432.0" layoutY="51.0" prefHeight="51.0" prefWidth="223.0" styleClass="Headline" stylesheets="@../css/style.css" text="Admin Overview" AnchorPane.bottomAnchor="529.0" AnchorPane.leftAnchor="432.0" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="30.0" />
+      <JFXComboBox fx:id="cmbDateRange" layoutX="656.0" layoutY="110.0" onAction="#onSelectSetDateRangeChartBar" promptText="Date Range" />
+      <JFXComboBox fx:id="cmbUserOrProject" layoutX="80.0" layoutY="110.0" onAction="#onSelectAppearUserOrProjectTable" promptText="User Or Project Table" />
+      <StackedBarChart fx:id="chartBar" layoutX="487.0" layoutY="157.0" prefHeight="441.0" prefWidth="620.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="5.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -22,23 +23,20 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </StackedBarChart>
-      <TableView layoutX="21.0" layoutY="377.0" prefHeight="143.0" prefWidth="468.0">
-        <columns>
-          <TableColumn prefWidth="103.99999713897705" text="Project name" />
-          <TableColumn prefWidth="76.0" text="User" />
-            <TableColumn prefWidth="88.80006408691406" text="Task" />
-            <TableColumn prefWidth="92.800048828125" text="Date" />
-            <TableColumn prefWidth="104.0" text="Time Spent" />
-        </columns>
-      </TableView>
-      <TableView layoutX="28.0" layoutY="157.0" prefHeight="200.0" prefWidth="422.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="Name" />
-          <TableColumn prefWidth="75.0" text="Project" />
-            <TableColumn prefWidth="75.0" text="Task" />
-            <TableColumn prefWidth="75.0" text="Date" />
-            <TableColumn prefWidth="120.79996337890623" text="Time Spent" />
-        </columns>
-      </TableView>
+      <AnchorPane layoutX="21.0" layoutY="157.0" prefHeight="442.0" prefWidth="449.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="610.0">
+         <children>
+            <TableView fx:id="tableProject" prefHeight="283.0" prefWidth="468.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="55.0">
+              <columns>
+                <TableColumn fx:id="colName" prefWidth="99.99999713897705" text="Project name" />
+                <TableColumn fx:id="colTask" prefWidth="92.0" text="Task" />
+                  <TableColumn fx:id="colUser" prefWidth="95.99998474121094" text="User" />
+                  <TableColumn fx:id="colDate" prefWidth="90.4000244140625" text="Date" />
+                  <TableColumn fx:id="colTime" prefWidth="88.80006408691406" text="Time" />
+              </columns>
+            </TableView>
+            <JFXComboBox fx:id="cmbProjectName" layoutX="14.0" layoutY="14.0" onAction="#onSelectLoadSelectedProjectTable" prefHeight="26.0" prefWidth="154.0" promptText="Project Name" />
+            <JFXButton fx:id="btnAllProjects" layoutX="370.0" layoutY="14.0" onAction="#onClickLoadAllProjectsTable" text="All Projects" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

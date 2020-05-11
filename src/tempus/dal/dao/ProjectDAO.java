@@ -5,14 +5,13 @@
  */
 package tempus.dal.dao;
 
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -133,6 +132,38 @@ public class ProjectDAO {
          System.out.println(ex);
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
      }
+    }
+
+    public List<Project> getAllProjectsOverview() throws SQLException 
+    {
+        ArrayList<Project> allProjectsOverview = new ArrayList<>();
+        
+   	String sql = "SELECT [dbo].[Project].[projectName], [dbo].[User].[lastName], "
+                   + "[dbo].[Task].[task], [dbo].[Task].[date], [dbo].[Task].[spentTime]"
+                     + "FROM [dbo].[Task]"
+                      + "JOIN [dbo].[User] ON [dbo].[User].[userID] = [dbo].[Task].[userID]"
+                        + "JOIN [dbo].[Project] ON [dbo].[Project].[projectID] = [dbo].[Task].[projectID]";
+        
+        Connection con = connector.getConnection();
+        PreparedStatement stmt = con.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        
+        while (rs.next()) 
+            {
+                String name = rs.getString("projectName");
+                String userLastName = rs.getString("lastName");
+                String taskName = rs.getString("task");
+                Date taskDate = rs.getDate("date");
+                int spentTime = rs.getInt("spentTime");
+                
+                Project proj = new Project(name, userLastName, taskName, taskDate, spentTime);
+                allProjectsOverview.add(proj);
+            }
+                System.out.println(allProjectsOverview);   
+                return allProjectsOverview;
+        
+        
+                        
     }
 
 }

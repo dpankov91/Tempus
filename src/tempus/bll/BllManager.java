@@ -92,6 +92,11 @@ public class BllManager implements IBllFacade {
         facade.assignUsersToProj(selectedProject, usersAssign);
     }
 
+    @Override
+    public List<Project> getAllProjectsOverview() {
+        return facade.getAllProjectsOverview();
+    }
+
  
 
 }

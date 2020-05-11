@@ -134,4 +134,16 @@ public class DalManager implements IDalFacade {
         }
     }
 
+    @Override
+    public List<Project> getAllProjectsOverview() 
+    {
+        List<Project> allProjectsOverview = null;
+        try {
+            allProjectsOverview = projectDao.getAllProjectsOverview();
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return allProjectsOverview;
+    }
+
 }

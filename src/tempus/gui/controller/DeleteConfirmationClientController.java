@@ -42,7 +42,7 @@ public class DeleteConfirmationClientController implements Initializable {
 
     @FXML
     private void handleConfirmDeleting(ActionEvent event) {
-        
+         
     }
     
 }
