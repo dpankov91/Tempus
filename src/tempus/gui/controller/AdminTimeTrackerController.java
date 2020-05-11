@@ -5,12 +5,18 @@
  */
 package tempus.gui.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.ResourceBundle;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +31,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -58,8 +65,6 @@ public class AdminTimeTrackerController implements Initializable {
     @FXML
     private JFXTextField txt_note;
     @FXML
-    private Label lbl_start;
-    @FXML
     private Button btn_createtask;
     @FXML
     private Button btn_play;
@@ -73,45 +78,25 @@ public class AdminTimeTrackerController implements Initializable {
     private Text minutesTimer;
     @FXML
     private Text hoursTimer;
-
+    @FXML
+    private JFXButton btn_start;
     
-    Map<Integer, String> numberMap;
-    Integer currSeconds;
-    Thread thread;
+    private static final int STARTTIME = 0;
+    private Timeline timeline;
+    private final IntegerProperty timeSeconds = new SimpleIntegerProperty(STARTTIME);
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
-    Integer hmsToSeconds(Integer h, Integer m, Integer s) {
-        Integer hToSeconds = h*3600;
-        Integer mToSeconds = m*60;
-        Integer total = hToSeconds + mToSeconds + s;
-        return total;
+        secondsTimer.textProperty().bind(timeSeconds.asString());
     }
-    
-    LinkedList<Integer> secondsToHms(Integer currSecond){
-        Integer hours = currSeconds / 3600;
-        currSecond = currSecond%3600;
-        Integer minutes = currSecond / 60;
-        currSecond = currSecond%60;
-        Integer seconds = currSecond;
-        LinkedList<Integer> answer = new LinkedList<>();
-        answer.add(hours);
-        answer.add(minutes);
-        answer.add(seconds);
-        return answer;
-    }
-    
-    void setOutput() {
-        LinkedList<Integer> currHms = secondsToHms(currSeconds);
-        hoursTimer.setText(numberMap.get(currHms.get(0)));
-        minutesTimer.setText(numberMap.get(currHms.get(1)));
-        secondsTimer.setText(numberMap.get(currHms.get(2)));
+
+    private void updateTime() {
+        // implements seconds
+        int seconds = timeSeconds.get();
+        timeSeconds.set(seconds+1);
     }
     
     @FXML
@@ -126,17 +111,27 @@ public class AdminTimeTrackerController implements Initializable {
 
     @FXML
     private void handle_Play(ActionEvent event) {
-        thread.resume();
+        timeline.play();
     }
 
     @FXML
     private void handle_Pause(ActionEvent event) {
-        thread.suspend();
+       timeline.pause();
+
     }
 
     @FXML
     private void handle_Stop(ActionEvent event) {
-       thread.stop();
+        timeline.stop();
+    }
+
+    @FXML
+    private void handle_Start(ActionEvent event) {
+        btn_start.setDisable(true); // prevents multiple instances
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), evt -> updateTime())); 
+        timeline.setCycleCount(Animation.INDEFINITE); // repeats loop
+        timeSeconds.set(STARTTIME);
+        timeline.play();
     }
     
 }

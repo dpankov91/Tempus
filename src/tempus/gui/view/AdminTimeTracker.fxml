@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -30,7 +31,6 @@
       <ComboBox fx:id="cb_projects" layoutX="150.0" layoutY="174.0" prefWidth="150.0" promptText="Projects" />
       <JFXTextField fx:id="txt_task" layoutX="305.0" layoutY="176.0" promptText="Task" />
       <JFXTextField fx:id="txt_note" layoutX="481.0" layoutY="176.0" promptText="Note" />
-      <Label fx:id="lbl_start" layoutX="675.0" layoutY="193.0" prefHeight="21.0" prefWidth="84.0" text="Start time" />
       <Button fx:id="btn_createtask" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#handle_CreateTask" prefHeight="43.0" prefWidth="55.0" style="-fx-background-color: #000000#000000;">
          <graphic>
             <ImageView fitHeight="52.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
@@ -74,5 +74,6 @@
       <Text fx:id="secondsTimer" layoutX="831.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" />
       <Text fx:id="minutesTimer" layoutX="804.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" />
       <Text fx:id="hoursTimer" layoutX="778.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" />
+      <JFXButton fx:id="btn_start" layoutX="675.0" layoutY="187.0" onAction="#handle_Start" text="Start Timer" textFill="WHITE" />
    </children>
 </AnchorPane>
