@@ -166,4 +166,9 @@ public class DalManager implements IDalFacade {
         return TasksOfSelectedProject;
     }
 
+    @Override
+    public void deleteClient(Client selectedClient) {
+        clientDao.deleteClient(selectedClient);
+    }
+
 }
