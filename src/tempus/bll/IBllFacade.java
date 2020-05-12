@@ -51,6 +51,8 @@ public interface IBllFacade {
 
     public void deleteClient(Client selectedClient);
 
+    public void createClient(String name, String city, int phone, String email);
+
 
     
 }

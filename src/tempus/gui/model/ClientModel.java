@@ -55,6 +55,10 @@ public class ClientModel {
     public void deleteSelectedClient() {
         bllManager.deleteClient(selectedClient);
     }
+
+    public void createClient(String name, String city, int phone, String email) {
+         bllManager.createClient(name, city, phone, email);
+    }
     
     
 }

@@ -12,7 +12,9 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import tempus.gui.model.ClientModel;
 
 /**
  * FXML Controller class
@@ -33,23 +35,88 @@ public class AddClientController implements Initializable {
     private JFXButton btnSave;
     @FXML
     private JFXButton btnCancel;
+    
+    private ClientModel clientModel;
+    
+    ManageUsersWindowController prevContrl;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
+        clientModel = new ClientModel();
+    }
+    
+    private boolean checkIfFilled() 
+      {
+        
+        if (txtName.getText() == null || txtName.getText().trim().isEmpty())
+        
+     {
+         setUpAlert("Incorrect Info Error" , "Add text please.");
+        
+    }
+     else if (txtAddress.getText() == null || txtAddress.getText().trim().isEmpty())
+     {
+         
+        setUpAlert("Incorrect Info Error" , "Add text please.");
+        
+     }
+     else if (txtPhone.getText() == null || txtPhone.getText().trim().isEmpty())
+     {
+        setUpAlert("Incorrect Info Error" , "Add text please.");
+       
+     }
+     else if (txtEmail.getText() == null || txtEmail.getText().trim().isEmpty())
+     {
+        setUpAlert("Incorrect Info Error" , "Add text please.");
+        
+     }
+     
+     return true;
+     
+     }
+    
     @FXML
     private void onActionSaveClient(ActionEvent event) {
+        
+        if (checkIfFilled())
+        {
+            
+            String name = txtName.getText();
+            String city = txtAddress.getText();
+            int phone = Integer.parseInt(txtPhone.getText());
+            String email = txtEmail.getText();
+           
+            clientModel.createClient(name, city, phone, email);
+            
+            prevContrl.loadTableView();
+            
+            onActionCancel(event);  
+            
+        }
+        
     }
 
     @FXML
     private void onActionCancel(ActionEvent event) {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
+        prevContrl.loadTableView();
         stage.close();
+    }
+    
+    private void setUpAlert(String title, String message) {
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(message);
+        alert.showAndWait();
+        
+    }
+    
+    void setInfo(ManageUsersWindowController aThis) {
+        prevContrl = aThis;
     }
     
 }

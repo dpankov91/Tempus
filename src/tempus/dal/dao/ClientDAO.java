@@ -69,6 +69,26 @@ try {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void createClient(String name, String city, int phone, String email) {
+        
+        try {
+            Connection con = connector.getConnection();
+            
+            String sqlClient = "INSERT INTO [Client] "
+                    + "VALUES (?,?,?,?)";
+            
+            PreparedStatement pstmt = con.prepareStatement(sqlClient);
+            
+            pstmt.setString(1, name);
+            pstmt.setString(2, city);
+            pstmt.setInt(3, phone);
+            pstmt.setString(4, email);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     
     

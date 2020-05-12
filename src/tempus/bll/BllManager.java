@@ -109,6 +109,11 @@ public class BllManager implements IBllFacade {
         facade.deleteClient(selectedClient);
     }
 
+    @Override
+    public void createClient(String name, String city, int phone, String email) {
+        facade.createClient(name, city, phone, email);
+    }
+
  
 
 }

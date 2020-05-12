@@ -171,4 +171,9 @@ public class DalManager implements IDalFacade {
         clientDao.deleteClient(selectedClient);
     }
 
+    @Override
+    public void createClient(String name, String city, int phone, String email) {
+        clientDao.createClient(name, city, phone, email);
+    }
+
 }
