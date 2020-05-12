@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -84,20 +85,46 @@ public class AdminTimeTrackerController implements Initializable {
     private static final int STARTTIME = 0;
     private Timeline timeline;
     private final IntegerProperty timeSeconds = new SimpleIntegerProperty(STARTTIME);
-    
+    private final IntegerProperty timeMinutes = new SimpleIntegerProperty(STARTTIME);
+    private final IntegerProperty timeHours = new SimpleIntegerProperty(STARTTIME);
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         secondsTimer.textProperty().bind(timeSeconds.asString());
+        minutesTimer.textProperty().bind(timeMinutes.asString());
+        hoursTimer.textProperty().bind(timeHours.asString());
     }
 
-    private void updateTime() {
-        // implements seconds
+    private void updateTime() {       
+        //implements seconds            
         int seconds = timeSeconds.get();
         timeSeconds.set(seconds+1);
+        
+        int min = timeSeconds.getValue() / 60;
+        
+        //implements minutes
+        //int minutes = timeMinutes.get();
+        timeMinutes.set(min);
+        
+        // implements hours
+        int hours = timeHours.get();
+        timeHours.set(hours);
+        
+        System.out.println("Seconds: " + timeSeconds.getValue() + ", Minutes: " + + timeMinutes.getValue() + ", Hours: " + + timeHours.getValue());
     }
+    
+    public static void calculateTime(long seconds) {
+            int day = (int)TimeUnit.SECONDS.toDays(seconds);        
+            long hours = TimeUnit.SECONDS.toHours(seconds) - (day *24);
+            long minute = TimeUnit.SECONDS.toMinutes(seconds) - (TimeUnit.SECONDS.toHours(seconds)* 60);
+            long second = TimeUnit.SECONDS.toSeconds(seconds) - (TimeUnit.SECONDS.toMinutes(seconds) *60);
+
+            System.out.println("Day " + day + " Hour " + hours + " Minute " + minute + " Seconds " + second);
+
+        }
     
     @FXML
     private void handle_CreateTask(ActionEvent event) throws IOException {
@@ -128,9 +155,13 @@ public class AdminTimeTrackerController implements Initializable {
     @FXML
     private void handle_Start(ActionEvent event) {
         btn_start.setDisable(true); // prevents multiple instances
-        timeline = new Timeline(new KeyFrame(Duration.seconds(1), evt -> updateTime())); 
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), evt -> updateTime()));
+        try {
+                //System.out.println("Seconds...");
+            } catch (Exception e2) {
+                // TODO: handle exception
+            }
         timeline.setCycleCount(Animation.INDEFINITE); // repeats loop
-        timeSeconds.set(STARTTIME);
         timeline.play();
     }
     
