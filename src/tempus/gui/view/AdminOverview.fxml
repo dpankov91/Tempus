@@ -2,41 +2,32 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.StackedBarChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1075.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.AdminOverviewController">
    <children>
       <Label layoutX="432.0" layoutY="51.0" prefHeight="51.0" prefWidth="223.0" styleClass="Headline" stylesheets="@../css/style.css" text="Admin Overview" AnchorPane.bottomAnchor="529.0" AnchorPane.leftAnchor="432.0" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="30.0" />
       <JFXComboBox fx:id="cmbDateRange" layoutX="656.0" layoutY="110.0" onAction="#onSelectSetDateRangeChartBar" promptText="Date Range" />
       <JFXComboBox fx:id="cmbUserOrProject" layoutX="80.0" layoutY="110.0" onAction="#onSelectAppearUserOrProjectTable" promptText="User Or Project Table" />
-      <StackedBarChart fx:id="chartBar" layoutX="466.0" layoutY="157.0" prefHeight="442.0" prefWidth="618.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="466.0" AnchorPane.rightAnchor="-9.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </StackedBarChart>
-      <AnchorPane layoutX="21.0" layoutY="157.0" prefHeight="442.0" prefWidth="477.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="593.0">
+      <AnchorPane layoutX="21.0" layoutY="157.0" prefHeight="442.0" prefWidth="506.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="567.0">
          <children>
-            <TableView fx:id="tableProject" prefHeight="283.0" prefWidth="468.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="55.0">
+            <TableView fx:id="tableProject" prefHeight="283.0" prefWidth="468.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="65.0">
               <columns>
-                <TableColumn fx:id="colName" prefWidth="110.40002155303955" text="Project name" />
-                <TableColumn fx:id="colTask" prefWidth="110.39999389648438" text="Task" />
-                  <TableColumn fx:id="colUser" prefWidth="97.60002136230469" text="User" />
-                  <TableColumn fx:id="colDate" prefWidth="93.60003662109375" text="Date" />
-                  <TableColumn fx:id="colTime" prefWidth="63.20001220703125" text="Time" />
+                <TableColumn fx:id="colName" prefWidth="126.39999103546143" text="Project name" />
+                <TableColumn fx:id="colTask" prefWidth="122.4000244140625" text="Task" />
+                  <TableColumn fx:id="colUser" prefWidth="91.20001220703125" text="User" />
+                  <TableColumn fx:id="colDate" prefWidth="95.20001220703125" text="Date" />
+                  <TableColumn fx:id="colTime" prefWidth="67.20001220703125" text="Time" />
               </columns>
             </TableView>
             <JFXComboBox fx:id="cmbProjects" layoutX="14.0" layoutY="14.0" onAction="#onSelectLoadSelectedProjectTable" prefHeight="26.0" prefWidth="154.0" promptText="Project Name" />
             <JFXButton fx:id="btnAllProjects" layoutX="370.0" layoutY="14.0" onAction="#onClickLoadAllProjectsTable" text="All Projects" />
          </children>
       </AnchorPane>
+      <Pane fx:id="paneBarChart" layoutX="508.0" layoutY="195.0" prefHeight="401.0" prefWidth="620.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="535.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="195.0" />
    </children>
 </AnchorPane>
