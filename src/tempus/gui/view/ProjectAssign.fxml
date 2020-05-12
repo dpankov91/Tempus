@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="419.0" styleClass="assignWindow" stylesheets="@../css/assignStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ProjectAssignController">
    <children>
-      <JFXListView fx:id="lstAddedDevelopers" layoutX="14.0" layoutY="90.0" prefHeight="240.0" prefWidth="200.0" styleClass="assignBtn" stylesheets="@../css/assignStyle.css" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="90.0" />
+      <JFXListView fx:id="lstAddedDevelopers" layoutX="14.0" layoutY="90.0" prefHeight="240.0" prefWidth="200.0" stylesheets="@../css/assignStyle.css" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="90.0" />
       <JFXComboBox fx:id="cmbDevelopers" layoutX="240.0" layoutY="172.0" onAction="#addUserToList" prefHeight="26.0" prefWidth="163.0" promptText="Developers" stylesheets="@../css/assignStyle.css" AnchorPane.bottomAnchor="171.6" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="15.0">
          <styleClass>
             <String fx:value="deleteBackground" />

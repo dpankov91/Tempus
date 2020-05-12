@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import tempus.be.Client;
+import tempus.gui.model.ClientModel;
 
 /**
  * FXML Controller class
@@ -20,18 +22,24 @@ import javafx.stage.Stage;
  * @author dpank
  */
 public class DeleteConfirmationClientController implements Initializable {
-
+    
+    ClientModel model;
+    private Client selectedClient;
+    ManageClientsWindowController clientContrl;
+    
     @FXML
     private JFXButton btnCancel;
     @FXML
     private Label lblName;
-
+    
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        model = new ClientModel().getInstance();
+        lblName.setText(model.getSelectedClient().getName());
     }    
 
     @FXML
@@ -42,7 +50,13 @@ public class DeleteConfirmationClientController implements Initializable {
 
     @FXML
     private void handleConfirmDeleting(ActionEvent event) {
-        
+         model.deleteSelectedClient();
+         clientContrl.loadTableView();
+         goBack(event);
+    }
+
+    void setInfo(ManageClientsWindowController aThis) {
+        clientContrl = aThis;
     }
     
 }

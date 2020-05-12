@@ -6,11 +6,14 @@
 package tempus.dal.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tempus.be.Client;
 import tempus.dal.DbConnectionProvider;
 
@@ -50,6 +53,21 @@ public class ClientDAO {
             
             
        
+    }
+
+    public void deleteClient(Client selectedClient) {
+try {
+            String sql = "DELETE  FROM [dbo].[Client] WHERE clientID=?";
+
+            Connection con = connector.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+
+            pstmt.setInt(1, selectedClient.getId());
+
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     
