@@ -46,7 +46,8 @@ public class ClientDAO {
                 String name = rs.getString("clientName");
                 String city = rs.getString("clientAddress");
                 int phone = rs.getInt("clientPhone");
-                allClientss.add(new Client(id, name, city, phone));
+                String email = rs.getString("clientEmail");
+                allClientss.add(new Client(id, name, city, phone, email));
             }
            
             return allClientss;

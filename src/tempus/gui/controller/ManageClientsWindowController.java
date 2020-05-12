@@ -106,7 +106,7 @@ public class ManageClientsWindowController implements Initializable {
     private void setUpTableView()
     {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        //colEmail.setCellValueFactory(new PropertyValueFactory<>(""));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         colAddress.setCellValueFactory(new PropertyValueFactory<>("city"));
         

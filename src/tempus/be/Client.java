@@ -18,19 +18,16 @@ public class Client {
     private String email;
     int phone;
 
-    public Client(int id, String name, String city, int phone) {
+    public Client(int id, String name, String city, int phone, String email) {
         this.id = id;
-        this.name = name;
-        this.city = city;
-        this.phone = phone;
-    }
-    
-    public Client(String name, String city, int phone, String email) {
         this.name = name;
         this.city = city;
         this.phone = phone;
         this.email = email;
     }
+ 
+
+ 
 
     public String getCity() {
         return city;
