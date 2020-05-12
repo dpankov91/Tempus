@@ -11,6 +11,7 @@ import java.util.List;
 import tempus.be.Client;
 
 import tempus.be.Project;
+import tempus.be.Task;
 
 import tempus.be.User;
 import tempus.bll.security.ISecurityManager;
@@ -90,6 +91,22 @@ public class BllManager implements IBllFacade {
     @Override
     public void assignUsersToProj(Project selectedProject, List<User> usersAssign) {
         facade.assignUsersToProj(selectedProject, usersAssign);
+    }
+
+
+    @Override
+    public List<Task> getAllTasksOverview() {
+        return facade.getAllTasksOverview();   
+    }
+
+    @Override
+    public List<Task> getTasksOfSelectedProject(Project selectedProject) {
+        return facade.getTasksOfSelectedProject(selectedProject);
+    }
+
+    @Override
+    public void deleteClient(Client selectedClient) {
+        facade.deleteClient(selectedClient);
     }
 
  

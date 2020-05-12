@@ -5,6 +5,7 @@
  */
 package tempus.be;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -22,6 +23,12 @@ public class Project {
     private String clientName;
     private String usString;
     List<User> userList;
+    
+    private String userLastName;
+    private String taskName;
+    private Date taskDate;
+    private int spentTime;
+    
 
     public Project(String name, int hRate, String clientName, String description, List<User> userList) {
         
@@ -30,6 +37,15 @@ public class Project {
         this.clientName = clientName;
         this.description = description;
         this.userList = userList;
+    }
+
+    public Project(String name, String userLastName, String taskName, Date taskDate, int spentTime) 
+    {
+        this.name = name;
+        this.userLastName = userLastName;
+        this.taskName = taskName;
+        this.taskDate = taskDate;
+        this.spentTime = spentTime;
     }
     
     public String getCatString() {
@@ -41,6 +57,48 @@ public class Project {
         return finalString;
     }
 
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
+
+    public String getUserLastName() {
+        return userLastName;
+    }
+
+    public void setUserLastName(String userLastName) {
+        this.userLastName = userLastName;
+    }
+
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+
+    public Date getTaskDate() {
+        return taskDate;
+    }
+
+    public void setTaskDate(Date taskDate) {
+        this.taskDate = taskDate;
+    }
+
+    public int getSpentTime() {
+        return spentTime;
+    }
+
+    public void setSpentTime(int spentTime) {
+        this.spentTime = spentTime;
+    }
+
+    
+    
     public String getUsString() {
         return getCatString();
     }
