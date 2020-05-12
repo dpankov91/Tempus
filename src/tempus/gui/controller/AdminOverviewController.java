@@ -62,9 +62,6 @@ public class AdminOverviewController implements Initializable {
     private ProjectModel projModel;
     private UserModel usModel;
     private TaskModel taskModel;
-    //Project selectedProject = cmbProjects.getSelectionModel().getSelectedItem();
-   
-
 
     /**
      * Initializes the controller class.
@@ -92,14 +89,13 @@ public class AdminOverviewController implements Initializable {
     @FXML
     private void onSelectLoadSelectedProjectTable(ActionEvent event) 
     {
-        
-      
-        
-        
+        Project pro = cmbProjects.getSelectionModel().getSelectedItem();
+        loadSelectedProjectTableView(pro);
     }
     
     @FXML
     private void onClickLoadAllProjectsTable(ActionEvent event) {
+        setUpTaskTableView();
        
     }
 
@@ -139,12 +135,7 @@ public class AdminOverviewController implements Initializable {
         colUser.setCellValueFactory(new PropertyValueFactory<>("userLastName"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("createdDate"));
         colTime.setCellValueFactory(new PropertyValueFactory<>("spentTime"));
-//        if(selectedProject == null){
-         loadTaskTableView();
-//        }
-//        else{
-//            loadSelectedProjectTableView(selectedProject);
-//        }
+        loadTaskTableView();
     }
     
     

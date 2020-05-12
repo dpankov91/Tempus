@@ -5,6 +5,7 @@
  */
 package tempus.gui.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import tempus.be.Project;
 import tempus.be.Task;
@@ -19,6 +20,7 @@ public class TaskModel {
     
     static TaskModel model = new TaskModel();
     private final IBllFacade bllManager;
+    List<Task> alltasks = new ArrayList();
 
     public static TaskModel getInstance() {
         return model;
@@ -29,12 +31,20 @@ public class TaskModel {
     }
 
     public List<Task> getAllTasksOverview() {
-        return bllManager.getAllTasksOverview();
+        alltasks=bllManager.getAllTasksOverview();
+        return alltasks;
     }
 
 
-    public List<Task> getTasksOfSelectedProject(Project selectedProject) {
-        return bllManager.getTasksOfSelectedProject(selectedProject);
+    public List<Task> getTasksOfSelectedProject(Project selectedProject) 
+    {
+        List<Task> allspecTasks = new ArrayList();
+        for (Task alltas : alltasks) {
+            if(alltas.getProjName().equals(selectedProject.getName())){
+                allspecTasks.add(alltas);
+            }
+        }
+        return allspecTasks;
     }
     
     

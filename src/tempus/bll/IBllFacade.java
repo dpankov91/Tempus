@@ -47,8 +47,6 @@ public interface IBllFacade {
 
     public List<Task> getAllTasksOverview();
 
-    public List<Task> getTasksOfSelectedProject(Project selectedProject);
-
     public void deleteClient(Client selectedClient);
 
     public void createClient(String name, String city, int phone, String email);

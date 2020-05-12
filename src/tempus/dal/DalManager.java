@@ -156,17 +156,6 @@ public class DalManager implements IDalFacade {
     }
 
     @Override
-    public List<Task> getTasksOfSelectedProject(Project selectedProject) {
-        List<Task> TasksOfSelectedProject = null;
-        try {
-            TasksOfSelectedProject = taskDao.getTasksOfSelectedProject(selectedProject);
-        } catch (SQLException ex) {
-            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return TasksOfSelectedProject;
-    }
-
-    @Override
     public void deleteClient(Client selectedClient) {
         clientDao.deleteClient(selectedClient);
     }

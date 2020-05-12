@@ -63,7 +63,6 @@ public class BllManager implements IBllFacade {
     }
 
     @Override
-
     public void deleteUser(User userToDelete) {
         facade.deleteUser(userToDelete);
     }
@@ -93,15 +92,9 @@ public class BllManager implements IBllFacade {
         facade.assignUsersToProj(selectedProject, usersAssign);
     }
 
-
     @Override
     public List<Task> getAllTasksOverview() {
         return facade.getAllTasksOverview();   
-    }
-
-    @Override
-    public List<Task> getTasksOfSelectedProject(Project selectedProject) {
-        return facade.getTasksOfSelectedProject(selectedProject);
     }
 
     @Override
