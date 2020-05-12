@@ -38,7 +38,7 @@ public class AddClientController implements Initializable {
     
     private ClientModel clientModel;
     
-    ManageUsersWindowController prevContrl;
+    ManageClientsWindowController prevContrl;
 
     /**
      * Initializes the controller class.
@@ -115,7 +115,7 @@ public class AddClientController implements Initializable {
         
     }
     
-    void setInfo(ManageUsersWindowController aThis) {
+    void setInfo(ManageClientsWindowController aThis) {
         prevContrl = aThis;
     }
     

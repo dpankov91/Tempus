@@ -83,6 +83,7 @@ public class ManageClientsWindowController implements Initializable {
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/AddClient.fxml"));
         Parent z = loader.load();
+        loader.<AddClientController>getController().setInfo(this);
         Scene scene = new Scene(z);
         Stage s = new Stage();
         s.setScene(scene);
