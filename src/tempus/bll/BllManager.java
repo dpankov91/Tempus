@@ -78,8 +78,8 @@ public class BllManager implements IBllFacade {
     }
 
     @Override
-    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address) {
-        facade.editUser(id, name, Lname, email, realphone, realpostcode, address);
+    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL) {
+        facade.editUser(id, name, Lname, email, realphone, realpostcode, address,imageURL);
     }
 
     @Override

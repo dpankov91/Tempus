@@ -39,7 +39,7 @@ public interface IBllFacade {
 
     public void createUser(String fName, String lName, String password, String email, String role, String address, int phone, int postcode);
 
-    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address);
+    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL);
 
     public void editProject(int id,String projectName, String clientName, String hourlyRate, String description);
 

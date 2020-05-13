@@ -45,15 +45,28 @@ public class UserDAO {
         if (!rs.next()) {
             return null;
         } else {
-            int id = rs.getInt("userID");
-            String firstName = rs.getString("firstName");
-            String lastName = rs.getString("lastName");
-            boolean isAdmin = rs.getBoolean("isAdmin");
-
-            String photoURL = rs.getString("userPhoto");
-
-            User us = new User(id, firstName, lastName);
+          int id = rs.getInt("userID");
+            String fName = rs.getString("firstName");
+            String lName = rs.getString("lastName");
+            String email = rs.getString("email");
+            String address = rs.getString("address");
+            int phone = rs.getInt("phoneNumber");
+            int postC = rs.getInt("postcode");
+            Boolean isAdmin = rs.getBoolean("isAdmin");
+           String photoURL = rs.getString("userPhoto");
+            String role;
+            if (isAdmin) {
+                role = "Admin";
+            } else {
+                role = "Developer";
+            }
+            User us = new User(id, fName, lName);
+            us.setEmail(email);
             us.setIsAdmin(isAdmin);
+            us.setRole(role);
+            us.setPostcode(postC);
+            us.setPhone(phone);
+            us.setAddress(address);
             us.setPhotoURL(photoURL);
             return us;
 
@@ -95,7 +108,7 @@ public class UserDAO {
             int phone = rs.getInt("phoneNumber");
             int postC = rs.getInt("postcode");
             Boolean isAdmin = rs.getBoolean("isAdmin");
-  //          String photoURL = rs.getString("userPhoto");
+           String photoURL = rs.getString("userPhoto");
             String role;
             if (isAdmin) {
                 role = "Admin";
@@ -109,7 +122,7 @@ public class UserDAO {
             us.setPostcode(postC);
             us.setPhone(phone);
             us.setAddress(address);
-//            us.setPhotoURL(photoURL);
+            us.setPhotoURL(photoURL);
             allUsers.add(us);
         }
         return allUsers;
@@ -140,9 +153,9 @@ public class UserDAO {
         }
     }
 
-    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address) {
+    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL) {
         try {
-            String sql = "UPDATE [dbo].[User] SET [email] = ?, [firstName] = ?, [lastName] = ?, [phoneNumber] = ?, [address] = ?, [postcode] = ? WHERE [userID] = ?";
+            String sql = "UPDATE [dbo].[User] SET [email] = ?, [firstName] = ?, [lastName] = ?, [phoneNumber] = ?, [address] = ?, [postcode] = ?, [userPhoto] = ? WHERE [userID] = ?";
 
             Connection con = connector.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);
@@ -153,7 +166,8 @@ public class UserDAO {
             pstmt.setInt(4, realphone);
             pstmt.setString(5, address);
             pstmt.setInt(6, realpostcode);
-            pstmt.setInt(7, id);
+            pstmt.setInt(8, id);
+            pstmt.setString(7, imageURL);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);

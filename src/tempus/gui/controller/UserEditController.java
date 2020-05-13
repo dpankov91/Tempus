@@ -84,7 +84,7 @@ public class UserEditController implements Initializable {
             if(address.isEmpty()){
                 address="";
             }
-            userModel.editUser(currentSelectedUser.getId(),name,Lname,email,realphone,realpostcode,address);
+            userModel.editUser(currentSelectedUser.getId(),name,Lname,email,realphone,realpostcode,address,"No");
             
             prevContrl.loadTableView();
             handle_Cancel(event);  

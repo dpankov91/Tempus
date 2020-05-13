@@ -137,11 +137,11 @@ public class ManageUsersWindowController implements Initializable {
         }
         switch (event.getTableColumn().getText()) {
             case "First Name":
-                userModel.editUser(us.getId(), assignedValue, us.getLName(), us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress());
+                userModel.editUser(us.getId(), assignedValue, us.getLName(), us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress(),us.getPhotoURL().getUrl());
                 us.setfName(assignedValue);
                 break;
             case "Last Name":
-                userModel.editUser(us.getId(), us.getFName(), assignedValue, us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress());
+                userModel.editUser(us.getId(), us.getFName(), assignedValue, us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress(),us.getPhotoURL().getUrl());
                 us.setLName(assignedValue);
                 break;
             case "Role":
@@ -149,11 +149,11 @@ public class ManageUsersWindowController implements Initializable {
                 us.setRole(event.getNewValue());*/
                 break;
             case "E-Mail":
-                userModel.editUser(us.getId(), us.getFName(), us.getLName(), assignedValue, us.getPhone(), us.getPostcode(), us.getAddress());
+                userModel.editUser(us.getId(), us.getFName(), us.getLName(), assignedValue, us.getPhone(), us.getPostcode(), us.getAddress(),us.getPhotoURL().getUrl());
                 us.setEmail(assignedValue);
                 break;
             case "Address":
-                userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), us.getPostcode(), assignedValue);
+                userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), us.getPostcode(), assignedValue,us.getPhotoURL().getUrl());
                 us.setAddress(assignedValue);
                 break;
         }
@@ -171,11 +171,11 @@ public class ManageUsersWindowController implements Initializable {
         }
         switch (event.getTableColumn().getText()) {
             case "Phone":
-                userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), assignedValue, us.getPostcode(), us.getAddress());
+                userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), assignedValue, us.getPostcode(), us.getAddress(),us.getPhotoURL().getUrl());
                 us.setPhone(assignedValue);
                 break;
             case "Postcode":
-                userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), assignedValue, us.getAddress());
+                userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), assignedValue, us.getAddress(),us.getPhotoURL().getUrl());
                 us.setPostcode(assignedValue);
                 break;
 

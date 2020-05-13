@@ -28,6 +28,7 @@ import tempus.gui.model.UserModel;
  * @author dpank
  */
 public class SettingsWindowController implements Initializable {
+
     private final List<Image> images = new ArrayList<>();
 
     @FXML
@@ -42,7 +43,7 @@ public class SettingsWindowController implements Initializable {
     private ImageView imgPhoto;
     @FXML
     private JFXButton btnEditPic;
-    
+
     private User user;
     private UserModel userModel;
 
@@ -53,7 +54,7 @@ public class SettingsWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         userModel = UserModel.getInstance();
         showImg();
-    }    
+    }
 
     @FXML
     private void onClickClose(ActionEvent event) {
@@ -62,22 +63,29 @@ public class SettingsWindowController implements Initializable {
 
     @FXML
     private void onClickConfirm(ActionEvent event) {
-        
+
     }
 
     @FXML
-    private void onClickOpenPicSearcher(ActionEvent event) 
-    {
+    private void onClickOpenPicSearcher(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select image files");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Images", 
-            "*.png", "*.jpg", "*.gif", "*.tif", "*.bmp"));        
-        List<File> files = fileChooser.showOpenMultipleDialog(new Stage());
-        showImg();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Images",
+                "*.png", "*.jpg", "*.gif", "*.tif", "*.bmp"));
+        //  List<File> files = fileChooser.showOpenMultipleDialog(new Stage());
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            User us = userModel.getloggedInUser();
+            userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress(),selectedFile.getAbsolutePath());
+            us.setPhotoURL(selectedFile.getAbsolutePath());
+            userModel.setUpLocalIMG(selectedFile.getAbsolutePath());
+            showImg();
+        }
     }
 
     private void showImg() {
         User us = userModel.getloggedInUser();
+
         imgPhoto.setImage(us.getPhotoURL());
     }
 
@@ -85,5 +93,5 @@ public class SettingsWindowController implements Initializable {
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
     }
-    
+
 }
