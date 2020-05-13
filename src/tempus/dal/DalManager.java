@@ -117,7 +117,7 @@ public class DalManager implements IDalFacade {
     }
 
     @Override
-    public void editProject(int id,String projectName, String clientName, String hourlyRate, String description) {
+    public void editProject(int id,String projectName, String clientName, int hourlyRate, String description) {
         try {
             projectDao.editProject(id,projectName, clientName, hourlyRate, description);
         } catch (SQLException ex) {

@@ -115,14 +115,14 @@ public class ProjectDAO {
                 return allProjects;
     }
 
-    public void editProject(int id,String projectName, String clientName, String hourlyRate, String description) throws SQLException {
+    public void editProject(int id,String projectName, String clientName, int hourlyRate, String description) throws SQLException {
         try {
         String sql = "UPDATE [dbo].[Project] SET [projectName] = ?,[hourlyRate] = ?, [description] = ? WHERE projectID=?";
             System.out.println("Reached Edit");
          Connection con = connector.getConnection();
          PreparedStatement pstmt = con.prepareStatement(sql);
           pstmt.setString(1, projectName);
-            pstmt.setString(2, hourlyRate);
+            pstmt.setInt(2, hourlyRate);
             pstmt.setString(3, description);
             pstmt.setInt(4,id);
             

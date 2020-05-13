@@ -11,10 +11,10 @@
    <children>
       <TableView fx:id="tableViewProjects" layoutX="14.0" layoutY="98.0" prefHeight="346.0" prefWidth="659.0">
         <columns>
-          <TableColumn fx:id="columnProject" prefWidth="136.7999849319458" text="Project name" />
-            <TableColumn fx:id="columnHourlyRate" prefWidth="87.19998168945312" text="Hourly Rate" />
+          <TableColumn fx:id="columnProject" onEditCommit="#writeToDatabase" prefWidth="136.7999849319458" text="Project name" />
+            <TableColumn fx:id="columnHourlyRate" onEditCommit="#writeToDatabaseNumber" prefWidth="87.19998168945312" text="Hourly Rate" />
             <TableColumn fx:id="colClientName" prefWidth="96.80006408691406" text="Client" />
-            <TableColumn fx:id="columnDescription" prefWidth="169.5999755859375" text="Description" />
+            <TableColumn fx:id="columnDescription" onEditCommit="#writeToDatabase" prefWidth="169.5999755859375" text="Description" />
             <TableColumn fx:id="colAssignedUsers" prefWidth="167.20001220703125" text="Assigned users" />
         </columns>
       </TableView>
