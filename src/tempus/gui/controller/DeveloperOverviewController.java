@@ -5,9 +5,13 @@
  */
 package tempus.gui.controller;
 
+import com.jfoenix.controls.JFXComboBox;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 /**
  * FXML Controller class
@@ -15,6 +19,19 @@ import javafx.fxml.Initializable;
  * @author Tienesh
  */
 public class DeveloperOverviewController implements Initializable {
+
+    @FXML
+    private TableView<?> tableTasks;
+    @FXML
+    private TableColumn<?, ?> colProject;
+    @FXML
+    private TableColumn<?, ?> colTask;
+    @FXML
+    private TableColumn<?, ?> colDate;
+    @FXML
+    private TableColumn<?, ?> colHours;
+    @FXML
+    private JFXComboBox<?> cmbDateRange;
 
     /**
      * Initializes the controller class.
