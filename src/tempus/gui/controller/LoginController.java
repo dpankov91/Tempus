@@ -103,12 +103,6 @@ public class LoginController implements Initializable {
             closeWindow();
         }
     }
-    
-    void loadTimesheetWhenLogin(){
-//            FxmlLoader object = new FxmlLoader();
-//            Pane view = object.getPage("AdminTimeTracker");
-//            mainPane.setCenter(view);  
-    }
 
     private void checkRememberMe() {
         Preferences prefs = Preferences.userNodeForPackage(LoginController.class);

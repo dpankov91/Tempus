@@ -60,7 +60,6 @@ public class ProjectAssignController implements Initializable {
     private void handleConfirm(ActionEvent event) {
         
     if(lstAddedDevelopers.getItems() != null){
-//        projModel.getSelectedProject(), 
         List<User> usersAssign = lstAddedDevelopers.getItems();
         userModel.assignUsersToProj(projModel.getSelectedProject(), usersAssign);
         

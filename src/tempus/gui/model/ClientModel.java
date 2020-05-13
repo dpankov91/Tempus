@@ -22,6 +22,7 @@ public class ClientModel {
     static ClientModel cmodel = new ClientModel();
     IBllFacade bllManager;
     private final ObservableList<Client> clientList = FXCollections.observableArrayList();
+    private Client selectedClient;
     
     public static ClientModel getInstance() {
         return cmodel;
@@ -42,5 +43,22 @@ public class ClientModel {
     public List<Client> getAllClients() {
         return bllManager.getAllClientss();
     }
+
+    public Client getSelectedClient() {
+        return selectedClient;
+    }
+
+    public void setSelectedClient(Client selectedClient) {
+        this.selectedClient = selectedClient;
+    }
+
+    public void deleteSelectedClient() {
+        bllManager.deleteClient(selectedClient);
+    }
+
+    public void createClient(String name, String city, int phone, String email) {
+         bllManager.createClient(name, city, phone, email);
+    }
+    
     
 }

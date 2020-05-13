@@ -51,6 +51,8 @@ public class ManageClientsWindowController implements Initializable {
     private JFXButton editButton;
     
     private ClientModel cModel;
+    
+    public Client selectedClient;
 
     /**
      * Initializes the controller class.
@@ -62,9 +64,18 @@ public class ManageClientsWindowController implements Initializable {
     }    
 
     @FXML
-    private void handleDelete(ActionEvent event) 
+    private void handleDelete(ActionEvent event) throws IOException 
     {
-        
+        cModel.setSelectedClient(tableViewClients.getSelectionModel().getSelectedItem());
+        if(cModel.getSelectedClient() !=null){
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmationClient.fxml"));
+                Parent z = loader.load();
+                loader.<DeleteConfirmationClientController>getController().setInfo(this);
+                Scene scene = new Scene(z);
+                Stage s = new Stage();
+                s.setScene(scene);
+                s.show();   
+        }
     }
 
     @FXML
@@ -72,6 +83,7 @@ public class ManageClientsWindowController implements Initializable {
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/AddClient.fxml"));
         Parent z = loader.load();
+        loader.<AddClientController>getController().setInfo(this);
         Scene scene = new Scene(z);
         Stage s = new Stage();
         s.setScene(scene);
@@ -95,7 +107,7 @@ public class ManageClientsWindowController implements Initializable {
     private void setUpTableView()
     {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        //colEmail.setCellValueFactory(new PropertyValueFactory<>(""));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         colAddress.setCellValueFactory(new PropertyValueFactory<>("city"));
         

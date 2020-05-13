@@ -76,8 +76,5 @@ public class ProjectModel {
         return projectList;
     }
 
-    public List<Project> getAllProjectsOverview() {
-        return facade.getAllProjectsOverview();
-    }
 
 }

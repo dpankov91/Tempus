@@ -15,13 +15,34 @@ public class Client {
     private int id;
     private String name;
     private String city;
+    private String email;
     int phone;
 
-    public Client(int id, String name, String city, int phone) {
+    public Client(int id, String name, String city, int phone, String email) {
         this.id = id;
         this.name = name;
         this.city = city;
         this.phone = phone;
+        this.email = email;
+    }
+ 
+
+ 
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getId() {
@@ -39,15 +60,7 @@ public class Client {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
+    
     public int getPhone() {
         return phone;
     }

@@ -11,6 +11,7 @@ import java.util.List;
 import tempus.be.Client;
 
 import tempus.be.Project;
+import tempus.be.Task;
 
 import tempus.be.User;
 import tempus.bll.security.ISecurityManager;
@@ -62,7 +63,6 @@ public class BllManager implements IBllFacade {
     }
 
     @Override
-
     public void deleteUser(User userToDelete) {
         facade.deleteUser(userToDelete);
     }
@@ -93,8 +93,18 @@ public class BllManager implements IBllFacade {
     }
 
     @Override
-    public List<Project> getAllProjectsOverview() {
-        return facade.getAllProjectsOverview();
+    public List<Task> getAllTasksOverview() {
+        return facade.getAllTasksOverview();   
+    }
+
+    @Override
+    public void deleteClient(Client selectedClient) {
+        facade.deleteClient(selectedClient);
+    }
+
+    @Override
+    public void createClient(String name, String city, int phone, String email) {
+        facade.createClient(name, city, phone, email);
     }
 
  

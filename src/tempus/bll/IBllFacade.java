@@ -13,6 +13,7 @@ import tempus.be.Client;
 
 
 import tempus.be.Project;
+import tempus.be.Task;
 
 import tempus.be.User;
 
@@ -44,7 +45,11 @@ public interface IBllFacade {
 
     public void assignUsersToProj(Project selectedProject, List<User> usersAssign);
 
-    public List<Project> getAllProjectsOverview();
+    public List<Task> getAllTasksOverview();
+
+    public void deleteClient(Client selectedClient);
+
+    public void createClient(String name, String city, int phone, String email);
 
 
     

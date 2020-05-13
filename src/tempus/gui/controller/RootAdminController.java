@@ -96,19 +96,27 @@ public class RootAdminController implements Initializable {
     }
 
     @FXML
-    private void handle_editProfile(ActionEvent event) {
-//        System.out.println("Clicked");
-//        FxmlLoader object = new FxmlLoader();
-//        Pane view = object.getPage("");
-//        mainPane.setCenter(view); 
+    private void handle_editProfile(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/SettingsWindow.fxml"));
+        Parent z = loader.load();
+        Scene scene = new Scene(z);
+        Stage s = new Stage();
+        s.setScene(scene);
+        s.show();
+        Stage stage = (Stage) btnLogOut.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
-    private void handle_Help(ActionEvent event) {
-//        System.out.println("Clicked");
-//        FxmlLoader object = new FxmlLoader();
-//        Pane view = object.getPage("");
-//        mainPane.setCenter(view); 
+    private void handle_Help(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/HelpWindow.fxml"));
+        Parent z = loader.load();
+        Scene scene = new Scene(z);
+        Stage s = new Stage();
+        s.setScene(scene);
+        s.show();
+        Stage stage = (Stage) btnLogOut.getScene().getWindow();
+        stage.close();
 
     }
 
