@@ -41,7 +41,7 @@ public interface IBllFacade {
 
     public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL);
 
-    public void editProject(int id,String projectName, String clientName, String hourlyRate, String description);
+    public void editProject(int id,String projectName, String clientName, int hourlyRate, String description);
 
     public void assignUsersToProj(Project selectedProject, List<User> usersAssign);
 

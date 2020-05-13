@@ -65,7 +65,7 @@ public class ProjectEditController implements Initializable {
         
         String projectName = txtProjectName.getText();
         String clientName = txtClientName.getText();
-        String hourlyRate = txtHourlyRate.getText();
+        int hourlyRate = Integer.parseInt(txtHourlyRate.getText());
         String description = txtDescription.getText();
          
         projectModel.editProject(currentSelectedProject.getId(),projectName, clientName, hourlyRate, description);

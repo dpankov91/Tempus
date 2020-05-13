@@ -83,7 +83,7 @@ public class BllManager implements IBllFacade {
     }
 
     @Override
-    public void editProject(int id, String projectName, String clientName, String hourlyRate, String description) {
+    public void editProject(int id, String projectName, String clientName, int hourlyRate, String description) {
         facade.editProject( id,projectName, clientName, hourlyRate, description);
     }
 
