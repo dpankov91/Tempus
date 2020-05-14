@@ -115,8 +115,8 @@ public class DalManager implements IDalFacade {
     }
 
     @Override
-    public void createUser(String fName, String lName, String password, String email, String role, String address, int phone, int postcode) {
-        userDao.createUser(fName, lName, password, email, role, address, phone, postcode);
+    public void createUser(String fName, String lName, String hashedPassword, String email, String role, String address, int phone, int postcode) {
+        userDao.createUser(fName, lName, hashedPassword, email, role, address, phone, postcode);
     }
 
     @Override

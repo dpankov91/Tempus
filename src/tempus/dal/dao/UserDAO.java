@@ -108,7 +108,7 @@ public class UserDAO {
             int phone = rs.getInt("phoneNumber");
             int postC = rs.getInt("postcode");
             Boolean isAdmin = rs.getBoolean("isAdmin");
-           String photoURL = rs.getString("userPhoto");
+           //String photoURL = rs.getString("userPhoto");
             String role;
             if (isAdmin) {
                 role = "Admin";
@@ -122,13 +122,13 @@ public class UserDAO {
             us.setPostcode(postC);
             us.setPhone(phone);
             us.setAddress(address);
-            us.setPhotoURL(photoURL);
+            //us.setPhotoURL(photoURL);
             allUsers.add(us);
         }
         return allUsers;
     }
 
-    public void createUser(String fName, String lName, String password, String email, String role, String address, int phone, int postcode) {
+    public void createUser(String fName, String lName, String hashedPassword, String email, String role, String address, int phone, int postcode) {
 
         try {
             Connection con = connector.getConnection();
@@ -139,7 +139,7 @@ public class UserDAO {
             //VALUES (?,'password','firstName','lastname',5555,'address',6700,1,'Admin','')
             
             pstmt.setString(1, email);
-            pstmt.setString(2, password);
+            pstmt.setString(2, hashedPassword);
             pstmt.setString(3, fName);
             pstmt.setString(4, lName);
             pstmt.setInt(5, phone);
