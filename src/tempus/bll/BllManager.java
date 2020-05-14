@@ -74,6 +74,7 @@ public class BllManager implements IBllFacade {
 
     @Override
     public void createUser(String fName, String lName, String password, String email, String role, String address, int phone, int postcode) {
+
         facade.createUser(fName, lName, password, email, role, address, phone, postcode);
     }
 

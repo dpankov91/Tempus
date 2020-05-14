@@ -6,13 +6,7 @@
 package tempus.be;
 
 import java.io.File;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ReadOnlyIntegerWrapper;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
-import javax.imageio.ImageIO;
 
 /**
  *
