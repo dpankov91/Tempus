@@ -41,25 +41,16 @@
          </graphic>
       </Button>
       <Label layoutX="14.0" layoutY="133.0" text="Create Task" />
-      <Button fx:id="btn_play" layoutX="867.0" layoutY="170.0" mnemonicParsing="false" onAction="#handle_Play" prefHeight="21.0" prefWidth="62.0" style="-fx-background-color: #000000#000000;">
+      <Button fx:id="btn_play" layoutX="876.0" layoutY="171.0" mnemonicParsing="false" onAction="#handle_Play" prefHeight="21.0" prefWidth="62.0" style="-fx-background-color: #000000#000000;">
          <graphic>
-            <ImageView fitHeight="41.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgView" fitHeight="41.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/icons8-circled-play-50.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btn_pause" layoutX="934.0" layoutY="170.0" mnemonicParsing="false" onAction="#handle_Pause" prefHeight="21.0" prefWidth="62.0" style="-fx-background-color: #000000#000000;">
-         <graphic>
-            <ImageView fitHeight="41.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/icons8-pause-button-50.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="btn_stop" layoutX="1002.0" layoutY="170.0" mnemonicParsing="false" onAction="#handle_Stop" prefHeight="21.0" prefWidth="62.0" style="-fx-background-color: #000000#000000;">
+      <Button fx:id="btn_stop" layoutX="959.0" layoutY="171.0" mnemonicParsing="false" onAction="#handle_Stop" prefHeight="21.0" prefWidth="62.0" style="-fx-background-color: #000000#000000;">
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -68,9 +59,8 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="881.0" layoutY="225.0" prefHeight="21.0" prefWidth="35.0" text="Play" />
-      <Label layoutX="942.0" layoutY="225.0" prefHeight="21.0" prefWidth="47.0" text="Pause" />
-      <Label layoutX="1016.0" layoutY="225.0" prefHeight="21.0" prefWidth="35.0" text="Stop" />
+      <Label layoutX="856.0" layoutY="225.0" prefHeight="21.0" prefWidth="102.0" text="Resume/Pause" />
+      <Label layoutX="972.0" layoutY="225.0" prefHeight="21.0" prefWidth="35.0" text="Stop" />
       <Text fx:id="secondsTimer" layoutX="831.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" />
       <Text fx:id="minutesTimer" layoutX="804.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" />
       <Text fx:id="hoursTimer" layoutX="778.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" />

@@ -7,7 +7,12 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="667.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.DeveloperOverviewController">
    <children>
       <Label layoutX="304.0" layoutY="14.0" prefHeight="43.0" prefWidth="57.0" styleClass="Headline" stylesheets="@../css/style.css" text="Help" />
-      <Label layoutX="29.0" layoutY="90.0" prefHeight="411.0" prefWidth="610.0" text="Project Description. And in case of problem Conctact" />
       <JFXButton layoutX="588.0" layoutY="23.0" text="Close" />
+      <Label layoutX="213.0" layoutY="294.0" text="In case of problem, please contact this email." />
+      <Label layoutX="275.0" layoutY="328.0" text="casper91@gmail.com" />
+      <Label layoutX="256.0" layoutY="140.0" text="Tempus Software Version 1.0" />
+      <Label layoutX="105.0" layoutY="177.0" text="This Software is a time tracking software for tracking time on tasks of specific projects." />
+      <Label layoutX="71.0" layoutY="209.0" text="The features of this program are timesheets, creating users, projects and clients and an overview of" />
+      <Label layoutX="135.0" layoutY="242.0" text="all projects as Admin and an overview over tasks of a project as Developer. " />
    </children>
 </AnchorPane>
