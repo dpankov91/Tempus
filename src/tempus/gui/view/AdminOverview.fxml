@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -11,9 +12,9 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1075.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.AdminOverviewController">
    <children>
       <Label layoutX="432.0" layoutY="51.0" prefHeight="51.0" prefWidth="223.0" styleClass="Headline" stylesheets="@../css/style.css" text="Admin Overview" AnchorPane.bottomAnchor="529.0" AnchorPane.leftAnchor="432.0" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="30.0" />
-      <JFXComboBox fx:id="cmbDateRange" layoutX="656.0" layoutY="110.0" onAction="#onSelectSetDateRangeChartBar" promptText="Date Range" />
-      <JFXComboBox fx:id="cmbUserOrProject" layoutX="80.0" layoutY="110.0" onAction="#onSelectAppearUserOrProjectTable" promptText="User Or Project Table" />
-      <AnchorPane layoutX="21.0" layoutY="157.0" prefHeight="442.0" prefWidth="506.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="567.0">
+      <JFXComboBox fx:id="cmbDateRange" layoutX="184.0" layoutY="17.0" onAction="#onSelectSetDateRangeChartBar" promptText="Date Range" />
+      <JFXComboBox fx:id="cmbUserOrProject" layoutX="14.0" layoutY="17.0" onAction="#onSelectAppearUserOrProjectTable" promptText="User Or Project Table" />
+      <AnchorPane layoutX="21.0" layoutY="157.0" prefHeight="441.0" prefWidth="506.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="567.0">
          <children>
             <TableView fx:id="tableProject" prefHeight="283.0" prefWidth="468.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="65.0">
               <columns>
@@ -25,9 +26,13 @@
               </columns>
             </TableView>
             <JFXComboBox fx:id="cmbProjects" layoutX="14.0" layoutY="14.0" onAction="#onSelectLoadSelectedProjectTable" prefHeight="26.0" prefWidth="154.0" promptText="Project Name" />
-            <JFXButton fx:id="btnAllProjects" layoutX="370.0" layoutY="14.0" onAction="#onClickLoadAllProjectsTable" text="All Projects" />
+            <JFXButton fx:id="btnAllProjects" layoutX="215.0" layoutY="14.0" onAction="#onClickLoadAllProjectsTable" text="All Tasks" />
+            <JFXComboBox fx:id="cmbUsers" layoutX="337.0" layoutY="14.0" onAction="#onSelectLoadSelectedUserTable" prefHeight="26.0" prefWidth="154.0" promptText="User Name" />
          </children>
       </AnchorPane>
       <Pane fx:id="paneBarChart" layoutX="508.0" layoutY="195.0" prefHeight="401.0" prefWidth="620.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="535.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="195.0" />
+      <JFXDatePicker fx:id="dateFrom" layoutX="688.0" layoutY="109.0" />
+      <JFXDatePicker fx:id="dateTo" layoutX="901.0" layoutY="109.0" prefHeight="28.0" prefWidth="145.0" />
+      <JFXButton fx:id="btnShow" layoutX="603.0" layoutY="123.0" onAction="#onClickShowBarChart" text="Show" />
    </children>
 </AnchorPane>

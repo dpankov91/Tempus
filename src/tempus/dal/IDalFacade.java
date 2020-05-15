@@ -5,6 +5,7 @@
  */
 package tempus.dal;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -50,7 +51,6 @@ public interface IDalFacade {
     public void deleteClient(Client selectedClient);
 
     public void createClient(String name, String city, int phone, String email);
-
 
     
 }

@@ -5,6 +5,8 @@
  */
 package tempus.gui.model;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -49,16 +51,30 @@ public class TaskModel {
         return allspecTasks;
     }
     
-    public List<Task> getHrsForSpecificDate() 
+    public List<Task> getTasksOfSelectedUser(User us) {
+        
+        List<Task> allspecUsTasks = new ArrayList();
+        for (Task alltas : alltasks) {
+            if(alltas.getUserLastName().equals(us.getLName())){
+                allspecUsTasks.add(alltas);
+            }
+        }
+        return allspecUsTasks;
+    }
+
+    
+    public List<Task> getTasksBetween(LocalDate fromDate, LocalDate toDate) 
     {
-        return null;
-//        List<Task> allHrsDayTasks = new ArrayList();
-//        for (Task alltas : alltasks) {
-//            if(alltas.getProjName().equals(selectedProject.getName())){
-//                allHrsDayTasks.add(alltas);
-//            }
-//        }
-//        return allHrsDayTasks;
+        List<Task> TasksBetween = new ArrayList();
+        Date dateFrom = java.sql.Date.valueOf(fromDate);
+        Date dateTo = java.sql.Date.valueOf(toDate);
+        
+        for (Task alltas : alltasks) {
+            if(alltas.getCreatedDate().after(dateFrom) && alltas.getCreatedDate().before(dateFrom)){
+                TasksBetween.add(alltas);
+            }
+        }
+        return TasksBetween;
     }
 
     public List<Task> getTasksOfLoggedUser(User loggedUser) {
@@ -70,6 +86,7 @@ public class TaskModel {
         }
         return allspecTasks;
     }
+
 
     
 

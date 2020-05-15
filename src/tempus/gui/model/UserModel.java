@@ -6,6 +6,8 @@
 package tempus.gui.model;
 
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import tempus.be.Project;
 import tempus.be.User;
 import tempus.bll.BllManager;
@@ -21,6 +23,7 @@ public class UserModel {
     private User selectedUser;
     private final IBllFacade facade;
     private User loggedInUser;
+    private final ObservableList<User> usList = FXCollections.observableArrayList();
 
     public static UserModel getInstance() {
         return model;
@@ -28,6 +31,7 @@ public class UserModel {
 
     public UserModel() {
         this.facade = new BllManager();
+        usList.addAll(facade.getAllUsers());
     }
 
     public User loginUser(String username, String password) {
@@ -37,6 +41,10 @@ public class UserModel {
     
      public List<User> getAllUsers() {
         return facade.getAllUsers();
+    }
+     
+       public ObservableList<User> getObsUsers() {
+        return usList;
     }
 
     public void deleteUser(User useDelete) {

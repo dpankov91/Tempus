@@ -118,7 +118,7 @@ public class ProjectDAO {
     public void editProject(int id,String projectName, String clientName, int hourlyRate, String description) throws SQLException {
         try {
         String sql = "UPDATE [dbo].[Project] SET [projectName] = ?,[hourlyRate] = ?, [description] = ? WHERE projectID=?";
-            System.out.println("Reached Edit");
+           
          Connection con = connector.getConnection();
          PreparedStatement pstmt = con.prepareStatement(sql);
           pstmt.setString(1, projectName);

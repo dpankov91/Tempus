@@ -6,6 +6,7 @@
 package tempus.bll;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import tempus.be.Client;
@@ -107,7 +108,5 @@ public class BllManager implements IBllFacade {
     public void createClient(String name, String city, int phone, String email) {
         facade.createClient(name, city, phone, email);
     }
-
- 
 
 }

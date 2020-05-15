@@ -7,7 +7,9 @@ package tempus.gui.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import tempus.be.Project;
 import tempus.be.Task;
+import tempus.be.User;
 import tempus.gui.model.ProjectModel;
 import tempus.gui.model.TaskModel;
 import tempus.gui.model.UserModel;
@@ -47,37 +50,53 @@ public class AdminOverviewController implements Initializable {
     @FXML
     private TableView<Task> tableProject;
     @FXML
-    private TableColumn<Project, String> colName;
+    private TableColumn<?, String> colName;
     @FXML
-    private TableColumn<Project, String> colTask;
+    private TableColumn<?, String> colTask;
     @FXML
-    private TableColumn<Project, String> colUser;
+    private TableColumn<?, String> colUser;
     @FXML
-    private TableColumn<Project, Date> colDate;
+    private TableColumn<?, Date> colDate;
     @FXML
-    private TableColumn<Project, Integer> colTime;
+    private TableColumn<?, Integer> colTime;
     @FXML
     private JFXComboBox<Project> cmbProjects;
     @FXML
     private JFXButton btnAllProjects;
     @FXML
     private Pane paneBarChart;
+    @FXML
+    private JFXDatePicker dateFrom;
+    @FXML
+    private JFXDatePicker dateTo;
+    @FXML
+    private JFXComboBox<User> cmbUsers;
+
     
     ObservableList<Project>  allProjects = FXCollections.observableArrayList();
+    ObservableList<User>  allUsers = FXCollections.observableArrayList();
     private ProjectModel projModel;
     private UserModel usModel;
     private TaskModel taskModel;
-    private ObservableList<Task> thisWeekTasks = FXCollections.observableArrayList();
+    private LocalDate fromDate;
+    private LocalDate toDate;
+    @FXML
+    private JFXButton btnShow;
+    
+ 
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        fromDate = dateFrom.getValue();
+        toDate = dateTo.getValue();
         projModel = ProjectModel.getInstance();
         usModel = UserModel.getInstance();
         taskModel = TaskModel.getInstance();
         loadProjectsToCombobox();
+        loadUsersToCombobox();
         cmbDateRange.setItems(FXCollections.observableArrayList(
                 "This Week", "This Month"));
         cmbUserOrProject.setItems(FXCollections.observableArrayList(
@@ -96,8 +115,16 @@ public class AdminOverviewController implements Initializable {
     @FXML
     private void onSelectLoadSelectedProjectTable(ActionEvent event) 
     {
+        //cmbUsers.getSelectionModel().clearSelection();
         Project pro = cmbProjects.getSelectionModel().getSelectedItem();
         loadSelectedProjectTableView(pro);
+    }
+    
+     @FXML
+    private void onSelectLoadSelectedUserTable(ActionEvent event) {
+        //cmbProjects.getSelectionModel().clearSelection();
+        User us = cmbUsers.getSelectionModel().getSelectedItem();
+        loadSelectedUsersTableView(us);
     }
     
     @FXML
@@ -118,7 +145,24 @@ public class AdminOverviewController implements Initializable {
         }    
     }
     
-    private void loadTaskTableView() {
+    private void loadUsersToCombobox() 
+    { 
+        allUsers = usModel.getObsUsers();
+        
+        for (User us : allUsers) {
+            cmbUsers.setItems(allUsers);
+        }    
+    }
+    
+    private void loadSelectedUsersTableView(User us){
+        tableProject.getItems().clear();
+        List<Task> allTasksOfSelectedUser = taskModel.getTasksOfSelectedUser(us);
+        ObservableList<Task> tasks = FXCollections.observableArrayList();
+        tasks.addAll(allTasksOfSelectedUser);
+        tableProject.setItems(tasks);
+    }
+    
+    private void loadAllTaskTableView() {
         tableProject.getItems().clear();
         List<Task> allTasksOverview = taskModel.getAllTasksOverview();
         ObservableList<Task> tasks = FXCollections.observableArrayList();
@@ -132,7 +176,6 @@ public class AdminOverviewController implements Initializable {
         ObservableList<Task> tasks = FXCollections.observableArrayList();
         tasks.addAll(allTasksOfSelectedProject);
         tableProject.setItems(tasks);
-        
     }
     
     private void setUpTaskTableView() {
@@ -141,8 +184,10 @@ public class AdminOverviewController implements Initializable {
         colUser.setCellValueFactory(new PropertyValueFactory<>("userLastName"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("createdDate"));
         colTime.setCellValueFactory(new PropertyValueFactory<>("spentTime"));
-        loadTaskTableView();
+        loadAllTaskTableView();
     }
+
+    
     
     private void loadDataForAllProjectsInChart(){
         paneBarChart.getChildren().clear();
@@ -198,6 +243,10 @@ public class AdminOverviewController implements Initializable {
 //                series.getData().add(new XYChart.Data<>("Sunday", 34));
 //                break;
 //        }
+    }
+
+    @FXML
+    private void onClickShowBarChart(ActionEvent event) {
     }
     
     

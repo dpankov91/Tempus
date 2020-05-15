@@ -6,6 +6,7 @@
 package tempus.be;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -58,8 +59,6 @@ public class Task {
         this.userLastName = userLastName;
     }
     
-    
-
     public String getTask() {
         return task;
     }
@@ -107,8 +106,5 @@ public class Task {
     public void setSpentTime(int spentTime) {
         this.spentTime = spentTime;
     }
-    
-    
-    
     
 }
