@@ -63,7 +63,24 @@ public class SettingsWindowController implements Initializable {
 
     @FXML
     private void onClickConfirm(ActionEvent event) {
-
+        String pswFirst = pswFirstTime.getText();
+        String pswSecond = pswSecondConfirm.getText();
+        if (pswFirst.equals(pswSecond)){
+            User us = userModel.getloggedInUser();
+            userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress(),"No", us.getPassword());
+            us.setPassword(pswSecond);
+            userModel.newPassword(pswSecond);
+          
+        } 
+        else if(pswSecond.equals("")) {
+            System.out.println("The second field is empty, please input password");
+        }
+ 
+        else {
+            System.out.println("The passwords do not match, try again");
+        }  
+        
+        
     }
 
     @FXML
@@ -76,7 +93,7 @@ public class SettingsWindowController implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             User us = userModel.getloggedInUser();
-            userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress(),selectedFile.getAbsolutePath());
+            userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress(),selectedFile.getAbsolutePath(), us.getPassword());
             us.setPhotoURL(selectedFile.getAbsolutePath());
             userModel.setUpLocalIMG(selectedFile.getAbsolutePath());
             showImg();

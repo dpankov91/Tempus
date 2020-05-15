@@ -39,7 +39,7 @@ public interface IDalFacade {
 
     public void createUser(String fName, String lName, String password, String email, String role, String address, int phone, int postcode);
 
-    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address,String imageURL);
+    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL, String password);
 
     public void editProject(int id,String projectName, String clientName, int hourlyRate, String description);
     
@@ -50,6 +50,8 @@ public interface IDalFacade {
     public void deleteClient(Client selectedClient);
 
     public void createClient(String name, String city, int phone, String email);
+
+    public void newPassword(String pswSecond, int userID);
 
 
     

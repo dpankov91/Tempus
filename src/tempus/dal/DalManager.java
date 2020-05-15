@@ -120,8 +120,8 @@ public class DalManager implements IDalFacade {
     }
 
     @Override
-    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL) {
-        userDao.editUser(id, name, Lname, email, realphone, realpostcode, address,imageURL);
+    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL, String password) {
+        userDao.editUser(id, name, Lname, email, realphone, realpostcode, address, imageURL, password);
     }
 
     @Override
@@ -163,6 +163,15 @@ public class DalManager implements IDalFacade {
     @Override
     public void createClient(String name, String city, int phone, String email) {
         clientDao.createClient(name, city, phone, email);
+    }
+
+    @Override
+    public void newPassword(String pswSecond, int userID) {
+        try {
+            userDao.newPassword(pswSecond, userID);
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

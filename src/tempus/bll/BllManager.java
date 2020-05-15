@@ -78,8 +78,8 @@ public class BllManager implements IBllFacade {
     }
 
     @Override
-    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL) {
-        facade.editUser(id, name, Lname, email, realphone, realpostcode, address,imageURL);
+    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL, String password) {
+        facade.editUser(id, name, Lname, email, realphone, realpostcode, address, imageURL, password);
     }
 
     @Override
@@ -105,6 +105,17 @@ public class BllManager implements IBllFacade {
     @Override
     public void createClient(String name, String city, int phone, String email) {
         facade.createClient(name, city, phone, email);
+    }
+
+    @Override
+    public User getPassword(String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void newPassword(String pswSecond, int userID) {
+        String newPassword = securityManager.hashPassword(pswSecond);
+        facade.newPassword(newPassword, userID);
     }
 
  
