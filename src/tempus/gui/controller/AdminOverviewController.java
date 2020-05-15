@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import java.net.URL;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
@@ -199,56 +200,22 @@ public class AdminOverviewController implements Initializable {
         weekProject.setTitle("This week projects stats");
         XYChart.Series series = new XYChart.Series();
         series.setName("Hours Amount");
+        
         series.getData().add(new XYChart.Data<>("Monday", 54));
-        series.getData().add(new XYChart.Data<>("Tuesday", 30));
-        series.getData().add(new XYChart.Data<>("Wednesday", 50));
-        series.getData().add(new XYChart.Data<>("Thursday", 80));
-        series.getData().add(new XYChart.Data<>("Friday", 75));
-        series.getData().add(new XYChart.Data<>("Saturday", 67));
-        series.getData().add(new XYChart.Data<>("Sunday", 34));
+     
         weekProject.getData().add(series);
         paneBarChart.getChildren().add(weekProject);
     }
-    
-    
-    public void getThisWeekHrs() {
-        
-//        XYChart.Series series = new XYChart.Series();
-//        series.setName("Hours Amount");
-//        
-//        Calendar calendar = Calendar.getInstance();
-//        int day = calendar.get(Calendar.DAY_OF_WEEK);
-//
-//        switch (day) {
-//            case Calendar.MONDAY:
-//                Method to reset barchart();// reset barchart 
-//                series.getData().add(new XYChart.Data<>("Monday", Method to load current monday hrs();      ));//load sum of hrs for Monday in barchart
-//                break;
-//            case Calendar.TUESDAY:
-//                series.getData().add(new XYChart.Data<>("Tuesday", 30));
-//                break;
-//            case Calendar.WEDNESDAY:
-//                series.getData().add(new XYChart.Data<>("Wednesday", 50));
-//                break;
-//            case Calendar.THURSDAY:
-//                series.getData().add(new XYChart.Data<>("Thursday", 80));
-//                break;
-//            case Calendar.FRIDAY:
-//                series.getData().add(new XYChart.Data<>("Friday", 75));
-//                break;
-//            case Calendar.SATURDAY:
-//                series.getData().add(new XYChart.Data<>("Saturday", 67));
-//                break;
-//            case Calendar.SUNDAY:
-//                series.getData().add(new XYChart.Data<>("Sunday", 34));
-//                break;
-//        }
-    }
 
+    
     @FXML
     private void onClickShowBarChart(ActionEvent event) {
     }
     
+    private long daysBeetwinDates(){
+        long daysBetween = Duration.between(fromDate, toDate).toDays();
+        return daysBetween;
+    }
     
     
 }
