@@ -6,9 +6,11 @@
 package tempus.gui.model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import tempus.be.Project;
 import tempus.be.Task;
+import tempus.be.User;
 import tempus.bll.BllManager;
 import tempus.bll.IBllFacade;
 
@@ -41,6 +43,28 @@ public class TaskModel {
         List<Task> allspecTasks = new ArrayList();
         for (Task alltas : alltasks) {
             if(alltas.getProjName().equals(selectedProject.getName())){
+                allspecTasks.add(alltas);
+            }
+        }
+        return allspecTasks;
+    }
+    
+    public List<Task> getHrsForSpecificDate() 
+    {
+        return null;
+//        List<Task> allHrsDayTasks = new ArrayList();
+//        for (Task alltas : alltasks) {
+//            if(alltas.getProjName().equals(selectedProject.getName())){
+//                allHrsDayTasks.add(alltas);
+//            }
+//        }
+//        return allHrsDayTasks;
+    }
+
+    public List<Task> getTasksOfLoggedUser(User loggedUser) {
+        List<Task> allspecTasks = new ArrayList();
+        for (Task alltas : alltasks) {
+            if(alltas.getUserLastName().equals(loggedUser.getLName())){
                 allspecTasks.add(alltas);
             }
         }

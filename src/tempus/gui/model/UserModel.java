@@ -19,10 +19,6 @@ public class UserModel {
 
     static UserModel model = new UserModel();
     private User selectedUser;
-
-    public List<User> getAllUsers() {
-        return facade.getAllUsers();
-    }
     private final IBllFacade facade;
     private User loggedInUser;
 
@@ -37,6 +33,10 @@ public class UserModel {
     public User loginUser(String username, String password) {
         loggedInUser = facade.getUser(username, password);
         return loggedInUser;
+    }
+    
+     public List<User> getAllUsers() {
+        return facade.getAllUsers();
     }
 
     public void deleteUser(User useDelete) {

@@ -42,7 +42,7 @@ public class BllManager implements IBllFacade {
 
     @Override
     public void createProject(String name, Client client, int hRate, String description) {
-
+        
         facade.createProject(name, client, hRate, description);
     }
 
@@ -74,7 +74,8 @@ public class BllManager implements IBllFacade {
 
     @Override
     public void createUser(String fName, String lName, String password, String email, String role, String address, int phone, int postcode) {
-        facade.createUser(fName, lName, password, email, role, address, phone, postcode);
+        String hashedPassword = securityManager.hashPassword(password);
+        facade.createUser(fName, lName, hashedPassword, email, role, address, phone, postcode);
     }
 
     @Override

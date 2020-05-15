@@ -97,8 +97,6 @@ public class Project {
         this.spentTime = spentTime;
     }
 
-    
-    
     public String getUsString() {
         return getCatString();
     }
@@ -123,9 +121,7 @@ public class Project {
         this.clientName = clientName;
     }
 
-
-    
-    public int getId() {
+     public int getId() {
         return id;
     }
 
