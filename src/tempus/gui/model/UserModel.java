@@ -55,8 +55,8 @@ public class UserModel {
         facade.createUser(fName, lName, password, email, role, address, phone, postcode);
     }
 
-    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imgURL) {
-        facade.editUser(id, name, Lname, email, realphone, realpostcode, address,imgURL);
+    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imgURL, String password) {
+        facade.editUser(id, name, Lname, email, realphone, realpostcode, address, imgURL, password);
     }
 
     public void setSelectedUser(User selectedUser) {
@@ -81,5 +81,9 @@ public class UserModel {
 
     public void setUpLocalIMG(String absolutePath) {
     loggedInUser.setPhotoURL(absolutePath);
+    }
+
+    public void newPassword(String pswSecond) {
+        facade.newPassword(pswSecond, loggedInUser.getId());
     }
 }

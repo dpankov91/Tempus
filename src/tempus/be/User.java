@@ -161,4 +161,8 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
+    public void newPassword(String pswSecond) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

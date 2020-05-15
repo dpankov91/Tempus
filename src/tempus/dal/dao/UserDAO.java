@@ -63,6 +63,7 @@ public class UserDAO {
             User us = new User(id, fName, lName);
             us.setEmail(email);
             us.setIsAdmin(isAdmin);
+            us.setPassword(password);
             us.setRole(role);
             us.setPostcode(postC);
             us.setPhone(phone);
@@ -153,7 +154,7 @@ public class UserDAO {
         }
     }
 
-    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL) {
+    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL, String password) {
         try {
             String sql = "UPDATE [dbo].[User] SET [email] = ?, [firstName] = ?, [lastName] = ?, [phoneNumber] = ?, [address] = ?, [postcode] = ?, [userPhoto] = ? WHERE [userID] = ?";
 
@@ -166,8 +167,9 @@ public class UserDAO {
             pstmt.setInt(4, realphone);
             pstmt.setString(5, address);
             pstmt.setInt(6, realpostcode);
-            pstmt.setInt(8, id);
+            pstmt.setInt(9, id);
             pstmt.setString(7, imageURL);
+            pstmt.setString(8, password);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -188,6 +190,19 @@ public class UserDAO {
 
         }
         pstmt.executeBatch();
+    }
+
+    public void newPassword(String pswSecond, int userID) throws SQLException {
+        
+        String sql = "UPDATE [dbo].[User] SET [password] = ? WHERE [userID] = ?";
+        
+        Connection con = connector.getConnection();
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, pswSecond);
+        pstmt.setInt(2, userID);
+            pstmt.executeUpdate();
+        
+        
     }
 
 }
