@@ -120,4 +120,10 @@ public class BllManager implements IBllFacade {
         facade.newPassword(newPassword, userID);
     }
 
+
+    @Override
+    public void editClient(int id, String name, String city, int phone, String email) {
+    facade.editClient(id,name, city, phone, email);
+}
+
 }

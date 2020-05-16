@@ -53,5 +53,7 @@ public interface IDalFacade {
     public void createClient(String name, String city, int phone, String email);
 
     public void newPassword(String pswSecond, int userID);
+
+    public void editClient(int id, String name, String city, int phone, String email);
   
 }

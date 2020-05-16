@@ -59,6 +59,10 @@ public class ClientModel {
     public void createClient(String name, String city, int phone, String email) {
          bllManager.createClient(name, city, phone, email);
     }
+
+    public void editClient(int id, String name, String city, int phone, String email) {
+    bllManager.editClient(id,name, city, phone, email);
+    }
     
     
 }
