@@ -21,7 +21,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 import tempus.be.Client;
 import tempus.be.User;
 import tempus.gui.model.ClientModel;
@@ -36,22 +38,22 @@ public class ManageClientsWindowController implements Initializable {
     @FXML
     private TableView<Client> tableViewClients;
     @FXML
-    private TableColumn<?, ?> colName;
+    private TableColumn<Client, String> colName;
     @FXML
-    private TableColumn<?, ?> colAddress;
+    private TableColumn<Client, String> colAddress;
     @FXML
-    private TableColumn<?, ?> colPhone;
+    private TableColumn<Client, Integer> colPhone;
     @FXML
-    private TableColumn<?, ?> colEmail;
+    private TableColumn<Client, String> colEmail;
     @FXML
     private JFXButton deleteButton;
     @FXML
     private JFXButton createButton;
     @FXML
     private JFXButton editButton;
-    
+
     private ClientModel cModel;
-    
+
     public Client selectedClient;
 
     /**
@@ -61,26 +63,24 @@ public class ManageClientsWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cModel = ClientModel.getInstance();
         setUpTableView();
-    }    
+    }
 
     @FXML
-    private void handleDelete(ActionEvent event) throws IOException 
-    {
+    private void handleDelete(ActionEvent event) throws IOException {
         cModel.setSelectedClient(tableViewClients.getSelectionModel().getSelectedItem());
-        if(cModel.getSelectedClient() !=null){
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmationClient.fxml"));
-                Parent z = loader.load();
-                loader.<DeleteConfirmationClientController>getController().setInfo(this);
-                Scene scene = new Scene(z);
-                Stage s = new Stage();
-                s.setScene(scene);
-                s.show();   
+        if (cModel.getSelectedClient() != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmationClient.fxml"));
+            Parent z = loader.load();
+            loader.<DeleteConfirmationClientController>getController().setInfo(this);
+            Scene scene = new Scene(z);
+            Stage s = new Stage();
+            s.setScene(scene);
+            s.show();
         }
     }
 
     @FXML
-    private void handleCreate(ActionEvent event) throws IOException 
-    {
+    private void handleCreate(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/AddClient.fxml"));
         Parent z = loader.load();
         loader.<AddClientController>getController().setInfo(this);
@@ -91,27 +91,70 @@ public class ManageClientsWindowController implements Initializable {
     }
 
     @FXML
-    private void handleEdit(ActionEvent event) 
-    {
-        
+    private void handleEdit(ActionEvent event) {
+
     }
-    
+
     void loadTableView() {
-         tableViewClients.getItems().clear();
-         List<Client> allClients = cModel.getAllClients();
-         ObservableList<Client> clients = FXCollections.observableArrayList();
-         clients.addAll(allClients);
-         tableViewClients.setItems(clients);
+        tableViewClients.getItems().clear();
+        List<Client> allClients = cModel.getAllClients();
+        ObservableList<Client> clients = FXCollections.observableArrayList();
+        clients.addAll(allClients);
+        tableViewClients.setItems(clients);
     }
-    
-    private void setUpTableView()
-    {
+
+    private void setUpTableView() {
+        tableViewClients.setEditable(true);
+        colName.setCellFactory(TextFieldTableCell.forTableColumn());
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colEmail.setCellFactory(TextFieldTableCell.forTableColumn());
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colPhone.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        colAddress.setCellFactory(TextFieldTableCell.forTableColumn());
         colAddress.setCellValueFactory(new PropertyValueFactory<>("city"));
-        
+
         loadTableView();
     }
-    
+
+    @FXML
+    private void writeToDatabase(TableColumn.CellEditEvent<Client, String> event) {
+        Client client = event.getRowValue();
+        String assignedValue = event.getNewValue();
+        if (event.getNewValue().toString().isEmpty()) {
+            assignedValue = "None";
+        }
+        switch (event.getTableColumn().getText()) {
+            case "Client name":
+                cModel.editClient(client.getId(), assignedValue, client.getCity(), client.getPhone(), client.getEmail());
+                client.setName(assignedValue);
+                break; // int id,String projectName, String clientName, String hourlyRate, String description
+            case "Address":
+                cModel.editClient(client.getId(), client.getName(), assignedValue, client.getPhone(), client.getEmail());
+                client.setCity(assignedValue);
+                break;
+            case "Email":
+                cModel.editClient(client.getId(), client.getName(), client.getCity(), client.getPhone(), assignedValue);
+                client.setEmail(assignedValue);
+                break;
+
+        }
+    }
+
+    @FXML
+    private void writeToDatabaseNumber(TableColumn.CellEditEvent<Client, Integer> event) {
+        Client client = event.getRowValue();
+        int assignedValue;
+        if (event.getNewValue() == null) {
+            assignedValue = -1;
+        } else {
+            assignedValue = event.getNewValue();
+        }
+        switch (event.getTableColumn().getText()) {
+            case "Phone":
+                cModel.editClient(client.getId(), client.getName(), client.getCity(), assignedValue, client.getEmail());
+                client.setPhone(assignedValue);
+                break;
+        }
+    }
 }

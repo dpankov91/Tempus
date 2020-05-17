@@ -175,4 +175,9 @@ public class DalManager implements IDalFacade {
         }
     }
 
+    @Override
+    public void editClient(int id, String name, String city, int phone, String email) {
+    clientDao.editClient(id,name, city, phone, email);
+    }
+
 }

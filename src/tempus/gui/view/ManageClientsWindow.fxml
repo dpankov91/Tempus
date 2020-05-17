@@ -11,10 +11,10 @@
    <children>
       <TableView fx:id="tableViewClients" layoutX="14.0" layoutY="98.0" prefHeight="346.0" prefWidth="514.0">
         <columns>
-          <TableColumn fx:id="colName" prefWidth="136.7999849319458" text="Client Name" />
-            <TableColumn fx:id="colAddress" prefWidth="87.19998168945312" text="Address" />
-            <TableColumn fx:id="colPhone" prefWidth="96.80006408691406" text="Phone" />
-            <TableColumn fx:id="colEmail" prefWidth="193.60003662109375" text="Email" />
+          <TableColumn fx:id="colName" onEditCommit="#writeToDatabase" prefWidth="136.7999849319458" text="Client Name" />
+            <TableColumn fx:id="colAddress" onEditCommit="#writeToDatabase" prefWidth="87.19998168945312" text="Address" />
+            <TableColumn fx:id="colPhone" onEditCommit="#writeToDatabaseNumber" prefWidth="96.80006408691406" text="Phone" />
+            <TableColumn fx:id="colEmail" onEditCommit="#writeToDatabase" prefWidth="193.60003662109375" text="Email" />
         </columns>
       </TableView>
       <Label layoutX="238.0" layoutY="14.0" styleClass="Headline" stylesheets="@../css/style.css" text="Client Manager">

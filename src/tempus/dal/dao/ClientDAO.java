@@ -90,6 +90,28 @@ try {
             Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void editClient(int id, String name, String city, int phone, String email) {
+         try {
+        String sql = "UPDATE [dbo].[Client] SET [clientName] = ?, [clientAddress] = ?, [clientPhone] = ?, [clientEmail] = ? WHERE clientID=?";
+           
+         Connection con = connector.getConnection();
+         PreparedStatement pstmt = con.prepareStatement(sql);
+          pstmt.setString(1, name);
+            pstmt.setString(2, city);
+            pstmt.setInt(3, phone);
+            pstmt.setString(4,email);
+            pstmt.setInt(5, id);
+            
+            
+            
+            pstmt.executeUpdate();
+           }
+     catch (SQLException ex) {
+         System.out.println(ex);
+            Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+     }
+   }
     
     
     
