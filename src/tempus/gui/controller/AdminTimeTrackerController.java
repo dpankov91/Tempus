@@ -151,6 +151,7 @@ public class AdminTimeTrackerController implements Initializable {
     @FXML
     private void handle_Stop(ActionEvent event) {
         ThreadExecutor.shutdownNow();
+        isStopped = true;
         //Here call model and insert time into database
         //tsModel.insertTask();
     }
@@ -165,7 +166,7 @@ public class AdminTimeTrackerController implements Initializable {
         //Get current time
         totalSeconds = 0;
         setUpThread();
-
+        
         /*
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), evt -> updateTime()));
         try {
@@ -192,7 +193,8 @@ public class AdminTimeTrackerController implements Initializable {
                 timeSeconds.setValue(passedSeconds);
                 timeMinutes.setValue(passedMinutes);
                 timeHours.setValue(passedHours);
-
+                
+                System.out.println("Seconds: " + timeSeconds.getValue() + ", Minutes: " + +timeMinutes.getValue() + ", Hours: " + +timeHours.getValue());
             });
         },
                 0,//Initial delay of thread
