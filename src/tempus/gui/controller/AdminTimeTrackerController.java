@@ -151,21 +151,20 @@ public class AdminTimeTrackerController implements Initializable {
     @FXML
     private void handle_Stop(ActionEvent event) {
         ThreadExecutor.shutdownNow();
-        isStopped = true;
+        //Reset time
+        timeSeconds.setValue(0);
+        timeMinutes.setValue(0);
+        timeHours.setValue(0);
         //Here call model and insert time into database
         //tsModel.insertTask();
     }
 
     @FXML
     private void handle_Start(ActionEvent event) {
-        //Reset time
-        timeSeconds.setValue(0);
-        timeMinutes.setValue(0);
-        timeHours.setValue(0);
-
         //Get current time
         totalSeconds = 0;
         setUpThread();
+        btn_start.setDisable(true); 
         
         /*
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), evt -> updateTime()));
