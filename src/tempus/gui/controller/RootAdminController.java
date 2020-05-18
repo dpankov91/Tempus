@@ -103,8 +103,6 @@ public class RootAdminController implements Initializable {
         Stage s = new Stage();
         s.setScene(scene);
         s.show();
-        Stage stage = (Stage) btnLogOut.getScene().getWindow();
-        stage.close();
     }
 
     @FXML
@@ -115,9 +113,6 @@ public class RootAdminController implements Initializable {
         Stage s = new Stage();
         s.setScene(scene);
         s.show();
-        Stage stage = (Stage) btnLogOut.getScene().getWindow();
-        stage.close();
-
     }
 
     @FXML
