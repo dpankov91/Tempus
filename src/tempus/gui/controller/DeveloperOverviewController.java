@@ -30,18 +30,11 @@ import tempus.gui.model.UserModel;
  */
 public class DeveloperOverviewController implements Initializable {
 
-    @FXML
     private TableView<Task> tableTasks;
-    @FXML
     private TableColumn<?, ?> colProject;
-    @FXML
     private TableColumn<?, ?> colTask;
-    @FXML
     private TableColumn<?, ?> colDate;
-    @FXML
     private TableColumn<?, ?> colHours;
-    @FXML
-    private JFXComboBox<?> cmbDateRange;
 
     /**
      * Initializes the controller class.

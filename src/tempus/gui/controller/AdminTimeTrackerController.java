@@ -17,6 +17,8 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,6 +35,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import tempus.be.Client;
+import tempus.be.Project;
+import tempus.be.Task;
+import tempus.gui.model.ProjectModel;
 import tempus.gui.model.TaskModel;
 
 /**
@@ -55,9 +61,9 @@ public class AdminTimeTrackerController implements Initializable {
     @FXML
     private TableColumn<?, ?> col_timespent;
     @FXML
-    private TableView<?> tbv_timetracker;
+    private TableView<Task> tbv_timetracker;
     @FXML
-    private ComboBox<?> cb_projects;
+    private ComboBox<Project> cb_projects;
     @FXML
     private JFXTextField txt_task;
     @FXML
@@ -89,18 +95,22 @@ public class AdminTimeTrackerController implements Initializable {
     boolean isStopped = false;
     boolean isPressed = true;
     private TaskModel tsModel;
+    private ProjectModel projModel;
     @FXML
     private Label lbl_date;
     
+    ObservableList<Project>  allProjects = FXCollections.observableArrayList();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tsModel = TaskModel.getInstance();
+        projModel = ProjectModel.getInstance();               
         secondsTimer.textProperty().bind(timeSeconds.asString());
         minutesTimer.textProperty().bind(timeMinutes.asString());
         hoursTimer.textProperty().bind(timeHours.asString());
+        loadProjectsToComboBox();
     }
 
     private void updateTime() {
@@ -205,5 +215,15 @@ public class AdminTimeTrackerController implements Initializable {
                 TimeUnit.SECONDS // Time unit
         );
     }
+    
+    public void loadProjectsToComboBox() 
+    { 
+        allProjects = projModel.getObsProjects();
+        
+        for (Project proj : allProjects) {
+            cb_projects.setItems(allProjects);
+        }    
+    }
+
 
 }
