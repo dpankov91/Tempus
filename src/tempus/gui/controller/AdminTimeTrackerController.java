@@ -163,9 +163,7 @@ public class AdminTimeTrackerController implements Initializable {
     private void handle_Start(ActionEvent event) {
         //Get current time
         totalSeconds = 0;
-        setUpThread();
-        btn_start.setDisable(true); 
-        
+        setUpThread();        
         /*
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), evt -> updateTime()));
         try {
