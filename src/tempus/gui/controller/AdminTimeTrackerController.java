@@ -26,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
@@ -42,15 +43,11 @@ import tempus.gui.model.TaskModel;
 public class AdminTimeTrackerController implements Initializable {
 
     @FXML
-    private DatePicker datepicker;
-    @FXML
     private TableColumn<?, ?> monday;
     @FXML
     private TableColumn<?, ?> tuesday;
     @FXML
     private TableColumn<?, ?> wednesday;
-    @FXML
-    private TableColumn<?, ?> thursday;
     @FXML
     private TableColumn<?, ?> friday;
     @FXML
@@ -65,8 +62,6 @@ public class AdminTimeTrackerController implements Initializable {
     private JFXTextField txt_task;
     @FXML
     private JFXTextField txt_note;
-    @FXML
-    private Button btn_createtask;
     @FXML
     private Button btn_play;
     @FXML
@@ -92,7 +87,10 @@ public class AdminTimeTrackerController implements Initializable {
     private ScheduledExecutorService ThreadExecutor;
     long totalSeconds = 0;
     boolean isStopped = false;
+    boolean isPressed = true;
     private TaskModel tsModel;
+    @FXML
+    private Label lbl_date;
     
     /**
      * Initializes the controller class.
@@ -124,7 +122,6 @@ public class AdminTimeTrackerController implements Initializable {
         */
     }
 
-    @FXML
     private void handle_CreateTask(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/NewTimeEntry.fxml"));
         Parent z = loader.load();
@@ -144,6 +141,15 @@ public class AdminTimeTrackerController implements Initializable {
             isStopped = true;
             ThreadExecutor.shutdownNow();
             //Stops the thread
+        }
+        
+        if (isPressed) {
+            isPressed = true;
+        imgView.setImage(new Image("/tempus/gui/assets/icons8-pause-button-50.png"));
+                } else {
+            isPressed = false;
+        imgView.setImage(new Image("/tempus/gui/assets/icons8-circled-play-50.png"));
+ 
         }
         //timeline.play();
     }
