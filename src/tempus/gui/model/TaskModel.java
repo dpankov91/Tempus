@@ -69,7 +69,7 @@ public class TaskModel {
         Date dateTo = java.sql.Date.valueOf(toDate);
 
         for (Task alltas : alltasks) {
-            if ((alltas.getCreatedDate().after(dateFrom) || alltas.getCreatedDate().equals(dateFrom)) && (alltas.getCreatedDate().before(dateTo) || alltas.getCreatedDate().equals(dateTo))) {
+            if ((alltas.getStartTime().after(dateFrom) || alltas.getStartTime().equals(dateFrom)) && (alltas.getStartTime().before(dateTo) || alltas.getStartTime().equals(dateTo))) {
                 TasksBetween.add(alltas);
             }
         }
@@ -94,18 +94,18 @@ public class TaskModel {
         List<Task> filteredList = new ArrayList();
         
         for (Task task : lisToFilter) {
-            Task tsk = new Task(task.getTask(), task.getNote(), task.getCreatedDate(), task.getStartTime(), task.getEndTime(), task.getSpentTime());
-            if (datesStored.get(tsk.getCreatedDate().toString()) != null) {
+            Task tsk = new Task(task.getTask(), task.getNote(), task.getStartTime(), task.getEndTime(), task.getSpentTime());
+            if (datesStored.get(tsk.getStartTime().toString()) != null) {
         
                 for (Task taskAlreadyInList : filteredList) {
-                            LocalDate ld = new java.sql.Date( taskAlreadyInList.getCreatedDate().getTime() ).toLocalDate();
-                            LocalDate ld2 = new java.sql.Date( tsk.getCreatedDate().getTime() ).toLocalDate();
+                            LocalDate ld = new java.sql.Date( taskAlreadyInList.getStartTime().getTime() ).toLocalDate();
+                            LocalDate ld2 = new java.sql.Date( tsk.getStartTime().getTime() ).toLocalDate();
                     if (formatter.format(ld).equals(formatter.format(ld2))) {
                         taskAlreadyInList.setSpentTime(taskAlreadyInList.getSpentTime() + tsk.getSpentTime());
                     }
                 }
             } else {
-                datesStored.put(tsk.getCreatedDate().toString(), "None");
+                datesStored.put(tsk.getStartTime().toString(), "None");
                 filteredList.add(tsk);
             }
         }

@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,8 +34,8 @@ public class TaskDAO {
     {
          ArrayList<Task> allTasksOverview = new ArrayList<>();
          
-        String sql = "SELECT [dbo].[Project].[projectName], [dbo].[User].[lastName], "
-                   + "[dbo].[Task].[task], [dbo].[Task].[date], [dbo].[Task].[spentTime]"
+             String sql = "SELECT [dbo].[Project].[projectName], [dbo].[User].[lastName], [dbo].[User].[firstName], "
+                   + "[dbo].[Task].[task], [dbo].[Task].[startTime], [dbo].[Task].[endTime], [dbo].[Task].[spentTime]"
                      + "FROM [dbo].[Task]"
                       + "JOIN [dbo].[User] ON [dbo].[User].[userID] = [dbo].[Task].[userID]"
                         + "JOIN [dbo].[Project] ON [dbo].[Project].[projectID] = [dbo].[Task].[projectID]";
@@ -49,11 +48,14 @@ public class TaskDAO {
             {
                 String projName = rs.getString("projectName");
                 String userLastName = rs.getString("lastName");
+                String userFirstName = rs.getString("firstName");
                 String taskName = rs.getString("task");
-                Date createdDate = rs.getDate("date");
+                Date startTime = rs.getDate("startTime");
+                Date endTime = rs.getDate("endTime");
                 int spentTime = rs.getInt("spentTime");
                 
-                Task task = new Task(projName, userLastName, taskName, createdDate, spentTime);
+                Task task = new Task(projName, userLastName, userFirstName, taskName, startTime, endTime, spentTime);
+                
                 allTasksOverview.add(task);
             }
              

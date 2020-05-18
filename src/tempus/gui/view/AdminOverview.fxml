@@ -12,15 +12,16 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1075.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.AdminOverviewController">
    <children>
       <Label layoutX="432.0" layoutY="51.0" prefHeight="51.0" prefWidth="223.0" styleClass="Headline" stylesheets="@../css/style.css" text="Admin Overview" AnchorPane.bottomAnchor="529.0" AnchorPane.leftAnchor="432.0" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="30.0" />
-      <AnchorPane layoutX="21.0" layoutY="157.0" prefHeight="441.0" prefWidth="506.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="567.0">
+      <AnchorPane layoutY="181.0" prefHeight="441.0" prefWidth="506.0" AnchorPane.bottomAnchor="-12.600000000000023" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="502.0">
          <children>
             <TableView fx:id="tableProject" prefHeight="283.0" prefWidth="468.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="65.0">
               <columns>
-                <TableColumn fx:id="colName" prefWidth="126.39999103546143" text="Project name" />
-                <TableColumn fx:id="colTask" prefWidth="122.4000244140625" text="Task" />
-                  <TableColumn fx:id="colUser" prefWidth="91.20001220703125" text="User" />
-                  <TableColumn fx:id="colDate" prefWidth="95.20001220703125" text="Date" />
-                  <TableColumn fx:id="colTime" prefWidth="67.20001220703125" text="Time" />
+                <TableColumn fx:id="colName" prefWidth="97.60000324249268" text="Project name" />
+                <TableColumn fx:id="colTask" prefWidth="104.0" text="Task" />
+                  <TableColumn fx:id="colUser" prefWidth="100.80000305175781" text="User" />
+                  <TableColumn fx:id="colStartTime" prefWidth="89.60003662109375" text="Start Time" />
+                  <TableColumn fx:id="colEndTime" prefWidth="95.199951171875" text="End Time" />
+                  <TableColumn fx:id="colHrs" prefWidth="102.4000244140625" text="Hours" />
               </columns>
             </TableView>
             <JFXComboBox fx:id="cmbProjects" layoutX="14.0" layoutY="14.0" onAction="#onSelectLoadSelectedProjectTable" prefHeight="26.0" prefWidth="154.0" promptText="Project Name" />
@@ -28,7 +29,7 @@
             <JFXComboBox fx:id="cmbUsers" layoutX="337.0" layoutY="14.0" onAction="#onSelectLoadSelectedUserTable" prefHeight="26.0" prefWidth="154.0" promptText="User Name" />
          </children>
       </AnchorPane>
-      <Pane fx:id="paneBarChart" layoutX="508.0" layoutY="195.0" prefHeight="401.0" prefWidth="620.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="535.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="195.0" />
+      <Pane fx:id="paneBarChart" layoutX="508.0" layoutY="195.0" prefHeight="401.0" prefWidth="620.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="195.0" />
       <JFXDatePicker fx:id="dateFrom" layoutX="688.0" layoutY="109.0" onAction="#formateDate" />
       <JFXDatePicker fx:id="dateTo" layoutX="901.0" layoutY="109.0" onAction="#formateDate" prefHeight="28.0" prefWidth="145.0" />
       <JFXButton fx:id="btnShow" layoutX="603.0" layoutY="123.0" onAction="#onClickShowBarChart" styleClass="assignBtn" stylesheets="@../css/assignStyle.css" text="Show" />
