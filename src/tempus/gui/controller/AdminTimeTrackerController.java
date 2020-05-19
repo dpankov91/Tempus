@@ -84,52 +84,34 @@ public class AdminTimeTrackerController implements Initializable {
     ImageView imgView;
 
     private static final int STARTTIME = 0;
-    private Timeline timeline;
     private final IntegerProperty timeSeconds = new SimpleIntegerProperty(STARTTIME);
     private final IntegerProperty timeMinutes = new SimpleIntegerProperty(STARTTIME);
     private final IntegerProperty timeHours = new SimpleIntegerProperty(STARTTIME);
 
-
     private ScheduledExecutorService ThreadExecutor;
     long totalSeconds = 0;
     boolean isStopped = false;
-    boolean isPressed = true;
     private TaskModel tsModel;
     private ProjectModel projModel;
     @FXML
     private Label lbl_date;
-    
-    ObservableList<Project>  allProjects = FXCollections.observableArrayList();
+
+    ObservableList<Project> allProjects = FXCollections.observableArrayList();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tsModel = TaskModel.getInstance();
-        projModel = ProjectModel.getInstance();               
+        projModel = ProjectModel.getInstance();
         secondsTimer.textProperty().bind(timeSeconds.asString());
         minutesTimer.textProperty().bind(timeMinutes.asString());
         hoursTimer.textProperty().bind(timeHours.asString());
+        btn_start.setDisable(false);
+        btn_play.setDisable(true);
         loadProjectsToComboBox();
-    }
-
-    private void updateTime() {
-        
-        /*//implements seconds            
-        int seconds = timeSeconds.get();
-        timeSeconds.set(seconds + 1);
-
-        //implements minutes
-        int min = timeSeconds.getValue() / 60;
-        timeMinutes.set(min);
-
-        // implements hours
-        int hours = timeHours.getValue();
-        timeHours.set(hours);
-
-        System.out.println("Seconds: " + timeSeconds.getValue() + ", Minutes: " + +timeMinutes.getValue() + ", Hours: " + +timeHours.getValue());
-        
-        */
+        imgView.setImage(new Image("/tempus/gui/assets/icons8-pause-button-50.png"));
     }
 
     private void handle_CreateTask(ActionEvent event) throws IOException {
@@ -146,49 +128,39 @@ public class AdminTimeTrackerController implements Initializable {
         if (isStopped) {
             isStopped = false;
             setUpThread();
+            imgView.setImage(new Image("/tempus/gui/assets/icons8-pause-button-50.png"));
+
             //Plays again
         } else {
             isStopped = true;
             ThreadExecutor.shutdownNow();
+            imgView.setImage(new Image("/tempus/gui/assets/icons8-circled-play-50.png"));
+
             //Stops the thread
         }
-        
-        if (isPressed) {
-            isPressed = true;
-        imgView.setImage(new Image("/tempus/gui/assets/icons8-pause-button-50.png"));
-                } else {
-            isPressed = false;
-        imgView.setImage(new Image("/tempus/gui/assets/icons8-circled-play-50.png"));
- 
-        }
-        //timeline.play();
     }
 
     @FXML
     private void handle_Stop(ActionEvent event) {
         ThreadExecutor.shutdownNow();
+        imgView.setImage(new Image("/tempus/gui/assets/icons8-pause-button-50.png"));
         //Reset time
         timeSeconds.setValue(0);
         timeMinutes.setValue(0);
         timeHours.setValue(0);
+        btn_start.setDisable(false);
+        btn_play.setDisable(true);
         //Here call model and insert time into database
-        //tsModel.insertTask();
     }
 
     @FXML
     private void handle_Start(ActionEvent event) {
+        isStopped = false;
         //Get current time
+        btn_start.setDisable(true);
+        btn_play.setDisable(false);
         totalSeconds = 0;
-        setUpThread();        
-        /*
-        timeline = new Timeline(new KeyFrame(Duration.seconds(1), evt -> updateTime()));
-        try {
-            //System.out.println("Seconds...");
-        } catch (Exception e2) {
-            // TODO: handle exception
-        }
-        timeline.setCycleCount(Animation.INDEFINITE); //repeats loop
-        timeline.play();*/
+        setUpThread();
     }
 
     private void setUpThread() {
@@ -206,7 +178,7 @@ public class AdminTimeTrackerController implements Initializable {
                 timeSeconds.setValue(passedSeconds);
                 timeMinutes.setValue(passedMinutes);
                 timeHours.setValue(passedHours);
-                
+
                 System.out.println("Seconds: " + timeSeconds.getValue() + ", Minutes: " + +timeMinutes.getValue() + ", Hours: " + +timeHours.getValue());
             });
         },
@@ -215,15 +187,13 @@ public class AdminTimeTrackerController implements Initializable {
                 TimeUnit.SECONDS // Time unit
         );
     }
-    
-    public void loadProjectsToComboBox() 
-    { 
+
+    public void loadProjectsToComboBox() {
         allProjects = projModel.getObsProjects();
-        
+
         for (Project proj : allProjects) {
             cb_projects.setItems(allProjects);
-        }    
+        }
     }
-
 
 }
