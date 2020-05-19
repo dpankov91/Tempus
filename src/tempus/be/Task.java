@@ -5,8 +5,7 @@
  */
 package tempus.be;
 
-import java.sql.Time;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -17,32 +16,41 @@ public class Task {
     
     private String task;
     private String note;
-    private Date createdDate;
-    private Time startTime;
-    private Time endTime;
+    private Date startTime;
+    private Date endTime;
     private int spentTime;
     
     private String projName;
     private String userLastName;
+    private String userFirstName;
 
-    public Task(String task, String note, Date createdDate, Time startTime, Time endTime, int spentTime) {
+    public Task(String task, String note, Date startTime, Date endTime, int spentTime) {
         this.task = task;
         this.note = note;
-        this.createdDate = createdDate;
         this.startTime = startTime;
         this.endTime = endTime;
         this.spentTime = spentTime;
     }
 
-    public Task(String projName, String userLastName, String task, Date createdDate, int spentTime)
+    public Task(String projName, String userLastName, String userFirstName, String task, Date startTime, Date endTime, int spentTime)
     {
-        this.task = task;
-        this.createdDate = createdDate;
-        this.spentTime = spentTime;
         this.projName = projName;
+        this.task = task;
+        this.spentTime = spentTime;
         this.userLastName = userLastName;
+        this.userFirstName = userFirstName;
+        this.startTime = startTime;
+        this.endTime = startTime;;
     }
 
+    public String getUserFirstName() {
+        return userFirstName;
+    }
+
+    public void setUserFirstName(String userFirstName) {
+        this.userFirstName = userFirstName;
+    }
+    
     public String getProjName() {
         return projName;
     }
@@ -75,27 +83,19 @@ public class Task {
         this.note = note;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Time getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 

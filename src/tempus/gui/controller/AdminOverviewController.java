@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
@@ -50,8 +51,6 @@ import tempus.gui.model.UserModel;
  */
 public class AdminOverviewController implements Initializable {
 
-    private JFXComboBox<String> cmbDateRange;
-    private JFXComboBox<String> cmbUserOrProject;
     private StackedBarChart<String, Integer> chartBar;
     @FXML
     private TableView<Task> tableProject;
@@ -62,9 +61,11 @@ public class AdminOverviewController implements Initializable {
     @FXML
     private TableColumn<?, String> colUser;
     @FXML
-    private TableColumn<?, Date> colDate;
+    private TableColumn<?, ?> colStartTime;
     @FXML
-    private TableColumn<?, Integer> colTime;
+    private TableColumn<?, ?> colEndTime;
+    @FXML
+    private TableColumn<?, ?> colHrs;
     @FXML
     private JFXComboBox<Project> cmbProjects;
     @FXML
@@ -83,10 +84,11 @@ public class AdminOverviewController implements Initializable {
     private ProjectModel projModel;
     private UserModel usModel;
     private TaskModel taskModel;
-    private LocalDate fromDate;
-    private LocalDate toDate;
+    private Date fromDate;
+    private Date toDate;
     @FXML
     private JFXButton btnShow;
+   
 
     /**
      * Initializes the controller class.
@@ -171,8 +173,9 @@ public class AdminOverviewController implements Initializable {
         colName.setCellValueFactory(new PropertyValueFactory<>("projName"));
         colTask.setCellValueFactory(new PropertyValueFactory<>("task"));
         colUser.setCellValueFactory(new PropertyValueFactory<>("userLastName"));
-        colDate.setCellValueFactory(new PropertyValueFactory<>("createdDate"));
-        colTime.setCellValueFactory(new PropertyValueFactory<>("spentTime"));
+        colStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        colEndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        colHrs.setCellValueFactory(new PropertyValueFactory<>("spentTime"));
         loadAllTaskTableView();
     }
 
@@ -199,10 +202,10 @@ public class AdminOverviewController implements Initializable {
         // get tasks
         for (LocalDate localDate : datesToIterate) {
             for (Task task : taskList) {
-                LocalDate createDate = new java.sql.Date( task.getCreatedDate().getTime() ).toLocalDate();
+                LocalDate createDate = new java.sql.Date( task.getStartTime().getTime() ).toLocalDate();
                 if (formatter.format(localDate).equals(formatter.format(createDate))) {
                     series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
-                  //  break;
+                    break;
                 }
 
             }
@@ -211,7 +214,7 @@ public class AdminOverviewController implements Initializable {
         weekProject.getData().add(series);
         paneBarChart.getChildren().add(weekProject);
     }
-
+//
 //    private final DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("dd/MM/yyyy");
 //
 //    public String toString(LocalDate localDate)
