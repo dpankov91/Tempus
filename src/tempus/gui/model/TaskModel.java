@@ -7,6 +7,7 @@ package tempus.gui.model;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -65,11 +66,11 @@ public class TaskModel {
 
     public List<Task> getTasksBetween(LocalDate fromDate, LocalDate toDate) {
         List<Task> TasksBetween = new ArrayList();
-        Date dateFrom = java.sql.Date.valueOf(fromDate);
-        Date dateTo = java.sql.Date.valueOf(toDate);
+        LocalDate ldtFrom = fromDate;
+        LocalDate ldtTo = toDate;
 
         for (Task alltas : alltasks) {
-            if ((alltas.getStartTime().after(dateFrom) || alltas.getStartTime().equals(dateFrom)) && (alltas.getStartTime().before(dateTo) || alltas.getStartTime().equals(dateTo))) {
+            if (((alltas.getsStartTime().toLocalDate()).isAfter(ldtFrom) || (alltas.getsStartTime().toLocalDate()).isEqual(ldtFrom)) && ((alltas.getsStartTime().toLocalDate()).isBefore(ldtTo) || (alltas.getsStartTime().toLocalDate()).isEqual(ldtTo))) {
                 TasksBetween.add(alltas);
             }
         }
@@ -88,24 +89,22 @@ public class TaskModel {
 
     private List<Task> calculateTotalTime(List<Task> lisToFilter) {
         HashMap<String, String> datesStored = new HashMap<String, String>(); //key is date
-        
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
-        
+
         List<Task> filteredList = new ArrayList();
-        
+
         for (Task task : lisToFilter) {
-            Task tsk = new Task(task.getTask(), task.getNote(), task.getStartTime(), task.getEndTime(), task.getSpentTime());
-            if (datesStored.get(tsk.getStartTime().toString()) != null) {
-        
+            Task tsk = new Task(task.getTask(), task.getNote(), task.getsStartTime(), task.getsEndTime(), task.getSpentTime());
+            if (datesStored.get(tsk.getsStartTime().toLocalDate().atStartOfDay().toString()) != null) {
+
                 for (Task taskAlreadyInList : filteredList) {
-                            LocalDate ld = new java.sql.Date( taskAlreadyInList.getStartTime().getTime() ).toLocalDate();
-                            LocalDate ld2 = new java.sql.Date( tsk.getStartTime().getTime() ).toLocalDate();
-                    if (formatter.format(ld).equals(formatter.format(ld2))) {
+                    LocalDateTime d1 = taskAlreadyInList.getsStartTime().toLocalDate().atStartOfDay();
+                    LocalDateTime d2 = tsk.getsStartTime().toLocalDate().atStartOfDay();
+                    if (d1.equals(d2)) {
                         taskAlreadyInList.setSpentTime(taskAlreadyInList.getSpentTime() + tsk.getSpentTime());
                     }
                 }
             } else {
-                datesStored.put(tsk.getStartTime().toString(), "None");
+                datesStored.put(tsk.getsStartTime().toLocalDate().atStartOfDay().toString(), "None");
                 filteredList.add(tsk);
             }
         }

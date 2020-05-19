@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -50,8 +51,8 @@ public class TaskDAO {
                 String userLastName = rs.getString("lastName");
                 String userFirstName = rs.getString("firstName");
                 String taskName = rs.getString("task");
-                Date startTime = rs.getDate("startTime");
-                Date endTime = rs.getDate("endTime");
+                LocalDateTime startTime = rs.getTimestamp("startTime").toLocalDateTime();
+                LocalDateTime endTime = rs.getTimestamp("endTime").toLocalDateTime();
                 int spentTime = rs.getInt("spentTime");
                 
                 Task task = new Task(projName, userLastName, userFirstName, taskName, startTime, endTime, spentTime);

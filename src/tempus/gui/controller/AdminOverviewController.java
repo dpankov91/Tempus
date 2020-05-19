@@ -13,6 +13,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -33,6 +34,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -61,7 +63,7 @@ public class AdminOverviewController implements Initializable {
     @FXML
     private TableColumn<?, String> colUser;
     @FXML
-    private TableColumn<?, ?> colStartTime;
+    private TableColumn<?, String> colStartTime;
     @FXML
     private TableColumn<?, ?> colEndTime;
     @FXML
@@ -78,6 +80,8 @@ public class AdminOverviewController implements Initializable {
     private JFXDatePicker dateTo;
     @FXML
     private JFXComboBox<User> cmbUsers;
+    @FXML
+    private JFXButton btnShow;
 
     ObservableList<Project> allProjects = FXCollections.observableArrayList();
     ObservableList<User> allUsers = FXCollections.observableArrayList();
@@ -87,8 +91,7 @@ public class AdminOverviewController implements Initializable {
     private Date fromDate;
     private Date toDate;
     @FXML
-    private JFXButton btnShow;
-   
+    private Label lblSumHrs;
 
     /**
      * Initializes the controller class.
@@ -100,10 +103,6 @@ public class AdminOverviewController implements Initializable {
         taskModel = TaskModel.getInstance();
         loadProjectsToCombobox();
         loadUsersToCombobox();
-//        cmbDateRange.setItems(FXCollections.observableArrayList(
-//                "This Week", "This Month"));
-//        cmbUserOrProject.setItems(FXCollections.observableArrayList(
-//                "Project", "User"));
         setUpTaskTableView();
 
     }
@@ -145,7 +144,7 @@ public class AdminOverviewController implements Initializable {
         }
     }
 
-    private void loadSelectedUsersTableView(User us) {
+    private void loadSelectedUsersTableView(User us) {  
         tableProject.getItems().clear();
         List<Task> allTasksOfSelectedUser = taskModel.getTasksOfSelectedUser(us);
         ObservableList<Task> tasks = FXCollections.observableArrayList();
@@ -195,15 +194,17 @@ public class AdminOverviewController implements Initializable {
         series.setName("Time Spent Each Day");
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
-
+        System.out.println("1");
 
         List<LocalDate> datesToIterate = getDifferenceDays(dateFrom.getValue(), dateTo.getValue());
         List<Task> taskList = taskModel.getTasksBetween(dateFrom.getValue(), dateTo.getValue());
         // get tasks
+        System.out.println("2");
         for (LocalDate localDate : datesToIterate) {
             for (Task task : taskList) {
-                LocalDate createDate = new java.sql.Date( task.getStartTime().getTime() ).toLocalDate();
-                if (formatter.format(localDate).equals(formatter.format(createDate))) {
+                //LocalDate createDate = new java.sql.Date( task.getStartTime().getTime() ).toLocalDate();
+                if (formatter.format(localDate).equals(formatter.format(task.getsStartTime()))) {
+                    System.out.println("4");
                     series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
                     break;
                 }
@@ -214,29 +215,13 @@ public class AdminOverviewController implements Initializable {
         weekProject.getData().add(series);
         paneBarChart.getChildren().add(weekProject);
     }
-//
-//    private final DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//
-//    public String toString(LocalDate localDate)
-//    {
-//        if(localDate==null)
-//            return "";
-//        return dateTimeFormatter.format(localDate);
-//    }
-//
-//    public LocalDate fromString(String dateString)
-//    {
-//        if(dateString==null || dateString.trim().isEmpty())
-//        {
-//            return null;
-//        }
-//        return LocalDate.parse(dateString,dateTimeFormatter);
-//    }
-    private List<LocalDate> getDifferenceDays(LocalDate fromDate, LocalDate toDate) {
 
+    private List<LocalDate> getDifferenceDays(LocalDate fromDate, LocalDate toDate) {
+        System.out.println("btwn1");
         return Stream.iterate(fromDate, date -> date.plusDays(1))
-                .limit(ChronoUnit.DAYS.between(fromDate, toDate))
+           .limit(ChronoUnit.DAYS.between(fromDate, toDate))
                 .collect(Collectors.toList());
+
     }
 
     @FXML

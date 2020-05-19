@@ -12,7 +12,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1075.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.AdminOverviewController">
    <children>
       <Label layoutX="432.0" layoutY="51.0" prefHeight="51.0" prefWidth="223.0" styleClass="Headline" stylesheets="@../css/style.css" text="Admin Overview" AnchorPane.bottomAnchor="529.0" AnchorPane.leftAnchor="432.0" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="30.0" />
-      <AnchorPane layoutY="181.0" prefHeight="441.0" prefWidth="506.0" AnchorPane.bottomAnchor="-12.600000000000023" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="502.0">
+      <AnchorPane layoutY="139.0" prefHeight="470.0" prefWidth="573.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="502.0">
          <children>
             <TableView fx:id="tableProject" prefHeight="283.0" prefWidth="468.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="65.0">
               <columns>
@@ -27,11 +27,13 @@
             <JFXComboBox fx:id="cmbProjects" layoutX="14.0" layoutY="14.0" onAction="#onSelectLoadSelectedProjectTable" prefHeight="26.0" prefWidth="154.0" promptText="Project Name" />
             <JFXButton fx:id="btnAllProjects" layoutX="215.0" layoutY="14.0" onAction="#onClickLoadAllProjectsTable" styleClass="assignBtn" stylesheets="@../css/assignStyle.css" text="All Tasks" />
             <JFXComboBox fx:id="cmbUsers" layoutX="337.0" layoutY="14.0" onAction="#onSelectLoadSelectedUserTable" prefHeight="26.0" prefWidth="154.0" promptText="User Name" />
+            <Label layoutX="400.0" layoutY="348.0" prefHeight="34.0" prefWidth="90.0" text="Sum of Hours:" />
+            <Label fx:id="lblSumHrs" layoutX="500.0" layoutY="348.0" prefHeight="34.0" prefWidth="74.0" text="Amount" />
          </children>
       </AnchorPane>
-      <Pane fx:id="paneBarChart" layoutX="508.0" layoutY="195.0" prefHeight="401.0" prefWidth="620.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="195.0" />
-      <JFXDatePicker fx:id="dateFrom" layoutX="688.0" layoutY="109.0" onAction="#formateDate" />
-      <JFXDatePicker fx:id="dateTo" layoutX="901.0" layoutY="109.0" onAction="#formateDate" prefHeight="28.0" prefWidth="145.0" />
-      <JFXButton fx:id="btnShow" layoutX="603.0" layoutY="123.0" onAction="#onClickShowBarChart" styleClass="assignBtn" stylesheets="@../css/assignStyle.css" text="Show" />
+      <Pane fx:id="paneBarChart" layoutX="508.0" layoutY="174.0" prefHeight="422.0" prefWidth="505.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="174.0" />
+      <JFXDatePicker fx:id="dateFrom" layoutX="468.0" layoutY="95.0" onAction="#formateDate" prefHeight="26.0" prefWidth="138.0" />
+      <JFXDatePicker fx:id="dateTo" layoutX="615.0" layoutY="95.0" onAction="#formateDate" prefHeight="28.0" prefWidth="138.0" />
+      <JFXButton fx:id="btnShow" layoutX="384.0" layoutY="95.0" onAction="#onClickShowBarChart" styleClass="assignBtn" stylesheets="@../css/assignStyle.css" text="Show" />
    </children>
 </AnchorPane>
