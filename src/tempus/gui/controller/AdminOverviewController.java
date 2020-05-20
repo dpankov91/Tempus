@@ -9,19 +9,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javafx.collections.FXCollections;
@@ -67,7 +60,7 @@ public class AdminOverviewController implements Initializable {
     @FXML
     private TableColumn<?, ?> colEndTime;
     @FXML
-    private TableColumn<?, ?> colHrs;
+    private TableColumn<Task, Integer> colHrs;
     @FXML
     private JFXComboBox<Project> cmbProjects;
     @FXML
@@ -104,7 +97,6 @@ public class AdminOverviewController implements Initializable {
         loadProjectsToCombobox();
         loadUsersToCombobox();
         setUpTaskTableView();
-
     }
 
 
@@ -113,6 +105,7 @@ public class AdminOverviewController implements Initializable {
         //cmbUsers.getSelectionModel().clearSelection();
         Project pro = cmbProjects.getSelectionModel().getSelectedItem();
         loadSelectedProjectTableView(pro);
+        setSumHrsToLabel();
     }
 
     @FXML
@@ -120,6 +113,7 @@ public class AdminOverviewController implements Initializable {
         //cmbProjects.getSelectionModel().clearSelection();
         User us = cmbUsers.getSelectionModel().getSelectedItem();
         loadSelectedUsersTableView(us);
+        setSumHrsToLabel();
     }
 
     @FXML
@@ -176,6 +170,7 @@ public class AdminOverviewController implements Initializable {
         colEndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         colHrs.setCellValueFactory(new PropertyValueFactory<>("spentTime"));
         loadAllTaskTableView();
+        setSumHrsToLabel();
     }
 
     private void loadDataForAllProjectsInChart() {
@@ -202,7 +197,6 @@ public class AdminOverviewController implements Initializable {
         System.out.println("2");
         for (LocalDate localDate : datesToIterate) {
             for (Task task : taskList) {
-                //LocalDate createDate = new java.sql.Date( task.getStartTime().getTime() ).toLocalDate();
                 if (formatter.format(localDate).equals(formatter.format(task.getsStartTime()))) {
                     System.out.println("4");
                     series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
@@ -229,6 +223,12 @@ public class AdminOverviewController implements Initializable {
         loadDataForAllProjectsInChart();
     }
 
+    private void setSumHrsToLabel()
+    {
+        int total = tableProject.getItems().stream().collect(Collectors.summingInt(Task::getSpentTime));
+        lblSumHrs.setText(String.valueOf(total));
+    }
+    
     @FXML
     private void formateDate(ActionEvent event) {
 
