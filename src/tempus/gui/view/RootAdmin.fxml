@@ -96,7 +96,14 @@
             </ImageView>
             <JFXButton fx:id="btnLogOut" layoutX="1132.0" layoutY="19.0" onAction="#handle_Logout" prefHeight="34.0" prefWidth="110.0" styleClass="buttons" stylesheets="@../css/style.css" text="Log Out" />
             <BorderPane fx:id="mainPane" layoutX="197.0" layoutY="127.0" prefHeight="610.0" prefWidth="1075.0" />
-            <Button fx:id="btn_help" layoutX="1141.0" layoutY="66.0" mnemonicParsing="false" onAction="#handle_Help" prefHeight="25.0" prefWidth="39.0" style="-fx-background-color: #ffffff #ffffff;" />
+            <Button fx:id="btn_help" layoutX="1138.0" layoutY="65.0" mnemonicParsing="false" onAction="#handle_Help" prefHeight="25.0" prefWidth="39.0" style="-fx-background-color: #ffffff #ffffff;">
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/help-button-speech-bubble-with-question-mark_icon-icons.com_72707.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Button fx:id="btn_editprofile" layoutX="1196.0" layoutY="65.0" mnemonicParsing="false" onAction="#handle_editProfile" prefHeight="19.0" prefWidth="39.0" style="-fx-background-color: #ffffff #ffffff;">
                <graphic>
                   <ImageView fitHeight="19.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
@@ -107,11 +114,6 @@
                </graphic>
             </Button>
             <ListView layoutX="187.0" layoutY="126.0" prefHeight="611.0" prefWidth="0.0" />
-            <ImageView fitHeight="19.0" fitWidth="30.0" layoutX="1151.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/help-button-speech-bubble-with-question-mark_icon-icons.com_72707.png" />
-               </image>
-            </ImageView>
             <ListView layoutX="186.0" layoutY="127.0" prefHeight="610.0" prefWidth="2.0" />
             <Label layoutX="363.0" layoutY="16.0" prefHeight="94.0" prefWidth="350.0" styleClass="timeIsMoney" stylesheets="@../css/style.css" text="Time Is Money" textFill="#474a56" />
             <ImageView fitHeight="112.0" fitWidth="164.0" layoutX="705.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">

@@ -202,14 +202,12 @@ public class AdminTimeTrackerController implements Initializable {
     }
     
     void setUpTableView() {
-
         colProj.setCellValueFactory(new PropertyValueFactory<>("projName"));
         colTask.setCellValueFactory(new PropertyValueFactory<>("task"));
         colNote.setCellValueFactory(new PropertyValueFactory<>("note"));
         colStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         colEndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         colHrs.setCellValueFactory(new PropertyValueFactory<>("spentTime"));
-
         loadTableView();
     }
 

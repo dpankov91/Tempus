@@ -167,9 +167,9 @@ public class UserDAO {
             pstmt.setInt(4, realphone);
             pstmt.setString(5, address);
             pstmt.setInt(6, realpostcode);
-            pstmt.setInt(9, id);
+            pstmt.setInt(8, id);
             pstmt.setString(7, imageURL);
-            pstmt.setString(8, password);
+            //pstmt.setString(8, password);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);

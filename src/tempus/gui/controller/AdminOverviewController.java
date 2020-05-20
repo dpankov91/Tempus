@@ -211,7 +211,6 @@ public class AdminOverviewController implements Initializable {
     }
 
     private List<LocalDate> getDifferenceDays(LocalDate fromDate, LocalDate toDate) {
-        System.out.println("btwn1");
         return Stream.iterate(fromDate, date -> date.plusDays(1))
            .limit(ChronoUnit.DAYS.between(fromDate, toDate))
                 .collect(Collectors.toList());
@@ -225,7 +224,7 @@ public class AdminOverviewController implements Initializable {
 
     private void setSumHrsToLabel()
     {
-        int total = tableProject.getItems().stream().collect(Collectors.summingInt(Task::getSpentTime));
+        double total = tableProject.getItems().stream().collect(Collectors.summingDouble(Task::getSpentTime));
         lblSumHrs.setText(String.valueOf(total));
     }
     
