@@ -14,6 +14,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import tempus.be.Project;
 import tempus.be.Task;
 import tempus.be.User;
@@ -29,6 +31,7 @@ public class TaskModel {
     static TaskModel model = new TaskModel();
     private final IBllFacade bllManager;
     List<Task> alltasks = new ArrayList();
+    private final ObservableList<Task> taskList = FXCollections.observableArrayList();
 
     public static TaskModel getInstance() {
         return model;
@@ -41,6 +44,10 @@ public class TaskModel {
     public List<Task> getAllTasksOverview() {
         alltasks = bllManager.getAllTasksOverview();
         return alltasks;
+    }
+    
+    public List<Task> getAllTasks() {
+        return bllManager.getAllTasksOverview();
     }
 
     public List<Task> getTasksOfSelectedProject(Project selectedProject) {
@@ -110,5 +117,9 @@ public class TaskModel {
         }
         return filteredList;
     }
+
+  
+    
+  
 
 }

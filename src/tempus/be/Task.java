@@ -32,14 +32,15 @@ public class Task {
         this.spentTime = spentTime;
     }
 
-    public Task(String projName, String userLastName, String userFirstName, String task, LocalDateTime startTime, LocalDateTime endTime, int spentTime) {
+    public Task(String projName, String userLastName, String userFirstName, String task, String note, LocalDateTime startTime, LocalDateTime endTime, int spentTime) {
         this.projName = projName;
         this.task = task;
         this.spentTime = spentTime;
         this.userLastName = userLastName;
         this.userFirstName = userFirstName;
+        this.note = note;
         this.startTime = startTime;
-        this.endTime = startTime;
+        this.endTime = endTime;
     }
 
     public String getUserFirstName() {
@@ -146,9 +147,11 @@ public class Task {
     public String getEndTime() {
         return convertTime(endTime);
     }
+    
     public LocalDateTime getsEndTime() {
         return endTime;
     }
+    
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }

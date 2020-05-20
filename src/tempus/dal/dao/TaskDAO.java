@@ -36,7 +36,7 @@ public class TaskDAO {
          ArrayList<Task> allTasksOverview = new ArrayList<>();
          
              String sql = "SELECT [dbo].[Project].[projectName], [dbo].[User].[lastName], [dbo].[User].[firstName], "
-                   + "[dbo].[Task].[task], [dbo].[Task].[startTime], [dbo].[Task].[endTime], [dbo].[Task].[spentTime]"
+                   + "[dbo].[Task].*"
                      + "FROM [dbo].[Task]"
                       + "JOIN [dbo].[User] ON [dbo].[User].[userID] = [dbo].[Task].[userID]"
                         + "JOIN [dbo].[Project] ON [dbo].[Project].[projectID] = [dbo].[Task].[projectID]";
@@ -51,12 +51,13 @@ public class TaskDAO {
                 String userLastName = rs.getString("lastName");
                 String userFirstName = rs.getString("firstName");
                 String taskName = rs.getString("task");
+                String note = rs.getString("note");
                 LocalDateTime startTime = rs.getTimestamp("startTime").toLocalDateTime();
                 LocalDateTime endTime = rs.getTimestamp("endTime").toLocalDateTime();
                 int spentTime = rs.getInt("spentTime");
                 
-                Task task = new Task(projName, userLastName, userFirstName, taskName, startTime, endTime, spentTime);
-                
+                Task task = new Task(projName, userLastName, userFirstName,  taskName, note, startTime, endTime, spentTime);
+
                 allTasksOverview.add(task);
             }
              

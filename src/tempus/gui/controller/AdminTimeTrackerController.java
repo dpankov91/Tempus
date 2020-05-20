@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -31,10 +32,13 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 import tempus.be.Client;
 import tempus.be.Project;
 import tempus.be.Task;
@@ -47,21 +51,21 @@ import tempus.gui.model.TaskModel;
  * @author dpank
  */
 public class AdminTimeTrackerController implements Initializable {
-
-    @FXML
-    private TableColumn<?, ?> monday;
-    @FXML
-    private TableColumn<?, ?> tuesday;
-    @FXML
-    private TableColumn<?, ?> wednesday;
-    @FXML
-    private TableColumn<?, ?> friday;
-    @FXML
-    private TableColumn<?, ?> saturday;
-    @FXML
-    private TableColumn<?, ?> col_timespent;
+    
     @FXML
     private TableView<Task> tbv_timetracker;
+    @FXML
+    private TableColumn<?, ?> colProj;
+    @FXML
+    private TableColumn<?, ?> colTask;
+    @FXML
+    private TableColumn<?, ?> colNote;
+    @FXML
+    private TableColumn<?, ?> colStartTime;
+    @FXML
+    private TableColumn<?, ?> colEndTime;
+    @FXML
+    private TableColumn<?, ?> colHrs;
     @FXML
     private ComboBox<Project> cb_projects;
     @FXML
@@ -112,6 +116,7 @@ public class AdminTimeTrackerController implements Initializable {
         btn_play.setDisable(true);
         loadProjectsToComboBox();
         imgView.setImage(new Image("/tempus/gui/assets/icons8-pause-button-50.png"));
+        setUpTableView();
     }
 
     private void handle_CreateTask(ActionEvent event) throws IOException {
@@ -195,5 +200,24 @@ public class AdminTimeTrackerController implements Initializable {
             cb_projects.setItems(allProjects);
         }
     }
+    
+    void setUpTableView() {
 
+        colProj.setCellValueFactory(new PropertyValueFactory<>("projName"));
+        colTask.setCellValueFactory(new PropertyValueFactory<>("task"));
+        colNote.setCellValueFactory(new PropertyValueFactory<>("note"));
+        colStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        colEndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        colHrs.setCellValueFactory(new PropertyValueFactory<>("spentTime"));
+
+        loadTableView();
+    }
+
+    private void loadTableView() {
+        tbv_timetracker.getItems().clear();
+        List<Task> allTasks = tsModel.getAllTasks();
+        ObservableList<Task> tasks = FXCollections.observableArrayList();
+        tasks.addAll(allTasks);
+        tbv_timetracker.setItems(tasks);
+    }
 }
