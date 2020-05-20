@@ -9,6 +9,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
@@ -83,23 +86,21 @@ public class AdminTimeTrackerController implements Initializable {
     @FXML
     private Text hoursTimer;
     @FXML
-    private JFXButton btn_start;
-    @FXML
     ImageView imgView;
-
+    
     private static final int STARTTIME = 0;
     private final IntegerProperty timeSeconds = new SimpleIntegerProperty(STARTTIME);
     private final IntegerProperty timeMinutes = new SimpleIntegerProperty(STARTTIME);
     private final IntegerProperty timeHours = new SimpleIntegerProperty(STARTTIME);
-
+    
     private ScheduledExecutorService ThreadExecutor;
     long totalSeconds = 0;
-    boolean isStopped = false;
+    boolean isStopped = true;
     private TaskModel tsModel;
     private ProjectModel projModel;
     @FXML
     private Label lbl_date;
-
+    
     ObservableList<Project> allProjects = FXCollections.observableArrayList();
 
     /**
@@ -112,13 +113,12 @@ public class AdminTimeTrackerController implements Initializable {
         secondsTimer.textProperty().bind(timeSeconds.asString());
         minutesTimer.textProperty().bind(timeMinutes.asString());
         hoursTimer.textProperty().bind(timeHours.asString());
-        btn_start.setDisable(false);
-        btn_play.setDisable(true);
+        btn_stop.setDisable(true);
         loadProjectsToComboBox();
-        imgView.setImage(new Image("/tempus/gui/assets/icons8-pause-button-50.png"));
         setUpTableView();
+        showDate();
     }
-
+    
     private void handle_CreateTask(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/NewTimeEntry.fxml"));
         Parent z = loader.load();
@@ -127,14 +127,14 @@ public class AdminTimeTrackerController implements Initializable {
         s.setScene(scene);
         s.show();
     }
-
+    
     @FXML
     private void handle_Play(ActionEvent event) {
         if (isStopped) {
             isStopped = false;
             setUpThread();
             imgView.setImage(new Image("/tempus/gui/assets/icons8-pause-button-50.png"));
-
+            btn_stop.setDisable(false);
             //Plays again
         } else {
             isStopped = true;
@@ -144,30 +144,25 @@ public class AdminTimeTrackerController implements Initializable {
             //Stops the thread
         }
     }
-
+    
     @FXML
     private void handle_Stop(ActionEvent event) {
         ThreadExecutor.shutdownNow();
-        imgView.setImage(new Image("/tempus/gui/assets/icons8-pause-button-50.png"));
+        imgView.setImage(new Image("/tempus/gui/assets/icons8-circled-play-50.png"));
         //Reset time
         timeSeconds.setValue(0);
         timeMinutes.setValue(0);
         timeHours.setValue(0);
-        btn_start.setDisable(false);
-        btn_play.setDisable(true);
+        totalSeconds = 0;
+        isStopped = true;
+        btn_stop.setDisable(true);
         //Here call model and insert time into database
     }
-
-    @FXML
+    
     private void handle_Start(ActionEvent event) {
-        isStopped = false;
-        //Get current time
-        btn_start.setDisable(true);
-        btn_play.setDisable(false);
-        totalSeconds = 0;
         setUpThread();
     }
-
+    
     private void setUpThread() {
         ThreadExecutor = Executors.newSingleThreadScheduledExecutor(); //Create new thread
         //Execute specified instructions in thread
@@ -175,7 +170,7 @@ public class AdminTimeTrackerController implements Initializable {
             Platform.runLater(() -> { // Run later is for gui updates
                 //Calculate seconds / minutes /hours
                 totalSeconds++;
-
+                
                 long passedSeconds = (totalSeconds) % 60;
                 long passedMinutes = (totalSeconds / 60) % 60;
                 long passedHours = ((totalSeconds / 60) / 60) % 24;
@@ -183,7 +178,7 @@ public class AdminTimeTrackerController implements Initializable {
                 timeSeconds.setValue(passedSeconds);
                 timeMinutes.setValue(passedMinutes);
                 timeHours.setValue(passedHours);
-
+                
                 System.out.println("Seconds: " + timeSeconds.getValue() + ", Minutes: " + +timeMinutes.getValue() + ", Hours: " + +timeHours.getValue());
             });
         },
@@ -192,10 +187,10 @@ public class AdminTimeTrackerController implements Initializable {
                 TimeUnit.SECONDS // Time unit
         );
     }
-
+    
     public void loadProjectsToComboBox() {
         allProjects = projModel.getObsProjects();
-
+        
         for (Project proj : allProjects) {
             cb_projects.setItems(allProjects);
         }
@@ -210,7 +205,7 @@ public class AdminTimeTrackerController implements Initializable {
         colHrs.setCellValueFactory(new PropertyValueFactory<>("spentTime"));
         loadTableView();
     }
-
+    
     private void loadTableView() {
         tbv_timetracker.getItems().clear();
         List<Task> allTasks = tsModel.getAllTasks();
@@ -218,4 +213,11 @@ public class AdminTimeTrackerController implements Initializable {
         tasks.addAll(allTasks);
         tbv_timetracker.setItems(tasks);
     }
+    
+        private void showDate() {
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        lbl_date.setText(dateFormat.format(date));
+    }
+
 }
