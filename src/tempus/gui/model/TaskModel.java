@@ -158,8 +158,10 @@ public class TaskModel {
         }
         return filteredList;
     }
+    public void saveTime(Project selectedItem, User loggedInUser, String text, LocalDateTime startTime, LocalDateTime endTime, long totalSeconds, String note) {
+        bllManager.saveTime(selectedItem, loggedInUser,startTime, text, endTime, note, totalSeconds);
+    }
 
-  
-  
+
 
 }

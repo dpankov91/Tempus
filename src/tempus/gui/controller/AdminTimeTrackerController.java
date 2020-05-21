@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -45,8 +46,10 @@ import javafx.util.converter.IntegerStringConverter;
 import tempus.be.Client;
 import tempus.be.Project;
 import tempus.be.Task;
+import tempus.bll.BllManager;
 import tempus.gui.model.ProjectModel;
 import tempus.gui.model.TaskModel;
+import tempus.gui.model.UserModel;
 
 /**
  * FXML Controller class
@@ -54,7 +57,7 @@ import tempus.gui.model.TaskModel;
  * @author dpank
  */
 public class AdminTimeTrackerController implements Initializable {
-    
+
     @FXML
     private TableView<Task> tbv_timetracker;
     @FXML
@@ -87,20 +90,24 @@ public class AdminTimeTrackerController implements Initializable {
     private Text hoursTimer;
     @FXML
     ImageView imgView;
-    
+
     private static final int STARTTIME = 0;
     private final IntegerProperty timeSeconds = new SimpleIntegerProperty(STARTTIME);
     private final IntegerProperty timeMinutes = new SimpleIntegerProperty(STARTTIME);
     private final IntegerProperty timeHours = new SimpleIntegerProperty(STARTTIME);
-    
+
     private ScheduledExecutorService ThreadExecutor;
     long totalSeconds = 0;
     boolean isStopped = true;
-    private TaskModel tsModel;
+    boolean newTime = true;
+    LocalDateTime startTime ;
+    private TaskModel taskModel;
+    private UserModel usModel;
     private ProjectModel projModel;
+    
     @FXML
     private Label lbl_date;
-    
+
     ObservableList<Project> allProjects = FXCollections.observableArrayList();
 
     /**
@@ -108,17 +115,19 @@ public class AdminTimeTrackerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tsModel = TaskModel.getInstance();
+        taskModel = TaskModel.getInstance();
         projModel = ProjectModel.getInstance();
+        usModel = UserModel.getInstance();
         secondsTimer.textProperty().bind(timeSeconds.asString());
         minutesTimer.textProperty().bind(timeMinutes.asString());
         hoursTimer.textProperty().bind(timeHours.asString());
         btn_stop.setDisable(true);
+        lbl_date.setVisible(false);
         loadProjectsToComboBox();
         setUpTableView();
         showDate();
     }
-    
+
     private void handle_CreateTask(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/NewTimeEntry.fxml"));
         Parent z = loader.load();
@@ -127,28 +136,36 @@ public class AdminTimeTrackerController implements Initializable {
         s.setScene(scene);
         s.show();
     }
-    
+
     @FXML
     private void handle_Play(ActionEvent event) {
+        
         if (isStopped) {
+            if(newTime){
+                startTime = LocalDateTime.now();
+                newTime=false;
+            }
             isStopped = false;
+            //Plays the thread
             setUpThread();
             imgView.setImage(new Image("/tempus/gui/assets/icons8-pause-button-50.png"));
             btn_stop.setDisable(false);
             //Plays again
         } else {
             isStopped = true;
+            //Stops the thread
             ThreadExecutor.shutdownNow();
             imgView.setImage(new Image("/tempus/gui/assets/icons8-circled-play-50.png"));
-
-            //Stops the thread
+            lbl_date.setVisible(true);
         }
     }
-    
+
     @FXML
     private void handle_Stop(ActionEvent event) {
         ThreadExecutor.shutdownNow();
         imgView.setImage(new Image("/tempus/gui/assets/icons8-circled-play-50.png"));
+        LocalDateTime endTime = LocalDateTime.now();
+        taskModel.saveTime(cb_projects.getSelectionModel().getSelectedItem(), usModel.getloggedInUser(),txt_task.getText(),startTime,endTime, totalSeconds, txt_note.getText());
         //Reset time
         timeSeconds.setValue(0);
         timeMinutes.setValue(0);
@@ -156,13 +173,15 @@ public class AdminTimeTrackerController implements Initializable {
         totalSeconds = 0;
         isStopped = true;
         btn_stop.setDisable(true);
-        //Here call model and insert time into database
+        newTime= true;
+        lbl_date.setVisible(false);
+
     }
-    
+
     private void handle_Start(ActionEvent event) {
         setUpThread();
     }
-    
+
     private void setUpThread() {
         ThreadExecutor = Executors.newSingleThreadScheduledExecutor(); //Create new thread
         //Execute specified instructions in thread
@@ -170,7 +189,7 @@ public class AdminTimeTrackerController implements Initializable {
             Platform.runLater(() -> { // Run later is for gui updates
                 //Calculate seconds / minutes /hours
                 totalSeconds++;
-                
+
                 long passedSeconds = (totalSeconds) % 60;
                 long passedMinutes = (totalSeconds / 60) % 60;
                 long passedHours = ((totalSeconds / 60) / 60) % 24;
@@ -178,7 +197,7 @@ public class AdminTimeTrackerController implements Initializable {
                 timeSeconds.setValue(passedSeconds);
                 timeMinutes.setValue(passedMinutes);
                 timeHours.setValue(passedHours);
-                
+
                 System.out.println("Seconds: " + timeSeconds.getValue() + ", Minutes: " + +timeMinutes.getValue() + ", Hours: " + +timeHours.getValue());
             });
         },
@@ -187,16 +206,17 @@ public class AdminTimeTrackerController implements Initializable {
                 TimeUnit.SECONDS // Time unit
         );
     }
-    
+
     public void loadProjectsToComboBox() {
         allProjects = projModel.getObsProjects();
-        
+
         for (Project proj : allProjects) {
             cb_projects.setItems(allProjects);
         }
     }
-    
+
     void setUpTableView() {
+
         colProj.setCellValueFactory(new PropertyValueFactory<>("projName"));
         colTask.setCellValueFactory(new PropertyValueFactory<>("task"));
         colNote.setCellValueFactory(new PropertyValueFactory<>("note"));
@@ -205,15 +225,15 @@ public class AdminTimeTrackerController implements Initializable {
         colHrs.setCellValueFactory(new PropertyValueFactory<>("spentTime"));
         loadTableView();
     }
-    
+
     private void loadTableView() {
         tbv_timetracker.getItems().clear();
-        List<Task> allTasks = tsModel.getAllTasks();
+        List<Task> allTasks = taskModel.getAllTasks();
         ObservableList<Task> tasks = FXCollections.observableArrayList();
         tasks.addAll(allTasks);
         tbv_timetracker.setItems(tasks);
     }
-    
+
     private void showDate() {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");

@@ -8,6 +8,7 @@ package tempus.dal;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -179,5 +180,14 @@ public class DalManager implements IDalFacade {
     public void editClient(int id, String name, String city, int phone, String email) {
     clientDao.editClient(id,name, city, phone, email);
     }
+
+
+    @Override
+    public void saveTime(Project selectedItem, User loggedInUser, LocalDateTime startTime, LocalDateTime endTime, long totalSeconds, String note, String text) {
+        taskDao.saveTime(selectedItem, loggedInUser, startTime, endTime, totalSeconds, note, text);
+    }
+
+
+
 
 }

@@ -10,12 +10,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import tempus.be.Project;
 import tempus.be.Task;
+import tempus.be.User;
 import tempus.dal.DbConnectionProvider;
 
 /**
@@ -25,6 +28,7 @@ import tempus.dal.DbConnectionProvider;
 public class TaskDAO {
     
     private final DbConnectionProvider connector;
+
     
     public TaskDAO() throws IOException
     {
@@ -63,5 +67,31 @@ public class TaskDAO {
              
                 return allTasksOverview;
     }
+
+    public void saveTime(Project selectedItem, User loggedInUser, LocalDateTime startTime, LocalDateTime endTime, long totalSeconds, String note, String text) throws SQLException {
+
+        String sql = "INSERT INTO [Task] VALUES (?,?,?,?,?,?,?,?,?)";
+        
+        Connection con = connector.getConnection();
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        //ResultSet rs = stmt.executeQuery();
+        
+        pstmt.setInt(1, selectedItem.getId());
+
+        long millis = startTime.toInstant(ZoneOffset.ofTotalSeconds(0)).toEpochMilli();
+        Date date = new Date(millis);
+
+        java.sql.Date sqlDate = java.sql.Date.valueOf(date.getTime() );
+        
+        pstmt.setDate(3, date);
+        pstmt.setString(4, endTime);
+        pstmt.setInt(5, phone);
+        pstmt.setString(6, address);
+        pstmt.setInt(7, postcode);
+    }
+    
+    
+    
+    
     
 }
