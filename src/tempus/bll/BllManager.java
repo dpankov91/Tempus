@@ -126,9 +126,10 @@ public class BllManager implements IBllFacade {
         facade.editClient(id, name, city, phone, email);
     }
 
+
     @Override
-    public void saveTime(Project selectedItem, User loggedInUser, LocalDateTime startTime, LocalDateTime endTime, long totalSeconds) {
-        facade.saveTime(selectedItem, loggedInUser, startTime, endTime, totalSeconds);
+    public void saveTime(Project selectedItem, User loggedInUser, LocalDateTime startTime, String text, LocalDateTime endTime, String note, long totalSeconds) {
+        facade.saveTime(selectedItem, loggedInUser, startTime, endTime, totalSeconds, note, text);
     }
 
 

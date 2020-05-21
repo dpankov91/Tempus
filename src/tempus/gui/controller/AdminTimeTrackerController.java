@@ -165,7 +165,7 @@ public class AdminTimeTrackerController implements Initializable {
         ThreadExecutor.shutdownNow();
         imgView.setImage(new Image("/tempus/gui/assets/icons8-circled-play-50.png"));
         LocalDateTime endTime = LocalDateTime.now();
-        taskModel.saveTime(cb_projects.getSelectionModel().getSelectedItem(), usModel.getloggedInUser(),txt_task.getText(),startTime,endTime, totalSeconds);
+        taskModel.saveTime(cb_projects.getSelectionModel().getSelectedItem(), usModel.getloggedInUser(),txt_task.getText(),startTime,endTime, totalSeconds, txt_note.getText());
         //Reset time
         timeSeconds.setValue(0);
         timeMinutes.setValue(0);
