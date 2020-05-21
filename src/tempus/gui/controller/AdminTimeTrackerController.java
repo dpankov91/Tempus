@@ -216,20 +216,13 @@ public class AdminTimeTrackerController implements Initializable {
     }
 
     void setUpTableView() {
-<<<<<<< HEAD
 
-=======
->>>>>>> 1e4e4de4fbbb5e1593431554e9f00f9d4b4187a9
         colProj.setCellValueFactory(new PropertyValueFactory<>("projName"));
         colTask.setCellValueFactory(new PropertyValueFactory<>("task"));
         colNote.setCellValueFactory(new PropertyValueFactory<>("note"));
         colStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         colEndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         colHrs.setCellValueFactory(new PropertyValueFactory<>("spentTime"));
-<<<<<<< HEAD
-
-=======
->>>>>>> 1e4e4de4fbbb5e1593431554e9f00f9d4b4187a9
         loadTableView();
     }
 
@@ -240,11 +233,7 @@ public class AdminTimeTrackerController implements Initializable {
         tasks.addAll(allTasks);
         tbv_timetracker.setItems(tasks);
     }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 1e4e4de4fbbb5e1593431554e9f00f9d4b4187a9
     private void showDate() {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
