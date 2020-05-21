@@ -23,7 +23,7 @@
             <ImageView fx:id="imgPhoto" fitHeight="157.0" fitWidth="194.0" layoutX="20.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
             <JFXButton fx:id="btnEditPic" layoutX="233.0" layoutY="97.0" onAction="#onClickOpenPicSearcher" styleClass="assignBtn" stylesheets="@../css/assignStyle.css" text="Edit" />
             <JFXButton fx:id="btnConfirmPic" layoutX="233.0" layoutY="139.0" onAction="#onClickChangeUserPicture" styleClass="assignBtn" stylesheets="@../css/assignStyle.css" text="OK" />
-            <Pane layoutY="2.0" prefHeight="191.0" prefWidth="4.0" styleClass="assignBtn" stylesheets="@../css/assignStyle.css" />
+            <Pane layoutX="-2.0" layoutY="-3.0" prefHeight="191.0" prefWidth="4.0" styleClass="assignBtn" stylesheets="@../css/assignStyle.css" />
          </children>
       </Pane>
    </children>

@@ -49,8 +49,6 @@ public class ManageClientsWindowController implements Initializable {
     private JFXButton deleteButton;
     @FXML
     private JFXButton createButton;
-    @FXML
-    private JFXButton editButton;
 
     private ClientModel cModel;
 
@@ -90,10 +88,6 @@ public class ManageClientsWindowController implements Initializable {
         s.show();
     }
 
-    @FXML
-    private void handleEdit(ActionEvent event) {
-
-    }
 
     void loadTableView() {
         tableViewClients.getItems().clear();
@@ -157,4 +151,5 @@ public class ManageClientsWindowController implements Initializable {
                 break;
         }
     }
+
 }

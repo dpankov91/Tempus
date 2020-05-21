@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -68,21 +69,24 @@ public class SettingsWindowController implements Initializable {
     private void onClickConfirm(ActionEvent event) {
         String pswFirst = pswFirstTime.getText();
         String pswSecond = pswSecondConfirm.getText();
-        if (pswFirst.equals(pswSecond)){
+        if (pswFirst.equals(pswSecond) && !pswFirst.isEmpty()){
             User us = userModel.getloggedInUser();
             userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress(),"No", us.getPassword());
             us.setPassword(pswSecond);
             userModel.newPassword(pswSecond);
-          
         } 
-        else if(pswSecond.equals("")) {
-            System.out.println("The second field is empty, please input password");
+        else{
+            setUpAlert("Password Error" , "New passwords dont match");
         }
- 
-        else {
-            System.out.println("The passwords do not match, try again");
-        }  
         
+        
+    }
+    
+    private void setUpAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(message);
+        alert.showAndWait();
         
     }
 
@@ -105,7 +109,6 @@ public class SettingsWindowController implements Initializable {
 
     private void showImg() {
         User us = userModel.getloggedInUser();
-
         imgPhoto.setImage(us.getPhotoURL());
     }
 

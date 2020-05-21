@@ -21,6 +21,7 @@ import tempus.be.Task;
 import tempus.be.User;
 import tempus.bll.BllManager;
 import tempus.bll.IBllFacade;
+import tempus.gui.controller.AdminOverviewController;
 
 /**
  *
@@ -32,6 +33,8 @@ public class TaskModel {
     private final IBllFacade bllManager;
     List<Task> alltasks = new ArrayList();
     private final ObservableList<Task> taskList = FXCollections.observableArrayList();
+    private AdminOverviewController adOvController;
+
 
     public static TaskModel getInstance() {
         return model;
@@ -39,6 +42,7 @@ public class TaskModel {
 
     public TaskModel() {
         this.bllManager = new BllManager();
+        adOvController = new AdminOverviewController();
     }
 
     public List<Task> getAllTasksOverview() {
@@ -50,7 +54,7 @@ public class TaskModel {
         return bllManager.getAllTasksOverview();
     }
 
-    public List<Task> getTasksOfSelectedProject(Project selectedProject) {
+    public List<Task> getAllTasksOfSelectedProject(Project selectedProject) {
         List<Task> allspecTasks = new ArrayList();
         for (Task alltas : alltasks) {
             if (alltas.getProjName().equals(selectedProject.getName())) {
@@ -59,9 +63,46 @@ public class TaskModel {
         }
         return allspecTasks;
     }
+    
+    public List<Task> getAllTasksOfSelectedProjectByDate(Project selectedProject) 
+    {
+        
+        List<Task> allspecTasks = new ArrayList();
+        for (Task alltas : getTasksBetweenForTable(adOvController.getDateFrom(), adOvController.getDateTo())) {
+            if (alltas.getProjName().equals(selectedProject.getName())) {
+                allspecTasks.add(alltas);
+            }
+        }
+        return allspecTasks;
+    }
+        
+    public List<Task> getTasksBetweenForTable(LocalDate fromDate, LocalDate toDate) {
+        List<Task> TasksBetween = new ArrayList();
+        
+       LocalDate ldtFrom = fromDate;
+        LocalDate ldtTo = toDate;
 
-    public List<Task> getTasksOfSelectedUser(User us) {
+        for (Task alltas : alltasks) {
+            if (((alltas.getsStartTime().toLocalDate()).isAfter(ldtFrom) || (alltas.getsStartTime().toLocalDate()).isEqual(ldtFrom)) && ((alltas.getsStartTime().toLocalDate()).isBefore(ldtTo) || (alltas.getsStartTime().toLocalDate()).isEqual(ldtTo))) {
+                TasksBetween.add(alltas);
+            }
+        }
+        return TasksBetween;
+    }
 
+    public List<Task> getAllTasksOfSelectedUser(User us) {
+                
+        List<Task> allspecUsTasks = new ArrayList();
+        for (Task alltas : alltasks) {
+            if (alltas.getUserLastName().equals(us.getLName())) {
+                allspecUsTasks.add(alltas);
+            }
+        }
+        return allspecUsTasks;
+    }
+    
+    public List<Task> getTasksOfSelectedUserByDate(User us) {
+                
         List<Task> allspecUsTasks = new ArrayList();
         for (Task alltas : alltasks) {
             if (alltas.getUserLastName().equals(us.getLName())) {
@@ -119,7 +160,6 @@ public class TaskModel {
     }
 
   
-    
   
 
 }
