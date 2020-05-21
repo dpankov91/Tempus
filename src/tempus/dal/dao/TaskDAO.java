@@ -67,7 +67,8 @@ public class TaskDAO {
              
                 return allTasksOverview;
     }
-
+    
+    /*
     public void saveTime(Project selectedItem, User loggedInUser, LocalDateTime startTime, LocalDateTime endTime, long totalSeconds, String note, String text) throws SQLException {
 
         String sql = "INSERT INTO [Task] VALUES (?,?,?,?,?,?,?,?,?)";
@@ -81,6 +82,7 @@ public class TaskDAO {
         long millis = startTime.toInstant(ZoneOffset.ofTotalSeconds(0)).toEpochMilli();
         Date date = new Date(millis);
 
+        
         java.sql.Date sqlDate = java.sql.Date.valueOf(date.getTime() );
         
         pstmt.setDate(3, date);
@@ -90,8 +92,6 @@ public class TaskDAO {
         pstmt.setInt(7, postcode);
     }
     
-    
-    
-    
-    
+    */
+        
 }
