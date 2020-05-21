@@ -18,13 +18,13 @@ public class Task {
     private String note;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private int spentTime;
+    private double spentTime;
 
     private String projName;
     private String userLastName;
     private String userFirstName;
 
-    public Task(String task, String note, LocalDateTime startTime, LocalDateTime endTime, int spentTime) {
+    public Task(String task, String note, LocalDateTime startTime, LocalDateTime endTime, double spentTime) {
         this.task = task;
         this.note = note;
         this.startTime = startTime;
@@ -32,7 +32,7 @@ public class Task {
         this.spentTime = spentTime;
     }
 
-    public Task(String projName, String userLastName, String userFirstName, String task, String note, LocalDateTime startTime, LocalDateTime endTime, int spentTime) {
+    public Task(String projName, String userLastName, String userFirstName, String task, String note, LocalDateTime startTime, LocalDateTime endTime, double spentTime) {
         this.projName = projName;
         this.task = task;
         this.spentTime = spentTime;
@@ -156,12 +156,14 @@ public class Task {
         this.endTime = endTime;
     }
 
-    public int getSpentTime() {
-        return spentTime;
+    public double getSpentTime() {
+        double spentTim = spentTime;
+        return spentTim;
     }
 
-    public void setSpentTime(int spentTime) {
+    public void setSpentTime(double spentTime) {
         this.spentTime = spentTime;
     }
 
+   
 }

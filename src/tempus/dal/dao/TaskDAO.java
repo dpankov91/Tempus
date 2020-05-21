@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 import tempus.be.Project;
 import tempus.be.Task;
+import tempus.be.User;
 import tempus.dal.DbConnectionProvider;
 
 /**
@@ -62,6 +63,9 @@ public class TaskDAO {
             }
              
                 return allTasksOverview;
+    }
+
+    public void saveTime(Project selectedItem, User loggedInUser, LocalDateTime startTime, LocalDateTime endTime, long totalSeconds) {                
     }
     
 }

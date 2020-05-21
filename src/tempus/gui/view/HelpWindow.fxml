@@ -7,7 +7,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="667.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.HelpWindowController">
    <children>
       <Label layoutX="304.0" layoutY="14.0" prefHeight="43.0" prefWidth="57.0" styleClass="Headline" stylesheets="@../css/style.css" text="Help" />
-      <JFXButton layoutX="588.0" layoutY="23.0" text="Close" />
+      <JFXButton fx:id="btnClose" layoutX="588.0" layoutY="23.0" onAction="#onClickCloseWIndow" styleClass="buttons" text="Close" />
       <Label layoutX="213.0" layoutY="294.0" text="In case of problem, please contact this email." />
       <Label layoutX="275.0" layoutY="328.0" text="casper91@gmail.com" />
       <Label layoutX="256.0" layoutY="140.0" text="Tempus Software Version 1.0" />

@@ -7,6 +7,7 @@ package tempus.bll;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import tempus.be.Client;
@@ -43,7 +44,7 @@ public class BllManager implements IBllFacade {
 
     @Override
     public void createProject(String name, Client client, int hRate, String description) {
-        
+
         facade.createProject(name, client, hRate, description);
     }
 
@@ -86,7 +87,7 @@ public class BllManager implements IBllFacade {
 
     @Override
     public void editProject(int id, String projectName, String clientName, int hourlyRate, String description) {
-        facade.editProject( id,projectName, clientName, hourlyRate, description);
+        facade.editProject(id, projectName, clientName, hourlyRate, description);
     }
 
     @Override
@@ -96,7 +97,7 @@ public class BllManager implements IBllFacade {
 
     @Override
     public List<Task> getAllTasksOverview() {
-        return facade.getAllTasksOverview();   
+        return facade.getAllTasksOverview();
     }
 
     @Override
@@ -120,10 +121,16 @@ public class BllManager implements IBllFacade {
         facade.newPassword(newPassword, userID);
     }
 
-
     @Override
     public void editClient(int id, String name, String city, int phone, String email) {
-    facade.editClient(id,name, city, phone, email);
-}
+        facade.editClient(id, name, city, phone, email);
+    }
+
+    @Override
+    public void saveTime(Project selectedItem, User loggedInUser, LocalDateTime startTime, LocalDateTime endTime, long totalSeconds) {
+        facade.saveTime(selectedItem, loggedInUser, startTime, endTime, totalSeconds);
+    }
+
+
 
 }
