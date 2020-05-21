@@ -43,9 +43,12 @@ public class SettingsWindowController implements Initializable {
     private ImageView imgPhoto;
     @FXML
     private JFXButton btnEditPic;
+    @FXML
+    private JFXButton btnConfirmPic;
 
     private User user;
     private UserModel userModel;
+
 
     /**
      * Initializes the controller class.
@@ -109,6 +112,10 @@ public class SettingsWindowController implements Initializable {
     private void goBack() {
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void onClickChangeUserPicture(ActionEvent event) {
     }
 
 }

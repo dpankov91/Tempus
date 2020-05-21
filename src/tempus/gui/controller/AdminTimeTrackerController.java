@@ -214,7 +214,7 @@ public class AdminTimeTrackerController implements Initializable {
         tbv_timetracker.setItems(tasks);
     }
     
-        private void showDate() {
+    private void showDate() {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         lbl_date.setText(dateFormat.format(date));

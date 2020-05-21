@@ -5,9 +5,13 @@
  */
 package tempus.gui.controller;
 
+import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -16,6 +20,9 @@ import javafx.fxml.Initializable;
  */
 public class HelpWindowController implements Initializable {
 
+    @FXML
+    private JFXButton btnClose;
+
     /**
      * Initializes the controller class.
      */
@@ -23,5 +30,11 @@ public class HelpWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void onClickCloseWIndow(ActionEvent event) {
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
+    }
     
 }
