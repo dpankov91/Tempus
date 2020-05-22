@@ -160,18 +160,18 @@ public class AdminOverviewController implements Initializable {
 
     private void loadSelectedProjectTableView(Project selectedProject) {
         tableProject.getItems().clear();
-        if(dateFrom.getValue().toString().isEmpty() && dateTo.getValue().toString().isEmpty())
-        {
         List<Task> allTasksOfSelectedProject = taskModel.getAllTasksOfSelectedProject(selectedProject);
         ObservableList<Task> tasks = FXCollections.observableArrayList();
         tasks.addAll(allTasksOfSelectedProject);
         tableProject.setItems(tasks);}
-        else{ 
+
+    
+    private void loadSelectedProjectTableViewByDate(Project selectedProject){
+        tableProject.getItems().clear();
         List<Task> allTasksOfSelectedProjectByDate = taskModel.getAllTasksOfSelectedProjectByDate(selectedProject);
         ObservableList<Task> tasks = FXCollections.observableArrayList();
         tasks.addAll(allTasksOfSelectedProjectByDate);
         tableProject.setItems(tasks);
-        }
     }
 
     private void setUpTaskTableView() {
@@ -231,6 +231,8 @@ public class AdminOverviewController implements Initializable {
     @FXML
     private void onClickShowBarChart(ActionEvent event) {
         loadDataForAllProjectsInChart();
+        Project selectedProject = cmbProjects.getSelectionModel().getSelectedItem();
+        loadSelectedProjectTableViewByDate(selectedProject);
     }
 
     private void setSumHrsToLabel()
