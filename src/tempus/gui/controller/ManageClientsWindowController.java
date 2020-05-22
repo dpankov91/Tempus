@@ -119,7 +119,7 @@ public class ManageClientsWindowController implements Initializable {
             assignedValue = "None";
         }
         switch (event.getTableColumn().getText()) {
-            case "Client name":
+            case "Client Name":
                 cModel.editClient(client.getId(), assignedValue, client.getCity(), client.getPhone(), client.getEmail());
                 client.setName(assignedValue);
                 break; // int id,String projectName, String clientName, String hourlyRate, String description

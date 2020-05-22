@@ -152,7 +152,6 @@ public class ManageProjectsWindowController implements Initializable {
         if (event.getNewValue().toString().isEmpty()) {
             assignedValue = "None";
         }
-        System.out.println("assignedValue " + assignedValue +" ID " + proj.getId() + " proj.getName()"+proj.getName() + " proj.getClientName()" +  proj.getClientName() + "proj.getHRate(" + proj.getHRate()+ "proj.getDescription()" + proj.getDescription());
         switch (event.getTableColumn().getText()) {
             case "Project name":
                 projModel.editProject(proj.getId(), assignedValue, proj.getClientName(), proj.getHRate(), proj.getDescription());
@@ -183,10 +182,8 @@ public class ManageProjectsWindowController implements Initializable {
             case "Hourly Rate":
                 projModel.editProject(proj.getId(), proj.getName(), proj.getClientName(), assignedValue, proj.getDescription());
                 proj.sethRate(assignedValue);
-
                 break;
         }
     }
-
 
 }

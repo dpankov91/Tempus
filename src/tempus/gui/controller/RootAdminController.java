@@ -74,7 +74,7 @@ public class RootAdminController implements Initializable {
         showDate();
         setUpimg();
         setFirstName();
-        loadUpTimesheet();
+        //loadUpTimesheet();
     }
 
     public void setFirstName() {

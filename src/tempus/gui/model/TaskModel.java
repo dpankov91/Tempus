@@ -162,6 +162,10 @@ public class TaskModel {
         bllManager.saveTime(selectedItem, loggedInUser,startTime, text, endTime, note, totalSeconds);
     }
 
+    public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime) {
+       bllManager.editTask(id,name,startTime,endTime,note,spentTime);
+    }
+
 
 
 }

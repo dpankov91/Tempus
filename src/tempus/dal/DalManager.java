@@ -187,6 +187,11 @@ public class DalManager implements IDalFacade {
         //taskDao.saveTime(selectedItem, loggedInUser, startTime, endTime, totalSeconds, note, text);
     }
 
+    @Override
+    public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime) {
+    taskDao.editTask(id,name,startTime,endTime,note,spentTime);
+    }
+
 
 
 
