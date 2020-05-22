@@ -89,7 +89,9 @@ public class AdminTimeTrackerController implements Initializable {
     private Text hoursTimer;
     @FXML
     ImageView imgView;
-
+    @FXML
+    private Label lbl_date;
+    
     private static final int STARTTIME = 0;
     private final IntegerProperty timeSeconds = new SimpleIntegerProperty(STARTTIME);
     private final IntegerProperty timeMinutes = new SimpleIntegerProperty(STARTTIME);
@@ -100,8 +102,6 @@ public class AdminTimeTrackerController implements Initializable {
     boolean isStopped = true;
     private TaskModel tsModel;
     private ProjectModel projModel;
-    @FXML
-    private Label lbl_date;
 
     ObservableList<Project> allProjects = FXCollections.observableArrayList();
 
@@ -116,9 +116,10 @@ public class AdminTimeTrackerController implements Initializable {
         minutesTimer.textProperty().bind(timeMinutes.asString());
         hoursTimer.textProperty().bind(timeHours.asString());
         btn_stop.setDisable(true);
+        lbl_date.setVisible(false);
         loadProjectsToComboBox();
         setUpTableView();
-        showDate();
+        showTime();
     }
 
     private void handle_CreateTask(ActionEvent event) throws IOException {
@@ -137,13 +138,14 @@ public class AdminTimeTrackerController implements Initializable {
             setUpThread();
             imgView.setImage(new Image("/tempus/gui/assets/icons8-pause-button-50.png"));
             btn_stop.setDisable(false);
+            lbl_date.setVisible(true);
             //Plays again
         } else {
+            //Stops the thread
             isStopped = true;
             ThreadExecutor.shutdownNow();
             imgView.setImage(new Image("/tempus/gui/assets/icons8-circled-play-50.png"));
 
-            //Stops the thread
         }
     }
 
@@ -223,9 +225,9 @@ public class AdminTimeTrackerController implements Initializable {
         tbv_timetracker.setItems(tasks);
     }
 
-    private void showDate() {
+    private void showTime() {
         Date date = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("EEE, HH:mm:ss");
         lbl_date.setText(dateFormat.format(date));
     }
 
