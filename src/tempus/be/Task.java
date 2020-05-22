@@ -23,8 +23,17 @@ public class Task {
     private String projName;
     private String userLastName;
     private String userFirstName;
+    private int id;
 
     public Task(String task, String note, LocalDateTime startTime, LocalDateTime endTime, double spentTime) {
+        this.task = task;
+        this.note = note;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.spentTime = spentTime;
+    }
+      public Task(int id,String task, String note, LocalDateTime startTime, LocalDateTime endTime, double spentTime) {
+        this.id = id;
         this.task = task;
         this.note = note;
         this.startTime = startTime;
@@ -162,8 +171,11 @@ public class Task {
     }
 
     public void setSpentTime(double spentTime) {
+        
         this.spentTime = spentTime;
     }
-
+public int getId() {
+        return id;
+    }
    
 }

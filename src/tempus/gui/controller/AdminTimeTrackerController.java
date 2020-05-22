@@ -58,17 +58,17 @@ public class AdminTimeTrackerController implements Initializable {
     @FXML
     private TableView<Task> tbv_timetracker;
     @FXML
-    private TableColumn<?, ?> colProj;
+    private TableColumn<Task, String> colProj;
     @FXML
-    private TableColumn<?, ?> colTask;
+    private TableColumn<Task, String> colTask;
     @FXML
-    private TableColumn<?, ?> colNote;
+    private TableColumn<Task, String> colNote;
     @FXML
-    private TableColumn<?, ?> colStartTime;
+    private TableColumn<Task, String> colStartTime;
     @FXML
-    private TableColumn<?, ?> colEndTime;
+    private TableColumn<Task, String> colEndTime;
     @FXML
-    private TableColumn<?, ?> colHrs;
+    private TableColumn<Task, Integer> colHrs;
     @FXML
     private ComboBox<Project> cb_projects;
     @FXML
@@ -197,11 +197,18 @@ public class AdminTimeTrackerController implements Initializable {
     }
     
     void setUpTableView() {
+        
+        colProj.setCellFactory(TextFieldTableCell.forTableColumn());
         colProj.setCellValueFactory(new PropertyValueFactory<>("projName"));
+        colTask.setCellFactory(TextFieldTableCell.forTableColumn());
         colTask.setCellValueFactory(new PropertyValueFactory<>("task"));
+        colNote.setCellFactory(TextFieldTableCell.forTableColumn());
         colNote.setCellValueFactory(new PropertyValueFactory<>("note"));
+        colStartTime.setCellFactory(TextFieldTableCell.forTableColumn());
         colStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        colEndTime.setCellFactory(TextFieldTableCell.forTableColumn());
         colEndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        colHrs.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         colHrs.setCellValueFactory(new PropertyValueFactory<>("spentTime"));
         loadTableView();
     }
@@ -218,6 +225,35 @@ public class AdminTimeTrackerController implements Initializable {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         lbl_date.setText(dateFormat.format(date));
+    }
+
+    @FXML
+    private void writeToDatabase(TableColumn.CellEditEvent<Task, String> event) {
+        Task task = event.getRowValue();
+        String assignedValue = event.getNewValue();
+        if (event.getNewValue().toString().isEmpty()) {
+            assignedValue = "None";
+        }
+        switch (event.getTableColumn().getText()) {
+            case "Project":
+                //tsModel.editTask(task.getId(), assignedValue, task.getProjName(), task.g, task.getDescription());
+               // task.setName(assignedValue);
+                break; // int id,String projectName, String clientName, String hourlyRate, String description
+            case "Description":
+              //  projModel.editProject(proj.getId(), proj.getName(), proj.getClientName(), proj.getHRate(), assignedValue);
+             //   proj.setDescription(assignedValue);
+                break;
+            case "Role":
+                /* userModel.editUser(us.getId(), us.getFName(), event.getNewValue(), us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress());
+                us.setRole(event.getNewValue());*/
+                break;
+
+        }
+        
+    }
+
+    @FXML
+    private void writeToDatabaseNumber(TableColumn.CellEditEvent<Task, Integer> event) {
     }
 
 }

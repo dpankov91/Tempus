@@ -12,17 +12,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1075.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.AdminTimeTrackerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1075.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.AdminTimeTrackerController">
    <children>
       <Label layoutX="398.0" layoutY="14.0" prefHeight="43.0" prefWidth="277.0" styleClass="Headline" stylesheets="@../css/style.css" text="Time Tracker" />
       <TableView fx:id="tbv_timetracker" layoutX="14.0" layoutY="285.0" prefHeight="302.0" prefWidth="1038.0">
         <columns>
-          <TableColumn fx:id="colProj" prefWidth="167.99996662139893" text="Project" />
-          <TableColumn fx:id="colTask" prefWidth="235.1999969482422" text="Task" />
-            <TableColumn fx:id="colNote" prefWidth="212.79998779296875" text="Note" />
-            <TableColumn fx:id="colStartTime" prefWidth="172.800048828125" text="Start Time" />
-            <TableColumn fx:id="colEndTime" minWidth="7.0" prefWidth="170.40008544921875" text="End Time" />
-            <TableColumn fx:id="colHrs" prefWidth="83.2000732421875" text="Time Spent" />
+          <TableColumn fx:id="colProj" onEditCommit="#writeToDatabase" prefWidth="167.99996662139893" text="Project" />
+          <TableColumn fx:id="colTask" onEditCommit="#writeToDatabase" prefWidth="235.1999969482422" text="Task" />
+            <TableColumn fx:id="colNote" onEditCommit="#writeToDatabase" prefWidth="212.79998779296875" text="Note" />
+            <TableColumn fx:id="colStartTime" onEditCommit="#writeToDatabase" prefWidth="172.800048828125" text="Start Time" />
+            <TableColumn fx:id="colEndTime" minWidth="7.0" onEditCommit="#writeToDatabase" prefWidth="170.40008544921875" text="End Time" />
+            <TableColumn fx:id="colHrs" onEditCommit="#writeToDatabaseNumber" prefWidth="83.2000732421875" text="Time Spent" />
         </columns>
       </TableView>
       <ComboBox fx:id="cb_projects" layoutX="35.0" layoutY="178.0" prefWidth="150.0" promptText="Projects" />

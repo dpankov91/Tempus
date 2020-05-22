@@ -165,6 +165,7 @@ public class ManageProjectsWindowController implements Initializable {
         if (event.getNewValue().toString().isEmpty()) {
             assignedValue = "None";
         }
+        System.out.println("assignedValue " + assignedValue +" ID " + proj.getId() + " proj.getName()"+proj.getName() + " proj.getClientName()" +  proj.getClientName() + "proj.getHRate(" + proj.getHRate()+ "proj.getDescription()" + proj.getDescription());
         switch (event.getTableColumn().getText()) {
             case "Project name":
                 projModel.editProject(proj.getId(), assignedValue, proj.getClientName(), proj.getHRate(), proj.getDescription());
