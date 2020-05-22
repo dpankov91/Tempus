@@ -83,6 +83,8 @@ public class AdminOverviewController implements Initializable {
     private TaskModel taskModel;
     private Date fromDate;
     private Date toDate;
+    private AdminOverviewController adOvController;
+
     @FXML
     private Label lblSumHrs;
 
@@ -97,6 +99,7 @@ public class AdminOverviewController implements Initializable {
         loadProjectsToCombobox();
         loadUsersToCombobox();
         setUpTaskTableView();
+        adOvController = new AdminOverviewController();
     }
 
 
@@ -139,8 +142,9 @@ public class AdminOverviewController implements Initializable {
     }
 
     private void loadSelectedUsersTableView(User us) {  
+//        if(dateFrom.getValue())
         tableProject.getItems().clear();
-        List<Task> allTasksOfSelectedUser = taskModel.getTasksOfSelectedUser(us);
+        List<Task> allTasksOfSelectedUser = taskModel.getAllTasksOfSelectedUser(us);
         ObservableList<Task> tasks = FXCollections.observableArrayList();
         tasks.addAll(allTasksOfSelectedUser);
         tableProject.setItems(tasks);
@@ -156,9 +160,17 @@ public class AdminOverviewController implements Initializable {
 
     private void loadSelectedProjectTableView(Project selectedProject) {
         tableProject.getItems().clear();
-        List<Task> allTasksOfSelectedProject = taskModel.getTasksOfSelectedProject(selectedProject);
+        List<Task> allTasksOfSelectedProject = taskModel.getAllTasksOfSelectedProject(selectedProject);
         ObservableList<Task> tasks = FXCollections.observableArrayList();
         tasks.addAll(allTasksOfSelectedProject);
+        tableProject.setItems(tasks);}
+
+    
+    private void loadSelectedProjectTableViewByDate(Project selectedProject){
+        tableProject.getItems().clear();
+        List<Task> allTasksOfSelectedProjectByDate = taskModel.getAllTasksOfSelectedProjectByDate(selectedProject);
+        ObservableList<Task> tasks = FXCollections.observableArrayList();
+        tasks.addAll(allTasksOfSelectedProjectByDate);
         tableProject.setItems(tasks);
     }
 
@@ -189,16 +201,15 @@ public class AdminOverviewController implements Initializable {
         series.setName("Time Spent Each Day");
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
-        System.out.println("1");
 
         List<LocalDate> datesToIterate = getDifferenceDays(dateFrom.getValue(), dateTo.getValue());
         List<Task> taskList = taskModel.getTasksBetween(dateFrom.getValue(), dateTo.getValue());
+        
         // get tasks
-        System.out.println("2");
         for (LocalDate localDate : datesToIterate) {
             for (Task task : taskList) {
                 if (formatter.format(localDate).equals(formatter.format(task.getsStartTime()))) {
-                    System.out.println("4");
+                    
                     series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
                     break;
                 }
@@ -220,6 +231,8 @@ public class AdminOverviewController implements Initializable {
     @FXML
     private void onClickShowBarChart(ActionEvent event) {
         loadDataForAllProjectsInChart();
+        Project selectedProject = cmbProjects.getSelectionModel().getSelectedItem();
+        loadSelectedProjectTableViewByDate(selectedProject);
     }
 
     private void setSumHrsToLabel()
@@ -231,5 +244,13 @@ public class AdminOverviewController implements Initializable {
     @FXML
     private void formateDate(ActionEvent event) {
 
+    }
+    
+    public LocalDate getDateFrom(){
+        return dateFrom.getValue();
+    }
+    
+    public LocalDate getDateTo(){
+        return dateTo.getValue();
     }
 }

@@ -6,6 +6,7 @@
 package tempus.dal;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -55,5 +56,7 @@ public interface IDalFacade {
     public void newPassword(String pswSecond, int userID);
 
     public void editClient(int id, String name, String city, int phone, String email);
-  
+ 
+    public void saveTime(Project selectedItem, User loggedInUser, LocalDateTime startTime, LocalDateTime endTime, long totalSeconds, String note, String text);
+
 }
