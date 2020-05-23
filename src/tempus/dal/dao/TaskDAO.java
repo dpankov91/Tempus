@@ -81,15 +81,18 @@ public class TaskDAO {
         Connection con = connector.getConnection();
         PreparedStatement pstmt = con.prepareStatement(sql);
         
+
         pstmt.setInt(1, selectedProject.getId());
         pstmt.setString(2, taskName);
         pstmt.setString(3, note);
-        pstmt.setInt(4, loggedUser.getId());
         Timestamp startTimeStamp = Timestamp.valueOf(startTime);      
-        pstmt.setTimestamp(5, startTimeStamp);
+        pstmt.setTimestamp(4, startTimeStamp);
+        System.out.println(startTimeStamp);
         Timestamp endTimeStamp = Timestamp.valueOf(endTime);      
-        pstmt.setTimestamp(6, endTimeStamp);
-        pstmt.setFloat(7, spentMinutes);
+        pstmt.setTimestamp(5, endTimeStamp);
+        System.out.println(endTimeStamp);
+        pstmt.setFloat(6, spentMinutes);
+        pstmt.setInt(7, loggedUser.getId());
         
         pstmt.executeUpdate();
     }

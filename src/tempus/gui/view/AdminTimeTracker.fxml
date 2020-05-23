@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1075.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.AdminTimeTrackerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1075.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.AdminTimeTrackerController">
    <children>
       <Label layoutX="398.0" layoutY="14.0" prefHeight="43.0" prefWidth="277.0" styleClass="Headline" stylesheets="@../css/style.css" text="Time Tracker" />
       <TableView fx:id="tbv_timetracker" layoutX="14.0" layoutY="285.0" prefHeight="302.0" prefWidth="1038.0">
@@ -27,7 +27,7 @@
       </TableView>
       <ComboBox fx:id="cb_projects" layoutX="35.0" layoutY="178.0" prefWidth="150.0" promptText="Projects" />
       <JFXTextField fx:id="txt_task" layoutX="213.0" layoutY="176.0" promptText="Task" />
-      <JFXTextField fx:id="txt_note" layoutX="398.0" layoutY="176.0" promptText="Note" />
+      <JFXTextField fx:id="txt_note" layoutX="377.0" layoutY="178.0" promptText="Note" />
       <Button fx:id="btn_play" layoutX="876.0" layoutY="171.0" mnemonicParsing="false" onAction="#handle_Play" prefHeight="21.0" prefWidth="62.0" style="-fx-background-color: #000000#000000;">
          <graphic>
             <ImageView fx:id="imgView" fitHeight="41.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
@@ -48,19 +48,19 @@
       </Button>
       <Label layoutX="877.0" layoutY="225.0" prefHeight="21.0" prefWidth="77.0" text="Play/Pause" />
       <Label layoutX="972.0" layoutY="225.0" prefHeight="21.0" prefWidth="35.0" text="Stop" />
-      <Text fx:id="secondsTimer" layoutX="783.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+      <Text fx:id="secondsTimer" layoutX="814.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="164.9150390625">
          <font>
             <Font size="39.0" />
          </font></Text>
-      <Text fx:id="minutesTimer" layoutX="743.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+      <Text fx:id="minutesTimer" layoutX="772.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" AnchorPane.rightAnchor="260.0" AnchorPane.topAnchor="164.9150390625">
          <font>
             <Font size="39.0" />
          </font></Text>
-      <Text fx:id="hoursTimer" layoutX="704.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+      <Text fx:id="hoursTimer" layoutX="729.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" AnchorPane.rightAnchor="305.0" AnchorPane.topAnchor="164.9150390625">
          <font>
             <Font size="39.0" />
          </font></Text>
-      <Label fx:id="lbl_date" layoutX="553.0" layoutY="170.0" prefHeight="52.0" prefWidth="142.0" text="Date">
+      <Label fx:id="lbl_date" layoutX="522.0" layoutY="170.0" prefHeight="52.0" prefWidth="202.0" text="Date">
          <font>
             <Font size="19.0" />
          </font></Label>

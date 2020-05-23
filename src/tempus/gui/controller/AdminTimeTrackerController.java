@@ -160,16 +160,19 @@ public class AdminTimeTrackerController implements Initializable {
         imgView.setImage(new Image("/tempus/gui/assets/icons8-circled-play-50.png"));
         
         //save task to db
-//        Project selectedProject = cb_projects.getSelectionModel().getSelectedItem();
-//        String taskName = txt_task.getText();
-//        String note = txt_note.getText();
-//        User loggedUser = usModel.getloggedInUser();
-//        LocalDateTime startTime = startTime;
-//        LocalDateTime endTime = LocalDateTime.now();
-//        long spentMinutes = ;
-//        
-//        tsModel.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentMinutes);
-        
+        Project selectedProject = cb_projects.getSelectionModel().getSelectedItem();
+        String taskName = txt_task.getText();
+        String note = txt_note.getText();
+        User loggedUser = usModel.getloggedInUser();
+        LocalDateTime startTime = LocalDateTime.now();
+        LocalDateTime endTime = LocalDateTime.now();
+        long spentMinutes = timeMinutes.getValue();
+        tsModel.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentMinutes);
+        //reset fields
+        cb_projects.getSelectionModel().clearSelection();
+        txt_task.clear();
+        txt_note.clear();
+        lbl_date.setVisible(false);
         //Reset time
         timeSeconds.setValue(0);
         timeMinutes.setValue(0);
@@ -244,10 +247,11 @@ public class AdminTimeTrackerController implements Initializable {
 
     private void showTime() {
         Date date = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("EEE, HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         lbl_date.setText(dateFormat.format(date));
     }
-
+    
+    
     @FXML
     private void writeToDatabase(TableColumn.CellEditEvent<Task, String> event) {
         Task task = event.getRowValue();
@@ -283,7 +287,8 @@ public class AdminTimeTrackerController implements Initializable {
 
     }
 
+
     @FXML
-    private void writeToDatabaseNumber(TableColumn.CellEditEvent<Task, Integer> event) {
+    private void writeToDatabaseNumber(TableColumn.CellEditEvent<Task, String> event) {
     }
 }
