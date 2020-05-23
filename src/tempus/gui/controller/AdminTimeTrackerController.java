@@ -43,6 +43,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import tempus.be.Client;
 import tempus.be.Project;
@@ -62,17 +63,17 @@ public class AdminTimeTrackerController implements Initializable {
     @FXML
     private TableView<Task> tbv_timetracker;
     @FXML
-    private TableColumn<Task, ?> colProj;
+    private TableColumn<Task, Object> colProj;
     @FXML
-    private TableColumn<Task, ?> colTask;
+    private TableColumn<Task, String> colTask;
     @FXML
-    private TableColumn<Task, ?> colNote;
+    private TableColumn<Task, String> colNote;
     @FXML
-    private TableColumn<Task, ?> colStartTime;
+    private TableColumn<Task, String> colStartTime;
     @FXML
-    private TableColumn<Task, ?> colEndTime;
+    private TableColumn<Task, String> colEndTime;
     @FXML
-    private TableColumn<Task, Integer> colHrs;
+    private TableColumn<Task, Double> colHrs;
     @FXML
     private ComboBox<Project> cb_projects;
     @FXML
@@ -162,11 +163,11 @@ public class AdminTimeTrackerController implements Initializable {
 //        Project selectedProject = cb_projects.getSelectionModel().getSelectedItem();
 //        String taskName = txt_task.getText();
 //        String note = txt_note.getText();
-//        User loggedUser = usModel.getLoggedInUser();
+//        User loggedUser = usModel.getloggedInUser();
 //        LocalDateTime startTime = startTime;
 //        LocalDateTime endTime = LocalDateTime.now();
 //        long spentMinutes = ;
-        
+//        
 //        tsModel.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentMinutes);
         
         //Reset time
@@ -218,17 +219,17 @@ public class AdminTimeTrackerController implements Initializable {
 
     void setUpTableView() {
 
-//        colProj.setCellFactory(TextFieldTableCell.forTableColumn());
+        //colProj.setCellFactory(TextFieldTableCell.forTableColumn());
         colProj.setCellValueFactory(new PropertyValueFactory<>("projName"));
-//        colTask.setCellFactory(TextFieldTableCell.forTableColumn());
+        colTask.setCellFactory(TextFieldTableCell.forTableColumn());
         colTask.setCellValueFactory(new PropertyValueFactory<>("task"));
-//        colNote.setCellFactory(TextFieldTableCell.forTableColumn());
+        colNote.setCellFactory(TextFieldTableCell.forTableColumn());
         colNote.setCellValueFactory(new PropertyValueFactory<>("note"));
-//        colStartTime.setCellFactory(TextFieldTableCell.forTableColumn());
+        colStartTime.setCellFactory(TextFieldTableCell.forTableColumn());
         colStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-//        colEndTime.setCellFactory(TextFieldTableCell.forTableColumn());
+        colEndTime.setCellFactory(TextFieldTableCell.forTableColumn());
         colEndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
-//        colHrs.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        colHrs.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         colHrs.setCellValueFactory(new PropertyValueFactory<>("spentTime"));
         loadTableView();
     }
@@ -249,40 +250,40 @@ public class AdminTimeTrackerController implements Initializable {
 
     @FXML
     private void writeToDatabase(TableColumn.CellEditEvent<Task, String> event) {
-//        Task task = event.getRowValue();
-//        String assignedValue = event.getNewValue();
-//        if (event.getNewValue().toString().isEmpty()) {
-//            assignedValue = "None";
-//        }
-//          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-////        Task //Start Time //End Time // Note // Time Spent
-//        switch (event.getTableColumn().getText()) {
-//            case "Task"://task.getId(), task.getTask(), task.getsStartTime(), task.getEndTime(), task.getNote(),task.getSpentTime()
-//                tsModel.editTask(task.getId(), assignedValue, task.getsStartTime(), task.getsEndTime(), task.getNote(), task.getSpentTime());
-//                task.setTask(assignedValue);
-//                break; // int id,String projectName, String clientName, String hourlyRate, String description
-//            case "Note":
-//                tsModel.editTask(task.getId(), task.getTask(), task.getsStartTime(), task.getsEndTime(), assignedValue, task.getSpentTime());
-//                task.setNote(assignedValue);
-//                break;
-//            case "Start Time":
-//              
-//                LocalDateTime dateTime = LocalDateTime.parse(assignedValue, formatter);
-//
-//                tsModel.editTask(task.getId(), task.getTask(), dateTime, task.getsEndTime(), task.getNote(), task.getSpentTime());
-//                task.setStartTime(dateTime);
-//                break;
-//            case "End Time":
-//                LocalDateTime endTime = LocalDateTime.parse(assignedValue, formatter);
-//
-//                tsModel.editTask(task.getId(), task.getTask(), task.getsStartTime(), endTime, task.getNote(), task.getSpentTime());
-//                task.setEndTime(endTime);
-//                break;
-//        }
+        Task task = event.getRowValue();
+        String assignedValue = event.getNewValue();
+        if (event.getNewValue().toString().isEmpty()) {
+            assignedValue = "None";
+        }
+          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//        Task //Start Time //End Time // Note // Time Spent
+        switch (event.getTableColumn().getText()) {
+            case "Task"://task.getId(), task.getTask(), task.getsStartTime(), task.getEndTime(), task.getNote(),task.getSpentTime()
+                tsModel.editTask(task.getId(), assignedValue, task.getsStartTime(), task.getsEndTime(), task.getNote(), task.getSpentTime());
+                task.setTask(assignedValue);
+                break; // int id,String projectName, String clientName, String hourlyRate, String description
+            case "Note":
+                tsModel.editTask(task.getId(), task.getTask(), task.getsStartTime(), task.getsEndTime(), assignedValue, task.getSpentTime());
+                task.setNote(assignedValue);
+                break;
+            case "Start Time":
+              
+                LocalDateTime dateTime = LocalDateTime.parse(assignedValue, formatter);
+
+                tsModel.editTask(task.getId(), task.getTask(), dateTime, task.getsEndTime(), task.getNote(), task.getSpentTime());
+                task.setStartTime(dateTime);
+                break;
+            case "End Time":
+                LocalDateTime endTime = LocalDateTime.parse(assignedValue, formatter);
+
+                tsModel.editTask(task.getId(), task.getTask(), task.getsStartTime(), endTime, task.getNote(), task.getSpentTime());
+                task.setEndTime(endTime);
+                break;
+        }
 
     }
 
     @FXML
-    private void writeToDatabaseNumber(TableColumn.CellEditEvent<Task, String> event) {
+    private void writeToDatabaseNumber(TableColumn.CellEditEvent<Task, Integer> event) {
     }
 }
