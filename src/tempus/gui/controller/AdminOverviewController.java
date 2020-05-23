@@ -228,7 +228,7 @@ public class AdminOverviewController implements Initializable {
         weekProject.getData().add(series);
         paneBarChart.getChildren().add(weekProject);
     }
-    
+    //412412421
     private void loadDataForSelectedProjectInChart(Project selectedProject){
 //         paneBarChart.getChildren().clear();
 //
