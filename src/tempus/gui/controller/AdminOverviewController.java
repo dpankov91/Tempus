@@ -142,9 +142,16 @@ public class AdminOverviewController implements Initializable {
     }
 
     private void loadSelectedUsersTableView(User us) {  
-//        if(dateFrom.getValue())
         tableProject.getItems().clear();
         List<Task> allTasksOfSelectedUser = taskModel.getAllTasksOfSelectedUser(us);
+        ObservableList<Task> tasks = FXCollections.observableArrayList();
+        tasks.addAll(allTasksOfSelectedUser);
+        tableProject.setItems(tasks);
+    }
+    
+    private void loadSelectedUsersTableViewByDate(User us) {  
+        tableProject.getItems().clear();
+        List<Task> allTasksOfSelectedUser = taskModel.getTasksOfSelectedUserByDate(us);
         ObservableList<Task> tasks = FXCollections.observableArrayList();
         tasks.addAll(allTasksOfSelectedUser);
         tableProject.setItems(tasks);
@@ -184,9 +191,10 @@ public class AdminOverviewController implements Initializable {
         loadAllTaskTableView();
         setSumHrsToLabel();
     }
+    
 
     private void loadDataForAllProjectsInChart() {
-        paneBarChart.getChildren().clear();
+         paneBarChart.getChildren().clear();
 
         CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Week Days");
@@ -196,7 +204,7 @@ public class AdminOverviewController implements Initializable {
 
         BarChart weekProject = new BarChart(xAxis, yAxis);
         weekProject.setTitle("This week projects stats");
-
+        
         XYChart.Series series = new XYChart.Series();
         series.setName("Time Spent Each Day");
         
@@ -220,6 +228,44 @@ public class AdminOverviewController implements Initializable {
         weekProject.getData().add(series);
         paneBarChart.getChildren().add(weekProject);
     }
+    
+    private void loadDataForSelectedProjectInChart(Project selectedProject){
+//         paneBarChart.getChildren().clear();
+//
+//        CategoryAxis xAxis = new CategoryAxis();
+//        xAxis.setLabel("Week Days");
+//
+//        NumberAxis yAxis = new NumberAxis();
+//        yAxis.setLabel("Minutes");
+//
+//        BarChart weekProject = new BarChart(xAxis, yAxis);
+//        weekProject.setTitle("This week projects stats");
+//        
+//        XYChart.Series series = new XYChart.Series();
+//        series.setName("Time Spent Each Day");
+//        
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+//
+//        List<LocalDate> datesToIterate = getDifferenceDays(dateFrom.getValue(), dateTo.getValue());
+//        List<Task> taskList = taskModel.getTasksBetween(dateFrom.getValue(), dateTo.getValue());
+//        
+//        // get tasks
+//        for (LocalDate localDate : datesToIterate) {
+//            for (Task task : taskList) {
+//                if (formatter.format(localDate).equals(formatter.format(task.getsStartTime()))) {
+//                    
+//                    series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
+//                    break;
+//                }
+//
+//            }
+//
+//        }
+//        weekProject.getData().add(series);
+//        paneBarChart.getChildren().add(weekProject);
+    }
+        
+       
 
     private List<LocalDate> getDifferenceDays(LocalDate fromDate, LocalDate toDate) {
         return Stream.iterate(fromDate, date -> date.plusDays(1))
@@ -230,9 +276,22 @@ public class AdminOverviewController implements Initializable {
 
     @FXML
     private void onClickShowBarChart(ActionEvent event) {
-        loadDataForAllProjectsInChart();
-        Project selectedProject = cmbProjects.getSelectionModel().getSelectedItem();
-        loadSelectedProjectTableViewByDate(selectedProject);
+        
+//        Project selectedProject = cmbProjects.getSelectionModel().getSelectedItem();
+//        User us = cmbUsers.getSelectionModel().getSelectedItem();
+//        
+//        if(us.equals(null) && selectedProject.equals(null) )
+//        {
+//            loadDataForAllProjectsInChart();
+//        }
+//        else if(selectedProject.equals(selectedProject)){
+//            //loadDataForSelectedProjectInChart();
+//            loadSelectedProjectTableViewByDate(selectedProject);
+//        }
+//        else(us.equals(us)) {
+//            //loadDataForSelectedUsInChart();
+//            loadSelectedUsersTableViewByDate(us);
+//        }
     }
 
     private void setSumHrsToLabel()
