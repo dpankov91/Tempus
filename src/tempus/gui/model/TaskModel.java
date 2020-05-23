@@ -158,12 +158,14 @@ public class TaskModel {
         }
         return filteredList;
     }
-    public void saveTime(Project selectedItem, User loggedInUser, String text, LocalDateTime startTime, LocalDateTime endTime, long totalSeconds, String note) {
-        bllManager.saveTime(selectedItem, loggedInUser,startTime, text, endTime, note, totalSeconds);
-    }
+
 
     public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime) {
        bllManager.editTask(id,name,startTime,endTime,note,spentTime);
+    }
+
+    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentMinutes) {
+        bllManager.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentMinutes);
     }
 
 

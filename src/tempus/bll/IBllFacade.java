@@ -59,8 +59,8 @@ public interface IBllFacade {
 
     public void editClient(int id, String name, String city, int phone, String email);
    
-    public void saveTime(Project selectedItem, User loggedInUser, LocalDateTime startTime, String text, LocalDateTime endTime, String note, long totalSeconds);
-
     public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime);
+
+    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentMinutes);
     
 }

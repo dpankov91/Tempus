@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -68,34 +69,29 @@ public class TaskDAO {
                 return allTasksOverview;
     }
     
-    /*
-    public void saveTime(Project selectedItem, User loggedInUser, LocalDateTime startTime, LocalDateTime endTime, long totalSeconds, String note, String text) throws SQLException {
-
-        String sql = "INSERT INTO [Task] VALUES (?,?,?,?,?,?,?,?,?)";
-        
-        Connection con = connector.getConnection();
-        PreparedStatement pstmt = con.prepareStatement(sql);
-        //ResultSet rs = stmt.executeQuery();
-        
-        pstmt.setInt(1, selectedItem.getId());
-
-        long millis = startTime.toInstant(ZoneOffset.ofTotalSeconds(0)).toEpochMilli();
-        Date date = new Date(millis);
-
-        
-        java.sql.Date sqlDate = java.sql.Date.valueOf(date.getTime() );
-        
-        pstmt.setDate(3, date);
-        pstmt.setString(4, endTime);
-        pstmt.setInt(5, phone);
-        pstmt.setString(6, address);
-        pstmt.setInt(7, postcode);
-    }
     
-    */
 
     public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentMinutes) throws SQLException {
+        String sql = "INSERT INTO [Task] VALUES (?,?,?,?,?,?,?)";
+        
+        Connection con = connector.getConnection();
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        
+        pstmt.setInt(1, selectedProject.getId());
+        pstmt.setString(2, taskName);
+        pstmt.setString(3, note);
+        pstmt.setInt(4, loggedUser.getId());
+        Timestamp startTimeStamp = Timestamp.valueOf(startTime);      
+        pstmt.setTimestamp(5, startTimeStamp);
+        Timestamp endTimeStamp = Timestamp.valueOf(endTime);      
+        pstmt.setTimestamp(6, endTimeStamp);
+        pstmt.setFloat(7, spentMinutes);
+        
+        pstmt.executeUpdate();
     }
         
 }

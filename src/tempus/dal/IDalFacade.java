@@ -56,9 +56,9 @@ public interface IDalFacade {
     public void newPassword(String pswSecond, int userID);
 
     public void editClient(int id, String name, String city, int phone, String email);
- 
-    public void saveTime(Project selectedItem, User loggedInUser, LocalDateTime startTime, LocalDateTime endTime, long totalSeconds, String note, String text);
 
     public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime);
+
+    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentMinutes);
 
 }

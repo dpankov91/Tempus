@@ -181,15 +181,18 @@ public class DalManager implements IDalFacade {
     clientDao.editClient(id,name, city, phone, email);
     }
 
-
-    @Override
-    public void saveTime(Project selectedItem, User loggedInUser, LocalDateTime startTime, LocalDateTime endTime, long totalSeconds, String note, String text) {
-        //taskDao.saveTime(selectedItem, loggedInUser, startTime, endTime, totalSeconds, note, text);
-    }
-
     @Override
     public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime) {
     taskDao.editTask(id,name,startTime,endTime,note,spentTime);
+    }
+
+    @Override
+    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentMinutes) {
+        try {
+            taskDao.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentMinutes);
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 

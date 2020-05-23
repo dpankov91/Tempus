@@ -74,7 +74,7 @@ public class RootAdminController implements Initializable {
         showDate();
         setUpimg();
         setFirstName();
-        //loadUpTimesheet();
+        loadUpTimesheet();
     }
 
     public void setFirstName() {
@@ -90,7 +90,7 @@ public class RootAdminController implements Initializable {
     }
     
     private void loadUpTimesheet(){
-                FxmlLoader object = new FxmlLoader();
+        FxmlLoader object = new FxmlLoader();
         Pane view = object.getPage("AdminTimeTracker");
         mainPane.setCenter(view);  
     }

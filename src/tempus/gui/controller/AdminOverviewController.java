@@ -50,13 +50,13 @@ public class AdminOverviewController implements Initializable {
     @FXML
     private TableView<Task> tableProject;
     @FXML
-    private TableColumn<?, String> colName;
+    private TableColumn<?, ?> colName;
     @FXML
-    private TableColumn<?, String> colTask;
+    private TableColumn<?, ?> colTask;
     @FXML
-    private TableColumn<?, String> colUser;
+    private TableColumn<?, ?> colUser;
     @FXML
-    private TableColumn<?, String> colStartTime;
+    private TableColumn<?, ?> colStartTime;
     @FXML
     private TableColumn<?, ?> colEndTime;
     @FXML
