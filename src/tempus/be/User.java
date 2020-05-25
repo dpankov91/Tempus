@@ -24,16 +24,16 @@ public class User {
     private int postcode;
     private boolean isAdmin;
     private String role;
-    private Image photoURL;
+    private String photoURL;
 
     public Image getPhotoURL() {
-        return photoURL;
+        File file = new File(photoURL);
+        Image image = new Image(file.toURI().toString());
+        return image;
     }
 
     public void setPhotoURL(String photoURL) {
-        File file = new File(photoURL);
-        Image image = new Image(file.toURI().toString());
-        this.photoURL = image;
+        this.photoURL = photoURL;
     }
 
     public String getAddress() {

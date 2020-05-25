@@ -101,8 +101,8 @@ public class DalManager implements IDalFacade {
 
     @Override
 
-    public void deleteUser(User userToDelete) {
-        userDao.deleteUser(userToDelete);
+    public User deleteUser(User userToDelete) {
+       return userDao.deleteUser(userToDelete);
     }
 
     public List<User> getAllUsers() {
@@ -117,13 +117,13 @@ public class DalManager implements IDalFacade {
     }
 
     @Override
-    public void createUser(String fName, String lName, String hashedPassword, String email, String role, String address, int phone, int postcode) {
-        userDao.createUser(fName, lName, hashedPassword, email, role, address, phone, postcode);
+    public User createUser(String fName, String lName, String hashedPassword, String email, String role, String address, int phone, int postcode) {
+      return  userDao.createUser(fName, lName, hashedPassword, email, role, address, phone, postcode);
     }
 
     @Override
-    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL, String password) {
-        userDao.editUser(id, name, Lname, email, realphone, realpostcode, address, imageURL, password);
+    public User editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL, String password) {
+       return userDao.editUser(id, name, Lname, email, realphone, realpostcode, address, imageURL, password);
     }
 
     @Override
