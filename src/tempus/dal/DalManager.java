@@ -183,7 +183,11 @@ public class DalManager implements IDalFacade {
 
     @Override
     public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime) {
-    taskDao.editTask(id,name,startTime,endTime,note,spentTime);
+        try {
+            taskDao.editTask(id,name,startTime,endTime,note,spentTime);
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
