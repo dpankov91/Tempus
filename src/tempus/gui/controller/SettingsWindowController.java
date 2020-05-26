@@ -69,7 +69,7 @@ public class SettingsWindowController implements Initializable {
     private void onClickConfirm(ActionEvent event) {
         String pswFirst = pswFirstTime.getText().trim();
         String pswSecond = pswSecondConfirm.getText().trim();
-                
+    // the Trim is used to remove whitespace.            
         if (isValid(pswFirst, pswSecond)) {
             User us = userModel.getloggedInUser();
             userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress(),"No", us.getPassword());
@@ -78,39 +78,22 @@ public class SettingsWindowController implements Initializable {
             setUpAlert("Password Changed", "You have a new password");
         }
         
-//        if (pswFirst.equals(pswSecond) && !pswFirst.isEmpty()){
-//            User us = userModel.getloggedInUser();
-//            userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress(),"No", us.getPassword());
-//            us.setPassword(pswSecond);
-//            userModel.newPassword(pswSecond);
-//        } 
-//        else if(pswFirst.equals(pswSecond = null)){
-//            setUpAlert("Passwords Error" , "Please, input new password in second field");
-//        }
-//        
-//        else if(pswSecond.equals(pswFirst = null)){
-//            setUpAlert("Passwords Error" , "Please, input new password in first field");
-//        }
-//        
-//        else{
-//            setUpAlert("Password Error" , "New passwords dont match");
-//        } 
     }
     
     
     
     private boolean isValid(String firstPW, String secondPW) {
+    //  Convenience Method for checking password fields     
         
-        
-        if (firstPW.isEmpty()) {
+        if (firstPW.isEmpty()) { // If first textfield is empty
             setUpAlert("Passwords Error" , "Please, input new password in first field");
             return false;
         }               
-        if (secondPW.isEmpty()) {
+        if (secondPW.isEmpty()) { // if second is field is empty
             setUpAlert("Passwords Error" , "Please, input new password in second field");
             return false;
         }
-        if (!firstPW.equals(secondPW)) {
+        if (!firstPW.equals(secondPW)) { // if first password input does not match second field
              setUpAlert("Password Error" , "New passwords dont match");
              return false;
         }
