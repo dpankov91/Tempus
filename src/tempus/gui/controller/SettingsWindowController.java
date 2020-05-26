@@ -70,11 +70,11 @@ public class SettingsWindowController implements Initializable {
         String pswFirst = pswFirstTime.getText().trim();
         String pswSecond = pswSecondConfirm.getText().trim();
     // the Trim is used to remove whitespace.            
-        if (isValid(pswFirst, pswSecond)) {
-            User us = userModel.getloggedInUser();
+        if (isValid(pswFirst, pswSecond)) { // uses the convenience method to validate the password
+            User us = userModel.getloggedInUser(); // invokes the loggedInUser method to check user
             userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress(),"No", us.getPassword());
-            us.setPassword(pswSecond);
-            userModel.newPassword(pswSecond);
+            us.setPassword(pswSecond); 
+            userModel.newPassword(pswSecond); // Takes the input in the second password field and brings it to the userModel as a method is invoked.
             setUpAlert("Password Changed", "You have a new password");
         }
         
