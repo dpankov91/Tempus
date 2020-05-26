@@ -50,7 +50,6 @@ public class AddClientController implements Initializable {
     
     private boolean checkIfFilled() 
       {
-        
         if (txtName.getText() == null || txtName.getText().trim().isEmpty())
         
      {

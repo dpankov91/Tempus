@@ -86,6 +86,8 @@ public class AdminOverviewController implements Initializable {
 
     @FXML
     private Label lblSumHrs;
+    @FXML
+    private JFXButton btnResetDates;
 
     /**
      * Initializes the controller class.
@@ -352,12 +354,12 @@ public class AdminOverviewController implements Initializable {
     private void formateDate(ActionEvent event) {
 
     }
-    /*
-    public LocalDate getDateFrom(){
-        return dateFrom.getValue();
+
+    @FXML
+    private void onActionClearDatePicker(ActionEvent event) 
+    {
+        dateFrom.setValue(null);
+        dateTo.setValue(null);
     }
-    
-    public LocalDate getDateTo(){
-        return dateTo.getValue();
-    }*/
+        
 }
