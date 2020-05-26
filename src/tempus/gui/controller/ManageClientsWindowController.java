@@ -131,6 +131,7 @@ public class ManageClientsWindowController implements Initializable {
                 cModel.editClient(client.getId(), client.getName(), client.getCity(), client.getPhone(), assignedValue);
                 client.setEmail(assignedValue);
                 break;
+               
 
         }
     }

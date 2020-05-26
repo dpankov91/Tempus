@@ -6,6 +6,8 @@
 package tempus.dal.dao;
 
 import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,6 +23,7 @@ import tempus.be.Project;
 import tempus.be.Task;
 import tempus.be.User;
 import tempus.dal.DbConnectionProvider;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -71,8 +74,26 @@ public class TaskDAO {
     
     
 
-    public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime) throws SQLException {
+        
+        String sql = "UPDATE [dbo].[Task] SET [task] = ?, [startTime] = ?, [endTime] = ?, [note] = ? WHERE id=?";
+                  
+         Connection con = connector.getConnection();
+         PreparedStatement pstmt = con.prepareStatement(sql);
+         System.out.println("dao");
+            pstmt.setString(1, name);
+            pstmt.setString(4, note);
+            Timestamp startTimeStamp = Timestamp.valueOf(startTime);      
+            pstmt.setTimestamp(2, startTimeStamp);
+            Timestamp endTimeStamp = Timestamp.valueOf(endTime);      
+            pstmt.setTimestamp(3, endTimeStamp);
+            pstmt.setInt(5, id);
+            
+            
+            
+            pstmt.executeUpdate();
+           
+    
     }
 
     public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentSeconds) throws SQLException {

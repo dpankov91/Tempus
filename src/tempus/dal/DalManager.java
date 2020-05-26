@@ -101,8 +101,8 @@ public class DalManager implements IDalFacade {
 
     @Override
 
-    public void deleteUser(User userToDelete) {
-        userDao.deleteUser(userToDelete);
+    public User deleteUser(User userToDelete) {
+       return userDao.deleteUser(userToDelete);
     }
 
     public List<User> getAllUsers() {
@@ -117,13 +117,13 @@ public class DalManager implements IDalFacade {
     }
 
     @Override
-    public void createUser(String fName, String lName, String hashedPassword, String email, String role, String address, int phone, int postcode) {
-        userDao.createUser(fName, lName, hashedPassword, email, role, address, phone, postcode);
+    public User createUser(String fName, String lName, String hashedPassword, String email, String role, String address, int phone, int postcode) {
+      return  userDao.createUser(fName, lName, hashedPassword, email, role, address, phone, postcode);
     }
 
     @Override
-    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL, String password) {
-        userDao.editUser(id, name, Lname, email, realphone, realpostcode, address, imageURL, password);
+    public User editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL, String password) {
+       return userDao.editUser(id, name, Lname, email, realphone, realpostcode, address, imageURL, password);
     }
 
     @Override
@@ -172,7 +172,7 @@ public class DalManager implements IDalFacade {
         try {
             userDao.newPassword(pswSecond, userID);
         } catch (SQLException ex) {
-            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);            
         }
     }
 
@@ -183,7 +183,11 @@ public class DalManager implements IDalFacade {
 
     @Override
     public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime) {
-    taskDao.editTask(id,name,startTime,endTime,note,spentTime);
+        try {
+            taskDao.editTask(id,name,startTime,endTime,note,spentTime);
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

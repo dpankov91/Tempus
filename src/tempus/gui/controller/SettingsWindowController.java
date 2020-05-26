@@ -67,17 +67,56 @@ public class SettingsWindowController implements Initializable {
 
     @FXML
     private void onClickConfirm(ActionEvent event) {
-        String pswFirst = pswFirstTime.getText();
-        String pswSecond = pswSecondConfirm.getText();
-        if (pswFirst.equals(pswSecond) && !pswFirst.isEmpty()){
+        String pswFirst = pswFirstTime.getText().trim();
+        String pswSecond = pswSecondConfirm.getText().trim();
+                
+        if (isValid(pswFirst, pswSecond)) {
             User us = userModel.getloggedInUser();
             userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress(),"No", us.getPassword());
             us.setPassword(pswSecond);
             userModel.newPassword(pswSecond);
-        } 
-        else{
-            setUpAlert("Password Error" , "New passwords dont match");
+            setUpAlert("Password Changed", "You have a new password");
         }
+        
+//        if (pswFirst.equals(pswSecond) && !pswFirst.isEmpty()){
+//            User us = userModel.getloggedInUser();
+//            userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress(),"No", us.getPassword());
+//            us.setPassword(pswSecond);
+//            userModel.newPassword(pswSecond);
+//        } 
+//        else if(pswFirst.equals(pswSecond = null)){
+//            setUpAlert("Passwords Error" , "Please, input new password in second field");
+//        }
+//        
+//        else if(pswSecond.equals(pswFirst = null)){
+//            setUpAlert("Passwords Error" , "Please, input new password in first field");
+//        }
+//        
+//        else{
+//            setUpAlert("Password Error" , "New passwords dont match");
+//        } 
+    }
+    
+    
+    
+    private boolean isValid(String firstPW, String secondPW) {
+        
+        
+        if (firstPW.isEmpty()) {
+            setUpAlert("Passwords Error" , "Please, input new password in first field");
+            return false;
+        }               
+        if (secondPW.isEmpty()) {
+            setUpAlert("Passwords Error" , "Please, input new password in second field");
+            return false;
+        }
+        if (!firstPW.equals(secondPW)) {
+             setUpAlert("Password Error" , "New passwords dont match");
+             return false;
+        }
+                
+        return true;
+        
         
         
     }
