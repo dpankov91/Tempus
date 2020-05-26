@@ -75,7 +75,7 @@ public class TaskDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentMinutes) throws SQLException {
+    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentSeconds) throws SQLException {
         String sql = "INSERT INTO [Task] VALUES (?,?,?,?,?,?,?)";
         
         Connection con = connector.getConnection();
@@ -91,7 +91,7 @@ public class TaskDAO {
         Timestamp endTimeStamp = Timestamp.valueOf(endTime);      
         pstmt.setTimestamp(5, endTimeStamp);
         System.out.println(endTimeStamp);
-        pstmt.setFloat(6, spentMinutes);
+        pstmt.setFloat(6, spentSeconds);
         pstmt.setInt(7, loggedUser.getId());
         
         pstmt.executeUpdate();

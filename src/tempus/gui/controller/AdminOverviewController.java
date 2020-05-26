@@ -83,7 +83,6 @@ public class AdminOverviewController implements Initializable {
     private TaskModel taskModel;
     private Date fromDate;
     private Date toDate;
-    private AdminOverviewController adOvController;
 
     @FXML
     private Label lblSumHrs;
@@ -96,26 +95,45 @@ public class AdminOverviewController implements Initializable {
         projModel = ProjectModel.getInstance();
         usModel = UserModel.getInstance();
         taskModel = TaskModel.getInstance();
+        //taskModel.injectAdminOverviewController(this);
         loadProjectsToCombobox();
         loadUsersToCombobox();
         setUpTaskTableView();
-        adOvController = new AdminOverviewController();
+        dateFrom.valueProperty().addListener((obs, old, newest) -> {
+            taskModel.setDateFrom(newest);
+        });
+        dateTo.valueProperty().addListener((obs, old, newest) -> {
+            taskModel.setDateTo(newest);
+        });
+        
     }
 
 
     @FXML
     private void onSelectLoadSelectedProjectTable(ActionEvent event) {
-        //cmbUsers.getSelectionModel().clearSelection();
+        cmbUsers.getSelectionModel().clearSelection();
         Project pro = cmbProjects.getSelectionModel().getSelectedItem();
-        loadSelectedProjectTableView(pro);
+        if(dateFrom.getValue()==null && dateTo.getValue()==null)
+        {
+            loadSelectedProjectTableView(pro);
+        }
+        else{
+            loadSelectedProjectTableViewByDate(pro);
+        }
         setSumHrsToLabel();
     }
 
     @FXML
     private void onSelectLoadSelectedUserTable(ActionEvent event) {
-        //cmbProjects.getSelectionModel().clearSelection();
+        cmbProjects.getSelectionModel().clearSelection();
         User us = cmbUsers.getSelectionModel().getSelectedItem();
-        loadSelectedUsersTableView(us);
+        if(dateFrom.getValue()==null && dateTo.getValue()==null)
+        {
+            loadSelectedUsersTableView(us);
+        }
+        else{
+            loadSelectedUsersTableViewByDate(us);
+        }
         setSumHrsToLabel();
     }
 
@@ -170,7 +188,8 @@ public class AdminOverviewController implements Initializable {
         List<Task> allTasksOfSelectedProject = taskModel.getAllTasksOfSelectedProject(selectedProject);
         ObservableList<Task> tasks = FXCollections.observableArrayList();
         tasks.addAll(allTasksOfSelectedProject);
-        tableProject.setItems(tasks);}
+        tableProject.setItems(tasks);
+    }
 
     
     private void loadSelectedProjectTableViewByDate(Project selectedProject){
@@ -228,41 +247,68 @@ public class AdminOverviewController implements Initializable {
         weekProject.getData().add(series);
         paneBarChart.getChildren().add(weekProject);
     }
-    //412412421
-    private void loadDataForSelectedProjectInChart(Project selectedProject){
-//         paneBarChart.getChildren().clear();
-//
-//        CategoryAxis xAxis = new CategoryAxis();
-//        xAxis.setLabel("Week Days");
-//
-//        NumberAxis yAxis = new NumberAxis();
-//        yAxis.setLabel("Minutes");
-//
-//        BarChart weekProject = new BarChart(xAxis, yAxis);
-//        weekProject.setTitle("This week projects stats");
-//        
-//        XYChart.Series series = new XYChart.Series();
-//        series.setName("Time Spent Each Day");
-//        
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
-//
-//        List<LocalDate> datesToIterate = getDifferenceDays(dateFrom.getValue(), dateTo.getValue());
-//        List<Task> taskList = taskModel.getTasksBetween(dateFrom.getValue(), dateTo.getValue());
-//        
-//        // get tasks
-//        for (LocalDate localDate : datesToIterate) {
-//            for (Task task : taskList) {
-//                if (formatter.format(localDate).equals(formatter.format(task.getsStartTime()))) {
-//                    
-//                    series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
-//                    break;
-//                }
-//
-//            }
-//
-//        }
-//        weekProject.getData().add(series);
-//        paneBarChart.getChildren().add(weekProject);
+
+    private void loadDataForSelectedProjectInChart(){
+         paneBarChart.getChildren().clear();
+
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Week Days");
+
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Minutes");
+
+        BarChart weekProject = new BarChart(xAxis, yAxis);
+        weekProject.setTitle("This week projects stats");
+        
+        XYChart.Series series = new XYChart.Series();
+        series.setName("Time Spent Each Day");
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+
+        User us = cmbUsers.getSelectionModel().getSelectedItem();
+        Project selectedProject = cmbProjects.getSelectionModel().getSelectedItem();
+        
+        List<LocalDate> datesToIterate = getDifferenceDays(dateFrom.getValue(), dateTo.getValue());
+        List<Task> taskList = taskModel.getTasksBetween(dateFrom.getValue(), dateTo.getValue());
+        List<Task> taskListByUser = taskModel.getTasksOfSelectedUserByDate(us);
+        List<Task> taskListByProject = taskModel.getAllTasksOfSelectedProjectByDate(selectedProject) ;
+        
+        // get tasks
+        if(cmbUsers.getSelectionModel().isEmpty() && cmbProjects.getSelectionModel().isEmpty()){
+            for (LocalDate localDate : datesToIterate) {
+            for (Task task : taskList) {
+                if (formatter.format(localDate).equals(formatter.format(task.getsStartTime()))) {
+                    series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
+                    break;
+                }
+            }
+        }
+    }
+        else if(!cmbUsers.getSelectionModel().isEmpty()){
+            for (LocalDate localDate : datesToIterate) {
+            for (Task task : taskListByUser) {
+                if (formatter.format(localDate).equals(formatter.format(task.getsStartTime()))) {
+                    series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
+                    break;
+                }
+            }
+        }
+    }
+        else if(!cmbProjects.getSelectionModel().isEmpty()){
+            for (LocalDate localDate : datesToIterate) {
+            for (Task task : taskListByProject) {
+                if (formatter.format(localDate).equals(formatter.format(task.getsStartTime()))) {
+                    series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
+                    break;
+                }
+            }
+        }
+        }
+        
+     
+    
+        weekProject.getData().add(series);
+        paneBarChart.getChildren().add(weekProject);
     }
         
        
@@ -276,20 +322,22 @@ public class AdminOverviewController implements Initializable {
 
     @FXML
     private void onClickShowBarChart(ActionEvent event) {
-        
+//        
 //        Project selectedProject = cmbProjects.getSelectionModel().getSelectedItem();
 //        User us = cmbUsers.getSelectionModel().getSelectedItem();
-//        
-//        if(us.equals(null) && selectedProject.equals(null) )
+////        
+//        if(cmbProjects.getSelectionModel().isEmpty() && cmbUsers.getSelectionModel().isEmpty())
 //        {
-//            loadDataForAllProjectsInChart();
+            loadDataForAllProjectsInChart();
 //        }
-//        else if(selectedProject.equals(selectedProject)){
-//            //loadDataForSelectedProjectInChart();
+//        else if(!cmbProjects.getSelectionModel().isEmpty())
+//        {
+//            loadDataForSelectedProjectInChart();
 //            loadSelectedProjectTableViewByDate(selectedProject);
 //        }
-//        else(us.equals(us)) {
-//            //loadDataForSelectedUsInChart();
+//        else if(!cmbUsers.getSelectionModel().isEmpty()) 
+//        {
+//            loadDataForSelectedUsInChart();
 //            loadSelectedUsersTableViewByDate(us);
 //        }
     }
@@ -304,12 +352,12 @@ public class AdminOverviewController implements Initializable {
     private void formateDate(ActionEvent event) {
 
     }
-    
+    /*
     public LocalDate getDateFrom(){
         return dateFrom.getValue();
     }
     
     public LocalDate getDateTo(){
         return dateTo.getValue();
-    }
+    }*/
 }

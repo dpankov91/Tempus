@@ -132,8 +132,8 @@ public class BllManager implements IBllFacade {
     }
 
     @Override
-    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentMinutes) {
-        facade.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentMinutes);
+    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentSeconds) {
+        facade.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentSeconds);
     }
 
 }
