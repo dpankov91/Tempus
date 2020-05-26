@@ -191,9 +191,9 @@ public class DalManager implements IDalFacade {
     }
 
     @Override
-    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentMinutes) {
+    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentSeconds) {
         try {
-            taskDao.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentMinutes);
+            taskDao.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentSeconds);
         } catch (SQLException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }

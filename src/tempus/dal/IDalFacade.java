@@ -59,6 +59,6 @@ public interface IDalFacade {
 
     public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime);
 
-    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentMinutes);
+    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentSeconds);
 
 }

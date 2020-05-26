@@ -5,15 +5,11 @@
  */
 package tempus.gui.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tempus.be.Project;
@@ -21,7 +17,6 @@ import tempus.be.Task;
 import tempus.be.User;
 import tempus.bll.BllManager;
 import tempus.bll.IBllFacade;
-import tempus.gui.controller.AdminOverviewController;
 
 /**
  *
@@ -33,23 +28,45 @@ public class TaskModel {
     private final IBllFacade bllManager;
     List<Task> alltasks = new ArrayList();
     private final ObservableList<Task> taskList = FXCollections.observableArrayList();
-    private AdminOverviewController adOvController;
+    private LocalDate dateFrom;
+    private LocalDate dateTo;
 
+    public LocalDate getDateFrom() {
+        return dateFrom;
+    }
+
+    public void setDateFrom(LocalDate dateFrom) {
+        this.dateFrom = dateFrom;
+    }
+
+    public LocalDate getDateTo() {
+        return dateTo;
+    }
+
+    public void setDateTo(LocalDate dateTo) {
+        this.dateTo = dateTo;
+    }
+    
+    //private AdminOverviewController adOvController;
 
     public static TaskModel getInstance() {
         return model;
     }
 
+    /*
+    public void injectAdminOverviewController(AdminOverviewController aoc){
+        adOvController = aoc;
+    }*/
+
     public TaskModel() {
         this.bllManager = new BllManager();
-        adOvController = new AdminOverviewController();
     }
 
     public List<Task> getAllTasksOverview() {
         alltasks = bllManager.getAllTasksOverview();
         return alltasks;
     }
-    
+
     public List<Task> getAllTasks() {
         return bllManager.getAllTasksOverview();
     }
@@ -63,23 +80,23 @@ public class TaskModel {
         }
         return allspecTasks;
     }
-    
-    public List<Task> getAllTasksOfSelectedProjectByDate(Project selectedProject) 
-    {
+
+    public List<Task> getAllTasksOfSelectedProjectByDate(Project selectedProject) {
         
         List<Task> allspecTasks = new ArrayList();
-        for (Task alltas : getTasksBetweenForTable(adOvController.getDateFrom(), adOvController.getDateTo())) {
+        //for (Task alltas : getTasksBetweenForTable(adOvController.getDateFrom(), adOvController.getDateTo())) {
+        for (Task alltas : getTasksBetweenForTable(dateFrom, dateTo)) {
             if (alltas.getProjName().equals(selectedProject.getName())) {
                 allspecTasks.add(alltas);
             }
         }
         return allspecTasks;
     }
-        
+
     public List<Task> getTasksBetweenForTable(LocalDate fromDate, LocalDate toDate) {
         List<Task> TasksBetween = new ArrayList();
-        
-       LocalDate ldtFrom = fromDate;
+
+        LocalDate ldtFrom = fromDate;
         LocalDate ldtTo = toDate;
 
         for (Task alltas : alltasks) {
@@ -91,7 +108,7 @@ public class TaskModel {
     }
 
     public List<Task> getAllTasksOfSelectedUser(User us) {
-                
+
         List<Task> allspecUsTasks = new ArrayList();
         for (Task alltas : alltasks) {
             if (alltas.getUserLastName().equals(us.getLName())) {
@@ -100,11 +117,11 @@ public class TaskModel {
         }
         return allspecUsTasks;
     }
-    
+
     public List<Task> getTasksOfSelectedUserByDate(User us) {
-                
+
         List<Task> allspecUsTasks = new ArrayList();
-        for (Task alltas : alltasks) {
+        for (Task alltas : getTasksBetweenForTable(dateFrom, dateTo)) {
             if (alltas.getUserLastName().equals(us.getLName())) {
                 allspecUsTasks.add(alltas);
             }
@@ -125,16 +142,15 @@ public class TaskModel {
         return calculateTotalTime(TasksBetween);
     }
 
-    public List<Task> getTasksOfLoggedUser(User loggedUser) {
-        List<Task> allspecTasks = new ArrayList();
-        for (Task alltas : alltasks) {
-            if (alltas.getUserLastName().equals(loggedUser.getLName())) {
-                allspecTasks.add(alltas);
-            }
-        }
-        return allspecTasks;
-    }
-
+//    public List<Task> getTasksOfLoggedUser(User loggedUser) {
+//        List<Task> allspecTasks = new ArrayList();
+//        for (Task alltas : alltasks) {
+//            if (alltas.getUserLastName().equals(loggedUser.getLName())) {
+//                allspecTasks.add(alltas);
+//            }
+//        }
+//        return allspecTasks;
+//    }
     private List<Task> calculateTotalTime(List<Task> lisToFilter) {
         HashMap<String, String> datesStored = new HashMap<String, String>(); //key is date
 
@@ -159,15 +175,12 @@ public class TaskModel {
         return filteredList;
     }
 
-
     public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime) {
-       bllManager.editTask(id,name,startTime,endTime,note,spentTime);
+        bllManager.editTask(id, name, startTime, endTime, note, spentTime);
     }
 
-    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentMinutes) {
-        bllManager.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentMinutes);
+    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentSeconds) {
+        bllManager.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentSeconds);
     }
-
-
 
 }

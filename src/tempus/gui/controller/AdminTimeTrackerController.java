@@ -31,6 +31,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -124,26 +125,20 @@ public class AdminTimeTrackerController implements Initializable {
         lbl_date.setVisible(false);
         loadProjectsToComboBox();
         setUpTableView();
-        showTime();
-    }
-
-    private void handle_CreateTask(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/NewTimeEntry.fxml"));
-        Parent z = loader.load();
-        Scene scene = new Scene(z);
-        Stage s = new Stage();
-        s.setScene(scene);
-        s.show();
     }
 
     @FXML
     private void handle_Play(ActionEvent event) {
+
         if (isStopped) {
+            showTime();
             isStopped = false;
             setUpThread();
             imgView.setImage(new Image("/tempus/gui/assets/icons8-pause-button-50.png"));
             btn_stop.setDisable(false);
             lbl_date.setVisible(true);
+            
+            
             //Plays again
         } else {
             //Stops the thread
@@ -153,9 +148,25 @@ public class AdminTimeTrackerController implements Initializable {
 
         }
     }
+    
+    private void showTime() {
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        lbl_date.setText(dateFormat.format(date));
+    }
+    
+     private LocalDateTime getStartTime() {
+        return LocalDateTime.now();
+    }
 
     @FXML
     private void handle_Stop(ActionEvent event) {
+        if(txt_task.getText() == null || txt_note.getText() == null || cb_projects.getSelectionModel().getSelectedItem() == null)
+        {
+            setUpAlert("Not filled Error", "Check if project is choosen, task name and task note are filled");
+        }
+        else
+        {
         ThreadExecutor.shutdownNow();
         imgView.setImage(new Image("/tempus/gui/assets/icons8-circled-play-50.png"));
         
@@ -164,10 +175,10 @@ public class AdminTimeTrackerController implements Initializable {
         String taskName = txt_task.getText();
         String note = txt_note.getText();
         User loggedUser = usModel.getloggedInUser();
-        LocalDateTime startTime = LocalDateTime.now();
+      LocalDateTime startTime = LocalDateTime.now();    //change
         LocalDateTime endTime = LocalDateTime.now();
-        long spentMinutes = timeMinutes.getValue();
-        tsModel.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentMinutes);
+        long spentSeconds = totalSeconds; 
+        tsModel.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentSeconds);
         //reset fields
         cb_projects.getSelectionModel().clearSelection();
         txt_task.clear();
@@ -181,6 +192,7 @@ public class AdminTimeTrackerController implements Initializable {
         isStopped = true;
         btn_stop.setDisable(true);
         //Here call model and insert time into database
+        }
     }
 
     private void handle_Start(ActionEvent event) {
@@ -244,12 +256,15 @@ public class AdminTimeTrackerController implements Initializable {
         tasks.addAll(allTasks);
         tbv_timetracker.setItems(tasks);
     }
-
-    private void showTime() {
-        Date date = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        lbl_date.setText(dateFormat.format(date));
+    
+      private void setUpAlert(String title, String message){
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(message);
+        alert.showAndWait();
     }
+
     
     
     @FXML
