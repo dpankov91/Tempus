@@ -221,7 +221,7 @@ public class AdminTimeTrackerController implements Initializable {
     }
 
     void setUpTableView() {
-
+         tbv_timetracker.setEditable(true);
         //colProj.setCellFactory(TextFieldTableCell.forTableColumn());
         colProj.setCellValueFactory(new PropertyValueFactory<>("projName"));
         colTask.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -232,7 +232,7 @@ public class AdminTimeTrackerController implements Initializable {
         colStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         colEndTime.setCellFactory(TextFieldTableCell.forTableColumn());
         colEndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
-        colHrs.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        //colHrs.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         colHrs.setCellValueFactory(new PropertyValueFactory<>("spentTime"));
         loadTableView();
     }
@@ -283,6 +283,10 @@ public class AdminTimeTrackerController implements Initializable {
                 tsModel.editTask(task.getId(), task.getTask(), task.getsStartTime(), endTime, task.getNote(), task.getSpentTime());
                 task.setEndTime(endTime);
                 break;
+//                case "Time Spent":
+//                tsModel.editTask(task.getId(), task.getTask(), task.getsStartTime(), task.getsEndTime(), task.getNote(), assignedValue());
+//                task.setSpentTime(assignedValue);
+//                break;
         }
 
     }

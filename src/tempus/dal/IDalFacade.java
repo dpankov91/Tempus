@@ -35,13 +35,13 @@ public interface IDalFacade {
 
     public List<Client> getAllClientss();
 
-    public void deleteUser(User userToDelete);
+    public User deleteUser(User userToDelete);
 
     public List<User> getAllUsers();
 
-    public void createUser(String fName, String lName, String hashedPassword, String email, String role, String address, int phone, int postcode);
+    public User createUser(String fName, String lName, String hashedPassword, String email, String role, String address, int phone, int postcode);
 
-    public void editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL, String password);
+    public User editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL, String password);
 
     public void editProject(int id,String projectName, String clientName, int hourlyRate, String description);
     
