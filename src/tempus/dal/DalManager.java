@@ -172,7 +172,7 @@ public class DalManager implements IDalFacade {
         try {
             userDao.newPassword(pswSecond, userID);
         } catch (SQLException ex) {
-            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);            
         }
     }
 
