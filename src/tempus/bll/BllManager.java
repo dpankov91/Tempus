@@ -6,9 +6,12 @@
 package tempus.bll;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import static javafx.util.Duration.millis;
 
 import tempus.be.Client;
 
@@ -131,9 +134,15 @@ public class BllManager implements IBllFacade {
         facade.editTask(id, name, startTime, endTime, note, spentTime);
     }
 
+    private long getSecondsFromTimespan(LocalDateTime startTime, LocalDateTime endTime){
+        Duration dur = Duration.between(startTime, endTime);
+        return dur.toSeconds();
+       // String.format("%02d:%02d:%02d", dur.toHoursPart(), dur.toMinutesPart(), dur.toSecondsPart());
+    }
+    
     @Override
-    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentSeconds) {
-        facade.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentSeconds);
+    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime) {
+        facade.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, getSecondsFromTimespan(startTime, endTime));
     }
 
 }
