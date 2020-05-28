@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
@@ -95,7 +97,7 @@ public class AdminTimeTrackerController implements Initializable {
     ImageView imgView;
     @FXML
     private Label lbl_date;
-    
+
     private static final int STARTTIME = 0;
     private final IntegerProperty timeSeconds = new SimpleIntegerProperty(STARTTIME);
     private final IntegerProperty timeMinutes = new SimpleIntegerProperty(STARTTIME);
@@ -107,6 +109,7 @@ public class AdminTimeTrackerController implements Initializable {
     private TaskModel tsModel;
     private ProjectModel projModel;
     private UserModel usModel;
+    boolean now = true;
 
     ObservableList<Project> allProjects = FXCollections.observableArrayList();
 
@@ -129,69 +132,63 @@ public class AdminTimeTrackerController implements Initializable {
 
     @FXML
     private void handle_Play(ActionEvent event) {
-
+        //Plays the thread
         if (isStopped) {
-            showTime();
             isStopped = false;
             setUpThread();
             imgView.setImage(new Image("/tempus/gui/assets/icons8-pause-button-50.png"));
             btn_stop.setDisable(false);
-            lbl_date.setVisible(true);
-            
-            
-            //Plays again
+
+            if (now) {
+                now = true;
+                tsModel.setTimeStart(LocalDateTime.now());
+                showTime();
+            }
+
         } else {
-            //Stops the thread
+            //Pauses the thread
             isStopped = true;
+            now = false;
             ThreadExecutor.shutdownNow();
             imgView.setImage(new Image("/tempus/gui/assets/icons8-circled-play-50.png"));
-
         }
     }
-    
+
     private void showTime() {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         lbl_date.setText(dateFormat.format(date));
-    }
-    
-     private LocalDateTime getStartTime() {
-        return LocalDateTime.now();
+        lbl_date.setVisible(true);
     }
 
     @FXML
     private void handle_Stop(ActionEvent event) {
-        if(txt_task.getText() == null || txt_note.getText() == null || cb_projects.getSelectionModel().getSelectedItem() == null)
-        {
+        tsModel.setTimeEnd(LocalDateTime.now());
+        if (txt_task.getText() == null || txt_note.getText() == null || cb_projects.getSelectionModel().getSelectedItem() == null) {
             setUpAlert("Not filled Error", "Check if project is choosen, task name and task note are filled");
-        }
-        else
-        {
-        ThreadExecutor.shutdownNow();
-        imgView.setImage(new Image("/tempus/gui/assets/icons8-circled-play-50.png"));
-        
-        //save task to db
-        Project selectedProject = cb_projects.getSelectionModel().getSelectedItem();
-        String taskName = txt_task.getText();
-        String note = txt_note.getText();
-        User loggedUser = usModel.getloggedInUser();
-      LocalDateTime startTime = LocalDateTime.now();    //change
-        LocalDateTime endTime = LocalDateTime.now();
-        long spentSeconds = totalSeconds; 
-        tsModel.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentSeconds);
-        //reset fields
-        cb_projects.getSelectionModel().clearSelection();
-        txt_task.clear();
-        txt_note.clear();
-        lbl_date.setVisible(false);
-        //Reset time
-        timeSeconds.setValue(0);
-        timeMinutes.setValue(0);
-        timeHours.setValue(0);
-        totalSeconds = 0;
-        isStopped = true;
-        btn_stop.setDisable(true);
-        //Here call model and insert time into database
+        } else {
+            ThreadExecutor.shutdownNow();
+            imgView.setImage(new Image("/tempus/gui/assets/icons8-circled-play-50.png"));
+
+            //save task to db
+            Project selectedProject = cb_projects.getSelectionModel().getSelectedItem();
+            String taskName = txt_task.getText();
+            String note = txt_note.getText();
+            User loggedUser = usModel.getloggedInUser();
+            tsModel.saveStoppedTask(selectedProject, taskName, note, loggedUser, tsModel.getTimeStart(), tsModel.getTimeEnd());
+            //reset fields
+            cb_projects.getSelectionModel().clearSelection();
+            txt_task.clear();
+            txt_note.clear();
+            lbl_date.setVisible(false);
+            //Reset time
+            timeSeconds.setValue(0);
+            timeMinutes.setValue(0);
+            timeHours.setValue(0);
+            totalSeconds = 0;
+            isStopped = true;
+            btn_stop.setDisable(true);
+            //Here call model and insert time into database
         }
     }
 
@@ -218,7 +215,7 @@ public class AdminTimeTrackerController implements Initializable {
                 System.out.println("Seconds: " + timeSeconds.getValue() + ", Minutes: " + +timeMinutes.getValue() + ", Hours: " + +timeHours.getValue());
             });
         },
-                0,//Initial delay of thread
+                0,//Initial delay of thread, no delay
                 1, //Execute after given time (example every second)
                 TimeUnit.SECONDS // Time unit
         );
@@ -233,7 +230,7 @@ public class AdminTimeTrackerController implements Initializable {
     }
 
     void setUpTableView() {
-         tbv_timetracker.setEditable(true);
+        tbv_timetracker.setEditable(true);
         //colProj.setCellFactory(TextFieldTableCell.forTableColumn());
         colProj.setCellValueFactory(new PropertyValueFactory<>("projName"));
         colTask.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -256,17 +253,15 @@ public class AdminTimeTrackerController implements Initializable {
         tasks.addAll(allTasks);
         tbv_timetracker.setItems(tasks);
     }
-    
-      private void setUpAlert(String title, String message){
-        
+
+    private void setUpAlert(String title, String message) {
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(message);
         alert.showAndWait();
     }
 
-    
-    
     @FXML
     private void writeToDatabase(TableColumn.CellEditEvent<Task, String> event) {
         Task task = event.getRowValue();
@@ -274,7 +269,7 @@ public class AdminTimeTrackerController implements Initializable {
         if (event.getNewValue().toString().isEmpty()) {
             assignedValue = "None";
         }
-          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 //        Task //Start Time //End Time // Note // Time Spent
         switch (event.getTableColumn().getText()) {
             case "Task"://task.getId(), task.getTask(), task.getsStartTime(), task.getEndTime(), task.getNote(),task.getSpentTime()
@@ -286,7 +281,7 @@ public class AdminTimeTrackerController implements Initializable {
                 task.setNote(assignedValue);
                 break;
             case "Start Time":
-              
+
                 LocalDateTime dateTime = LocalDateTime.parse(assignedValue, formatter);
 
                 tsModel.editTask(task.getId(), task.getTask(), dateTime, task.getsEndTime(), task.getNote(), task.getSpentTime());
@@ -306,8 +301,7 @@ public class AdminTimeTrackerController implements Initializable {
 
     }
 
-
     @FXML
-    private void writeToDatabaseNumber(TableColumn.CellEditEvent<Task, String> event) {
+    private void writeToDatabaseNumber(TableColumn.CellEditEvent<String, Task> event) {
     }
 }
