@@ -112,8 +112,6 @@ public class AdminTimeTrackerController implements Initializable {
     boolean now = true;
 
     ObservableList<Project> allProjects = FXCollections.observableArrayList();
-    @FXML
-    private JFXButton btn_startTime;
 
     /**
      * Initializes the controller class.
@@ -140,22 +138,27 @@ public class AdminTimeTrackerController implements Initializable {
             setUpThread();
             imgView.setImage(new Image("/tempus/gui/assets/icons8-pause-button-50.png"));
             btn_stop.setDisable(false);
-            tsModel.setTimeStart(LocalDateTime.now());
+
+            if (now) {
+                now = true;
+                tsModel.setTimeStart(LocalDateTime.now());
+                showTime();
+            }
 
         } else {
             //Pauses the thread
             isStopped = true;
+            now = false;
             ThreadExecutor.shutdownNow();
             imgView.setImage(new Image("/tempus/gui/assets/icons8-circled-play-50.png"));
         }
     }
 
-    private LocalDateTime showTime() {
+    private void showTime() {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         lbl_date.setText(dateFormat.format(date));
         lbl_date.setVisible(true);
-        return LocalDateTime.now();
     }
 
     @FXML
@@ -258,6 +261,7 @@ public class AdminTimeTrackerController implements Initializable {
         alert.setHeaderText(message);
         alert.showAndWait();
     }
+
     @FXML
     private void writeToDatabase(TableColumn.CellEditEvent<Task, String> event) {
         Task task = event.getRowValue();
@@ -295,11 +299,6 @@ public class AdminTimeTrackerController implements Initializable {
 //                break;
         }
 
-    }
-
-    @FXML
-    private void handle_StartTime(ActionEvent event) {
-        showTime();    
     }
 
     @FXML
