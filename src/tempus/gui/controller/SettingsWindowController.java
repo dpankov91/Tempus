@@ -69,11 +69,10 @@ public class SettingsWindowController implements Initializable {
     private void onClickConfirm(ActionEvent event) {
         String pswFirst = pswFirstTime.getText().trim();
         String pswSecond = pswSecondConfirm.getText().trim();
-    // the Trim is used to remove whitespace.            
+    // the Trim method is used to remove whitespace.            
         if (isValid(pswFirst, pswSecond)) { // uses the convenience method to validate the password
-            User us = userModel.getloggedInUser(); // invokes the loggedInUser method to check user
-            userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress(),"No", us.getPassword());
-            us.setPassword(pswSecond); 
+            User us = userModel.getloggedInUser(); // invokes the loggedInUser method to check logged in user.
+            us.setPassword(pswSecond); // This method invokes the setPassword in the user model, placing the second password parameter in.
             userModel.newPassword(pswSecond); // Takes the input in the second password field and brings it to the userModel as a method is invoked.
             setUpAlert("Password Changed", "You have a new password");
         }
@@ -118,7 +117,6 @@ public class SettingsWindowController implements Initializable {
         fileChooser.setTitle("Select image files");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Images",
                 "*.png", "*.jpg", "*.gif", "*.tif", "*.bmp"));
-        //  List<File> files = fileChooser.showOpenMultipleDialog(new Stage());
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             User us = userModel.getloggedInUser();
