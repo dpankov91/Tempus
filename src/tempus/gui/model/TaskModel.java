@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tempus.be.Project;
@@ -33,6 +35,33 @@ public class TaskModel {
     private Project selectedProject;
     private User selectedUser;
     private UserModel usModel;
+
+    private final ObjectProperty<LocalDateTime> timeStart = new SimpleObjectProperty<>();
+    private final ObjectProperty<LocalDateTime> timeEnd = new SimpleObjectProperty<>();
+
+    public LocalDateTime getTimeEnd() {
+        return timeEnd.get();
+    }
+
+    public void setTimeEnd(LocalDateTime value) {
+        timeEnd.set(value);
+    }
+
+    public ObjectProperty timeEndProperty() {
+        return timeEnd;
+    }
+
+    public LocalDateTime getTimeStart() {
+        return timeStart.get();
+    }
+
+    public void setTimeStart(LocalDateTime value) {
+        timeStart.set(value);
+    }
+
+    public ObjectProperty timeStartProperty() {
+        return timeStart;
+    }
 
     public Project getSelectedProject() {
         return selectedProject;
@@ -316,8 +345,8 @@ public class TaskModel {
         bllManager.editTask(id, name, startTime, endTime, note, spentTime);
     }
 
-    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentSeconds) {
-        bllManager.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentSeconds);
+    public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime) {
+        bllManager.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime);
     }
 
     ///////////////
