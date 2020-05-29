@@ -119,7 +119,7 @@ public class OverviewDeveloperController implements Initializable {
     
     private void loadAllTaskTableView() {
         tableProject.getItems().clear();
-        List<Task> allTasksOverview = taskModel.getAllTasksOverview();
+        List<Task> allTasksOverview = taskModel.getAllTasksOverviewForLoggedUser();
         ObservableList<Task> tasks = FXCollections.observableArrayList();
         tasks.addAll(allTasksOverview);
         tableProject.setItems(tasks);

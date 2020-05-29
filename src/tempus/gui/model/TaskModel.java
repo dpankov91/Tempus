@@ -30,7 +30,26 @@ public class TaskModel {
     private final ObservableList<Task> taskList = FXCollections.observableArrayList();
     private LocalDate dateFrom;
     private LocalDate dateTo;
+    private Project selectedProject;
+    private User selectedUser;
+    private UserModel usModel;
 
+    public Project getSelectedProject() {
+        return selectedProject;
+    }
+
+    public void setSelectedProject(Project selectedProject) {
+        this.selectedProject = selectedProject;
+    }
+
+    public User getSelectedUser() {
+        return selectedUser;
+    }
+
+    public void setSelectedUser(User selectedUser) {
+        this.selectedUser = selectedUser;
+    }
+    
     public LocalDate getDateFrom() {
         return dateFrom;
     }
@@ -60,6 +79,7 @@ public class TaskModel {
 
     public TaskModel() {
         this.bllManager = new BllManager();
+        usModel = UserModel.getInstance();
     }
 
     public List<Task> getAllTasksOverview() {
@@ -70,30 +90,11 @@ public class TaskModel {
     public List<Task> getAllTasks() {
         return bllManager.getAllTasksOverview();
     }
-
-    public List<Task> getAllTasksOfSelectedProject(Project selectedProject) {
-        List<Task> allspecTasks = new ArrayList();
-        for (Task alltas : alltasks) {
-            if (alltas.getProjName().equals(selectedProject.getName())) {
-                allspecTasks.add(alltas);
-            }
-        }
-        return allspecTasks;
-    }
-
-    public List<Task> getAllTasksOfSelectedProjectByDate(Project selectedProject) {
-        
-        List<Task> allspecTasks = new ArrayList();
-        //for (Task alltas : getTasksBetweenForTable(adOvController.getDateFrom(), adOvController.getDateTo())) {
-        for (Task alltas : getTasksBetweenForTable(dateFrom, dateTo)) {
-            if (alltas.getProjName().equals(selectedProject.getName())) {
-                allspecTasks.add(alltas);
-            }
-        }
-        return allspecTasks;
-    }
-
+    
+        // List of all tasks by date range
     public List<Task> getTasksBetweenForTable(LocalDate fromDate, LocalDate toDate) {
+        if(dateTo != null && dateFrom !=null)
+        {   
         List<Task> TasksBetween = new ArrayList();
 
         LocalDate ldtFrom = fromDate;
@@ -105,31 +106,15 @@ public class TaskModel {
             }
         }
         return TasksBetween;
-    }
-
-    public List<Task> getAllTasksOfSelectedUser(User us) {
-
-        List<Task> allspecUsTasks = new ArrayList();
-        for (Task alltas : alltasks) {
-            if (alltas.getUserLastName().equals(us.getLName())) {
-                allspecUsTasks.add(alltas);
-            }
+        }else{
+            return null;
         }
-        return allspecUsTasks;
     }
-
-    public List<Task> getTasksOfSelectedUserByDate(User us) {
-
-        List<Task> allspecUsTasks = new ArrayList();
-        for (Task alltas : getTasksBetweenForTable(dateFrom, dateTo)) {
-            if (alltas.getUserLastName().equals(us.getLName())) {
-                allspecUsTasks.add(alltas);
-            }
-        }
-        return allspecUsTasks;
-    }
-
-    public List<Task> getTasksBetween(LocalDate fromDate, LocalDate toDate) {
+    
+    // sum of all tasks by date range
+    public List<Task> getTasksBetweenSumHrs(LocalDate fromDate, LocalDate toDate) {
+        if(dateFrom != null && dateTo != null)
+        {
         List<Task> TasksBetween = new ArrayList();
         LocalDate ldtFrom = fromDate;
         LocalDate ldtTo = toDate;
@@ -140,17 +125,169 @@ public class TaskModel {
             }
         }
         return calculateTotalTime(TasksBetween);
+        }else{
+            return null;
+        }
+    }
+    
+    //////////////////////////
+    /////// BY PROJECT////////
+    //////////////////////////
+
+    //Task List for selected project.
+    public List<Task> getAllTasksOfSelectedProject(Project proj) {
+        List<Task> allspecProjTasks = new ArrayList();
+        for (Task alltas : alltasks) {
+            if (alltas.getProjName().equals(proj.getName())) {
+                allspecProjTasks.add(alltas);
+            }
+        }
+        return allspecProjTasks;
+    }
+    
+    //Task List by chosen date range for selected project.
+    public List<Task> getAllTasksOfSelectedProjectByDate(Project proj) {
+        if(selectedProject != null && dateFrom != null && dateTo != null)
+        {
+        List<Task> allspecProjTasks = new ArrayList();
+        for (Task alltas : getTasksBetweenForTable(dateFrom, dateTo)) {
+            if (alltas.getProjName().equals(proj.getName())) {
+                allspecProjTasks.add(alltas);
+            }
+        }
+        return allspecProjTasks;
+        }
+          else{
+            return null;
+        }
+    }
+    
+    //sum of hrs for selected project by date range
+    public List<Task> getTasksBetweenSumHrsProject(LocalDate fromDate, LocalDate toDate) 
+    {
+        if(selectedProject != null && dateFrom !=null && dateTo != null){
+        List<Task> TasksBetweenProject = new ArrayList();
+        LocalDate ldtFrom = fromDate;
+        LocalDate ldtTo = toDate;
+
+        for (Task alltas : getAllTasksOfSelectedProjectByDate(selectedProject)) {
+            if (((alltas.getsStartTime().toLocalDate()).isAfter(ldtFrom) || (alltas.getsStartTime().toLocalDate()).isEqual(ldtFrom)) && ((alltas.getsStartTime().toLocalDate()).isBefore(ldtTo) || (alltas.getsStartTime().toLocalDate()).isEqual(ldtTo))) {
+                TasksBetweenProject.add(alltas);
+            }
+        }
+        return calculateTotalTime(TasksBetweenProject);
+        }
+          else{
+            return null;
+        }
+    }
+    
+    /////////////////////////
+    /////// BY USER//////////
+    ////////////////////////
+
+    //Task List for selected user.
+    public List<Task> getAllTasksOfSelectedUser(User us) {
+
+        if(selectedUser != null){
+        List<Task> allspecUsTasks = new ArrayList();
+        for (Task alltas : alltasks) {
+            if (alltas.getUserLastName().equals(us.getLName())) {
+                allspecUsTasks.add(alltas);
+            }
+        }
+        return allspecUsTasks;
+        }
+          else{
+            return null;
+        }
     }
 
-//    public List<Task> getTasksOfLoggedUser(User loggedUser) {
-//        List<Task> allspecTasks = new ArrayList();
-//        for (Task alltas : alltasks) {
-//            if (alltas.getUserLastName().equals(loggedUser.getLName())) {
-//                allspecTasks.add(alltas);
-//            }
-//        }
-//        return allspecTasks;
-//    }
+    //Task List by chosen date range for selected user.
+    public List<Task> getTasksOfSelectedUserByDate(User us) {
+        if(selectedUser != null && dateFrom != null && dateTo != null){
+        List<Task> allspecUsTasks = new ArrayList();
+        for (Task alltas : getTasksBetweenForTable(dateFrom, dateTo)) {
+            if (alltas.getUserLastName().equals(us.getLName())) {
+                allspecUsTasks.add(alltas);
+            }
+        }
+        return allspecUsTasks;
+        }
+          else{
+            return null;
+        }
+    }
+    
+    //sum of hrs for selected user by date range
+    public List<Task> getTasksBetweenSumHrsUser(LocalDate fromDate, LocalDate toDate) {
+        if((selectedUser != null && dateFrom !=null && dateTo != null)){
+        List<Task> TasksBetweenProject = new ArrayList();
+        LocalDate ldtFrom = fromDate;
+        LocalDate ldtTo = toDate;
+
+        for (Task alltas : getTasksOfSelectedUserByDate(selectedUser)) {
+            if (((alltas.getsStartTime().toLocalDate()).isAfter(ldtFrom) || (alltas.getsStartTime().toLocalDate()).isEqual(ldtFrom)) && ((alltas.getsStartTime().toLocalDate()).isBefore(ldtTo) || (alltas.getsStartTime().toLocalDate()).isEqual(ldtTo))) {
+                TasksBetweenProject.add(alltas);
+            }
+        }
+        return calculateTotalTime(TasksBetweenProject);
+                }
+          else{
+            return null;
+        }
+    }
+    
+    //////////////////////////
+    ///BY USER AND PROJECT///
+    ////////////////////////
+    
+    //Task List for selected project and selected user.
+    public List<Task> getAllTasksOfSelectedProjectAndUser(Project selectedProject, User selectedUser) {
+        List<Task> allspecProjTasks = new ArrayList();
+        for (Task alltas : alltasks) {
+            if (alltas.getProjName().equals(selectedProject.getName()) && alltas.getUserLastName().equals(selectedUser.getLName())) {
+                allspecProjTasks.add(alltas);
+            }
+        }
+        return allspecProjTasks;
+    }
+    
+    //Task List by chosen date range for selected project and selected user.
+    public List<Task> getAllTasksOfSelectedProjectAndUserByDate(Project selectedProject, User selectedUser ) {
+        if(selectedProject !=null && selectedUser != null){
+        List<Task> allspecProjTasks = new ArrayList();
+        for (Task alltas : getTasksBetweenForTable(dateFrom, dateTo)) {
+            if (alltas.getProjName().equals(selectedProject.getName()) && alltas.getUserLastName().equals(selectedUser.getLName())) {
+                allspecProjTasks.add(alltas);
+            }
+        }
+        return allspecProjTasks;
+        }else{
+            return null;
+        }
+    }
+    
+    //sum of hrs for selected project by date range
+    public List<Task> getTasksBetweenSumHrsProjectAndUser(LocalDate fromDate, LocalDate toDate) 
+    {
+        if(selectedProject !=null && selectedUser != null){
+        List<Task> TasksBetweenProject = new ArrayList();
+        LocalDate ldtFrom = fromDate;
+        LocalDate ldtTo = toDate;
+
+        for (Task alltas : getAllTasksOfSelectedProjectAndUserByDate(selectedProject, selectedUser)) {
+            if (((alltas.getsStartTime().toLocalDate()).isAfter(ldtFrom) || (alltas.getsStartTime().toLocalDate()).isEqual(ldtFrom)) && ((alltas.getsStartTime().toLocalDate()).isBefore(ldtTo) || (alltas.getsStartTime().toLocalDate()).isEqual(ldtTo))) {
+                TasksBetweenProject.add(alltas);
+            }
+        }
+        return calculateTotalTime(TasksBetweenProject);
+        }else{
+            return null;
+        }
+    }
+    
+    //method returns sum of spent hrs for list of tasks
     private List<Task> calculateTotalTime(List<Task> lisToFilter) {
         HashMap<String, String> datesStored = new HashMap<String, String>(); //key is date
 
@@ -182,5 +319,49 @@ public class TaskModel {
     public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentSeconds) {
         bllManager.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, spentSeconds);
     }
+
+    ///////////////
+    //LOGGED USER//
+    //////////////
+    
+    //returns all tasks of logged user
+    public List<Task> getAllTasksOverviewForLoggedUser() {
+         List<Task> allTasksLoggedUser = new ArrayList();
+        for (Task alltas : alltasks) {
+            if (alltas.getUserLastName().equals(usModel.getloggedInUser().getLName())) {
+                allTasksLoggedUser.add(alltas);
+            }
+        }
+        return allTasksLoggedUser;
+    }
+    
+    //method returns task List by chosen date range for logged user.
+    public List<Task> getAllTasksOfLoggedUserByDate() {
+        
+        List<Task> allspecProjTasks = new ArrayList();
+        for (Task alltas : getTasksBetweenForTable(dateFrom, dateTo)) {
+            if (alltas.getUserLastName().equals(usModel.getloggedInUser().getLName())) {
+                allspecProjTasks.add(alltas);
+            }
+        }
+        return allspecProjTasks;
+    }
+    
+    //methods returns sum of hrs for logged user by date
+    public List<Task> getTasksBetweenSumHrsLoggedUser(LocalDate fromDate, LocalDate toDate) 
+    {
+        List<Task> TasksBetweenProject = new ArrayList();
+        LocalDate ldtFrom = fromDate;
+        LocalDate ldtTo = toDate;
+
+        for (Task alltas : getAllTasksOfLoggedUserByDate()) {
+            if (((alltas.getsStartTime().toLocalDate()).isAfter(ldtFrom) || (alltas.getsStartTime().toLocalDate()).isEqual(ldtFrom)) && ((alltas.getsStartTime().toLocalDate()).isBefore(ldtTo) || (alltas.getsStartTime().toLocalDate()).isEqual(ldtTo))) {
+                TasksBetweenProject.add(alltas);
+            }
+        }
+        return calculateTotalTime(TasksBetweenProject);
+    }
+    
+    
 
 }
