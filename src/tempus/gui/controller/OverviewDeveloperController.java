@@ -9,15 +9,23 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -81,6 +89,8 @@ public class OverviewDeveloperController implements Initializable {
         taskModel = TaskModel.getInstance();
         loadProjectsToCombobox();
         setUpTaskTableView();
+        taskModel.getAllTasksOverview();
+        taskModel.getAllTasksOverviewForLoggedUser();
     }    
     
     private void loadProjectsToCombobox() {
@@ -102,6 +112,75 @@ public class OverviewDeveloperController implements Initializable {
 
     @FXML
     private void onClickShowBarChart(ActionEvent event) {
+        filterEverything(cmbProjects.getSelectionModel().getSelectedItem(), dateFrom.getValue(), dateTo.getValue());
+    }
+    
+    private void filterEverything(Project pro, LocalDate from, LocalDate to) {
+        List<Task> listToFilter = taskModel.getAllTasksOverviewForLoggedUser();
+        LocalDate fromaDate = LocalDate.now().minusYears(1);
+        LocalDate toaDate = LocalDate.now();
+        if (pro != null) {
+            //Filter by projects
+            listToFilter = taskModel.filterByProjects(listToFilter, pro);
+        }
+        if (from != null && to != null) {
+            //filter by date
+            toaDate = to;
+            fromaDate = from;
+            listToFilter = taskModel.filterByDates(listToFilter, from, to);
+        }
+        setUpTable(listToFilter);
+        listToFilter = taskModel.calculateTotalTime(listToFilter);
+        setUpChart(listToFilter, getDifferenceDays(fromaDate, toaDate));
+        //Set up chart using filtered data
+    }
+    
+        private List<LocalDate> getDifferenceDays(LocalDate fromDate, LocalDate toDate) {
+            return Stream.iterate(fromDate, date -> date.plusDays(1))
+                    .limit(ChronoUnit.DAYS.between(fromDate, toDate))
+                    .collect(Collectors.toList());
+    }
+
+    private void setUpTable(List<Task> filteredList) {
+        tableProject.getItems().clear();
+        ObservableList<Task> tasks = FXCollections.observableArrayList();
+        tasks.addAll(filteredList);
+        tableProject.setItems(tasks);
+        setSumHrsToLabel();
+    }
+
+    private void setUpChart(List<Task> filteredList, List<LocalDate> datesToIterate) {
+        paneBarChart.getChildren().clear();
+
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Week Days");
+
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Minutes");
+
+        BarChart weekProject = new BarChart(xAxis, yAxis);
+        weekProject.setTitle("Statistics");
+
+        XYChart.Series series = new XYChart.Series();
+        series.setName("Time Spent Each Day");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+
+        for (LocalDate localDate : datesToIterate) {
+            for (Task task : filteredList) {
+                if (formatter.format(localDate).equals(formatter.format(task.getsStartTime()))) {
+                    series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
+                    break;
+                }
+            }
+        }
+        weekProject.getData().add(series);
+        paneBarChart.getChildren().add(weekProject);
+    }
+
+    private void setSumHrsToLabel() {
+        double total = tableProject.getItems().stream().collect(Collectors.summingDouble(Task::getSpentTime));
+        lblSumHrs.setText(String.valueOf(total));
     }
     
     private void setUpTaskTableView() {
@@ -120,12 +199,6 @@ public class OverviewDeveloperController implements Initializable {
         ObservableList<Task> tasks = FXCollections.observableArrayList();
         tasks.addAll(allTasksOverview);
         tableProject.setItems(tasks);
-    }
-    
-     private void setSumHrsToLabel()
-    {
-        double total = tableProject.getItems().stream().collect(Collectors.summingDouble(Task::getSpentTime));
-        lblSumHrs.setText(String.valueOf(total));
     }
 
     @FXML

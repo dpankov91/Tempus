@@ -170,7 +170,9 @@ public class AdminOverviewController implements Initializable {
     }
 
     private void filterEverything(Project pro, User us, LocalDate from, LocalDate to) {
+      
         List<Task> listToFilter = taskModel.getAllTasksOverview();
+       
         LocalDate fromaDate = LocalDate.now().minusYears(1);
         LocalDate toaDate = LocalDate.now();
         if (pro != null) {
