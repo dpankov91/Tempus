@@ -97,20 +97,26 @@ public class AdminTimeTrackerController implements Initializable {
     ImageView imgView;
     @FXML
     private Label lbl_date;
-
+    //IntegerProperty variables handle the time labels to be value of 0 on start time
     private static final int STARTTIME = 0;
     private final IntegerProperty timeSeconds = new SimpleIntegerProperty(STARTTIME);
     private final IntegerProperty timeMinutes = new SimpleIntegerProperty(STARTTIME);
     private final IntegerProperty timeHours = new SimpleIntegerProperty(STARTTIME);
-
+    //Thread execturo service
     private ScheduledExecutorService ThreadExecutor;
+    //Time of seconds on start
     long totalSeconds = 0;
+    //For pause and play function
     boolean isStopped = true;
-    private TaskModel tsModel;
-    private ProjectModel projModel;
-    private UserModel usModel;
+    //For time & date function inside the play function
     boolean now = true;
-
+    //Task model
+    private TaskModel tsModel;
+    //Project model
+    private ProjectModel projModel;
+    //User model
+    private UserModel usModel;
+    
     ObservableList<Project> allProjects = FXCollections.observableArrayList();
 
     /**
@@ -132,21 +138,21 @@ public class AdminTimeTrackerController implements Initializable {
 
     @FXML
     private void handle_Play(ActionEvent event) {
-        //Plays the thread
+        //Plays the thread, switches to play button once started, disables the use of stop button
         if (isStopped) {
             isStopped = false;
             setUpThread();
             imgView.setImage(new Image("/tempus/gui/assets/icons8-pause-button-50.png"));
             btn_stop.setDisable(false);
-
+            //Shows the time tracking date when begun
             if (now) {
                 now = true;
                 tsModel.setTimeStart(LocalDateTime.now());
                 showTime();
             }
-
+         
         } else {
-            //Pauses the thread
+            //Pauses the thread, switches to pause button once clicked again, shuts down thread until user resumes or stops it
             isStopped = true;
             now = false;
             ThreadExecutor.shutdownNow();
@@ -154,46 +160,52 @@ public class AdminTimeTrackerController implements Initializable {
         }
     }
 
+    //Shows the exact time and date of the time tracker once begun
     private void showTime() {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         lbl_date.setText(dateFormat.format(date));
         lbl_date.setVisible(true);
     }
+    
+    //Refreshes table by loading table view again 
+    public void refreshTable() {
+        loadTableView(); 
+    }
 
     @FXML
     private void handle_Stop(ActionEvent event) {
+        //Sets the LocalDateTime to the exact time when stopped
         tsModel.setTimeEnd(LocalDateTime.now());
+        //
         if (txt_task.getText() == null || txt_note.getText() == null || cb_projects.getSelectionModel().getSelectedItem() == null) {
             setUpAlert("Not filled Error", "Check if project is choosen, task name and task note are filled");
         } else {
             ThreadExecutor.shutdownNow();
             imgView.setImage(new Image("/tempus/gui/assets/icons8-circled-play-50.png"));
 
-            //save task to db
+            //Save task to db
             Project selectedProject = cb_projects.getSelectionModel().getSelectedItem();
             String taskName = txt_task.getText();
             String note = txt_note.getText();
             User loggedUser = usModel.getloggedInUser();
             tsModel.saveStoppedTask(selectedProject, taskName, note, loggedUser, tsModel.getTimeStart(), tsModel.getTimeEnd());
-            //reset fields
+            //Reset fields
             cb_projects.getSelectionModel().clearSelection();
             txt_task.clear();
             txt_note.clear();
             lbl_date.setVisible(false);
-            //Reset time
+            //Reset time when stopped
             timeSeconds.setValue(0);
             timeMinutes.setValue(0);
             timeHours.setValue(0);
             totalSeconds = 0;
             isStopped = true;
+            //Disables button after stop
             btn_stop.setDisable(true);
-            //Here call model and insert time into database
+            //Refreshes the table view
+            refreshTable();
         }
-    }
-
-    private void handle_Start(ActionEvent event) {
-        setUpThread();
     }
 
     private void setUpThread() {
@@ -203,7 +215,7 @@ public class AdminTimeTrackerController implements Initializable {
             Platform.runLater(() -> { // Run later is for gui updates
                 //Calculate seconds / minutes /hours
                 totalSeconds++;
-
+                //Converts the totalSeconds into minutes and hours accordingly
                 long passedSeconds = (totalSeconds) % 60;
                 long passedMinutes = (totalSeconds / 60) % 60;
                 long passedHours = ((totalSeconds / 60) / 60) % 24;
@@ -211,7 +223,7 @@ public class AdminTimeTrackerController implements Initializable {
                 timeSeconds.setValue(passedSeconds);
                 timeMinutes.setValue(passedMinutes);
                 timeHours.setValue(passedHours);
-
+                //Prints out values inside the output tab
                 System.out.println("Seconds: " + timeSeconds.getValue() + ", Minutes: " + +timeMinutes.getValue() + ", Hours: " + +timeHours.getValue());
             });
         },
@@ -222,13 +234,15 @@ public class AdminTimeTrackerController implements Initializable {
     }
 
     public void loadProjectsToComboBox() {
+        //Loads the created projects into combobox
         allProjects = projModel.getObsProjects();
 
         for (Project proj : allProjects) {
             cb_projects.setItems(allProjects);
         }
     }
-
+    
+    //Sets up table view and each cell row
     void setUpTableView() {
         tbv_timetracker.setEditable(true);
         //colProj.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -245,7 +259,8 @@ public class AdminTimeTrackerController implements Initializable {
         colHrs.setCellValueFactory(new PropertyValueFactory<>("spentTime"));
         loadTableView();
     }
-
+    
+    //Loads all tasks made into the table view
     private void loadTableView() {
         tbv_timetracker.getItems().clear();
         List<Task> allTasks = tsModel.getAllTasks();
@@ -254,8 +269,9 @@ public class AdminTimeTrackerController implements Initializable {
         tbv_timetracker.setItems(tasks);
     }
 
+    //Sets up alert to notify user of inputting the necessary input to stop the time tracker
     private void setUpAlert(String title, String message) {
-
+        
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(message);
@@ -263,6 +279,7 @@ public class AdminTimeTrackerController implements Initializable {
     }
 
     @FXML
+    //Edits the tasks 
     private void writeToDatabase(TableColumn.CellEditEvent<Task, String> event) {
         Task task = event.getRowValue();
         String assignedValue = event.getNewValue();
