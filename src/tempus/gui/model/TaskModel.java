@@ -317,7 +317,7 @@ public class TaskModel {
     }
     
     //method returns sum of spent hrs for list of tasks
-    private List<Task> calculateTotalTime(List<Task> lisToFilter) {
+    public List<Task> calculateTotalTime(List<Task> lisToFilter) {
         HashMap<String, String> datesStored = new HashMap<String, String>(); //key is date
 
         List<Task> filteredList = new ArrayList();
@@ -389,6 +389,36 @@ public class TaskModel {
             }
         }
         return calculateTotalTime(TasksBetweenProject);
+    }
+
+    public List<Task> filterByProjects(List<Task> listToFilter, Project pro) {
+         List<Task> allspecProjTasks = new ArrayList();
+        for (Task alltas : listToFilter) {
+            if (alltas.getProjName().equals(pro.getName())) {
+                allspecProjTasks.add(alltas);
+            }
+        }
+        return allspecProjTasks;
+    }
+
+    public List<Task> filterByUser(List<Task> listToFilter, User us) {
+        List<Task> allspecUsTasks = new ArrayList();
+        for (Task alltas : listToFilter) {
+            if (alltas.getUserLastName().equals(us.getLName())) {
+                allspecUsTasks.add(alltas);
+            }
+        }
+        return allspecUsTasks;
+    }
+
+    public List<Task> filterByDates(List<Task> listToFilter, LocalDate from, LocalDate to) {
+           List<Task> allspecProjTasks = new ArrayList();
+        for (Task alltas : listToFilter) {
+            if (((alltas.getsStartTime().toLocalDate()).isAfter(from) || (alltas.getsStartTime().toLocalDate()).isEqual(from)) && ((alltas.getsStartTime().toLocalDate()).isBefore(to) || (alltas.getsStartTime().toLocalDate()).isEqual(to))) {
+                allspecProjTasks.add(alltas);
+            }
+        }
+        return allspecProjTasks;
     }
     
     

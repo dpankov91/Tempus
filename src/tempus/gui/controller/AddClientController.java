@@ -117,5 +117,4 @@ public class AddClientController implements Initializable {
     void setInfo(ManageClientsWindowController aThis) {
         prevContrl = aThis;
     }
-    
 }

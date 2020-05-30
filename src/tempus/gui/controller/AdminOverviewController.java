@@ -65,8 +65,6 @@ public class AdminOverviewController implements Initializable {
     @FXML
     private JFXComboBox<Project> cmbProjects;
     @FXML
-    private JFXButton btnAllProjects;
-    @FXML
     private Pane paneBarChart;
     @FXML
     private JFXDatePicker dateFrom;
@@ -83,7 +81,6 @@ public class AdminOverviewController implements Initializable {
     private UserModel usModel;
     private TaskModel taskModel;
     private Project selectedProject;
-    
 
     @FXML
     private Label lblSumHrs;
@@ -114,26 +111,17 @@ public class AdminOverviewController implements Initializable {
         cmbUsers.getSelectionModel().selectedItemProperty().addListener((obs, old, newest) -> {
             taskModel.setSelectedUser(newest);
         });
+        
     }
-
 
     @FXML
     private void onSelectLoadSelectedProjectTable(ActionEvent event) {
     }
-    
+
     @FXML
     private void onSelectLoadSelectedUserTable(ActionEvent event) {
     }
-    
-    @FXML
-    private void onClickLoadAllProjectsTable(ActionEvent event) {
-        setUpTaskTableView();
-    }
-    
-    ///////////
-    //USER////
-    /////////
-    
+
     private void loadUsersToCombobox() {
         allUsers = usModel.getObsUsers();
 
@@ -141,42 +129,7 @@ public class AdminOverviewController implements Initializable {
             cmbUsers.setItems(allUsers);
         }
     }
-    
-    // Load to tableView selected User data
-    private void loadSelectedUserTable() 
-    {
-        User us = cmbUsers.getSelectionModel().getSelectedItem();
-        if(dateFrom.getValue()==null && dateTo.getValue()==null)
-        {
-            loadSelectedUsersTableView(us);
-        }
-        else{
-            loadSelectedUsersTableViewByDate(us);
-        }
-        setSumHrsToLabel();
-    }
-    
-    private void loadSelectedUsersTableView(User us) {  
-        tableProject.getItems().clear();
-        List<Task> allTasksOfSelectedUser = taskModel.getAllTasksOfSelectedUser(us);
-        ObservableList<Task> tasks = FXCollections.observableArrayList();
-        tasks.addAll(allTasksOfSelectedUser);
-        tableProject.setItems(tasks);
-    }
-    
-    private void loadSelectedUsersTableViewByDate(User us) {  
-        tableProject.getItems().clear();
-        List<Task> allTasksOfSelectedUser = taskModel.getTasksOfSelectedUserByDate(us);
-        ObservableList<Task> tasks = FXCollections.observableArrayList();
-        tasks.addAll(allTasksOfSelectedUser);
-        tableProject.setItems(tasks);
-    }
-    
-    
-    /////////////
-    //Project///
-    ///////////
-    
+
     private void loadProjectsToCombobox() {
         allProjects = projModel.getObsProjects();
 
@@ -184,76 +137,14 @@ public class AdminOverviewController implements Initializable {
             cmbProjects.setItems(allProjects);
         }
     }
-        
-    private void loadSelectedProjectTable() 
-        {
-        Project pro = cmbProjects.getSelectionModel().getSelectedItem();
-        if(dateFrom.getValue()==null && dateTo.getValue()==null)
-        {
-            loadSelectedProjectTableView(pro);
-        }
-        else{
-            loadSelectedProjectTableViewByDate(pro);
-        }
-        setSumHrsToLabel();
-    }
-    
-     private void loadSelectedProjectTableView(Project selectedProject) {
-        tableProject.getItems().clear();
-        List<Task> allTasksOfSelectedProject = taskModel.getAllTasksOfSelectedProject(selectedProject);
-        ObservableList<Task> tasks = FXCollections.observableArrayList();
-        tasks.addAll(allTasksOfSelectedProject);
-        tableProject.setItems(tasks);
-    }
-    
-    private void loadSelectedProjectTableViewByDate(Project selectedProject){
-        tableProject.getItems().clear();
-        List<Task> allTasksOfSelectedProjectByDate = taskModel.getAllTasksOfSelectedProjectByDate(selectedProject);
-        ObservableList<Task> tasks = FXCollections.observableArrayList();
-        tasks.addAll(allTasksOfSelectedProjectByDate);
-        tableProject.setItems(tasks);
-    } 
-    
-    //////////////////////
-    //Project and User///
-    ////////////////////
 
-    private void loadSelectedUserProjectTable(){
-        Project selectedProject = cmbProjects.getSelectionModel().getSelectedItem();
-        User us = cmbUsers.getSelectionModel().getSelectedItem();
-        if(dateFrom.getValue()==null && dateTo.getValue()==null)
-        {
-            loadSelectedProjectUserTableView(selectedProject, us);
-        }
-        else{
-            loadSelectedProjectUserTableViewByDate(selectedProject, us);
-        }
-        setSumHrsToLabel();
-    } 
-    
-    private void loadSelectedProjectUserTableView(Project selectedProject, User us) {
-        tableProject.getItems().clear();
-        List<Task> allTasksOfSelectedProject = taskModel.getAllTasksOfSelectedProjectAndUser(selectedProject, us);
-        ObservableList<Task> tasks = FXCollections.observableArrayList();
-        tasks.addAll(allTasksOfSelectedProject);
-        tableProject.setItems(tasks);
-    }
-    
-     private void loadSelectedProjectUserTableViewByDate(Project selectedProject, User us) {
-        tableProject.getItems().clear();
-        List<Task> allTasksOfSelectedProject = taskModel.getAllTasksOfSelectedProjectAndUserByDate(selectedProject, us);
-        ObservableList<Task> tasks = FXCollections.observableArrayList();
-        tasks.addAll(allTasksOfSelectedProject);
-        tableProject.setItems(tasks);
-    }
-     
     private void loadAllTaskTableView() {
         tableProject.getItems().clear();
         List<Task> allTasksOverview = taskModel.getAllTasksOverview();
         ObservableList<Task> tasks = FXCollections.observableArrayList();
         tasks.addAll(allTasksOverview);
         tableProject.setItems(tasks);
-    } 
+    }
 
     private void setUpTaskTableView() {
         colName.setCellValueFactory(new PropertyValueFactory<>("projName"));
@@ -265,10 +156,53 @@ public class AdminOverviewController implements Initializable {
         loadAllTaskTableView();
         setSumHrsToLabel();
     }
-    
 
-    private void loadDataForSelectedItemInChart(){
-         paneBarChart.getChildren().clear();
+    private List<LocalDate> getDifferenceDays(LocalDate fromDate, LocalDate toDate) {
+            return Stream.iterate(fromDate, date -> date.plusDays(1))
+                    .limit(ChronoUnit.DAYS.between(fromDate, toDate))
+                    .collect(Collectors.toList());
+    }
+
+    @FXML
+    private void onClickShowBarChart(ActionEvent event) 
+    {
+        filterEverything(cmbProjects.getSelectionModel().getSelectedItem(), cmbUsers.getSelectionModel().getSelectedItem(), dateFrom.getValue(), dateTo.getValue());
+    }
+
+    private void filterEverything(Project pro, User us, LocalDate from, LocalDate to) {
+        List<Task> listToFilter = taskModel.getAllTasksOverview();
+        LocalDate fromaDate = LocalDate.now().minusYears(1);
+        LocalDate toaDate = LocalDate.now();
+        if (pro != null) {
+            //Filter by projects
+            listToFilter = taskModel.filterByProjects(listToFilter, pro);
+        }
+        if (us != null) {
+            //Filter by user
+            listToFilter = taskModel.filterByUser(listToFilter, us);
+        }
+        if (from != null && to != null) {
+            //filter by date
+            toaDate = to;
+            fromaDate = from;
+            listToFilter = taskModel.filterByDates(listToFilter, from, to);
+        }
+        setUpTable(listToFilter);
+        listToFilter = taskModel.calculateTotalTime(listToFilter);
+        setUpChart(listToFilter, getDifferenceDays(fromaDate, toaDate));
+        //Set up chart using filtered data
+    }
+
+    private void setUpTable(List<Task> filteredList) {
+        tableProject.getItems().clear();
+        ObservableList<Task> tasks = FXCollections.observableArrayList();
+        tasks.addAll(filteredList);
+        tableProject.setItems(tasks);
+        setSumHrsToLabel();
+    }
+
+    private void setUpChart(List<Task> filteredList, List<LocalDate> datesToIterate) {
+        paneBarChart.getChildren().clear();
 
         CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Week Days");
@@ -277,117 +211,41 @@ public class AdminOverviewController implements Initializable {
         yAxis.setLabel("Minutes");
 
         BarChart weekProject = new BarChart(xAxis, yAxis);
-        weekProject.setTitle("This week projects stats");
-        
+        weekProject.setTitle("Statistics");
+
         XYChart.Series series = new XYChart.Series();
         series.setName("Time Spent Each Day");
-        
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
 
-        User us = cmbUsers.getSelectionModel().getSelectedItem();
-        Project selectedProject = cmbProjects.getSelectionModel().getSelectedItem();
-        
-        List<LocalDate> datesToIterate = getDifferenceDays(dateFrom.getValue(), dateTo.getValue());
-        List<Task> taskList = taskModel.getTasksBetweenSumHrs(dateFrom.getValue(), dateTo.getValue());
-        List<Task> taskListByUser = taskModel.getTasksBetweenSumHrsUser(dateFrom.getValue(), dateTo.getValue());
-//        List<Task> taskListByProject = taskModel.getTasksBetweenSumHrsProject(dateFrom.getValue(), dateTo.getValue()) ;
-//        List<Task> taskListByProjectUser = taskModel.getTasksBetweenSumHrsProjectAndUser(dateFrom.getValue(), dateTo.getValue()) ;
-        
-        // get tasks
-        if(cmbUsers.getSelectionModel().isEmpty() && cmbProjects.getSelectionModel().isEmpty()){
-            for (LocalDate localDate : datesToIterate) {
-            for (Task task : taskList) {
+        for (LocalDate localDate : datesToIterate) {
+            for (Task task : filteredList) {
                 if (formatter.format(localDate).equals(formatter.format(task.getsStartTime()))) {
                     series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
                     break;
                 }
             }
         }
-    }
-        else if(!cmbUsers.getSelectionModel().isEmpty() && cmbProjects.getSelectionModel().isEmpty()){
-            for (LocalDate localDate : datesToIterate) {
-            for (Task task : taskListByUser) {
-                if (formatter.format(localDate).equals(formatter.format(task.getsStartTime()))) {
-                    series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
-                    break;
-                }
-            }
-        }
-    }
-//        else if(!cmbProjects.getSelectionModel().isEmpty()){
-//            for (LocalDate localDate : datesToIterate) {
-//            for (Task task : taskListByProject) {
-//                if (formatter.format(localDate).equals(formatter.format(task.getsStartTime()))) {
-//                    series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
-//                    break;
-//                }
-//            }
-//        }
-//        if (!cmbUsers.getSelectionModel().isEmpty() && !cmbProjects.getSelectionModel().isEmpty()){
-//            for (LocalDate localDate : datesToIterate) {
-//            for (Task task : taskListByProjectUser) {
-//                if (formatter.format(localDate).equals(formatter.format(task.getsStartTime()))) {
-//                    series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
-//                    break;
-//                }
-//            }
-//        }
-//    }
-//    }
         weekProject.getData().add(series);
         paneBarChart.getChildren().add(weekProject);
     }
 
-    private List<LocalDate> getDifferenceDays(LocalDate fromDate, LocalDate toDate) {
-        if(dateFrom.getValue() != null && dateTo.getValue() != null)
-        {
-        return Stream.iterate(fromDate, date -> date.plusDays(1))
-           .limit(ChronoUnit.DAYS.between(fromDate, toDate))
-                .collect(Collectors.toList());
-        }else{
-            return null;
-        }
-    }
-    
-    
-
-    @FXML
-    private void onClickShowBarChart(ActionEvent event) {
-
-            loadDataForSelectedItemInChart();
-          if(!cmbProjects.getSelectionModel().isEmpty() && cmbUsers.getSelectionModel().isEmpty())
-        {
-                
-                loadSelectedProjectTable(); 
-        }
-        else if(!cmbUsers.getSelectionModel().isEmpty() && cmbProjects.getSelectionModel().isEmpty()) 
-        {
-            loadSelectedUserTable();
-        }
-        else if (!cmbProjects.getSelectionModel().isEmpty() && !cmbUsers.getSelectionModel().isEmpty()){
-            loadSelectedUserProjectTable();
-          }
-          
-    }
-
-    private void setSumHrsToLabel()
-    {
+    private void setSumHrsToLabel() {
         double total = tableProject.getItems().stream().collect(Collectors.summingDouble(Task::getSpentTime));
         lblSumHrs.setText(String.valueOf(total));
     }
-    
+
     @FXML
     private void formateDate(ActionEvent event) {
 
     }
 
     @FXML
-    private void onActionClearDatePicker(ActionEvent event) 
-    {
+    private void onActionClearDatePicker(ActionEvent event) {
         dateFrom.setValue(null);
         dateTo.setValue(null);
         cmbProjects.getSelectionModel().clearSelection();
         cmbUsers.getSelectionModel().clearSelection();
     }
-        
+
 }

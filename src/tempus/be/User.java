@@ -99,6 +99,10 @@ public class User {
         this.phone = phone;
         this.postcode = postcode;
     }
+    
+    public User(String lName){
+        this.lName = lName;
+    }
 
     @Override
     public String toString() {

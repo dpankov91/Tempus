@@ -52,8 +52,6 @@ public class OverviewDeveloperController implements Initializable {
     @FXML
     private JFXComboBox<Project> cmbProjects;
     @FXML
-    private JFXButton btnAllProjects;
-    @FXML
     private Label lblSumHrs;
     @FXML
     private Pane paneBarChart;
@@ -70,6 +68,8 @@ public class OverviewDeveloperController implements Initializable {
     private TaskModel taskModel;
     private Date fromDate;
     private Date toDate;
+    @FXML
+    private JFXButton btnResetDates;
 
     /**
      * Initializes the controller class.
@@ -82,22 +82,6 @@ public class OverviewDeveloperController implements Initializable {
         loadProjectsToCombobox();
         setUpTaskTableView();
     }    
-
-    @FXML
-    private void onSelectLoadSelectedProjectTable(ActionEvent event) {
-    }
-
-    @FXML
-    private void onClickLoadAllProjectsTable(ActionEvent event) {
-    }
-
-    @FXML
-    private void formateDate(ActionEvent event) {
-    }
-
-    @FXML
-    private void onClickShowBarChart(ActionEvent event) {
-    }
     
     private void loadProjectsToCombobox() {
         allProjects = projModel.getObsProjects();
@@ -105,6 +89,19 @@ public class OverviewDeveloperController implements Initializable {
         for (Project proj : allProjects) {
             cmbProjects.setItems(allProjects);
         }
+    }
+
+    @FXML
+    private void onSelectLoadSelectedProjectTable(ActionEvent event) {
+    }
+
+
+    @FXML
+    private void formateDate(ActionEvent event) {
+    }
+
+    @FXML
+    private void onClickShowBarChart(ActionEvent event) {
     }
     
     private void setUpTaskTableView() {
@@ -129,6 +126,10 @@ public class OverviewDeveloperController implements Initializable {
     {
         double total = tableProject.getItems().stream().collect(Collectors.summingDouble(Task::getSpentTime));
         lblSumHrs.setText(String.valueOf(total));
+    }
+
+    @FXML
+    private void onClickResetDates(ActionEvent event) {
     }
     
 }
