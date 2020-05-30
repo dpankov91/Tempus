@@ -27,9 +27,18 @@ public class User {
     private String photoURL;
 
     public Image getPhotoURL() {
-        File file = new File(photoURL);
+        File file;
+        if (photoURL != null) {
+            file = new File(photoURL);
+        } else {
+            file = new File("https://i.ibb.co/K0B5Vwx/image-not-found-1038x576.jpg");
+        }
         Image image = new Image(file.toURI().toString());
         return image;
+    }
+
+    public String getRealPhotoURL() {
+        return photoURL;
     }
 
     public void setPhotoURL(String photoURL) {

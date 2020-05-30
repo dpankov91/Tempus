@@ -43,7 +43,7 @@ public interface IDalFacade {
 
     public User editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL, String password);
 
-    public void editProject(int id,String projectName, String clientName, int hourlyRate, String description);
+    public Project editProject(int id,String projectName, String clientName, int hourlyRate, String description);
     
     public void assignUsersToProj(Project selectedProject, List<User> usersAssign);
 
