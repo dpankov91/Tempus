@@ -58,6 +58,8 @@ public class ManageUsersWindowController implements Initializable {
     private JFXButton deleteUser;
 
     public User selectedUser;
+    @FXML
+    private JFXButton btnChangePassword;
 
     /**
      * Initializes the controller class.
@@ -181,6 +183,21 @@ public class ManageUsersWindowController implements Initializable {
 
         }
 
+    }
+
+    @FXML
+    private void onClickOpensEditPassWindow(ActionEvent event) throws IOException {
+            {
+            userModel.setSelectedUser(tableViewUsers.getSelectionModel().getSelectedItem());
+            if (userModel.getSelectedUser() != null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/ChangePassword.fxml"));
+                Parent z = loader.load();
+                Scene scene = new Scene(z);
+                Stage s = new Stage();
+                s.setScene(scene);
+                s.show();
+            }
+        }
     }
 
 }

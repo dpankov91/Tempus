@@ -20,8 +20,9 @@
             <TableColumn fx:id="colPostcode" onEditCommit="#writeToDatabaseNumber" prefWidth="94.4000244140625" text="Postcode" />
         </columns>
       </TableView>
-      <JFXButton fx:id="addUser" layoutX="844.0" layoutY="209.0" onAction="#onActionAddUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="ADD" AnchorPane.bottomAnchor="361.0" />
-      <JFXButton fx:id="deleteUser" layoutX="844.0" layoutY="330.0" onAction="#onActionDeleteUser" prefHeight="40.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="DELETE" AnchorPane.bottomAnchor="240.0" />
+      <JFXButton fx:id="addUser" layoutX="844.0" layoutY="209.0" onAction="#onActionAddUser" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="Add" AnchorPane.bottomAnchor="375.0" />
+      <JFXButton fx:id="deleteUser" layoutX="844.0" layoutY="270.0" onAction="#onActionDeleteUser" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #66ff66;" text="Delete" AnchorPane.bottomAnchor="325.0" />
       <Label layoutX="314.0" layoutY="28.0" styleClass="Headline" stylesheets="@../css/style.css" text="User Manager" />
+      <JFXButton fx:id="btnChangePassword" layoutX="844.0" layoutY="319.0" onAction="#onClickOpensEditPassWindow" prefHeight="26.0" prefWidth="114.0" styleClass="btnDeleteWindow" stylesheets="@../css/style.css" text="Change Password" AnchorPane.bottomAnchor="275.0" />
    </children>
 </AnchorPane>

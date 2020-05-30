@@ -7,13 +7,10 @@ package tempus.gui.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +18,6 @@ import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -29,14 +25,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -45,10 +37,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.util.converter.DoubleStringConverter;
-import javafx.util.converter.IntegerStringConverter;
-import tempus.be.Client;
 import tempus.be.Project;
 import tempus.be.Task;
 import tempus.be.User;
@@ -119,6 +107,8 @@ public class AdminTimeTrackerController implements Initializable {
     private UserModel usModel;
     
     ObservableList<Project> allProjects = FXCollections.observableArrayList();
+    @FXML
+    private JFXButton btnDeleteTask;
 
     /**
      * Initializes the controller class.
@@ -280,7 +270,6 @@ public class AdminTimeTrackerController implements Initializable {
     }
 
     @FXML
-    //Edits the tasks 
     private void writeToDatabase(TableColumn.CellEditEvent<Task, String> event) {
         Task task = event.getRowValue();
         String assignedValue = event.getNewValue();
@@ -319,7 +308,12 @@ public class AdminTimeTrackerController implements Initializable {
 
     }
 
+
     @FXML
-    private void writeToDatabaseNumber(TableColumn.CellEditEvent<String, Task> event) {
+    private void writeToDatabaseNumber(TableColumn.CellEditEvent<Task, String> event) {
+    }
+
+    @FXML
+    private void onClickDeleteSelectedTask(ActionEvent event) {
     }
 }
