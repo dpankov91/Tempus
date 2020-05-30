@@ -98,6 +98,7 @@ public class AdminTimeTrackerController implements Initializable {
     @FXML
     private Label lbl_date;
     //IntegerProperty variables handle the time labels to be value of 0 on start time
+    
     private static final int STARTTIME = 0;
     private final IntegerProperty timeSeconds = new SimpleIntegerProperty(STARTTIME);
     private final IntegerProperty timeMinutes = new SimpleIntegerProperty(STARTTIME);
