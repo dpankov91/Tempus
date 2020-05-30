@@ -28,15 +28,14 @@ public class ProjectDAO {
 
     private final DbConnectionProvider connector;
     private ProjectUserDAO projUsDao;
-    
-    public ProjectDAO() throws IOException
-    {
+
+    public ProjectDAO() throws IOException {
         this.connector = new DbConnectionProvider();
         projUsDao = new ProjectUserDAO();
     }
-    
+
     public void createProject(String name, Client client, int hRate, String description) {
-        
+
         try {
             Connection con = connector.getConnection();/*
             String sqlClient = "INSERT INTO Client(clientName) VALUES (?)";
@@ -52,31 +51,30 @@ public class ProjectDAO {
             else {
                 throw new SQLException("Creating client failed, no ID obtained.");
             }
-            */
+             */
             String sqlProject = "INSERT INTO Project (ProjectName, ClientId, HourlyRate, Description) "
                     + "VALUES(?,?,?,?)";
             PreparedStatement pstmt = con.prepareStatement(sqlProject);
-            
+
             pstmt.setString(1, name);
             pstmt.setInt(2, client.getId());
             pstmt.setInt(3, hRate);
             pstmt.setString(4, description);
             pstmt.executeUpdate();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
     }
 
     public void deleteProject(Project projectToDelete) {
         try {
             String sql = "DELETE FROM [dbo].[Project] WHERE projectID=?";
-            
+
             Connection con = connector.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);
-            
+
             pstmt.setInt(1, projectToDelete.getId());
 
             pstmt.executeUpdate();
@@ -87,54 +85,50 @@ public class ProjectDAO {
 
     public List<Project> getAllProjects() throws SQLException {
         ArrayList<Project> allProjects = new ArrayList<>();
-        
-        
+
         String sql = "SELECT [dbo].[Client].[clientName], [dbo].[Project].*"
-                   + "FROM [dbo].[Project]"
-                   + "JOIN [dbo].[Client] ON [dbo].[Client].[clientID] = [dbo].[Project].[clientID]";
-                   
-                    
-        
+                + "FROM [dbo].[Project]"
+                + "JOIN [dbo].[Client] ON [dbo].[Client].[clientID] = [dbo].[Project].[clientID]";
+
         Connection con = connector.getConnection();
         PreparedStatement stmt = con.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
-        
-        while (rs.next()) 
-            {
-                int id = rs.getInt("projectID");
-                String name = rs.getString("projectName");
-                String clientName = rs.getString("clientName");
-                int hRate = rs.getInt("hourlyRate");
-                String description = rs.getString("description");
-                List<User> userList = projUsDao.getUserProject(id);
-                Project proj = new Project(name, hRate, clientName, description, userList);
-                proj.setId(rs.getInt("projectID"));
-                allProjects.add(proj);
-               
-            }
-                return allProjects;
+
+        while (rs.next()) {
+            int id = rs.getInt("projectID");
+            String name = rs.getString("projectName");
+            String clientName = rs.getString("clientName");
+            int hRate = rs.getInt("hourlyRate");
+            String description = rs.getString("description");
+            List<User> userList = projUsDao.getUserProject(id);
+            Project proj = new Project(name, hRate, clientName, description, userList);
+            proj.setId(rs.getInt("projectID"));
+            allProjects.add(proj);
+
+        }
+        return allProjects;
     }
 
-    public void editProject(int id,String projectName, String clientName, int hourlyRate, String description) throws SQLException {
+    public Project editProject(int id, String projectName, String clientName, int hourlyRate, String description) throws SQLException {
         try {
-        String sql = "UPDATE [dbo].[Project] SET [projectName] = ?,[hourlyRate] = ?, [description] = ? WHERE projectID=?";
-           
-         Connection con = connector.getConnection();
-         PreparedStatement pstmt = con.prepareStatement(sql);
-          pstmt.setString(1, projectName);
+            String sql = "UPDATE [dbo].[Project] SET [projectName] = ?,[hourlyRate] = ?, [description] = ? WHERE projectID=?";
+
+            Connection con = connector.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, projectName);
             pstmt.setInt(2, hourlyRate);
             pstmt.setString(3, description);
-            pstmt.setInt(4,id);
-            
+            pstmt.setInt(4, id);
+
             pstmt.executeUpdate();
-           }
-     catch (SQLException ex) {
-         System.out.println(ex);
+            Project editedProject = new Project(projectName,hourlyRate,clientName,description, null);
+            editedProject.setId(id);
+            return editedProject;
+        } catch (SQLException ex) {
+            System.out.println(ex);
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
-     }
+        }
+        return null;
     }
-    
-     
 
 }
-    

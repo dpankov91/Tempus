@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +24,7 @@ import tempus.be.Task;
 
 import tempus.be.User;
 import tempus.dal.dao.ClientDAO;
+import tempus.dal.dao.LogDAO;
 import tempus.dal.dao.ProjectDAO;
 import tempus.dal.dao.TaskDAO;
 import tempus.dal.dao.UserDAO;
@@ -36,8 +39,9 @@ public class DalManager implements IDalFacade {
     ProjectDAO projectDao;
     ClientDAO clientDao;
     TaskDAO taskDao;
+    LogDAO logDao;
 
-    public DalManager(){
+    public DalManager() {
         userDao = new UserDAO();
         try {
             projectDao = new ProjectDAO();
@@ -50,6 +54,7 @@ public class DalManager implements IDalFacade {
         } catch (IOException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+        logDao = new LogDAO();
     }
 
     @Override
@@ -100,9 +105,17 @@ public class DalManager implements IDalFacade {
     }
 
     @Override
-
     public User deleteUser(User userToDelete) {
-       return userDao.deleteUser(userToDelete);
+
+        User deletedUser = userDao.deleteUser(userToDelete);
+        try {
+            long millis = System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(millis);
+            logDao.insertLog(LogDAO.USER_TABLE, userToDelete.getId(), LogDAO.DELETE_ACTION, date);
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return deletedUser;
     }
 
     public List<User> getAllUsers() {
@@ -118,22 +131,43 @@ public class DalManager implements IDalFacade {
 
     @Override
     public User createUser(String fName, String lName, String hashedPassword, String email, String role, String address, int phone, int postcode) {
-      return  userDao.createUser(fName, lName, hashedPassword, email, role, address, phone, postcode);
+        User createdUser = userDao.createUser(fName, lName, hashedPassword, email, role, address, phone, postcode);
+        try {
+            long millis = System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(millis);
+            logDao.insertLog(LogDAO.USER_TABLE, createdUser.getId(), LogDAO.CREATE_ACTION, date);
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return createdUser;
     }
 
     @Override
     public User editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL, String password) {
-       return userDao.editUser(id, name, Lname, email, realphone, realpostcode, address, imageURL, password);
-    }
-
-    @Override
-    public void editProject(int id,String projectName, String clientName, int hourlyRate, String description) {
+        User editedUser = userDao.editUser(id, name, Lname, email, realphone, realpostcode, address, imageURL, password);
         try {
-            projectDao.editProject(id,projectName, clientName, hourlyRate, description);
+            long millis = System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(millis);
+            logDao.insertLog(LogDAO.USER_TABLE, editedUser.getId(), LogDAO.UPDATE_ACTION, date);
         } catch (SQLException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-   }
+        return editedUser;
+    }
+
+    @Override
+    public Project editProject(int id, String projectName, String clientName, int hourlyRate, String description) {
+        try {
+            Project editedProj = projectDao.editProject(id, projectName, clientName, hourlyRate, description);
+            long millis = System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(millis);
+            logDao.insertLog(LogDAO.PROJECT_TABLE, editedProj.getId(), LogDAO.UPDATE_ACTION, date);
+            return editedProj;
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
     @Override
     public void assignUsersToProj(Project selectedProject, List<User> usersAssign) {
@@ -143,8 +177,6 @@ public class DalManager implements IDalFacade {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-
 
     @Override
     public List<Task> getAllTasksOverview() {
@@ -172,19 +204,19 @@ public class DalManager implements IDalFacade {
         try {
             userDao.newPassword(pswSecond, userID);
         } catch (SQLException ex) {
-            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);            
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
     public void editClient(int id, String name, String city, int phone, String email) {
-    clientDao.editClient(id,name, city, phone, email);
+        clientDao.editClient(id, name, city, phone, email);
     }
 
     @Override
     public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime) {
         try {
-            taskDao.editTask(id,name,startTime,endTime,note,spentTime);
+            taskDao.editTask(id, name, startTime, endTime, note, spentTime);
         } catch (SQLException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -198,8 +230,5 @@ public class DalManager implements IDalFacade {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-
-
 
 }
