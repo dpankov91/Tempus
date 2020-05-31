@@ -258,7 +258,7 @@ public class AdminTimeTrackerController implements Initializable {
     }
     
     //Loads all tasks made into the table view
-    private void loadTableView() {
+    void loadTableView() {
         tbv_timetracker.getItems().clear();
         List<Task> allTasks = tsModel.getAllTasks();
         ObservableList<Task> tasks = FXCollections.observableArrayList();
@@ -327,7 +327,7 @@ public class AdminTimeTrackerController implements Initializable {
             if (tsModel.getSelectedTask() != null) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmationTask.fxml"));
                 Parent z = loader.load();
-//                loader.<DeleteConfirmationUserController>getController().setInfo(this);
+                loader.<DeleteConfirmationTaskController>getController().setInfo(this);
                 Scene scene = new Scene(z);
                 Stage s = new Stage();
                 s.setScene(scene);

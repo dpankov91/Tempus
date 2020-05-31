@@ -54,7 +54,8 @@ public class ChangePasswordController implements Initializable {
             User us = usModel.getSelectedUser(); // invokes the loggedInUser method to check logged in user.
             us.setPassword(pswSecond); // This method invokes the setPassword in the user model, placing the second password parameter in.
             usModel.newPasswordForSelectedUser(pswSecond); // Takes the input in the second password field and brings it to the userModel as a method is invoked.
-            setUpAlert("Password Changed", "You have a new password");
+            setUpAlert("Password Changed", "User has a new password");
+            onClickCloseWindow(event);
         }
     }
 

@@ -29,7 +29,7 @@ public class DeleteConfirmationTaskController implements Initializable {
 
     
     TaskModel tsModel;
-    ManageProjectsWindowController prevContrl;
+    AdminTimeTrackerController prevContrl;
     /**
      * Initializes the controller class.
      */
@@ -47,8 +47,12 @@ public class DeleteConfirmationTaskController implements Initializable {
     @FXML
     private void handleConfirmDeleting(ActionEvent event) {
            tsModel.deleteSelectedTask();
-//           prevContrl.loadTableView();
+           prevContrl.loadTableView();
            goBack(event);
+    }
+
+    void setInfo(AdminTimeTrackerController aThis) {
+        prevContrl = aThis;
     }
     
 }
