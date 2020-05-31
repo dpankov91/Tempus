@@ -51,7 +51,7 @@ public class UserTest {
     }
     
     //If we have time. We should make exception tests
-      @Test
+    @Test(expected=NullPointerException.class)
     public void select_User_Acceptance_Test() 
     {
         User gottenUser = dalModel.getUser("Test@gmail.com", "123");
