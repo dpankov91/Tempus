@@ -7,6 +7,7 @@ package tempus.gui.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -25,7 +26,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -37,6 +41,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import tempus.be.Project;
 import tempus.be.Task;
 import tempus.be.User;
@@ -109,6 +114,7 @@ public class AdminTimeTrackerController implements Initializable {
     ObservableList<Project> allProjects = FXCollections.observableArrayList();
     @FXML
     private JFXButton btnDeleteTask;
+    public Task selectedTask;
 
     /**
      * Initializes the controller class.
@@ -314,6 +320,19 @@ public class AdminTimeTrackerController implements Initializable {
     }
 
     @FXML
-    private void onClickDeleteSelectedTask(ActionEvent event) {
+    private void onClickDeleteSelectedTask(ActionEvent event) throws IOException {
+          {
+            tsModel.setSelectedTask(tbv_timetracker.getSelectionModel().getSelectedItem());
+            System.out.println(tsModel.getSelectedTask().getId());
+            if (tsModel.getSelectedTask() != null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmationTask.fxml"));
+                Parent z = loader.load();
+//                loader.<DeleteConfirmationUserController>getController().setInfo(this);
+                Scene scene = new Scene(z);
+                Stage s = new Stage();
+                s.setScene(scene);
+                s.show();
+            }
+        }
     }
 }

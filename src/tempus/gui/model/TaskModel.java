@@ -35,6 +35,7 @@ public class TaskModel {
     private Project selectedProject;
     private User selectedUser;
     private UserModel usModel;
+    private Task selectedTask;
 
     private final ObjectProperty<LocalDateTime> timeStart = new SimpleObjectProperty<>();
     private final ObjectProperty<LocalDateTime> timeEnd = new SimpleObjectProperty<>();
@@ -45,6 +46,18 @@ public class TaskModel {
 
     public void setTimeEnd(LocalDateTime value) {
         timeEnd.set(value);
+    }
+
+    public Task getSelectedTask() {
+        return selectedTask;
+    }
+
+    public void setSelectedTask(Task selectedTask) {
+        this.selectedTask = selectedTask;
+    }
+    
+    public void deleteSelectedTask() {
+        bllManager.deleteTask(selectedTask);
     }
 
     public ObjectProperty timeEndProperty() {

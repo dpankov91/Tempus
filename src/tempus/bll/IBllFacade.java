@@ -62,5 +62,9 @@ public interface IBllFacade {
     public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime);
 
     public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime);
+
+    public void deleteTask(Task selectedTask);
+
+    public void newPasswordForSelectedUser(String pswSecond, int id);
     
 }

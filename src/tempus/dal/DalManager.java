@@ -231,4 +231,22 @@ public class DalManager implements IDalFacade {
         }
     }
 
+    @Override
+    public void deleteTask(Task selectedTask) {
+        try {    
+            taskDao.deleteClient(selectedTask);
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void newPasswordForSelectedUser(String newPassword, int id) {
+        try {
+            userDao.newPasswordForSelectedUser(newPassword, id);
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

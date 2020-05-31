@@ -5,13 +5,9 @@
  */
 package tempus.bll;
 
-import java.io.IOException;
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-import static javafx.util.Duration.millis;
 
 import tempus.be.Client;
 
@@ -143,6 +139,17 @@ public class BllManager implements IBllFacade {
     @Override
     public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime) {
         facade.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime, getSecondsFromTimespan(startTime, endTime));
+    }
+
+    @Override
+    public void deleteTask(Task selectedTask) {
+         facade.deleteTask(selectedTask);
+    }
+
+    @Override
+    public void newPasswordForSelectedUser(String pswSecond, int id) {
+        String newPassword = securityManager.hashPassword(pswSecond);
+        facade.newPasswordForSelectedUser(newPassword, id);
     }
 
 }

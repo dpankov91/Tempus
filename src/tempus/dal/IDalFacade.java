@@ -61,4 +61,8 @@ public interface IDalFacade {
 
     public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentSeconds);
 
+    public void deleteTask(Task selectedTask);
+
+    public void newPasswordForSelectedUser(String newPassword, int id);
+
 }

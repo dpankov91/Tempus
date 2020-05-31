@@ -6,18 +6,12 @@
 package tempus.dal.dao;
 
 import java.io.IOException;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import tempus.be.Project;
 import tempus.be.Task;
@@ -116,6 +110,19 @@ public class TaskDAO {
         pstmt.setInt(7, loggedUser.getId());
         
         pstmt.executeUpdate();
+    }
+
+    public void deleteClient(Task selectedTask) throws SQLException {
+            String sql = "DELETE  FROM [dbo].[Task] WHERE id=?";
+
+            System.out.println(selectedTask.getId());
+            
+            Connection con = connector.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+
+            pstmt.setInt(1, selectedTask.getId());
+
+            pstmt.executeUpdate();
     }
         
 }

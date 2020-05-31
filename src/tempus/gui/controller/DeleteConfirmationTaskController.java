@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import tempus.gui.model.TaskModel;
 
 /**
  * FXML Controller class
@@ -26,12 +27,15 @@ public class DeleteConfirmationTaskController implements Initializable {
     @FXML
     private Label lblName;
 
+    
+    TaskModel tsModel;
+    ManageProjectsWindowController prevContrl;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        tsModel = TaskModel.getInstance();
     }    
 
     @FXML
@@ -42,6 +46,9 @@ public class DeleteConfirmationTaskController implements Initializable {
 
     @FXML
     private void handleConfirmDeleting(ActionEvent event) {
+           tsModel.deleteSelectedTask();
+//           prevContrl.loadTableView();
+           goBack(event);
     }
     
 }

@@ -221,13 +221,18 @@ public class UserDAO {
         pstmt.setString(1, pswSecond);
         pstmt.setInt(2, userID);
 
-            pstmt.executeUpdate();
-        
-        
-        
+        pstmt.executeUpdate();
+    }
+
+    public void newPasswordForSelectedUser(String newPassword, int id) throws SQLException {
+        String sql = "UPDATE [dbo].[User] SET [password] = ? WHERE [userID] = ?";
+
+        Connection con = connector.getConnection();
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, newPassword);
+        pstmt.setInt(2, id);
 
         pstmt.executeUpdate();
-
 
     }
 

@@ -89,6 +89,7 @@ public class ManageUsersWindowController implements Initializable {
     private void onActionDeleteUser(ActionEvent event) throws IOException {
         {
             userModel.setSelectedUser(tableViewUsers.getSelectionModel().getSelectedItem());
+            System.out.println(userModel.getSelectedUser().getId());
             if (userModel.getSelectedUser() != null) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmationUser.fxml"));
                 Parent z = loader.load();
@@ -180,15 +181,14 @@ public class ManageUsersWindowController implements Initializable {
                 userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), assignedValue, us.getAddress(),us.getRealPhotoURL(),us.getPassword());
                 us.setPostcode(assignedValue);
                 break;
-
         }
-
     }
 
     @FXML
     private void onClickOpensEditPassWindow(ActionEvent event) throws IOException {
             {
             userModel.setSelectedUser(tableViewUsers.getSelectionModel().getSelectedItem());
+            System.out.println(userModel.getSelectedUser().getId());
             if (userModel.getSelectedUser() != null) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/ChangePassword.fxml"));
                 Parent z = loader.load();

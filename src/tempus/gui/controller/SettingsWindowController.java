@@ -98,9 +98,6 @@ public class SettingsWindowController implements Initializable {
         }
                 
         return true;
-        
-        
-        
     }
     
     private void setUpAlert(String title, String message) {

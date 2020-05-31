@@ -86,4 +86,8 @@ public class UserModel {
     public void newPassword(String pswSecond) {
         facade.newPassword(pswSecond, loggedInUser.getId());
     }
+    
+    public void newPasswordForSelectedUser(String pswSecond){
+        facade.newPasswordForSelectedUser(pswSecond, selectedUser.getId());
+    }
 }

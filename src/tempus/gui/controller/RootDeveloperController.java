@@ -82,25 +82,29 @@ public class RootDeveloperController implements Initializable {
     
     private void loadUpTimesheet(){
         FxmlLoader object = new FxmlLoader();
-        Pane view = object.getPage("DeveloperTimeTracker");
+        Pane view = object.getPage("AdminTimeTracker");
         mainPane.setCenter(view);  
     }
    
     
     @FXML
-    private void handle_editProfile(ActionEvent event) {
-        System.out.println("Clicked");
-        FxmlLoader object = new FxmlLoader();
-        Pane view = object.getPage("UserEditWindow");
-        mainPane.setCenter(view); 
+    private void handle_editProfile(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/SettingsWindow.fxml"));
+        Parent z = loader.load();
+        Scene scene = new Scene(z);
+        Stage s = new Stage();
+        s.setScene(scene);
+        s.show();
     }
 
     @FXML
-    private void handle_Help(ActionEvent event) {
-        System.out.println("Clicked");
-        FxmlLoader object = new FxmlLoader();
-        Pane view = object.getPage("HelpWindow");
-        mainPane.setCenter(view); 
+    private void handle_Help(ActionEvent event) throws IOException {
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/HelpWindow.fxml"));
+        Parent z = loader.load();
+        Scene scene = new Scene(z);
+        Stage s = new Stage();
+        s.setScene(scene);
+        s.show();
     }
     
     @FXML
