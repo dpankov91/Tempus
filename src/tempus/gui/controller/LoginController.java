@@ -46,7 +46,7 @@ public class LoginController implements Initializable {
     UserModel model;
     @FXML
     private JFXRadioButton rdoRememberMe;
-    
+
     private RootAdminController rtcontroller;
 
     /**
@@ -85,22 +85,24 @@ public class LoginController implements Initializable {
     private void login() throws IOException {
         User us = model.loginUser(txtFieldUsername.getText(), pasPasswordField.getText());
         setRememberMe();
-        if (us.getIsAdmin()) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/RootAdmin.fxml"));
-            Parent z = loader.load();
-            Scene scene = new Scene(z);
-            Stage s = new Stage();
-            s.setScene(scene);
-            s.show();
-            closeWindow();
-        } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/RootDeveloper.fxml"));
-            Parent z = loader.load();
-            Scene scene = new Scene(z);
-            Stage s = new Stage();
-            s.setScene(scene);
-            s.show();
-            closeWindow();
+        if (us != null) {
+            if (us.getIsAdmin()) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/RootAdmin.fxml"));
+                Parent z = loader.load();
+                Scene scene = new Scene(z);
+                Stage s = new Stage();
+                s.setScene(scene);
+                s.show();
+                closeWindow();
+            } else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/RootDeveloper.fxml"));
+                Parent z = loader.load();
+                Scene scene = new Scene(z);
+                Stage s = new Stage();
+                s.setScene(scene);
+                s.show();
+                closeWindow();
+            }
         }
     }
 

@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,41 +35,42 @@ public class ProjectDAO {
         projUsDao = new ProjectUserDAO();
     }
 
-    public void createProject(String name, Client client, int hRate, String description) {
+    public Project createProject(String name, Client client, int hRate, String description) {
 
         try {
-            Connection con = connector.getConnection();/*
-            String sqlClient = "INSERT INTO Client(clientName) VALUES (?)";
-            PreparedStatement pstmt = con.prepareStatement(sqlClient, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, clientName);
-            pstmt.executeUpdate();
-            
-            ResultSet genKeys = pstmt.getGeneratedKeys();
-            int clientId = -1;
-            if (genKeys.next()) {
-                clientId = genKeys.getInt(1);
-            }
-            else {
-                throw new SQLException("Creating client failed, no ID obtained.");
-            }
-             */
+            Connection con = connector.getConnection();
             String sqlProject = "INSERT INTO Project (ProjectName, ClientId, HourlyRate, Description) "
                     + "VALUES(?,?,?,?)";
-            PreparedStatement pstmt = con.prepareStatement(sqlProject);
+            PreparedStatement pstmt = con.prepareStatement(sqlProject,
+                                      Statement.RETURN_GENERATED_KEYS);
 
             pstmt.setString(1, name);
             pstmt.setInt(2, client.getId());
             pstmt.setInt(3, hRate);
             pstmt.setString(4, description);
-            pstmt.executeUpdate();
+             int id = 0;
+            int affectedRows = pstmt.executeUpdate();
 
+            if (affectedRows == 0) {
+                throw new SQLException("Creating user failed, no rows affected.");
+            }
+
+            try ( ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    id = (int) generatedKeys.getLong(1);
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
+            Project newProjec = new Project(id, name, hRate, client.getId(), description);
+            return newProjec;
         } catch (SQLException ex) {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        return null;
     }
 
-    public void deleteProject(Project projectToDelete) {
+    public Project deleteProject(Project projectToDelete) {
         try {
             String sql = "DELETE FROM [dbo].[Project] WHERE projectID=?";
 
@@ -78,9 +80,11 @@ public class ProjectDAO {
             pstmt.setInt(1, projectToDelete.getId());
 
             pstmt.executeUpdate();
+            return projectToDelete;
         } catch (SQLException ex) {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
     public List<Project> getAllProjects() throws SQLException {
@@ -121,7 +125,7 @@ public class ProjectDAO {
             pstmt.setInt(4, id);
 
             pstmt.executeUpdate();
-            Project editedProject = new Project(projectName,hourlyRate,clientName,description, null);
+            Project editedProject = new Project(projectName, hourlyRate, clientName, description, null);
             editedProject.setId(id);
             return editedProject;
         } catch (SQLException ex) {

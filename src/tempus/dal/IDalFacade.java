@@ -27,11 +27,11 @@ public interface IDalFacade {
 
     public User getUser(String username, String password);
 
-    public void createProject(String name, Client client, int hRate, String description);
+    public Project createProject(String name, Client client, int hRate, String description);
 
     public List<Project> getAllProjects();
 
-    public void deleteProject(Project projectToDelete);
+    public Project deleteProject(Project projectToDelete);
 
     public List<Client> getAllClientss();
 
@@ -49,13 +49,13 @@ public interface IDalFacade {
 
     public List<Task> getAllTasksOverview();
 
-    public void deleteClient(Client selectedClient);
+    public Client deleteClient(Client selectedClient);
 
-    public void createClient(String name, String city, int phone, String email);
+    public Client createClient(String name, String city, int phone, String email);
 
     public void newPassword(String pswSecond, int userID);
 
-    public void editClient(int id, String name, String city, int phone, String email);
+    public Client editClient(int id, String name, String city, int phone, String email);
 
     public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime);
 

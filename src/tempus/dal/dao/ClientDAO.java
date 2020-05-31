@@ -22,42 +22,37 @@ import tempus.dal.DbConnectionProvider;
  * @author dpank
  */
 public class ClientDAO {
-    
+
     private final DbConnectionProvider connector;
 
-    public ClientDAO() 
-    {
+    public ClientDAO() {
         this.connector = new DbConnectionProvider();
     }
 
-
-    public List<Client> getAllClientss() throws SQLException 
-    {
+    public List<Client> getAllClientss() throws SQLException {
 
         List<Client> allClientss = new ArrayList<>();
 
         String sql = "Select * From [dbo].[Client]";
-        
-            Connection con = connector.getConnection();
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                int id = rs.getInt("clientID");
-                String name = rs.getString("clientName");
-                String city = rs.getString("clientAddress");
-                int phone = rs.getInt("clientPhone");
-                String email = rs.getString("clientEmail");
-                allClientss.add(new Client(id, name, city, phone, email));
-            }
-           
-            return allClientss;
-            
-            
-       
+
+        Connection con = connector.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        while (rs.next()) {
+            int id = rs.getInt("clientID");
+            String name = rs.getString("clientName");
+            String city = rs.getString("clientAddress");
+            int phone = rs.getInt("clientPhone");
+            String email = rs.getString("clientEmail");
+            allClientss.add(new Client(id, name, city, phone, email));
+        }
+
+        return allClientss;
+
     }
 
-    public void deleteClient(Client selectedClient) {
-try {
+    public Client deleteClient(Client selectedClient) {
+        try {
             String sql = "DELETE  FROM [dbo].[Client] WHERE clientID=?";
 
             Connection con = connector.getConnection();
@@ -66,53 +61,70 @@ try {
             pstmt.setInt(1, selectedClient.getId());
 
             pstmt.executeUpdate();
+            return selectedClient;
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
-    public void createClient(String name, String city, int phone, String email) {
-        
+    public Client createClient(String name, String city, int phone, String email) {
+
         try {
             Connection con = connector.getConnection();
-            
+
             String sqlClient = "INSERT INTO [Client] "
                     + "VALUES (?,?,?,?)";
-            
-            PreparedStatement pstmt = con.prepareStatement(sqlClient);
-            
+
+            PreparedStatement pstmt = con.prepareStatement(sqlClient,
+                                      Statement.RETURN_GENERATED_KEYS);
+
             pstmt.setString(1, name);
             pstmt.setString(2, city);
             pstmt.setInt(3, phone);
             pstmt.setString(4, email);
-            pstmt.executeUpdate();
+            int id = 0;
+            int affectedRows = pstmt.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Creating user failed, no rows affected.");
+            }
+
+            try ( ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    id = (int) generatedKeys.getLong(1);
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
+            Client client = new Client(id, name, city, phone, email);
+            return client;
         } catch (SQLException ex) {
             Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
-    public void editClient(int id, String name, String city, int phone, String email) {
-         try {
-        String sql = "UPDATE [dbo].[Client] SET [clientName] = ?, [clientAddress] = ?, [clientPhone] = ?, [clientEmail] = ? WHERE clientID=?";
-           
-         Connection con = connector.getConnection();
-         PreparedStatement pstmt = con.prepareStatement(sql);
-          pstmt.setString(1, name);
+    public Client editClient(int id, String name, String city, int phone, String email) {
+        try {
+            String sql = "UPDATE [dbo].[Client] SET [clientName] = ?, [clientAddress] = ?, [clientPhone] = ?, [clientEmail] = ? WHERE clientID=?";
+
+            Connection con = connector.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, name);
             pstmt.setString(2, city);
             pstmt.setInt(3, phone);
-            pstmt.setString(4,email);
+            pstmt.setString(4, email);
             pstmt.setInt(5, id);
-            
-            
-            
+
             pstmt.executeUpdate();
-           }
-     catch (SQLException ex) {
-         System.out.println(ex);
+            Client client = new Client(id, name, city, phone, email);
+            return client;
+        } catch (SQLException ex) {
+            System.out.println(ex);
             Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
-     }
-   }
-    
-    
-    
+        }
+        return null;
+    }
+
 }

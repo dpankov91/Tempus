@@ -276,6 +276,7 @@ public class AdminTimeTrackerController implements Initializable {
         if (event.getNewValue().toString().isEmpty()) {
             assignedValue = "None";
         }
+        System.out.println(task.getId());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 //        Task //Start Time //End Time // Note // Time Spent
         switch (event.getTableColumn().getText()) {
@@ -309,11 +310,5 @@ public class AdminTimeTrackerController implements Initializable {
     }
 
 
-    @FXML
-    private void writeToDatabaseNumber(TableColumn.CellEditEvent<Task, String> event) {
-    }
-
-    @FXML
-    private void onClickDeleteSelectedTask(ActionEvent event) {
-    }
+  
 }
