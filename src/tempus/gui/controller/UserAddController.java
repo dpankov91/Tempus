@@ -72,59 +72,46 @@ public class UserAddController implements Initializable {
         // TODO
    
 
-    private boolean checkIfFilled() 
-      {
-        
-        if (txtPassword.getText() == null || txtPassword.getText().trim().isEmpty())
-        
-     {
-         setUpAlert("Incorrect Info Error" , "Add text please.");
-        
+    private boolean checkIfFilled() {
+      if (txtPassword.getText() == null || txtPassword.getText().trim().isEmpty())
+    {
+         setUpAlert("Incorrect Info Error" , "Check password field");
     }
      else if (txtFirstName.getText() == null || txtFirstName.getText().trim().isEmpty())
-     {
-         
-        setUpAlert("Incorrect Info Error" , "Add text please.");
-        
-     }
+    {
+        setUpAlert("Incorrect Info Error" , "Check first name field");
+    }
      else if (txtLastName.getText() == null || txtLastName.getText().trim().isEmpty())
-     {
-        setUpAlert("Incorrect Info Error" , "Add text please.");
-       
-     }
+    {
+        setUpAlert("Incorrect Info Error" , "Check last name field");
+    }
      else if (txtEmail.getText() == null || txtEmail.getText().trim().isEmpty())
-     {
-        setUpAlert("Incorrect Info Error" , "Add text please.");
-        
-     }
+    {
+        setUpAlert("Incorrect Info Error" , "Check E-Mail field");
+    }
      else if (txtAddress.getText() == null || txtAddress.getText().trim().isEmpty())
-     {
-        setUpAlert("Incorrect Info Error" , "Add text please.");
-     }
-     else if (txtPhone.getText() == null || txtPhone.getText().trim().isEmpty())
-     {
-        setUpAlert("Incorrect Info Error" , "Add text please.");
-     }
-     else if (txtPostcode.getText() == null || txtPostcode.getText().trim().isEmpty())
-     {
-        setUpAlert("Incorrect Info Error" , "Add text please.");
-     }
+    {
+        setUpAlert("Incorrect Info Error" , "Check address field");
+    }
+     else if (txtPhone.getText() == null || txtPhone.getText().trim().isEmpty() || !txtPhone.getText().matches("^\\d+(\\.\\d+)?"))
+    {
+        setUpAlert("Incorrect Info Error" , "Check phone field");
+    }
+     else if (txtPostcode.getText() == null || txtPostcode.getText().trim().isEmpty() || !txtPostcode.getText().matches("^\\d+(\\.\\d+)?"))
+    {
+        setUpAlert("Incorrect Info Error" , "Check postcode field");
+    }
      else if (cmbChooseRole.getSelectionModel().getSelectedItem()== null)
-     {
-         
-        setUpAlert("Incorrect Info Error" , "Select client please.");
-        
-     }
+    {
+        setUpAlert("Incorrect Info Error" , "Check role box");
+    }
      return true;
-        
     }
 
     @FXML
     private void handleSave(ActionEvent event) {
-        
-        if (checkIfFilled())
-        {
-            
+        if (checkIfFilled()){
+            try {
             String password = txtPassword.getText();
             String fName = txtFirstName.getText();
             String lName = txtLastName.getText();
@@ -137,14 +124,12 @@ public class UserAddController implements Initializable {
             userModel.createUser(fName, lName, password, email, role, address, phone, postcode);
             
             prevContrl.loadTableView();
-            
             handleCancel(event);  
-            
+            }catch (NumberFormatException e) {
+            System.out.println("We can catch the NumberFormatException");
+            }
         }
-        else{
-            setUpAlert("Blabla" , "BlabBLaBla.");
-        }
-        }
+    }
         
 
     @FXML
@@ -155,12 +140,10 @@ public class UserAddController implements Initializable {
     }
 
     private void setUpAlert(String title, String message) {
-        
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(message);
         alert.showAndWait();
-        
     }
 
     void setInfo(ManageUsersWindowController aThis) {

@@ -62,9 +62,9 @@ public class AddClientController implements Initializable {
         setUpAlert("Incorrect Info Error" , "Add text please.");
         
      }
-     else if (txtPhone.getText() == null || txtPhone.getText().trim().isEmpty())
+     else if (txtPhone.getText() == null || txtPhone.getText().trim().isEmpty() || !txtPhone.getText().matches("^\\d+(\\.\\d+)?"))
      {
-        setUpAlert("Incorrect Info Error" , "Add text please.");
+        setUpAlert("Incorrect Info Error" , "Check Phone field");
        
      }
      else if (txtEmail.getText() == null || txtEmail.getText().trim().isEmpty())
@@ -72,27 +72,28 @@ public class AddClientController implements Initializable {
         setUpAlert("Incorrect Info Error" , "Add text please.");
         
      }
-     
-     return true;
-     
-     }
+    return true;
+    }
     
     @FXML
-    private void onActionSaveClient(ActionEvent event) {
+    private void onActionSaveClient(ActionEvent event){
         
         if (checkIfFilled())
         {
-            
+            try {
             String name = txtName.getText();
             String city = txtAddress.getText();
             int phone = Integer.parseInt(txtPhone.getText());
             String email = txtEmail.getText();
-           
             clientModel.createClient(name, city, phone, email);
-            
             prevContrl.loadTableView();
             
-            onActionCancel(event);  
+            onActionCancel(event); 
+            }catch (NumberFormatException e) {
+
+         System.out.println("We can catch the NumberFormatException");
+          }
+
             
         }
         

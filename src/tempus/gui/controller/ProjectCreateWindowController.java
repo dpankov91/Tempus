@@ -19,14 +19,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import tempus.gui.model.UserModel;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javax.swing.JComboBox;
 import tempus.be.Client;
-import tempus.be.Project;
 import tempus.gui.model.ClientModel;
 import tempus.gui.model.ProjectModel;
 /**
@@ -84,9 +80,9 @@ public class ProjectCreateWindowController implements Initializable {
         setUpAlert("Incorrect Info Error" , "Select client please.");
         
      }
-     else if (txtHourlyRate.getText() == null || txtHourlyRate.getText().trim().isEmpty())
+     else if (txtHourlyRate.getText() == null || txtHourlyRate.getText().trim().isEmpty() || !txtHourlyRate.getText().matches("^\\d+(\\.\\d+)?"))
      {
-        setUpAlert("Incorrect Info Error" , "Add text please.");
+        setUpAlert("Incorrect Info Error" , "Check hourly rate input");
        
      }
      else if (txtDescription.getText() == null || txtDescription.getText().trim().isEmpty())
@@ -103,6 +99,7 @@ public class ProjectCreateWindowController implements Initializable {
         
         if (checkIfFilled())
         {
+            try {
             String name = txtProjectName.getText();
             int hRate = Integer.parseInt(txtHourlyRate.getText());
             String description = txtDescription.getText();
@@ -111,13 +108,11 @@ public class ProjectCreateWindowController implements Initializable {
             projectModel.createProject(name, client, hRate, description);
             
             prevContrl.loadTableView();
-            closeWindow(event);           
+            closeWindow(event);     
+            }catch (NumberFormatException e) {
+            System.out.println("We can catch the NumberFormatException");
+          }
         }
-        else{
-            setUpAlert("Check fields" , "Forgot to fill some fields");
-        }
-        
-   
     }
 
     @FXML
