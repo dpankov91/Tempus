@@ -84,8 +84,8 @@ public class LoginController implements Initializable {
 
     private void login() throws IOException {
         User us = model.loginUser(txtFieldUsername.getText(), pasPasswordField.getText());
-        setRememberMe();
         if (us != null) {
+            setRememberMe();
             if (us.getIsAdmin()) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/RootAdmin.fxml"));
                 Parent z = loader.load();
