@@ -137,7 +137,8 @@ public class UserDAO {
             Connection con = connector.getConnection();
             String sqlUser = "INSERT INTO [User] "
                     + "VALUES (?,?,?,?,?,?,?,?,?)";
-            PreparedStatement pstmt = con.prepareStatement(sqlUser);
+            PreparedStatement pstmt = con.prepareStatement(sqlUser,
+                    Statement.RETURN_GENERATED_KEYS);
             //INSERT INTO [User] 
             //VALUES (?,'password','firstName','lastname',5555,'address',6700,1,'Admin','')
 
@@ -150,9 +151,22 @@ public class UserDAO {
             pstmt.setInt(7, postcode);
             pstmt.setInt(8, (role == "Admin" ? 1 : 0));
             pstmt.setString(9, "");
+            int id = 0;
+            int affectedRows = pstmt.executeUpdate();
 
-            int id = pstmt.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Creating user failed, no rows affected.");
+            }
+
+            try ( ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    id = (int) generatedKeys.getLong(1);
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
             User us = new User(fName, lName, email, role);
+            us.setId(id);
             us.setPassword(hashedPassword);
 
             us.setPostcode(postcode);
@@ -182,14 +196,14 @@ public class UserDAO {
             pstmt.setString(7, imageURL);
             //pstmt.setString(8, password);
             pstmt.executeUpdate();
-            
+
             User us = new User(id, name, Lname);
 
             us.setEmail(email);
             us.setPostcode(realpostcode);
             us.setPhone(realphone);
             us.setAddress(address);
-            return us; 
+            return us;
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -227,10 +241,12 @@ public class UserDAO {
     public void newPasswordForSelectedUser(String newPassword, int id) throws SQLException {
         String sql = "UPDATE [dbo].[User] SET [password] = ? WHERE [userID] = ?";
 
+
         Connection con = connector.getConnection();
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, newPassword);
         pstmt.setInt(2, id);
+
 
         pstmt.executeUpdate();
 

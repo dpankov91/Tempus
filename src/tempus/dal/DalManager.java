@@ -68,15 +68,30 @@ public class DalManager implements IDalFacade {
     }
 
     @Override
-    public void createProject(String name, Client client, int hRate, String description) {
+    public Project createProject(String name, Client client, int hRate, String description) {
 
-        projectDao.createProject(name, client, hRate, description);
-
+        Project pro = projectDao.createProject(name, client, hRate, description);
+        try {
+            long millis = System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(millis);
+            logDao.insertLog(LogDAO.PROJECT_TABLE, pro.getId(), LogDAO.CREATE_ACTION, date);
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pro;
     }
 
     @Override
-    public void deleteProject(Project projectToDelete) {
-        projectDao.deleteProject(projectToDelete);
+    public Project deleteProject(Project projectToDelete) {
+        Project pro = projectDao.deleteProject(projectToDelete);
+        try {
+            long millis = System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(millis);
+            logDao.insertLog(LogDAO.PROJECT_TABLE, pro.getId(), LogDAO.DELETE_ACTION, date);
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pro;
     }
 
     @Override
@@ -190,13 +205,29 @@ public class DalManager implements IDalFacade {
     }
 
     @Override
-    public void deleteClient(Client selectedClient) {
+    public Client deleteClient(Client selectedClient) {
         clientDao.deleteClient(selectedClient);
+        try {
+            long millis = System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(millis);
+            logDao.insertLog(LogDAO.CLIENT_TABLE, selectedClient.getId(), LogDAO.DELETE_ACTION, date);
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
-    public void createClient(String name, String city, int phone, String email) {
-        clientDao.createClient(name, city, phone, email);
+    public Client createClient(String name, String city, int phone, String email) {
+        Client client = clientDao.createClient(name, city, phone, email);
+        try {
+            long millis = System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(millis);
+            logDao.insertLog(LogDAO.CLIENT_TABLE, client.getId(), LogDAO.CREATE_ACTION, date);
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
@@ -209,8 +240,16 @@ public class DalManager implements IDalFacade {
     }
 
     @Override
-    public void editClient(int id, String name, String city, int phone, String email) {
-        clientDao.editClient(id, name, city, phone, email);
+    public Client editClient(int id, String name, String city, int phone, String email) {
+        Client client = clientDao.editClient(id, name, city, phone, email);
+        try {
+            long millis = System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(millis);
+            logDao.insertLog(LogDAO.CLIENT_TABLE, client.getId(), LogDAO.UPDATE_ACTION, date);
+        } catch (SQLException ex) {
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override

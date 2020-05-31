@@ -25,6 +25,10 @@ public class Task {
     private String userFirstName;
     private int id;
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Task(String task, String note, LocalDateTime startTime, LocalDateTime endTime, double spentTime) {
         this.task = task;
         this.note = note;
