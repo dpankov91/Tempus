@@ -45,7 +45,7 @@ public class DeleteConfirmationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         model=ProjectModel.getInstance();
-        lblName.setText(model.getSelectedProject().getName());
+        lblName.setText(model.getSelectedProject().getName().trim());
     }    
 
     @FXML

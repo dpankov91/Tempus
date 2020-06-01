@@ -39,7 +39,7 @@ public class DeleteConfirmationClientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         model = new ClientModel().getInstance();
-        lblName.setText(model.getSelectedClient().getName());
+        lblName.setText(model.getSelectedClient().getName().trim());
     }    
 
     @FXML
