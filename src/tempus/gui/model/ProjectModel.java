@@ -65,7 +65,7 @@ public class ProjectModel {
     }
 
     public void deleteSelectedProject() {
-        facade.deleteProject(selectedProject);
+        facade.deleteProject(selectedProject); // Brings the intended project for delettion down a layer, into the BLL.
     }
 
     public void editProject(int id,String projectName, String clientName, int hourlyRate, String description) {

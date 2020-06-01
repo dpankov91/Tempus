@@ -76,15 +76,16 @@ public class UserDAO {
     }
 
     public User deleteUser(User userToDelete) {
+        //In here the user is deleted from the database.
         try {
             String sql = "DELETE  FROM [dbo].[User] WHERE userID=?";
+        // Sequence statement above deletes the selected user from the userTable.
+            Connection con = connector.getConnection(); // sets up connection.
+            PreparedStatement pstmt = con.prepareStatement(sql); // Creatss prepared statement.
 
-            Connection con = connector.getConnection();
-            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, userToDelete.getId()); // This string goes to the question mark as their values match, userID value.
 
-            pstmt.setInt(1, userToDelete.getId());
-
-            pstmt.executeUpdate();
+            pstmt.executeUpdate(); //String is sent to the database and then updates the database, REMOVING the selected user from it.
             return userToDelete;
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -227,15 +228,15 @@ public class UserDAO {
     }
 
     public void newPassword(String pswSecond, int userID) throws SQLException {
-
+        // In here, the new password is updated.
         String sql = "UPDATE [dbo].[User] SET [password] = ? WHERE [userID] = ?";
+        // Sequence statement above updates the user from the usertable, updating the password value to something new.
+        Connection con = connector.getConnection(); // sets up connection.
+        PreparedStatement pstmt = con.prepareStatement(sql); // Creates prepared statement
+        pstmt.setString(1, pswSecond); // This string goes to the first question mark, the password value
+        pstmt.setInt(2, userID); // This string goes to the second question mark, the userID value
 
-        Connection con = connector.getConnection();
-        PreparedStatement pstmt = con.prepareStatement(sql);
-        pstmt.setString(1, pswSecond);
-        pstmt.setInt(2, userID);
-
-        pstmt.executeUpdate();
+        pstmt.executeUpdate(); //String is sent to the database and then updates the database with the new hashpassword.
     }
 
     public void newPasswordForSelectedUser(String newPassword, int id) throws SQLException {

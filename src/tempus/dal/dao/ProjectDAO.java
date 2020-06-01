@@ -71,15 +71,17 @@ public class ProjectDAO {
     }
 
     public Project deleteProject(Project projectToDelete) {
+        //In here the project is deleted from the database.
         try {
-            String sql = "DELETE FROM [dbo].[Project] WHERE projectID=?";
+            String sql = "DELETE FROM [dbo].[Project] WHERE projectID=?"; 
+        // Sequence statement above delete the selected project from the projecttable.
 
-            Connection con = connector.getConnection();
-            PreparedStatement pstmt = con.prepareStatement(sql);
+            Connection con = connector.getConnection(); // sets up connection.
+            PreparedStatement pstmt = con.prepareStatement(sql); // Creatss prepared statement.
 
-            pstmt.setInt(1, projectToDelete.getId());
+            pstmt.setInt(1, projectToDelete.getId()); // This string goes to the question mark, projectID value
 
-            pstmt.executeUpdate();
+            pstmt.executeUpdate(); //String is sent to the database and then updates the database, REMOVING the selected project from it.
             return projectToDelete;
         } catch (SQLException ex) {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);

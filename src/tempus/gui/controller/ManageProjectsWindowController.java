@@ -75,9 +75,9 @@ public class ManageProjectsWindowController implements Initializable {
     @FXML
     private void handleDelete(ActionEvent event) throws IOException {
 
-        projModel.setSelectedProject(tableViewProjects.getSelectionModel().getSelectedItem());
-        if (projModel.getSelectedProject() != null) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmation.fxml"));
+        projModel.setSelectedProject(tableViewProjects.getSelectionModel().getSelectedItem()); // A project is selected in the tableview
+        if (projModel.getSelectedProject() != null) { // if the project is selected
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmation.fxml")); // Button Pressed and shows the designated FXML file
             Parent z = loader.load();
             loader.<DeleteConfirmationController>getController().setInfo(this);
             Scene scene = new Scene(z);
@@ -85,7 +85,7 @@ public class ManageProjectsWindowController implements Initializable {
             s.setScene(scene);
             s.show();
         } else {
-            setUpAlert("Choose project error", "Choose  project from Table View");
+            setUpAlert("Choose project error", "Choose  project from Table View"); // Else if the button is pressed while without a project, this message shows itself. 
         }
     }
 

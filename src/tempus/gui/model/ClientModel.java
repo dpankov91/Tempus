@@ -53,7 +53,7 @@ public class ClientModel {
     }
 
     public void deleteSelectedClient() {
-        bllManager.deleteClient(selectedClient);
+        bllManager.deleteClient(selectedClient); // Brings the intended client for delettion down a layer, into the BLL.
     }
 
     public void createClient(String name, String city, int phone, String email) {

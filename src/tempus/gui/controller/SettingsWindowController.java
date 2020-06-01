@@ -73,7 +73,7 @@ public class SettingsWindowController implements Initializable {
         if (isValid(pswFirst, pswSecond)) { // uses the convenience method to validate the password
             User us = userModel.getloggedInUser(); // invokes the loggedInUser method to check logged in user.
             us.setPassword(pswSecond); // This method invokes the setPassword in the user model, placing the second password parameter in.
-            userModel.newPassword(pswSecond); // Takes the input in the second password field and brings it to the userModel as a method is invoked.
+            userModel.newPassword(pswSecond); // Takes the input in the second password field and pushes it to the userModel as a method is invoked.
             setUpAlert("Password Changed", "You have a new password");
         }
         

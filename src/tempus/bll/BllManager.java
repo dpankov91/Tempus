@@ -49,7 +49,7 @@ public class BllManager implements IBllFacade {
 
     @Override
     public void deleteProject(Project projectToDelete) {
-        facade.deleteProject(projectToDelete);
+        facade.deleteProject(projectToDelete); // Like before, the project for deletion is sent down to the layer under, to the dal.
     }
 
     @Override
@@ -65,7 +65,7 @@ public class BllManager implements IBllFacade {
 
     @Override
     public void deleteUser(User userToDelete) {
-        facade.deleteUser(userToDelete);
+        facade.deleteUser(userToDelete); // Like before, the user selected for deletion is sent down to the layer under, to the dal.
     }
 
     @Override
@@ -100,7 +100,7 @@ public class BllManager implements IBllFacade {
     }
 
     @Override
-    public void deleteClient(Client selectedClient) {
+    public void deleteClient(Client selectedClient) { // Like before, the client selected for deletion is sent down to the layer under, to the dal.
         facade.deleteClient(selectedClient);
     }
 
@@ -148,8 +148,8 @@ public class BllManager implements IBllFacade {
 
     @Override
     public void newPasswordForSelectedUser(String pswSecond, int id) {
-        String newPassword = securityManager.hashPassword(pswSecond);
-        facade.newPasswordForSelectedUser(newPassword, id);
+        String newPassword = securityManager.hashPassword(pswSecond); // The inputted password is changed into a hash value, by using the security method from the security manager.
+        facade.newPasswordForSelectedUser(newPassword, id); // It takes the inew password down a layer again, into the dal manager.
     }
 
 }

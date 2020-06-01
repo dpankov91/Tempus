@@ -65,8 +65,8 @@ public class ManageClientsWindowController implements Initializable {
 
     @FXML
     private void handleDelete(ActionEvent event) throws IOException {
-        cModel.setSelectedClient(tableViewClients.getSelectionModel().getSelectedItem());
-        if (cModel.getSelectedClient() != null) {
+        cModel.setSelectedClient(tableViewClients.getSelectionModel().getSelectedItem()); // A client is selected in the tableview
+        if (cModel.getSelectedClient() != null) { //if a client is selected, the following happens.
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmationClient.fxml"));
             Parent z = loader.load();
             loader.<DeleteConfirmationClientController>getController().setInfo(this);

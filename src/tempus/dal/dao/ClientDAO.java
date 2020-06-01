@@ -52,15 +52,16 @@ public class ClientDAO {
     }
 
     public Client deleteClient(Client selectedClient) {
+        //In here the user is deleted from the database.
         try {
             String sql = "DELETE  FROM [dbo].[Client] WHERE clientID=?";
+        // Sequence statement above deletes the selected client from the clientIDTable.
+            Connection con = connector.getConnection(); // sets up connection.
+            PreparedStatement pstmt = con.prepareStatement(sql); // Creatss prepared statement.
 
-            Connection con = connector.getConnection();
-            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, selectedClient.getId()); // This string goes to the question mark as their values match, cæientID value.
 
-            pstmt.setInt(1, selectedClient.getId());
-
-            pstmt.executeUpdate();
+            pstmt.executeUpdate(); //String is sent to the database and then updates the database, REMOVING the selected client from it.
             return selectedClient;
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);

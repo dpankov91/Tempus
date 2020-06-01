@@ -88,8 +88,8 @@ public class ManageUsersWindowController implements Initializable {
     @FXML
     private void onActionDeleteUser(ActionEvent event) throws IOException {
         {
-            userModel.setSelectedUser(tableViewUsers.getSelectionModel().getSelectedItem());
-            System.out.println(userModel.getSelectedUser().getId());
+            userModel.setSelectedUser(tableViewUsers.getSelectionModel().getSelectedItem()); // A user is selected in the tableview
+            System.out.println(userModel.getSelectedUser().getId()); //if a user is selected, the following happens
             if (userModel.getSelectedUser() != null) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmationUser.fxml"));
                 Parent z = loader.load();
