@@ -18,10 +18,10 @@
               <columns>
                 <TableColumn fx:id="colName" prefWidth="97.60000324249268" text="Project name" />
                 <TableColumn fx:id="colTask" prefWidth="104.0" text="Task" />
-                  <TableColumn fx:id="colUser" prefWidth="100.80000305175781" text="User" />
-                  <TableColumn fx:id="colStartTime" prefWidth="89.60003662109375" text="Start Time" />
-                  <TableColumn fx:id="colEndTime" prefWidth="95.199951171875" text="End Time" />
-                  <TableColumn fx:id="colHrs" prefWidth="102.4000244140625" text="Hours" />
+                  <TableColumn fx:id="colUser" prefWidth="84.80000305175781" text="User" />
+                  <TableColumn fx:id="colStartTime" prefWidth="95.20001220703125" text="Start Time" />
+                  <TableColumn fx:id="colEndTime" prefWidth="93.60003662109375" text="End Time" />
+                  <TableColumn fx:id="colHrs" prefWidth="117.5999755859375" text="Hours" />
               </columns>
             </TableView>
             <Label layoutX="391.0" layoutY="416.0" prefHeight="34.0" prefWidth="90.0" text="Sum of Hours:" />
