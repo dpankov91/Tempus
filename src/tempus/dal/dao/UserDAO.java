@@ -76,15 +76,16 @@ public class UserDAO {
     }
 
     public User deleteUser(User userToDelete) {
+        //In here the user is deleted from the database.
         try {
             String sql = "DELETE  FROM [dbo].[User] WHERE userID=?";
+        // Sequence statement above deletes the selected user from the userTable.
+            Connection con = connector.getConnection(); // sets up connection.
+            PreparedStatement pstmt = con.prepareStatement(sql); // Creatss prepared statement.
 
-            Connection con = connector.getConnection();
-            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, userToDelete.getId()); // This string goes to the question mark as their values match, userID value.
 
-            pstmt.setInt(1, userToDelete.getId());
-
-            pstmt.executeUpdate();
+            pstmt.executeUpdate(); //String is sent to the database and then updates the database, REMOVING the selected user from it.
             return userToDelete;
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -134,14 +135,15 @@ public class UserDAO {
     public User createUser(String fName, String lName, String hashedPassword, String email, String role, String address, int phone, int postcode) {
 
         try {
-            Connection con = connector.getConnection();
+            //connecting to database
+            Connection con = connector.getConnection(); 
+            //making a query
             String sqlUser = "INSERT INTO [User] "
                     + "VALUES (?,?,?,?,?,?,?,?,?)";
+            //preparing a statement and the query as argument
             PreparedStatement pstmt = con.prepareStatement(sqlUser,
                     Statement.RETURN_GENERATED_KEYS);
-            //INSERT INTO [User] 
-            //VALUES (?,'password','firstName','lastname',5555,'address',6700,1,'Admin','')
-
+            //for each questionmark we have one prepared statement and we set them to the following parameters
             pstmt.setString(1, email);
             pstmt.setString(2, hashedPassword);
             pstmt.setString(3, fName);
@@ -152,6 +154,7 @@ public class UserDAO {
             pstmt.setInt(8, (role == "Admin" ? 1 : 0));
             pstmt.setString(9, "");
             int id = 0;
+            
             int affectedRows = pstmt.executeUpdate();
 
             if (affectedRows == 0) {
@@ -165,6 +168,7 @@ public class UserDAO {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
             }
+            // we create a new User with the following paremeters and return the user and return null
             User us = new User(fName, lName, email, role);
             us.setId(id);
             us.setPassword(hashedPassword);
@@ -227,15 +231,15 @@ public class UserDAO {
     }
 
     public void newPassword(String pswSecond, int userID) throws SQLException {
-
+        // In here, the new password is updated.
         String sql = "UPDATE [dbo].[User] SET [password] = ? WHERE [userID] = ?";
+        // Sequence statement above updates the user from the usertable, updating the password value to something new.
+        Connection con = connector.getConnection(); // sets up connection.
+        PreparedStatement pstmt = con.prepareStatement(sql); // Creates prepared statement
+        pstmt.setString(1, pswSecond); // This string goes to the first question mark, the password value
+        pstmt.setInt(2, userID); // This string goes to the second question mark, the userID value
 
-        Connection con = connector.getConnection();
-        PreparedStatement pstmt = con.prepareStatement(sql);
-        pstmt.setString(1, pswSecond);
-        pstmt.setInt(2, userID);
-
-        pstmt.executeUpdate();
+        pstmt.executeUpdate(); //String is sent to the database and then updates the database with the new hashpassword.
     }
 
     public void newPasswordForSelectedUser(String newPassword, int id) throws SQLException {

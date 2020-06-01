@@ -25,7 +25,7 @@ public class DeleteConfirmationClientController implements Initializable {
     
     ClientModel model;
     private Client selectedClient;
-    ManageClientsWindowController clientContrl;
+    ManageClientsWindowController clientContrl; // Takes information frmo the ManageClientsWindow fxml.
     
     @FXML
     private JFXButton btnCancel;
@@ -39,7 +39,7 @@ public class DeleteConfirmationClientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         model = new ClientModel().getInstance();
-        lblName.setText(model.getSelectedClient().getName());
+        lblName.setText(model.getSelectedClient().getName().trim());
     }    
 
     @FXML
@@ -50,7 +50,7 @@ public class DeleteConfirmationClientController implements Initializable {
 
     @FXML
     private void handleConfirmDeleting(ActionEvent event) {
-         model.deleteSelectedClient();
+         model.deleteSelectedClient(); // having selected a user to delete, it's brought down to the layer down, to the client model
          clientContrl.loadTableView();
          goBack(event);
     }

@@ -72,7 +72,7 @@ public class UserModel {
     }
 
     public void deleteSelectedUser() {
-        facade.deleteUser(selectedUser);
+        facade.deleteUser(selectedUser); // Brings the intended user for delettion down a layer, into the BLL.
     }
 
     public void assignUsersToProj(Project selectedProject, List<User> usersAssign) {
@@ -88,6 +88,6 @@ public class UserModel {
     }
     
     public void newPasswordForSelectedUser(String pswSecond){
-        facade.newPasswordForSelectedUser(pswSecond, selectedUser.getId());
+        facade.newPasswordForSelectedUser(pswSecond, selectedUser.getId()); // Here the input from the controller is pushed another layer down, into the BLL.
     }
 }

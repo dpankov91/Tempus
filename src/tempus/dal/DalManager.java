@@ -69,7 +69,9 @@ public class DalManager implements IDalFacade {
 
     @Override
     public Project createProject(String name, Client client, int hRate, String description) {
-
+        
+        // sends the project to be created to the projectDao and returns the project
+        
         Project pro = projectDao.createProject(name, client, hRate, description);
         try {
             long millis = System.currentTimeMillis();
@@ -83,7 +85,7 @@ public class DalManager implements IDalFacade {
 
     @Override
     public Project deleteProject(Project projectToDelete) {
-        Project pro = projectDao.deleteProject(projectToDelete);
+        Project pro = projectDao.deleteProject(projectToDelete); //Brings down the project for deletion to the ProjectDAO.
         try {
             long millis = System.currentTimeMillis();
             java.sql.Date date = new java.sql.Date(millis);
@@ -122,7 +124,7 @@ public class DalManager implements IDalFacade {
     @Override
     public User deleteUser(User userToDelete) {
 
-        User deletedUser = userDao.deleteUser(userToDelete);
+        User deletedUser = userDao.deleteUser(userToDelete); // Like before, the user for deletion is sent down to the layer under, to the userDao.
         try {
             long millis = System.currentTimeMillis();
             java.sql.Date date = new java.sql.Date(millis);
@@ -146,6 +148,7 @@ public class DalManager implements IDalFacade {
 
     @Override
     public User createUser(String fName, String lName, String hashedPassword, String email, String role, String address, int phone, int postcode) {
+        // sends the user to be created to the userDao and returns the createdUser
         User createdUser = userDao.createUser(fName, lName, hashedPassword, email, role, address, phone, postcode);
         try {
             long millis = System.currentTimeMillis();
@@ -205,7 +208,7 @@ public class DalManager implements IDalFacade {
     }
 
     @Override
-    public Client deleteClient(Client selectedClient) {
+    public Client deleteClient(Client selectedClient) { //Like before, the client for deletion is sent down to the layer under, to the clientDao.
         clientDao.deleteClient(selectedClient);
         try {
             long millis = System.currentTimeMillis();
@@ -219,6 +222,7 @@ public class DalManager implements IDalFacade {
 
     @Override
     public Client createClient(String name, String city, int phone, String email) {
+        // send the client to be created to the clientDao and returns null
         Client client = clientDao.createClient(name, city, phone, email);
         try {
             long millis = System.currentTimeMillis();
@@ -233,7 +237,7 @@ public class DalManager implements IDalFacade {
     @Override
     public void newPassword(String pswSecond, int userID) {
         try {
-            userDao.newPassword(pswSecond, userID);
+            userDao.newPassword(pswSecond, userID); // The new hashed password is brought down here and then brings it further down, into the user dao. 
         } catch (SQLException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }

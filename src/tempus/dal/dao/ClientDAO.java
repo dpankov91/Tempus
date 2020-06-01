@@ -52,15 +52,16 @@ public class ClientDAO {
     }
 
     public Client deleteClient(Client selectedClient) {
+        //In here the user is deleted from the database.
         try {
             String sql = "DELETE  FROM [dbo].[Client] WHERE clientID=?";
+        // Sequence statement above deletes the selected client from the clientIDTable.
+            Connection con = connector.getConnection(); // sets up connection.
+            PreparedStatement pstmt = con.prepareStatement(sql); // Creatss prepared statement.
 
-            Connection con = connector.getConnection();
-            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, selectedClient.getId()); // This string goes to the question mark as their values match, cæientID value.
 
-            pstmt.setInt(1, selectedClient.getId());
-
-            pstmt.executeUpdate();
+            pstmt.executeUpdate(); //String is sent to the database and then updates the database, REMOVING the selected client from it.
             return selectedClient;
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -71,14 +72,15 @@ public class ClientDAO {
     public Client createClient(String name, String city, int phone, String email) {
 
         try {
+            //we establish a connection to the database
             Connection con = connector.getConnection();
-
+            //we make a query
             String sqlClient = "INSERT INTO [Client] "
                     + "VALUES (?,?,?,?)";
-
+            //preparing a statement and the query as argument
             PreparedStatement pstmt = con.prepareStatement(sqlClient,
                                       Statement.RETURN_GENERATED_KEYS);
-
+            //for each questionmark we have one prepared statement and we set them to the following parameters
             pstmt.setString(1, name);
             pstmt.setString(2, city);
             pstmt.setInt(3, phone);
@@ -97,6 +99,7 @@ public class ClientDAO {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
             }
+            //we create a new client with parameters id, name, city, phone and email and return the client and return null
             Client client = new Client(id, name, city, phone, email);
             return client;
         } catch (SQLException ex) {

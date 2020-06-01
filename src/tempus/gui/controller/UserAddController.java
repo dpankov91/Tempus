@@ -110,6 +110,14 @@ public class UserAddController implements Initializable {
 
     @FXML
     private void handleSave(ActionEvent event) {
+        
+        /*
+        * checks if the fields are empty or null
+        * gets the password, first name, last name, email, address, phone, postcode and selects the role
+        * sends the parameters to the userModel
+        * and loads it to TableView in the previous controller
+        */
+        
         if (checkIfFilled()){
             try {
             String password = txtPassword.getText();
