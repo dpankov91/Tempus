@@ -47,6 +47,10 @@ public class Project {
         this.taskDate = taskDate;
         this.spentTime = spentTime;
     }
+
+    public Project(int i, String all_users, String string, int i0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public String getCatString() {
         String finalString = "";

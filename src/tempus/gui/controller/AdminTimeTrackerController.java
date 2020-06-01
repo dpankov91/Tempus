@@ -91,7 +91,7 @@ public class AdminTimeTrackerController implements Initializable {
     @FXML
     private Label lbl_date;
     //IntegerProperty variables handle the time labels to be value of 0 on start time
-    
+
     private static final int STARTTIME = 0;
     private final IntegerProperty timeSeconds = new SimpleIntegerProperty(STARTTIME);
     private final IntegerProperty timeMinutes = new SimpleIntegerProperty(STARTTIME);
@@ -110,7 +110,7 @@ public class AdminTimeTrackerController implements Initializable {
     private ProjectModel projModel;
     //User model
     private UserModel usModel;
-    
+
     ObservableList<Project> allProjects = FXCollections.observableArrayList();
     @FXML
     private JFXButton btnDeleteTask;
@@ -130,7 +130,11 @@ public class AdminTimeTrackerController implements Initializable {
         btn_stop.setDisable(true);
         lbl_date.setVisible(false);
         loadProjectsToComboBox();
+        tsModel.getAllTasksOverview();
+        tsModel.getAllTasksOverviewForLoggedUser();
         setUpTableView();
+//        tsModel.getAllTasks();
+
     }
 
     @FXML
@@ -147,7 +151,7 @@ public class AdminTimeTrackerController implements Initializable {
                 tsModel.setTimeStart(LocalDateTime.now());
                 showTime();
             }
-         
+
         } else {
             //Pauses the thread, switches to pause button once clicked again, shuts down thread until user resumes or stops it
             isStopped = true;
@@ -164,10 +168,12 @@ public class AdminTimeTrackerController implements Initializable {
         lbl_date.setText(dateFormat.format(date));
         lbl_date.setVisible(true);
     }
-    
+//////    
     //Refreshes table by loading table view again 
+
     public void refreshTable() {
-        loadTableView(); 
+//        loadTableViewAllTasks();
+        loadInTaskView();
     }
 
     @FXML
@@ -238,7 +244,7 @@ public class AdminTimeTrackerController implements Initializable {
             cb_projects.setItems(allProjects);
         }
     }
-    
+
     //Sets up table view and each cell row
     void setUpTableView() {
         tbv_timetracker.setEditable(true);
@@ -254,13 +260,17 @@ public class AdminTimeTrackerController implements Initializable {
         colEndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         //colHrs.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         colHrs.setCellValueFactory(new PropertyValueFactory<>("spentTime"));
-        loadTableView();
+        loadInTaskView();
     }
-    
-    //Loads all tasks made into the table view
-    void loadTableView() {
+
+    private void loadInTaskView() {
         tbv_timetracker.getItems().clear();
-        List<Task> allTasks = tsModel.getAllTasks();
+        List<Task> allTasks;
+        if (usModel.getloggedInUser().getIsAdmin()) {
+            allTasks = tsModel.getAllTasks();
+        } else {
+            allTasks = tsModel.getAllTasksOverviewForLoggedUser();
+        }
         ObservableList<Task> tasks = FXCollections.observableArrayList();
         tasks.addAll(allTasks);
         tbv_timetracker.setItems(tasks);
@@ -268,7 +278,7 @@ public class AdminTimeTrackerController implements Initializable {
 
     //Sets up alert to notify user of inputting the necessary input to stop the time tracker
     private void setUpAlert(String title, String message) {
-        
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(message);
@@ -321,7 +331,7 @@ public class AdminTimeTrackerController implements Initializable {
 
     @FXML
     private void onClickDeleteSelectedTask(ActionEvent event) throws IOException {
-          {
+        {
             tsModel.setSelectedTask(tbv_timetracker.getSelectionModel().getSelectedItem());
             System.out.println(tsModel.getSelectedTask().getId());
             if (tsModel.getSelectedTask() != null) {

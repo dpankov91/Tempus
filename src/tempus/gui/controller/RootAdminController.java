@@ -99,6 +99,7 @@ public class RootAdminController implements Initializable {
     private void handle_editProfile(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/SettingsWindow.fxml"));
         Parent z = loader.load();
+        loader.<SettingsWindowController>getController().setInfo(this);
         Scene scene = new Scene(z);
         Stage s = new Stage();
         s.setScene(scene);

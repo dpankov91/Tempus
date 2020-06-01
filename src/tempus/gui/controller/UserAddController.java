@@ -63,14 +63,14 @@ public class UserAddController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         userModel = new UserModel();
-        
+        loadRolesIntoCombobox();
+    }    
+    
+    private void loadRolesIntoCombobox(){
         cmbChooseRole.setItems(FXCollections.observableArrayList(
                 "Admin", "Developer"));
     }    
-        // TODO
-   
 
     private boolean checkIfFilled() {
       if (txtPassword.getText() == null || txtPassword.getText().trim().isEmpty())

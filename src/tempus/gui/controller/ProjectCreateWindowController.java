@@ -45,17 +45,11 @@ public class ProjectCreateWindowController implements Initializable {
     @FXML
     private ComboBox<Client> cmbClient;
 
-    
-    ManageProjectsWindowController prevContrl;
-    
-    /**
-     * Initializes the controller class.
-     */
-    
     private ProjectModel projectModel;
     private RootAdminController rootAdminContr;
     private ClientModel cmodel;
     ObservableList<Client>  allClients = FXCollections.observableArrayList();
+    ManageProjectsWindowController prevContrl;
     
     
     @Override
@@ -64,33 +58,19 @@ public class ProjectCreateWindowController implements Initializable {
         projectModel = ProjectModel.getInstance();
         cmodel = ClientModel.getInstance();
         loadClientsToComboBox();
-        
     }
     
     private boolean checkIfFilled() {
-        
-        if (txtProjectName.getText() == null || txtProjectName.getText().trim().isEmpty())
-     {
-         setUpAlert("Incorrect Info Error" , "Add text please.");
-     
-     }
-     else if (cmbClient.getSelectionModel().getSelectedItem()== null)
-     {
-         
-        setUpAlert("Incorrect Info Error" , "Select client please.");
-        
-     }
-     else if (txtHourlyRate.getText() == null || txtHourlyRate.getText().trim().isEmpty() || !txtHourlyRate.getText().matches("^\\d+(\\.\\d+)?"))
-     {
-        setUpAlert("Incorrect Info Error" , "Check hourly rate input");
-       
-     }
-     else if (txtDescription.getText() == null || txtDescription.getText().trim().isEmpty())
-     {
-        setUpAlert("Incorrect Info Error" , "Add text please.");
-     }
-     return true;
-        
+        if (txtProjectName.getText() == null || txtProjectName.getText().trim().isEmpty()) {
+            setUpAlert("Incorrect Info Error", "Add text please.");
+        } else if (cmbClient.getSelectionModel().getSelectedItem() == null) {
+            setUpAlert("Incorrect Info Error", "Select client please.");
+        } else if (txtHourlyRate.getText() == null || txtHourlyRate.getText().trim().isEmpty() || !txtHourlyRate.getText().matches("^\\d+(\\.\\d+)?")) {
+            setUpAlert("Incorrect Info Error", "Check hourly rate input");
+        } else if (txtDescription.getText() == null || txtDescription.getText().trim().isEmpty()) {
+            setUpAlert("Incorrect Info Error", "Add text please.");
+        }
+        return true;
     }
     
 
@@ -117,30 +97,23 @@ public class ProjectCreateWindowController implements Initializable {
 
     @FXML
     private void handleGoBack(ActionEvent event) {
-        
-        closeWindow(event);
-        
+      closeWindow(event);
     }
 
     private void closeWindow(ActionEvent event) {
-        
         Stage stage = (Stage) goBackButton.getScene().getWindow();
         stage.close();
-        
     }
 
     private void setUpAlert(String title, String message){
-        
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(message);
         alert.showAndWait();
     }
     
-    public void loadClientsToComboBox() 
-    { 
+    public void loadClientsToComboBox(){ 
         allClients = cmodel.getObsClients();
-        
         for (Client cl : allClients) {
             cmbClient.setItems(allClients);
         }    
@@ -148,7 +121,7 @@ public class ProjectCreateWindowController implements Initializable {
 
     void setInfo(ManageProjectsWindowController aThis) {
     prevContrl = aThis;
-            }
+    }
 
     @FXML
     private void btnAddClient(ActionEvent event) throws IOException {
@@ -159,6 +132,4 @@ public class ProjectCreateWindowController implements Initializable {
         s.setScene(scene);
         s.show();
     }
-    
-
 }

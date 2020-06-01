@@ -44,12 +44,11 @@ public class SettingsWindowController implements Initializable {
     private ImageView imgPhoto;
     @FXML
     private JFXButton btnEditPic;
-    @FXML
-    private JFXButton btnConfirmPic;
 
     private User user;
     private UserModel userModel;
-
+    RootAdminController prevContrl;
+    RootDeveloperController prevDevContrl;
 
     /**
      * Initializes the controller class.
@@ -76,14 +75,11 @@ public class SettingsWindowController implements Initializable {
             userModel.newPassword(pswSecond); // Takes the input in the second password field and brings it to the userModel as a method is invoked.
             setUpAlert("Password Changed", "You have a new password");
         }
-        
     }
     
     
-    
-    private boolean isValid(String firstPW, String secondPW) {
-    //  Convenience Method for checking password fields     
-        
+    //  Convenience Method for checking password fields 
+    private boolean isValid(String firstPW, String secondPW) {    
         if (firstPW.isEmpty()) { // If first textfield is empty
             setUpAlert("Passwords Error" , "Please, input new password in first field");
             return false;
@@ -96,7 +92,6 @@ public class SettingsWindowController implements Initializable {
              setUpAlert("Password Error" , "New passwords dont match");
              return false;
         }
-                
         return true;
     }
     
@@ -121,6 +116,7 @@ public class SettingsWindowController implements Initializable {
             us.setPhotoURL(selectedFile.getAbsolutePath());
             userModel.setUpLocalIMG(selectedFile.getAbsolutePath());
             showImg();
+            setUpAlert("Picture is changed" , "Your new picture is set up");
         }
     }
 
@@ -131,11 +127,21 @@ public class SettingsWindowController implements Initializable {
 
     private void goBack() {
         Stage stage = (Stage) btnClose.getScene().getWindow();
+        if(userModel.getloggedInUser().getIsAdmin()){
+        prevContrl.setUpimg();
+        }else{
+        prevDevContrl.setUpimg();       
+        }
         stage.close();
     }
 
-    @FXML
-    private void onClickChangeUserPicture(ActionEvent event) {
+    void setInfo(RootAdminController aThis) {
+        prevContrl = aThis;
     }
+    
+    void setInfoDev(RootDeveloperController aThis) {
+        prevDevContrl = aThis;
+    }
+
 
 }

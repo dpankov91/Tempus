@@ -47,7 +47,7 @@ public class DeleteConfirmationTaskController implements Initializable {
     @FXML
     private void handleConfirmDeleting(ActionEvent event) {
            tsModel.deleteSelectedTask();
-           prevContrl.loadTableView();
+           //prevContrl.loadTableViewLoggedUserTasks();
            goBack(event);
     }
 

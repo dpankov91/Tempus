@@ -96,6 +96,7 @@ public class AdminOverviewController implements Initializable {
         usModel = UserModel.getInstance();
         taskModel = TaskModel.getInstance();
         //taskModel.injectAdminOverviewController(this);
+        
         loadProjectsToCombobox();
         loadUsersToCombobox();
         setUpTaskTableView();
@@ -111,7 +112,6 @@ public class AdminOverviewController implements Initializable {
         cmbUsers.getSelectionModel().selectedItemProperty().addListener((obs, old, newest) -> {
             taskModel.setSelectedUser(newest);
         });
-        
     }
 
     @FXML
@@ -133,7 +133,10 @@ public class AdminOverviewController implements Initializable {
     private void loadProjectsToCombobox() {
         allProjects = projModel.getObsProjects();
 
+//        cmbProjects.getItems().add(new Project(-1, "All users", "", -1));
+//        cmbProjects.setItems(allProjects);
         for (Project proj : allProjects) {
+            
             cmbProjects.setItems(allProjects);
         }
     }
@@ -249,5 +252,7 @@ public class AdminOverviewController implements Initializable {
         cmbProjects.getSelectionModel().clearSelection();
         cmbUsers.getSelectionModel().clearSelection();
     }
+    
+   
 
 }

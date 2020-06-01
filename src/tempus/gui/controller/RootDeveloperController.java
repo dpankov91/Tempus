@@ -91,6 +91,7 @@ public class RootDeveloperController implements Initializable {
     private void handle_editProfile(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/SettingsWindow.fxml"));
         Parent z = loader.load();
+        loader.<SettingsWindowController>getController().setInfoDev(this);
         Scene scene = new Scene(z);
         Stage s = new Stage();
         s.setScene(scene);
@@ -147,7 +148,7 @@ public class RootDeveloperController implements Initializable {
     }
     
     
-    private void setUpimg() {
+    void setUpimg() {
         User us = userModel.getloggedInUser();
         imageUser.setImage(us.getPhotoURL());
     }

@@ -31,6 +31,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.util.StringConverter;
 import tempus.be.Project;
 import tempus.be.Task;
 import tempus.be.User;
@@ -157,10 +158,8 @@ public class OverviewDeveloperController implements Initializable {
 
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Minutes");
-
         BarChart weekProject = new BarChart(xAxis, yAxis);
         weekProject.setTitle("Statistics");
-
         XYChart.Series series = new XYChart.Series();
         series.setName("Time Spent Each Day");
 
