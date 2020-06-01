@@ -133,7 +133,6 @@ public class AdminTimeTrackerController implements Initializable {
         tsModel.getAllTasksOverview();
         tsModel.getAllTasksOverviewForLoggedUser();
         setUpTableView();
-//        tsModel.getAllTasks();
 
     }
 
@@ -263,13 +262,13 @@ public class AdminTimeTrackerController implements Initializable {
         loadInTaskView();
     }
 
-    private void loadInTaskView() {
+    void loadInTaskView() {
         tbv_timetracker.getItems().clear();
         List<Task> allTasks;
         if (usModel.getloggedInUser().getIsAdmin()) {
             allTasks = tsModel.getAllTasks();
         } else {
-            allTasks = tsModel.getAllTasksOverviewForLoggedUser();
+            allTasks = tsModel.refreshUserTasks();
         }
         ObservableList<Task> tasks = FXCollections.observableArrayList();
         tasks.addAll(allTasks);

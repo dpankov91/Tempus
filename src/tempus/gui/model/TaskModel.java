@@ -55,7 +55,7 @@ public class TaskModel {
     public void setSelectedTask(Task selectedTask) {
         this.selectedTask = selectedTask;
     }
-    
+
     public void deleteSelectedTask() {
         bllManager.deleteTask(selectedTask);
     }
@@ -164,7 +164,12 @@ public class TaskModel {
         bllManager.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime);
     }
 
-    //returns all tasks of logged user
+    public List<Task> refreshUserTasks() {
+        getAllTasksOverview();
+        return getAllTasksOverviewForLoggedUser();
+    }
+//returns all tasks of logged user
+
     public List<Task> getAllTasksOverviewForLoggedUser() {
         List<Task> allTasksLoggedUser = new ArrayList();
         for (Task alltas : alltasks) {
@@ -198,6 +203,7 @@ public class TaskModel {
     public List<Task> filterByDates(List<Task> listToFilter, LocalDate from, LocalDate to) {
         List<Task> allspecProjTasks = new ArrayList();
         for (Task alltas : listToFilter) {
+            
             if (((alltas.getsStartTime().toLocalDate()).isAfter(from) || (alltas.getsStartTime().toLocalDate()).isEqual(from)) && ((alltas.getsStartTime().toLocalDate()).isBefore(to) || (alltas.getsStartTime().toLocalDate()).isEqual(to))) {
                 allspecProjTasks.add(alltas);
             }

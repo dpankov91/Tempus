@@ -71,7 +71,6 @@ public class RootDeveloperController implements Initializable {
         setUpimg();
         setFirstName();
         loadUpTimesheet();
-        
     }  
     
     

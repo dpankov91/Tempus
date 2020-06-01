@@ -9,22 +9,22 @@
 
 <AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="1075.0" styleClass="BackGround" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tempus.gui.controller.ManageProjectsWindowController">
    <children>
-      <TableView fx:id="tableViewProjects" layoutX="14.0" layoutY="98.0" prefHeight="346.0" prefWidth="659.0">
+      <TableView fx:id="tableViewProjects" layoutX="14.0" layoutY="98.0" prefHeight="346.0" prefWidth="659.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="100.0">
         <columns>
-          <TableColumn fx:id="columnProject" onEditCommit="#writeToDatabase" prefWidth="136.7999849319458" text="Project name" />
-            <TableColumn fx:id="columnHourlyRate" onEditCommit="#writeToDatabaseNumber" prefWidth="87.19998168945312" text="Hourly Rate" />
-            <TableColumn fx:id="colClientName" prefWidth="96.80006408691406" text="Client" />
-            <TableColumn fx:id="columnDescription" onEditCommit="#writeToDatabase" prefWidth="169.5999755859375" text="Description" />
-            <TableColumn fx:id="colAssignedUsers" prefWidth="167.20001220703125" text="Assigned users" />
+          <TableColumn fx:id="columnProject" onEditCommit="#writeToDatabase" prefWidth="143.99999618530273" text="Project name" />
+            <TableColumn fx:id="columnHourlyRate" onEditCommit="#writeToDatabaseNumber" prefWidth="79.99996948242188" text="Hourly Rate" />
+            <TableColumn fx:id="colClientName" prefWidth="141.6000518798828" text="Client" />
+            <TableColumn fx:id="columnDescription" onEditCommit="#writeToDatabase" prefWidth="264.79998779296875" text="Description" />
+            <TableColumn fx:id="colAssignedUsers" prefWidth="224.0" text="Assigned users" />
         </columns>
       </TableView>
-      <Label layoutX="238.0" layoutY="14.0" styleClass="Headline" stylesheets="@../css/style.css" text="Manage Projects">
+      <Label layoutX="431.0" layoutY="14.0" styleClass="Headline" stylesheets="@../css/style.css" text="Manage Projects" AnchorPane.topAnchor="20.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <JFXButton fx:id="deleteButton" layoutX="735.0" layoutY="259.0" onAction="#handleDelete" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="DELETE" />
-      <JFXButton fx:id="createButton" layoutX="735.0" layoutY="135.0" onAction="#handleCreate" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="CREATE" />
-      <JFXButton fx:id="assignToButton" layoutX="735.0" layoutY="316.0" onAction="#handleAssigningTo" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="ASSIGN TO" />
+      <JFXButton fx:id="deleteButton" layoutX="945.0" layoutY="180.0" onAction="#handleDelete" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="Delete" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="210.0" />
+      <JFXButton fx:id="createButton" layoutX="945.0" layoutY="121.0" onAction="#handleCreate" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="Create" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="160.0" />
+      <JFXButton fx:id="assignToButton" layoutX="945.0" layoutY="238.0" onAction="#handleAssigningTo" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #66ff66;" text="Assign to" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="260.0" />
    </children>
 </AnchorPane>

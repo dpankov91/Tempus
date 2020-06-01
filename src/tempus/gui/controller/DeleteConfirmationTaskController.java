@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import tempus.gui.model.TaskModel;
+import tempus.gui.model.UserModel;
 
 /**
  * FXML Controller class
@@ -29,6 +30,7 @@ public class DeleteConfirmationTaskController implements Initializable {
 
     
     TaskModel tsModel;
+    UserModel usModel;
     AdminTimeTrackerController prevContrl;
     /**
      * Initializes the controller class.
@@ -36,6 +38,7 @@ public class DeleteConfirmationTaskController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tsModel = TaskModel.getInstance();
+        usModel = UserModel.getInstance();
     }    
 
     @FXML
@@ -47,12 +50,11 @@ public class DeleteConfirmationTaskController implements Initializable {
     @FXML
     private void handleConfirmDeleting(ActionEvent event) {
            tsModel.deleteSelectedTask();
-           //prevContrl.loadTableViewLoggedUserTasks();
+           prevContrl.loadInTaskView();
            goBack(event);
     }
 
     void setInfo(AdminTimeTrackerController aThis) {
         prevContrl = aThis;
     }
-    
 }

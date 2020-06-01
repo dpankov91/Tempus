@@ -107,9 +107,6 @@ public class OverviewDeveloperController implements Initializable {
     }
 
 
-    @FXML
-    private void formateDate(ActionEvent event) {
-    }
 
     @FXML
     private void onClickShowBarChart(ActionEvent event) {
@@ -138,7 +135,7 @@ public class OverviewDeveloperController implements Initializable {
     
         private List<LocalDate> getDifferenceDays(LocalDate fromDate, LocalDate toDate) {
             return Stream.iterate(fromDate, date -> date.plusDays(1))
-                    .limit(ChronoUnit.DAYS.between(fromDate, toDate))
+                    .limit(ChronoUnit.DAYS.between(fromDate, toDate.plusDays(1)))
                     .collect(Collectors.toList());
     }
 
@@ -167,7 +164,7 @@ public class OverviewDeveloperController implements Initializable {
 
         for (LocalDate localDate : datesToIterate) {
             for (Task task : filteredList) {
-                if (formatter.format(localDate).equals(formatter.format(task.getsStartTime()))) {
+                if (formatter.format(localDate).equals(formatter.format(task.getsStartTime().toLocalDate().atStartOfDay()))) {
                     series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
                     break;
                 }

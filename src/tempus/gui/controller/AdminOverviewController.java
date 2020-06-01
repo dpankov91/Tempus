@@ -162,7 +162,7 @@ public class AdminOverviewController implements Initializable {
 
     private List<LocalDate> getDifferenceDays(LocalDate fromDate, LocalDate toDate) {
             return Stream.iterate(fromDate, date -> date.plusDays(1))
-                    .limit(ChronoUnit.DAYS.between(fromDate, toDate))
+                    .limit(ChronoUnit.DAYS.between(fromDate, toDate.plusDays(1)))
                     .collect(Collectors.toList());
     }
 
@@ -240,10 +240,6 @@ public class AdminOverviewController implements Initializable {
         lblSumHrs.setText(String.valueOf(total));
     }
 
-    @FXML
-    private void formateDate(ActionEvent event) {
-
-    }
 
     @FXML
     private void onActionClearDatePicker(ActionEvent event) {

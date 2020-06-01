@@ -152,5 +152,4 @@ public class ManageClientsWindowController implements Initializable {
                 break;
         }
     }
-
 }

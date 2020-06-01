@@ -28,8 +28,8 @@
          </children>
       </AnchorPane>
       <Pane fx:id="paneBarChart" layoutX="508.0" layoutY="174.0" prefHeight="422.0" prefWidth="505.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="174.0" />
-      <JFXDatePicker fx:id="dateFrom" layoutX="238.0" layoutY="95.0" onAction="#formateDate" prefHeight="26.0" prefWidth="138.0" />
-      <JFXDatePicker fx:id="dateTo" layoutX="370.0" layoutY="95.0" onAction="#formateDate" prefHeight="28.0" prefWidth="138.0" />
+      <JFXDatePicker fx:id="dateFrom" layoutX="238.0" layoutY="95.0" prefHeight="26.0" prefWidth="138.0" />
+      <JFXDatePicker fx:id="dateTo" layoutX="370.0" layoutY="95.0" prefHeight="28.0" prefWidth="138.0" />
       <JFXButton fx:id="btnShow" layoutX="775.0" layoutY="98.0" onAction="#onClickShowBarChart" styleClass="assignBtn" stylesheets="@../css/assignStyle.css" text="Show" />
       <JFXComboBox fx:id="cmbProjects" layoutX="582.0" layoutY="99.0" onAction="#onSelectLoadSelectedProjectTable" prefHeight="26.0" prefWidth="154.0" promptText="Project Name" />
       <JFXButton fx:id="btnResetDates" layoutX="157.0" layoutY="100.0" onAction="#onClickResetDates" text="Reset Dates" />
