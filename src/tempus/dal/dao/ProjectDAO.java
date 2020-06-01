@@ -38,12 +38,15 @@ public class ProjectDAO {
     public Project createProject(String name, Client client, int hRate, String description) {
 
         try {
+            //we establish a connnection to the database
             Connection con = connector.getConnection();
+            //we make a query
             String sqlProject = "INSERT INTO Project (ProjectName, ClientId, HourlyRate, Description) "
                     + "VALUES(?,?,?,?)";
+            //preparing a statement and the query as argument
             PreparedStatement pstmt = con.prepareStatement(sqlProject,
                                       Statement.RETURN_GENERATED_KEYS);
-
+            //for each questionmark we have one prepared statement and we set them to the following parameters
             pstmt.setString(1, name);
             pstmt.setInt(2, client.getId());
             pstmt.setInt(3, hRate);
@@ -62,6 +65,7 @@ public class ProjectDAO {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
             }
+            // we create a new project and return the newproject and return null
             Project newProjec = new Project(id, name, hRate, client.getId(), description);
             return newProjec;
         } catch (SQLException ex) {

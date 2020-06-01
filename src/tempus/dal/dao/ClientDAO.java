@@ -72,14 +72,15 @@ public class ClientDAO {
     public Client createClient(String name, String city, int phone, String email) {
 
         try {
+            //we establish a connection to the database
             Connection con = connector.getConnection();
-
+            //we make a query
             String sqlClient = "INSERT INTO [Client] "
                     + "VALUES (?,?,?,?)";
-
+            //preparing a statement and the query as argument
             PreparedStatement pstmt = con.prepareStatement(sqlClient,
                                       Statement.RETURN_GENERATED_KEYS);
-
+            //for each questionmark we have one prepared statement and we set them to the following parameters
             pstmt.setString(1, name);
             pstmt.setString(2, city);
             pstmt.setInt(3, phone);
@@ -98,6 +99,7 @@ public class ClientDAO {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
             }
+            //we create a new client with parameters id, name, city, phone and email and return the client and return null
             Client client = new Client(id, name, city, phone, email);
             return client;
         } catch (SQLException ex) {

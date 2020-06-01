@@ -77,7 +77,12 @@ public class AddClientController implements Initializable {
     
     @FXML
     private void onActionSaveClient(ActionEvent event){
-        
+        /*
+        * checks if the fields are empty or null
+        * gets the Name, Address, Phone and Email
+        * sends the parameters to the clientModel
+        * and loads it to TableView in the previous controller
+        */
         if (checkIfFilled())
         {
             try {

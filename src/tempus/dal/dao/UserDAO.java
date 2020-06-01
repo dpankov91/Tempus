@@ -135,14 +135,15 @@ public class UserDAO {
     public User createUser(String fName, String lName, String hashedPassword, String email, String role, String address, int phone, int postcode) {
 
         try {
-            Connection con = connector.getConnection();
+            //connecting to database
+            Connection con = connector.getConnection(); 
+            //making a query
             String sqlUser = "INSERT INTO [User] "
                     + "VALUES (?,?,?,?,?,?,?,?,?)";
+            //preparing a statement and the query as argument
             PreparedStatement pstmt = con.prepareStatement(sqlUser,
                     Statement.RETURN_GENERATED_KEYS);
-            //INSERT INTO [User] 
-            //VALUES (?,'password','firstName','lastname',5555,'address',6700,1,'Admin','')
-
+            //for each questionmark we have one prepared statement and we set them to the following parameters
             pstmt.setString(1, email);
             pstmt.setString(2, hashedPassword);
             pstmt.setString(3, fName);
@@ -153,6 +154,7 @@ public class UserDAO {
             pstmt.setInt(8, (role == "Admin" ? 1 : 0));
             pstmt.setString(9, "");
             int id = 0;
+            
             int affectedRows = pstmt.executeUpdate();
 
             if (affectedRows == 0) {
@@ -166,6 +168,7 @@ public class UserDAO {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
             }
+            // we create a new User with the following paremeters and return the user and return null
             User us = new User(fName, lName, email, role);
             us.setId(id);
             us.setPassword(hashedPassword);

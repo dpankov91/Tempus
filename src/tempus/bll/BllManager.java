@@ -43,7 +43,7 @@ public class BllManager implements IBllFacade {
 
     @Override
     public void createProject(String name, Client client, int hRate, String description) {
-
+        //the project to be created with its parameters is send to the DAL layer
         facade.createProject(name, client, hRate, description);
     }
 
@@ -76,6 +76,7 @@ public class BllManager implements IBllFacade {
     @Override
     public void createUser(String fName, String lName, String password, String email, String role, String address, int phone, int postcode) {
         String hashedPassword = securityManager.hashPassword(password);
+        // the user that is to be created with its parameters is send to the DAL layer
         facade.createUser(fName, lName, hashedPassword, email, role, address, phone, postcode);
     }
 
@@ -106,6 +107,7 @@ public class BllManager implements IBllFacade {
 
     @Override
     public void createClient(String name, String city, int phone, String email) {
+        // the client to be created with its parameters is send to the DAL layer
         facade.createClient(name, city, phone, email);
     }
 

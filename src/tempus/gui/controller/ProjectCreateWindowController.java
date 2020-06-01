@@ -97,6 +97,13 @@ public class ProjectCreateWindowController implements Initializable {
     @FXML
     private void handleSave(ActionEvent event) {
         
+        /*
+        * checks if the fields are empty or null
+        * gets the ProjectName, HourlyRate, Description and the client that is selected
+        * sends the parameters to the projectModel
+        * and loads it to TableView in the previous controller
+        */
+        
         if (checkIfFilled())
         {
             try {
