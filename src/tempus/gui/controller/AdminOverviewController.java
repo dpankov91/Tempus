@@ -86,6 +86,10 @@ public class AdminOverviewController implements Initializable {
     private Label lblSumHrs;
     @FXML
     private JFXButton btnResetDates;
+    @FXML
+    private JFXButton btnResetProjects;
+    @FXML
+    private JFXButton btnResetUser;
 
     /**
      * Initializes the controller class.
@@ -112,14 +116,19 @@ public class AdminOverviewController implements Initializable {
         cmbUsers.getSelectionModel().selectedItemProperty().addListener((obs, old, newest) -> {
             taskModel.setSelectedUser(newest);
         });
+        btnResetProjects.setVisible(false);
+        btnResetDates.setVisible(false);
+        btnResetUser.setVisible(false);
     }
 
     @FXML
     private void onSelectLoadSelectedProjectTable(ActionEvent event) {
+        btnResetProjects.setVisible(true);
     }
 
     @FXML
     private void onSelectLoadSelectedUserTable(ActionEvent event) {
+        btnResetUser.setVisible(true);
     }
 
     private void loadUsersToCombobox() {
@@ -245,8 +254,24 @@ public class AdminOverviewController implements Initializable {
     private void onActionClearDatePicker(ActionEvent event) {
         dateFrom.setValue(null);
         dateTo.setValue(null);
+        btnResetDates.setVisible(false);
+    }
+
+    @FXML
+    private void onClickResetProjects(ActionEvent event) {
         cmbProjects.getSelectionModel().clearSelection();
+        btnResetProjects.setVisible(false);
+    }
+
+    @FXML
+    private void onClickResetUser(ActionEvent event) {
         cmbUsers.getSelectionModel().clearSelection();
+        btnResetUser.setVisible(false);
+    }
+
+    @FXML
+    private void onClickChooseDate(ActionEvent event) {
+        btnResetDates.setVisible(true);
     }
     
    

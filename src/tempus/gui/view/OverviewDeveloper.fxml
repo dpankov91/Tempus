@@ -28,10 +28,11 @@
          </children>
       </AnchorPane>
       <Pane fx:id="paneBarChart" layoutX="508.0" layoutY="174.0" prefHeight="422.0" prefWidth="505.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="174.0" />
-      <JFXDatePicker fx:id="dateFrom" layoutX="238.0" layoutY="95.0" prefHeight="26.0" prefWidth="138.0" />
-      <JFXDatePicker fx:id="dateTo" layoutX="370.0" layoutY="95.0" prefHeight="28.0" prefWidth="138.0" />
-      <JFXButton fx:id="btnShow" layoutX="775.0" layoutY="98.0" onAction="#onClickShowBarChart" styleClass="assignBtn" stylesheets="@../css/assignStyle.css" text="Show" />
-      <JFXComboBox fx:id="cmbProjects" layoutX="582.0" layoutY="99.0" onAction="#onSelectLoadSelectedProjectTable" prefHeight="26.0" prefWidth="154.0" promptText="Project Name" />
-      <JFXButton fx:id="btnResetDates" layoutX="157.0" layoutY="100.0" onAction="#onClickResetDates" text="Reset Dates" />
+      <JFXDatePicker fx:id="dateFrom" layoutX="207.0" layoutY="98.0" onAction="#onClickChooseDate" prefHeight="26.0" prefWidth="138.0" />
+      <JFXDatePicker fx:id="dateTo" layoutX="342.0" layoutY="99.0" onAction="#onClickChooseDate" prefHeight="28.0" prefWidth="138.0" />
+      <JFXButton fx:id="btnShow" layoutX="798.0" layoutY="99.0" onAction="#onClickShowBarChart" prefHeight="27.0" prefWidth="104.0" styleClass="assignBtn" stylesheets="@../css/assignStyle.css" text="Show Overview" />
+      <JFXComboBox fx:id="cmbProjects" layoutX="591.0" layoutY="98.0" onAction="#onSelectLoadSelectedProjectTable" prefHeight="26.0" prefWidth="154.0" promptText="Project Name" />
+      <JFXButton fx:id="btnResetDates" layoutX="480.0" layoutY="99.0" onAction="#onClickResetDates" styleClass="buttons" stylesheets="@../css/style.css" text="Reset Dates" />
+      <JFXButton fx:id="btnResetProjects" layoutX="746.0" layoutY="100.0" onAction="#onClickResetProjects" styleClass="buttons" stylesheets="@../css/style.css" text="X" />
    </children>
 </AnchorPane>

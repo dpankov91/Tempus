@@ -29,11 +29,13 @@
          </children>
       </AnchorPane>
       <Pane fx:id="paneBarChart" layoutX="508.0" layoutY="159.0" prefHeight="437.0" prefWidth="505.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="159.0" />
-      <JFXDatePicker fx:id="dateFrom" layoutX="197.0" layoutY="80.0" prefHeight="26.0" prefWidth="138.0" AnchorPane.leftAnchor="195.0" AnchorPane.topAnchor="80.0" />
-      <JFXDatePicker fx:id="dateTo" layoutX="335.0" layoutY="80.0" prefHeight="28.0" prefWidth="138.0" AnchorPane.topAnchor="80.0" />
+      <JFXDatePicker fx:id="dateFrom" layoutX="105.0" layoutY="80.0" onAction="#onClickChooseDate" prefHeight="26.0" prefWidth="138.0" AnchorPane.leftAnchor="105.0" AnchorPane.topAnchor="80.0" />
+      <JFXDatePicker fx:id="dateTo" layoutX="243.0" layoutY="80.0" onAction="#onClickChooseDate" prefHeight="28.0" prefWidth="138.0" AnchorPane.topAnchor="80.0" />
       <JFXButton fx:id="btnShow" layoutX="901.0" layoutY="79.0" onAction="#onClickShowBarChart" prefHeight="27.0" prefWidth="138.0" styleClass="assignBtn" stylesheets="@../css/assignStyle.css" text="Show Graphical Chart" AnchorPane.rightAnchor="51.0" />
-      <JFXButton fx:id="btnResetDates" layoutX="51.0" layoutY="81.0" onAction="#onActionClearDatePicker" styleClass="buttons" stylesheets="@../css/assignStyle.css" text="Reset dates" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="80.0" />
-      <JFXComboBox fx:id="cmbProjects" layoutX="517.0" layoutY="81.0" onAction="#onSelectLoadSelectedProjectTable" prefHeight="26.0" prefWidth="154.0" promptText="Project Name" AnchorPane.topAnchor="80.0" />
-      <JFXComboBox fx:id="cmbUsers" layoutX="684.0" layoutY="81.0" onAction="#onSelectLoadSelectedUserTable" prefHeight="26.0" prefWidth="154.0" promptText="User Name" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="80.0" />
+      <JFXButton fx:id="btnResetDates" layoutX="381.0" layoutY="81.0" onAction="#onActionClearDatePicker" styleClass="buttons" stylesheets="@../css/assignStyle.css" text="Reset dates" AnchorPane.leftAnchor="381.0" AnchorPane.topAnchor="81.0" />
+      <JFXComboBox fx:id="cmbProjects" layoutX="484.0" layoutY="81.0" onAction="#onSelectLoadSelectedProjectTable" prefHeight="26.0" prefWidth="154.0" promptText="Project Name" AnchorPane.topAnchor="81.0" />
+      <JFXComboBox fx:id="cmbUsers" layoutX="699.0" layoutY="82.0" onAction="#onSelectLoadSelectedUserTable" prefHeight="26.0" prefWidth="154.0" promptText="User Name" AnchorPane.rightAnchor="221.60000000000002" AnchorPane.topAnchor="82.0" />
+      <JFXButton fx:id="btnResetProjects" layoutX="638.0" layoutY="80.0" onAction="#onClickResetProjects" prefHeight="26.0" prefWidth="23.0" styleClass="buttons" stylesheets="@../css/style.css" text="X" />
+      <JFXButton fx:id="btnResetUser" layoutX="853.0" layoutY="82.0" onAction="#onClickResetUser" prefHeight="26.0" prefWidth="23.0" styleClass="buttons" stylesheets="@../css/style.css" text="X" />
    </children>
 </AnchorPane>

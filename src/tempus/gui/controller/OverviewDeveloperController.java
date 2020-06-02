@@ -79,6 +79,8 @@ public class OverviewDeveloperController implements Initializable {
     private Date toDate;
     @FXML
     private JFXButton btnResetDates;
+    @FXML
+    private JFXButton btnResetProjects;
 
     /**
      * Initializes the controller class.
@@ -92,6 +94,8 @@ public class OverviewDeveloperController implements Initializable {
         setUpTaskTableView();
         taskModel.getAllTasksOverview();
         taskModel.getAllTasksOverviewForLoggedUser();
+        btnResetDates.setVisible(false);
+        btnResetProjects.setVisible(false);
     }    
     
     private void loadProjectsToCombobox() {
@@ -104,6 +108,7 @@ public class OverviewDeveloperController implements Initializable {
 
     @FXML
     private void onSelectLoadSelectedProjectTable(ActionEvent event) {
+        btnResetProjects.setVisible(true);
     }
 
 
@@ -199,6 +204,20 @@ public class OverviewDeveloperController implements Initializable {
 
     @FXML
     private void onClickResetDates(ActionEvent event) {
+        dateFrom.setValue(null);
+        dateTo.setValue(null);
+        btnResetDates.setVisible(false);
+    }
+
+    @FXML
+    private void onClickResetProjects(ActionEvent event) {
+        cmbProjects.getSelectionModel().clearSelection();
+        btnResetProjects.setVisible(false);
+    }
+
+    @FXML
+    private void onClickChooseDate(ActionEvent event) {
+        btnResetDates.setVisible(true);
     }
     
 }

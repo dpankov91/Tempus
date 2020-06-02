@@ -69,7 +69,6 @@ task.setId(id);
 
         Connection con = connector.getConnection();
         PreparedStatement pstmt = con.prepareStatement(sql);
-        System.out.println("dao");
         pstmt.setString(1, name);
         Timestamp startTimeStamp = Timestamp.valueOf(startTime);
         pstmt.setTimestamp(2, startTimeStamp);
@@ -94,10 +93,8 @@ task.setId(id);
         pstmt.setString(3, note);
         Timestamp startTimeStamp = Timestamp.valueOf(startTime);
         pstmt.setTimestamp(4, startTimeStamp);
-        System.out.println(startTimeStamp);
         Timestamp endTimeStamp = Timestamp.valueOf(endTime);
         pstmt.setTimestamp(5, endTimeStamp);
-        System.out.println(endTimeStamp);
         pstmt.setFloat(6, spentSeconds);
         pstmt.setInt(7, loggedUser.getId());
 
