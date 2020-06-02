@@ -28,9 +28,14 @@ import tempus.be.User;
 import tempus.gui.model.UserModel;
 
 /**
- * FXML Controller class
+ * The ManageUsersWindowController is a class. This manages the users window
+ * scene
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class ManageUsersWindowController implements Initializable {
 
@@ -57,6 +62,9 @@ public class ManageUsersWindowController implements Initializable {
     @FXML
     private JFXButton deleteUser;
 
+    /**
+     *
+     */
     public User selectedUser;
     @FXML
     private JFXButton btnChangePassword;

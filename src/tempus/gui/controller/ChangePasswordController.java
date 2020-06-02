@@ -18,9 +18,14 @@ import tempus.be.User;
 import tempus.gui.model.UserModel;
 
 /**
- * FXML Controller class
- *
- * @author dpank
+ *The ChangePasswordController is a class. It allows the user to change password
+ * whenever they prefer
+ * 
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class ChangePasswordController implements Initializable {
 
@@ -39,6 +44,8 @@ public class ChangePasswordController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

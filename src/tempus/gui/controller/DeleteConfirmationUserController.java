@@ -21,9 +21,14 @@ import javafx.stage.Stage;
 import tempus.be.User;
 import tempus.gui.model.UserModel;
 /**
- * FXML Controller class
+ * The DeleteConfirmationUserController is a class. It allows the user to delete 
+ * another user inside the ManageUsersWindowController
  *
- * @author Tienesh
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class DeleteConfirmationUserController implements Initializable {
 
@@ -41,6 +46,8 @@ public class DeleteConfirmationUserController implements Initializable {
     ManageUsersWindowController prevContrl; // Takes information frmo the ManageUserstsWindow fxml.
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

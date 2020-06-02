@@ -12,16 +12,29 @@ import tempus.dal.DalManager;
 import tempus.dal.IDalFacade;
 
 /**
+ * The UserTest is a class. It tests the user's details to show and check if the
+ * methods related to it are functional
  *
- * @author chris
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class UserTest {
     private IDalFacade dalModel;
     
     private User usToExpect;
+
+    /**
+     *
+     */
     public UserTest() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
          dalModel = new DalManager();
@@ -32,6 +45,10 @@ public class UserTest {
             usToExpect.setAddress("Test Street 23");
     }
     //createUser(String fName, String lName, String hashedPassword, String email, String role, String address, int phone, int postcode)
+
+    /**
+     *
+     */
     @Test
     public void create_User_Acceptance_Test() 
     {
@@ -51,6 +68,10 @@ public class UserTest {
     }
     
     //If we have time. We should make exception tests
+
+    /**
+     *
+     */
     @Test(expected=NullPointerException.class)
     public void select_User_Acceptance_Test() 
     {
@@ -68,6 +89,9 @@ public class UserTest {
     }
     //editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL, String password)
     
+    /**
+     *
+     */
     @Test
     public void edit_User_Acceptance_Test() 
     {
@@ -81,6 +105,10 @@ public class UserTest {
         assertEquals(usToExpect.getPhone(), actual.getPhone());
         assertEquals(usToExpect.getPostcode(), actual.getPostcode());
     }
+
+    /**
+     *
+     */
     @Test
     public void delete_User_Acceptance_Test() 
     {

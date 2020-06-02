@@ -24,9 +24,14 @@ import tempus.be.Project;
 import tempus.gui.model.ProjectModel;
 
 /**
- * FXML Controller class
+ * The DeveloperProjectInfoController is a class. It shows the information regarding 
+ * projects for the Developer Users
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class DeveloperProjectInfoController implements Initializable {
 
@@ -40,6 +45,8 @@ public class DeveloperProjectInfoController implements Initializable {
     private ProjectModel projModel;
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

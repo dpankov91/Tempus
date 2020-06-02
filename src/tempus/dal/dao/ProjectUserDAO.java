@@ -16,17 +16,32 @@ import tempus.be.User;
 import tempus.dal.DbConnectionProvider;
 
 /**
+ * The ProjectUserDAO is a class. It can perform CRUD operations on the database 
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class ProjectUserDAO {
 
     private final DbConnectionProvider connector;
 
+    /**
+     *
+     * @throws IOException
+     */
     public ProjectUserDAO() throws IOException {
         connector = new DbConnectionProvider();
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public List<User> getUserProject(int id) throws SQLException {
         List<User> assignedUsers = new ArrayList<>();
 

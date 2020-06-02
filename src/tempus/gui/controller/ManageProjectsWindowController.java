@@ -33,9 +33,14 @@ import tempus.be.User;
 import tempus.gui.model.ProjectModel;
 
 /**
- * FXML Controller class
+ * The ManageProjectsWindowController is a class. This manages the projects
+ * inside the scene/table
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class ManageProjectsWindowController implements Initializable {
 
@@ -56,6 +61,9 @@ public class ManageProjectsWindowController implements Initializable {
     @FXML
     private JFXButton assignToButton;
 
+    /**
+     *
+     */
     public Project selectedProject;
     private ProjectModel projModel;
     @FXML
@@ -63,6 +71,8 @@ public class ManageProjectsWindowController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

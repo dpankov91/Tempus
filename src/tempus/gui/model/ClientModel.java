@@ -14,8 +14,13 @@ import tempus.bll.IBllFacade;
 import static tempus.gui.model.UserModel.model;
 
 /**
+ * The ClientModel is a model. It gets and passes data about the clients to the BLL
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class ClientModel {
     
@@ -24,11 +29,17 @@ public class ClientModel {
     private final ObservableList<Client> clientList = FXCollections.observableArrayList();
     private Client selectedClient;
     
-    
+    /**
+     *
+     * @return
+     */
     public static ClientModel getInstance() {
         return cmodel;
     }
 
+    /**
+     *
+     */
     public ClientModel() 
     {
         bllManager = new BllManager();
@@ -36,31 +47,65 @@ public class ClientModel {
        
     }
     
+    /**
+     *
+     * @return
+     */
     public ObservableList<Client> getObsClients() 
     {
         return clientList;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Client> getAllClients() {
         return bllManager.getAllClientss();
     }
 
+    /**
+     *
+     * @return
+     */
     public Client getSelectedClient() {
         return selectedClient;
     }
 
+    /**
+     *
+     * @param selectedClient
+     */
     public void setSelectedClient(Client selectedClient) {
         this.selectedClient = selectedClient;
     }
 
+    /**
+     *
+     */
     public void deleteSelectedClient() {
         bllManager.deleteClient(selectedClient); // Brings the intended client for delettion down a layer, into the BLL.
     }
 
+    /**
+     *
+     * @param name
+     * @param city
+     * @param phone
+     * @param email
+     */
     public void createClient(String name, String city, int phone, String email) {
          bllManager.createClient(name, city, phone, email);
     }
 
+    /**
+     *
+     * @param id
+     * @param name
+     * @param city
+     * @param phone
+     * @param email
+     */
     public void editClient(int id, String name, String city, int phone, String email) {
     bllManager.editClient(id,name, city, phone, email);
     }

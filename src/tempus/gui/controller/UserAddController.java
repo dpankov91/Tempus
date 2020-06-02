@@ -25,9 +25,14 @@ import tempus.gui.model.UserModel;
 
 
 /**
- * FXML Controller class
+ * The UserAddController is a class. This adds a user inside the ManageUserWindow
+ * scene and loads them into the table view
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class UserAddController implements Initializable {
 

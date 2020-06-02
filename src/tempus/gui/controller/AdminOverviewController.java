@@ -41,9 +41,14 @@ import tempus.gui.model.TaskModel;
 import tempus.gui.model.UserModel;
 
 /**
- * FXML Controller class
- *
- * @author dpank
+ *The AdminOverview is a class. It allows an overview of the Admin user
+ * which shows all projects/tasks created
+ * 
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class AdminOverviewController implements Initializable {
 
@@ -93,6 +98,8 @@ public class AdminOverviewController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

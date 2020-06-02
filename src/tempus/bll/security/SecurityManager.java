@@ -10,8 +10,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
+ * The SecurityException is a class. 
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class SecurityManager implements ISecurityManager {
 

@@ -22,9 +22,14 @@ import tempus.gui.model.ProjectModel;
 import tempus.gui.model.UserModel;
 
 /**
- * FXML Controller class
+ * The DeleteConfirmationController is a class. It allows the user to delete
+ * a project inside the ManageProjectsWindowController
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class DeleteConfirmationController implements Initializable {
 
@@ -41,6 +46,8 @@ public class DeleteConfirmationController implements Initializable {
     ManageProjectsWindowController prevContrl; // Takes information frmo the ManageProjectsWindow fxml.
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

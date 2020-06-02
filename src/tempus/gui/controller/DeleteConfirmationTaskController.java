@@ -17,9 +17,14 @@ import tempus.gui.model.TaskModel;
 import tempus.gui.model.UserModel;
 
 /**
- * FXML Controller class
+ * The DeleteConfirmationTaskController is a class. It allows to delete the tasks
+ * inside the AdminTimeTrackerController
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class DeleteConfirmationTaskController implements Initializable {
 
@@ -34,6 +39,8 @@ public class DeleteConfirmationTaskController implements Initializable {
     AdminTimeTrackerController prevContrl;
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

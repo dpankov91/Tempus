@@ -6,8 +6,13 @@
 package tempus.bll.security;
 
 /**
+ * The SecurityException is a class. It runs an exception
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class SecurityException extends RuntimeException {
     public SecurityException(String message) {

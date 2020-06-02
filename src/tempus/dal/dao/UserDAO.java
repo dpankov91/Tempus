@@ -22,17 +22,32 @@ import tempus.be.User;
 import tempus.dal.DbConnectionProvider;
 
 /**
- *
- * @author Tienesh
+ *The UserDAO is a class. It can perform CRUD operations on the database
+ * 
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class UserDAO {
 
     private final DbConnectionProvider connector;
 
+    /**
+     *
+     */
     public UserDAO() {
         this.connector = new DbConnectionProvider();
     }
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws SQLException
+     */
     public User getUser(String username, String password) throws SQLException {
         String sql = "SELECT * FROM [dbo].[User] WHERE email = ? AND password = ? ";
 
@@ -75,6 +90,11 @@ public class UserDAO {
 
     }
 
+    /**
+     *
+     * @param userToDelete
+     * @return
+     */
     public User deleteUser(User userToDelete) {
         //In here the user is deleted from the database.
         try {
@@ -93,6 +113,11 @@ public class UserDAO {
         return null;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public List<User> getAllUsers() throws SQLException {
         ArrayList<User> allUsers = new ArrayList<>();
 
@@ -132,6 +157,18 @@ public class UserDAO {
         return allUsers;
     }
 
+    /**
+     *
+     * @param fName
+     * @param lName
+     * @param hashedPassword
+     * @param email
+     * @param role
+     * @param address
+     * @param phone
+     * @param postcode
+     * @return
+     */
     public User createUser(String fName, String lName, String hashedPassword, String email, String role, String address, int phone, int postcode) {
 
         try {
@@ -183,6 +220,20 @@ public class UserDAO {
         return null;
     }
 // method that updates valuse into database
+
+    /**
+     *
+     * @param id
+     * @param name
+     * @param Lname
+     * @param email
+     * @param realphone
+     * @param realpostcode
+     * @param address
+     * @param imageURL
+     * @param password
+     * @return
+     */
     public User editUser(int id, String name, String Lname, String email, int realphone, int realpostcode, String address, String imageURL, String password) {
         try {
             String sql = "UPDATE [dbo].[User] SET [email] = ?, [firstName] = ?, [lastName] = ?, [phoneNumber] = ?, [address] = ?, [postcode] = ?, [userPhoto] = ? WHERE [userID] = ?";
@@ -214,6 +265,12 @@ public class UserDAO {
         return null;
     }
 
+    /**
+     *
+     * @param selectedProject
+     * @param usersAssign
+     * @throws SQLException
+     */
     public void assignUsersToProj(Project selectedProject, List<User> usersAssign) throws SQLException {
 
         String sql = "INSERT INTO UserAndProject (projectID, userID) VALUES (?, ?)";
@@ -230,6 +287,12 @@ public class UserDAO {
         pstmt.executeBatch();
     }
 
+    /**
+     *
+     * @param pswSecond
+     * @param userID
+     * @throws SQLException
+     */
     public void newPassword(String pswSecond, int userID) throws SQLException {
         // In here, the new password is updated.
         String sql = "UPDATE [dbo].[User] SET [password] = ? WHERE [userID] = ?";
@@ -242,6 +305,12 @@ public class UserDAO {
         pstmt.executeUpdate(); //String is sent to the database and then updates the database with the new hashpassword.
     }
 
+    /**
+     *
+     * @param newPassword
+     * @param id
+     * @throws SQLException
+     */
     public void newPasswordForSelectedUser(String newPassword, int id) throws SQLException {
         String sql = "UPDATE [dbo].[User] SET [password] = ? WHERE [userID] = ?";
 

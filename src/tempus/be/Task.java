@@ -9,8 +9,15 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
+ * The Task class is an entity class. It represents a table in the database,
+ * where each entity instance corresponds to a row in the table. The columns of
+ * each row is the attribute of the entity.
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class Task {
 
@@ -25,10 +32,22 @@ public class Task {
     private String userFirstName;
     private int id;
 
+    /**
+     *Sets the ID of the task
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @param task Name of the task
+     * @param note Notes of the task
+     * @param startTime StartTime of the task
+     * @param endTime EndTime of the task
+     * @param spentTime SpentTime of the task
+     */
     public Task(String task, String note, LocalDateTime startTime, LocalDateTime endTime, double spentTime) {
         this.task = task;
         this.note = note;
@@ -36,7 +55,17 @@ public class Task {
         this.endTime = endTime;
         this.spentTime = spentTime;
     }
-      public Task(int id,String task, String note, LocalDateTime startTime, LocalDateTime endTime, double spentTime) {
+
+    /**
+     *
+     * @param id Id of the task
+     * @param task Name of the task
+     * @param note Notes of the task
+     * @param startTime EndTime of the task
+     * @param endTime EndTime of the task
+     * @param spentTime SpentTime of the task
+     */
+    public Task(int id,String task, String note, LocalDateTime startTime, LocalDateTime endTime, double spentTime) {
         this.id = id;
         this.task = task;
         this.note = note;
@@ -45,6 +74,17 @@ public class Task {
         this.spentTime = spentTime;
     }
 
+    /**
+     *
+     * @param projName Project name
+     * @param userLastName User last name
+     * @param userFirstName User first name
+     * @param task Name of the task
+     * @param note Notes of the task
+     * @param startTime StartTime of the task
+     * @param endTime EndTime of the task
+     * @param spentTime SpentTime of the task
+     */
     public Task(String projName, String userLastName, String userFirstName, String task, String note, LocalDateTime startTime, LocalDateTime endTime, double spentTime) {
         this.projName = projName;
         this.task = task;
@@ -56,46 +96,90 @@ public class Task {
         this.endTime = endTime;
     }
 
+    /**
+     *Retrieves the user first name
+     * @return
+     */
     public String getUserFirstName() {
         return userFirstName;
     }
 
+    /**
+     *Sets the user first name
+     * @param userFirstName
+     */
     public void setUserFirstName(String userFirstName) {
         this.userFirstName = userFirstName;
     }
 
+    /**
+     *Retrieves the project name
+     * @return
+     */
     public String getProjName() {
         return projName;
     }
 
+    /**
+     *Sets the project name
+     * @param projName
+     */
     public void setProjName(String projName) {
         this.projName = projName;
     }
 
+    /**
+     *Retrieves user last name
+     * @return
+     */
     public String getUserLastName() {
         return userLastName;
     }
 
+    /**
+     *Sets the user last name
+     * @param userLastName
+     */
     public void setUserLastName(String userLastName) {
         this.userLastName = userLastName;
     }
 
+    /**
+     *Retrieves the task 
+     * @return
+     */
     public String getTask() {
         return task;
     }
 
+    /**
+     *Sets the task
+     * @param task
+     */
     public void setTask(String task) {
         this.task = task;
     }
 
+    /**
+     *Retrieves the note of the task
+     * @return
+     */
     public String getNote() {
         return note;
     }
 
+    /**
+     *Sets the note of the task
+     * @param note
+     */
     public void setNote(String note) {
         this.note = note;
     }
 
+    /**
+     *Retrieves the StartTime of the task
+     * @return
+     */
     public String getStartTime() {
         return convertTime(startTime);
     }
@@ -149,36 +233,69 @@ public class Task {
 
     }
 
+    /**
+     *Retrieves the startTime of the task
+     * @return
+     */
     public LocalDateTime getsStartTime() {
         return startTime;
     }
 
+    /**
+     *Sets the startTime of the task
+     * @param startTime
+     */
     public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
 
+    /**
+     *Retrieves the endTime of the task
+     * @return
+     */
     public String getEndTime() {
         return convertTime(endTime);
     }
     
+    /**
+     *Retrieves the endTime of the task
+     * @return
+     */
     public LocalDateTime getsEndTime() {
         return endTime;
     }
     
+    /**
+     *Sets the endTime of the task
+     * @param endTime
+     */
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
 
+    /**
+     *Retrieves the spentTime of the task
+     * @return
+     */
     public double getSpentTime() {
         double spentTim = spentTime;
         return spentTim;
     }
 
+    /**
+     *Sets the spentTime of the task
+     * @param spentTime
+     */
     public void setSpentTime(double spentTime) {
         
         this.spentTime = spentTime;
     }
-public int getId() {
+
+    /**
+     *Retrieves the ID of the task
+     * @return
+     */
+    public int getId() {
         return id;
     }
    

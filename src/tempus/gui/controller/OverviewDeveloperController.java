@@ -40,9 +40,14 @@ import tempus.gui.model.TaskModel;
 import tempus.gui.model.UserModel;
 
 /**
- * FXML Controller class
- *
- * @author dpank
+ * The OverviewDeveloperController is a class. This shows an overview for all
+ * developer users for projects/tasks
+ * 
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class OverviewDeveloperController implements Initializable {
 
@@ -84,6 +89,8 @@ public class OverviewDeveloperController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

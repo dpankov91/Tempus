@@ -30,9 +30,14 @@ import tempus.be.User;
 import tempus.gui.model.UserModel;
 
 /**
- * FXML Controller class
+ * The RootAdminController is a class. It manages the most of the program
+ * as it allows switching between the scenes and all functions (and main buttons).
  *
- * @author PC
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class RootAdminController implements Initializable {
 
@@ -67,6 +72,8 @@ public class RootAdminController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -77,13 +84,17 @@ public class RootAdminController implements Initializable {
         loadUpTimesheet();
     }
 
+    /**
+     *
+     */
     public void setFirstName() {
       User us = userModel.getloggedInUser();
         lbl_fname.setText(us.getFName()+" "+us.getLName());
     }
 
-
-
+    /**
+     *
+     */
     public void setUpimg() {
         User us = userModel.getloggedInUser();
         imageUser.setImage(us.getPhotoURL());

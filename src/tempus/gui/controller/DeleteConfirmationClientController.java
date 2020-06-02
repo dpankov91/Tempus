@@ -17,9 +17,14 @@ import tempus.be.Client;
 import tempus.gui.model.ClientModel;
 
 /**
- * FXML Controller class
+ * The DeleteConfirmationClientController is a class. It shows a pop up to confirm
+ * the user whether they are sure to delete the client selected
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class DeleteConfirmationClientController implements Initializable {
     
@@ -35,6 +40,8 @@ public class DeleteConfirmationClientController implements Initializable {
     
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

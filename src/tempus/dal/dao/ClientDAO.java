@@ -18,17 +18,30 @@ import tempus.be.Client;
 import tempus.dal.DbConnectionProvider;
 
 /**
+ * The ClientDAO is a class. It can perform CRUD operations on the database
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class ClientDAO {
 
     private final DbConnectionProvider connector;
 
+    /**
+     *
+     */
     public ClientDAO() {
         this.connector = new DbConnectionProvider();
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public List<Client> getAllClientss() throws SQLException {
 
         List<Client> allClientss = new ArrayList<>();
@@ -51,6 +64,11 @@ public class ClientDAO {
 
     }
 
+    /**
+     *
+     * @param selectedClient
+     * @return
+     */
     public Client deleteClient(Client selectedClient) {
         //In here the user is deleted from the database.
         try {
@@ -69,6 +87,14 @@ public class ClientDAO {
         return null;
     }
 
+    /**
+     *
+     * @param name
+     * @param city
+     * @param phone
+     * @param email
+     * @return
+     */
     public Client createClient(String name, String city, int phone, String email) {
 
         try {
@@ -108,6 +134,15 @@ public class ClientDAO {
         return null;
     }
 
+    /**
+     *
+     * @param id
+     * @param name
+     * @param city
+     * @param phone
+     * @param email
+     * @return
+     */
     public Client editClient(int id, String name, String city, int phone, String email) {
         try {
             String sql = "UPDATE [dbo].[Client] SET [clientName] = ?, [clientAddress] = ?, [clientPhone] = ?, [clientEmail] = ? WHERE clientID=?";

@@ -24,9 +24,14 @@ import tempus.gui.model.ProjectModel;
 import tempus.gui.model.UserModel;
 
 /**
- * FXML Controller class
+ * The ProjectAssignController is a class. This assigns a project to an user when
+ * selected inside the list view/combobox
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class ProjectAssignController implements Initializable {
 
@@ -45,6 +50,8 @@ public class ProjectAssignController implements Initializable {
     
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

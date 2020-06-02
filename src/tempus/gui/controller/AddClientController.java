@@ -17,9 +17,14 @@ import javafx.stage.Stage;
 import tempus.gui.model.ClientModel;
 
 /**
- * FXML Controller class
- *
- * @author dpank
+ *The AddClientController is a class. It adds a client to the table view and
+ * database
+ * 
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class AddClientController implements Initializable {
 
@@ -42,6 +47,8 @@ public class AddClientController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

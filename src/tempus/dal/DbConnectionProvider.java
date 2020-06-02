@@ -10,14 +10,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * The DBConnectionProvider is a class. It provides the connection to the database
  *
- * @author chris
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class DbConnectionProvider {
 
     private static final String PROP_FILE = "data/databaseConnectionInfo.properties";
     private SQLServerDataSource ds;
 
+    /**
+     *Connects to the database
+     */
     public DbConnectionProvider() {
 
         try {
@@ -34,6 +42,10 @@ public class DbConnectionProvider {
 
     }
 
+    /**
+     *Retrieves the connection of the database
+     * @return
+     */
     public Connection getConnection() {
 
         try {

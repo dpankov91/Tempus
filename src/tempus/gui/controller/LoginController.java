@@ -29,9 +29,14 @@ import tempus.be.User;
 import tempus.gui.model.UserModel;
 
 /**
- * FXML Controller class
+ * The LoginController is a class. It handles the login of users and whether
+ * they are authorized to login (differentiate between admin and developer users)
  *
- * @author Tienesh
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class LoginController implements Initializable {
 
@@ -51,6 +56,8 @@ public class LoginController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

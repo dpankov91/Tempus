@@ -20,17 +20,31 @@ import tempus.dal.DbConnectionProvider;
 import java.time.LocalDateTime;
 
 /**
- *
- * @author dpank
+ *The TaskDAO is a class. It can perform CRUD operations on the database
+ * 
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class TaskDAO {
 
     private final DbConnectionProvider connector;
 
+    /**
+     *
+     * @throws IOException
+     */
     public TaskDAO() throws IOException {
         this.connector = new DbConnectionProvider();
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public List<Task> getAllTasksOverview() throws SQLException {
         ArrayList<Task> allTasksOverview = new ArrayList<>();
 
@@ -63,6 +77,17 @@ task.setId(id);
         return allTasksOverview;
     }
 //method that updates new data into database
+
+    /**
+     *
+     * @param id
+     * @param name
+     * @param startTime
+     * @param endTime
+     * @param note
+     * @param spentTime
+     * @throws SQLException
+     */
     public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime) throws SQLException {
 
         String sql = "UPDATE [dbo].[Task] SET [task] = ?, [startTime] = ?, [endTime] = ?, [note] = ?, [spentTime] = ? WHERE id=?";
@@ -82,6 +107,17 @@ task.setId(id);
 
     }
 
+    /**
+     *
+     * @param selectedProject
+     * @param taskName
+     * @param note
+     * @param loggedUser
+     * @param startTime
+     * @param endTime
+     * @param spentSeconds
+     * @throws SQLException
+     */
     public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime, long spentSeconds) throws SQLException {
         String sql = "INSERT INTO [Task] VALUES (?,?,?,?,?,?,?)";
 
@@ -101,7 +137,11 @@ task.setId(id);
         pstmt.executeUpdate();
     }
 
-
+    /**
+     *
+     * @param selectedTask
+     * @throws SQLException
+     */
     public void deleteClient(Task selectedTask) throws SQLException {
             String sql = "DELETE  FROM [dbo].[Task] WHERE id=?";
 

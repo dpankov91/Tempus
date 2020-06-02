@@ -12,8 +12,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
+ * This class is the main class of the application. It sets and opens the
+ * application.
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class TempusApp extends Application {
     

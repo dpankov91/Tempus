@@ -25,10 +25,16 @@ import javafx.stage.Stage;
 import tempus.be.Client;
 import tempus.gui.model.ClientModel;
 import tempus.gui.model.ProjectModel;
+
 /**
- * FXML Controller class
+ * The ProjectCreateWindowController is a class. This creates the projects inside
+ * the Root Admin scene and ManageProjectsWindow scene
  *
- * @author chris
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class ProjectCreateWindowController implements Initializable {
 
@@ -119,6 +125,9 @@ public class ProjectCreateWindowController implements Initializable {
         alert.showAndWait();
     }
     
+    /**
+     *
+     */
     public void loadClientsToComboBox(){ 
         allClients = cmodel.getObsClients();
         for (Client cl : allClients) {

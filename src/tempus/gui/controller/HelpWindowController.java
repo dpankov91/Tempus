@@ -14,9 +14,14 @@ import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * The HelpWindowController is a class. A pop up shows the information about the project
+ * to serve a user guide to operate the program
  *
- * @author PC
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class HelpWindowController implements Initializable {
 
@@ -25,6 +30,8 @@ public class HelpWindowController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

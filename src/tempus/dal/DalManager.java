@@ -30,8 +30,13 @@ import tempus.dal.dao.TaskDAO;
 import tempus.dal.dao.UserDAO;
 
 /**
+ * The SecurityException is a class. It 
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class DalManager implements IDalFacade {
 

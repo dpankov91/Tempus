@@ -24,9 +24,14 @@ import tempus.be.User;
 import tempus.gui.model.UserModel;
 
 /**
- * FXML Controller class
+ * The SettingsWindowController is a class. It shows the settings for the users
+ * such as changing the password for a user and their info
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class SettingsWindowController implements Initializable {
 
@@ -52,6 +57,8 @@ public class SettingsWindowController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

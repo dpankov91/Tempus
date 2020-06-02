@@ -21,8 +21,13 @@ import tempus.bll.BllManager;
 import tempus.bll.IBllFacade;
 
 /**
+ * The TaskModel is a model. It gets and passes data about the tasks to the BLL
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class TaskModel {
 
@@ -40,75 +45,147 @@ public class TaskModel {
     private final ObjectProperty<LocalDateTime> timeStart = new SimpleObjectProperty<>();
     private final ObjectProperty<LocalDateTime> timeEnd = new SimpleObjectProperty<>();
 
+    /**
+     *
+     * @return
+     */
     public LocalDateTime getTimeEnd() {
         return timeEnd.get();
     }
 
+    /**
+     *
+     * @param value
+     */
     public void setTimeEnd(LocalDateTime value) {
         timeEnd.set(value);
     }
 
+    /**
+     *
+     * @return
+     */
     public Task getSelectedTask() {
         return selectedTask;
     }
 
+    /**
+     *
+     * @param selectedTask
+     */
     public void setSelectedTask(Task selectedTask) {
         this.selectedTask = selectedTask;
     }
 
+    /**
+     *
+     */
     public void deleteSelectedTask() {
         bllManager.deleteTask(selectedTask);
     }
 
+    /**
+     *
+     * @return
+     */
     public ObjectProperty timeEndProperty() {
         return timeEnd;
     }
 
+    /**
+     *
+     * @return
+     */
     public LocalDateTime getTimeStart() {
         return timeStart.get();
     }
 
+    /**
+     *
+     * @param value
+     */
     public void setTimeStart(LocalDateTime value) {
         timeStart.set(value);
     }
 
+    /**
+     *
+     * @return
+     */
     public ObjectProperty timeStartProperty() {
         return timeStart;
     }
 
+    /**
+     *
+     * @return
+     */
     public Project getSelectedProject() {
         return selectedProject;
     }
 
+    /**
+     *
+     * @param selectedProject
+     */
     public void setSelectedProject(Project selectedProject) {
         this.selectedProject = selectedProject;
     }
 
+    /**
+     *
+     * @return
+     */
     public User getSelectedUser() {
         return selectedUser;
     }
 
+    /**
+     *
+     * @param selectedUser
+     */
     public void setSelectedUser(User selectedUser) {
         this.selectedUser = selectedUser;
     }
 
+    /**
+     *
+     * @return
+     */
     public LocalDate getDateFrom() {
         return dateFrom;
     }
 
+    /**
+     *
+     * @param dateFrom
+     */
     public void setDateFrom(LocalDate dateFrom) {
         this.dateFrom = dateFrom;
     }
 
+    /**
+     *
+     * @return
+     */
     public LocalDate getDateTo() {
         return dateTo;
     }
 
+    /**
+     *
+     * @param dateTo
+     */
     public void setDateTo(LocalDate dateTo) {
         this.dateTo = dateTo;
     }
 
     //private AdminOverviewController adOvController;
+
+    /**
+     *
+     * @return
+     */
     public static TaskModel getInstance() {
         return model;
     }
@@ -117,21 +194,40 @@ public class TaskModel {
     public void injectAdminOverviewController(AdminOverviewController aoc){
         adOvController = aoc;
     }*/
+
+    /**
+     *
+     */
+
     public TaskModel() {
         this.bllManager = new BllManager();
         usModel = UserModel.getInstance();
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Task> getAllTasksOverview() {
         alltasks = bllManager.getAllTasksOverview();
         return alltasks;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Task> getAllTasks() {
         return bllManager.getAllTasksOverview();
     }
 
     //returns sum of spent hrs for list of tasks
+
+    /**
+     *
+     * @param lisToFilter
+     * @return
+     */
     public List<Task> calculateTotalTime(List<Task> lisToFilter) {
         HashMap<String, String> datesStored = new HashMap<String, String>(); //key is date
 
@@ -157,22 +253,52 @@ public class TaskModel {
     }
 
     //updates tasks table when changes are done in tableview
+
+    /**
+     *
+     * @param id
+     * @param name
+     * @param startTime
+     * @param endTime
+     * @param note
+     * @param spentTime
+     */
     public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime) {
         bllManager.editTask(id, name, startTime, endTime, note, spentTime);
     }
 
     //saves task to db, after stop button is clicked
+
+    /**
+     *
+     * @param selectedProject
+     * @param taskName
+     * @param note
+     * @param loggedUser
+     * @param startTime
+     * @param endTime
+     */
     public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime) {
         bllManager.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime);
     }
 
     //refresges logged user task
+
+    /**
+     *
+     * @return
+     */
     public List<Task> refreshUserTasks() {
         getAllTasksOverview();
         return getAllTasksOverviewForLoggedUser();
     }
 
     //returns all tasks of logged user
+
+    /**
+     *
+     * @return
+     */
     public List<Task> getAllTasksOverviewForLoggedUser() {
         List<Task> allTasksLoggedUser = new ArrayList();
         for (Task alltas : alltasks) {
@@ -184,6 +310,13 @@ public class TaskModel {
     }
     
     //filters list by projects
+
+    /**
+     *
+     * @param listToFilter
+     * @param pro
+     * @return
+     */
     public List<Task> filterByProjects(List<Task> listToFilter, Project pro) {
         List<Task> allspecProjTasks = new ArrayList();
         for (Task alltas : listToFilter) {
@@ -195,6 +328,13 @@ public class TaskModel {
     }
 
     //filters list by user
+
+    /**
+     *
+     * @param listToFilter
+     * @param us
+     * @return
+     */
     public List<Task> filterByUser(List<Task> listToFilter, User us) {
         List<Task> allspecUsTasks = new ArrayList();
         for (Task alltas : listToFilter) {
@@ -206,6 +346,14 @@ public class TaskModel {
     }
 
     //filters list by dates
+
+    /**
+     *
+     * @param listToFilter
+     * @param from
+     * @param to
+     * @return
+     */
     public List<Task> filterByDates(List<Task> listToFilter, LocalDate from, LocalDate to) {
         List<Task> allspecProjTasks = new ArrayList();
         for (Task alltas : listToFilter) {

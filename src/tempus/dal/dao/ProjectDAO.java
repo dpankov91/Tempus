@@ -22,19 +22,36 @@ import tempus.be.User;
 import tempus.dal.DbConnectionProvider;
 
 /**
+ * The ProjectDAO is a class. It can perform CRUD operations on the database 
  *
- * @author chris
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class ProjectDAO {
 
     private final DbConnectionProvider connector;
     private ProjectUserDAO projUsDao;
 
+    /**
+     *
+     * @throws IOException
+     */
     public ProjectDAO() throws IOException {
         this.connector = new DbConnectionProvider();
         projUsDao = new ProjectUserDAO();
     }
 
+    /**
+     *
+     * @param name
+     * @param client
+     * @param hRate
+     * @param description
+     * @return
+     */
     public Project createProject(String name, Client client, int hRate, String description) {
 
         try {
@@ -74,6 +91,11 @@ public class ProjectDAO {
         return null;
     }
 
+    /**
+     *
+     * @param projectToDelete
+     * @return
+     */
     public Project deleteProject(Project projectToDelete) {
         //In here the project is deleted from the database.
         try {
@@ -93,6 +115,11 @@ public class ProjectDAO {
         return null;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public List<Project> getAllProjects() throws SQLException {
         ArrayList<Project> allProjects = new ArrayList<>();
 
@@ -119,6 +146,17 @@ public class ProjectDAO {
         return allProjects;
     }
 // method that updates the values into database
+
+    /**
+     *
+     * @param id
+     * @param projectName
+     * @param clientName
+     * @param hourlyRate
+     * @param description
+     * @return
+     * @throws SQLException
+     */
     public Project editProject(int id, String projectName, String clientName, int hourlyRate, String description) throws SQLException {
         try {
             String sql = "UPDATE [dbo].[Project] SET [projectName] = ?,[hourlyRate] = ?, [description] = ? WHERE projectID=?";

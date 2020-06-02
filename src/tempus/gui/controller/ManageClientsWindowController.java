@@ -29,9 +29,14 @@ import tempus.be.User;
 import tempus.gui.model.ClientModel;
 
 /**
- * FXML Controller class
+ * The ManageClientsWindow is a class. This manages the clients inside client
+ * scene
  *
- * @author dpank
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class ManageClientsWindowController implements Initializable {
 
@@ -52,10 +57,15 @@ public class ManageClientsWindowController implements Initializable {
 
     private ClientModel cModel;
 
+    /**
+     *
+     */
     public Client selectedClient;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

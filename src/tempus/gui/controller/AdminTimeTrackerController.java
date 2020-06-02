@@ -51,9 +51,14 @@ import tempus.gui.model.TaskModel;
 import tempus.gui.model.UserModel;
 
 /**
- * FXML Controller class
- *
- * @author dpank
+ *The AdminTimeTracker is a class. It creates a timer that is saved once stopped
+ * and is stored to the database and shows the user inside the tableview
+ * 
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class AdminTimeTrackerController implements Initializable {
 
@@ -115,10 +120,16 @@ public class AdminTimeTrackerController implements Initializable {
     ObservableList<Project> allProjects = FXCollections.observableArrayList();
     @FXML
     private JFXButton btnDeleteTask;
+
+    /**
+     *
+     */
     public Task selectedTask;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -170,6 +181,10 @@ public class AdminTimeTrackerController implements Initializable {
     }
  
     //Refreshes table by loading table view again 
+
+    /**
+     *
+     */
     public void refreshTable() {
         loadInTaskView();
     }
@@ -235,6 +250,10 @@ public class AdminTimeTrackerController implements Initializable {
     }
 
     //Loads the created projects into combobox
+
+    /**
+     *
+     */
     public void loadProjectsToComboBox() {
         allProjects = projModel.getObsProjects();
 

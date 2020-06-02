@@ -12,13 +12,24 @@ import javafx.scene.layout.Pane;
 import tempus.TempusApp;
 
 /**
+ * The FxmlLoader is a class. This loads up a scene whenever the user clicks on
+ * the buttons inside the Root Admin and Root Developer scenes
  *
- * @author PC
+ * @author Abdiqafar Mohamud Abas Ahmed
+ * @author Christian Hansen
+ * @author Dmitri Pankov
+ * @author Nebojsa Gutic
+ * @author Tienesh Kanagarasan
  */
 public class FxmlLoader {
 private Pane view;
 
-public Pane getPage(String fileName){
+    /**
+     *
+     * @param fileName
+     * @return
+     */
+    public Pane getPage(String fileName){
     
         try {
             URL fileUrl = TempusApp.class.getResource("/tempus/gui/view/" + fileName + ".fxml");
