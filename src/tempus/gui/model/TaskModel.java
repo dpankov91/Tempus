@@ -145,7 +145,7 @@ public class TaskModel {
                     LocalDateTime d1 = taskAlreadyInList.getsStartTime().toLocalDate().atStartOfDay();
                     LocalDateTime d2 = tsk.getsStartTime().toLocalDate().atStartOfDay();
                     if (d1.equals(d2)) {
-                        taskAlreadyInList.setSpentTime(taskAlreadyInList.getSpentTime() + tsk.getSpentTime());
+                    taskAlreadyInList.setSpentTime(taskAlreadyInList.getSpentTime() + tsk.getSpentTime());
                     }
                 }
             } else {

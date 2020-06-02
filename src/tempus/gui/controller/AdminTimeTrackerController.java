@@ -291,7 +291,7 @@ public class AdminTimeTrackerController implements Initializable {
         if (event.getNewValue().toString().isEmpty()) {
             assignedValue = "None";
         }
-        System.out.println(task.getId());
+        
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 //        Task //Start Time //End Time // Note // Time Spent
         switch (event.getTableColumn().getText()) {
@@ -316,8 +316,8 @@ public class AdminTimeTrackerController implements Initializable {
                 tsModel.editTask(task.getId(), task.getTask(), task.getsStartTime(), endTime, task.getNote(), task.getSpentTime());
                 task.setEndTime(endTime);
                 break;
-//                case "Time Spent":
-//                tsModel.editTask(task.getId(), task.getTask(), task.getsStartTime(), task.getsEndTime(), task.getNote(), assignedValue());
+//            case "Time Spent":
+//                tsModel.editTask(task.getId(), task.getTask(), task.getsStartTime(), task.getsEndTime(), task.getNote(), assignedValue);
 //                task.setSpentTime(assignedValue);
 //                break;
         }
@@ -325,7 +325,20 @@ public class AdminTimeTrackerController implements Initializable {
     }
 
     @FXML
-    private void writeToDatabaseNumber(TableColumn.CellEditEvent<Task, String> event) {
+    private void writeToDatabaseNumber(TableColumn.CellEditEvent<Task, Double> event) {
+        Task task = event.getRowValue();
+        double assignedValue;
+        if (event.getNewValue() == null) {
+            assignedValue = -1;
+        } else {
+            assignedValue = event.getNewValue();
+        }
+        switch (event.getTableColumn().getText()) {
+            case "Time Spent":
+                tsModel.editTask(task.getId(), task.getTask(), task.getsStartTime(), task.getsEndTime(), task.getNote(), assignedValue);
+                task.setSpentTime(assignedValue);
+                break;
+        }
     }
 
     @FXML

@@ -236,7 +236,7 @@ public class AdminOverviewController implements Initializable {
             for (Task task : filteredList) {
                 if (formatter.format(localDate).equals(formatter.format(task.getsStartTime()))) {
                     series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
-                    break;
+                    break;  
                 }
             }
         }
