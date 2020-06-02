@@ -5,6 +5,8 @@
  */
 package tempus.be;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -36,7 +38,8 @@ public class Task {
         this.endTime = endTime;
         this.spentTime = spentTime;
     }
-      public Task(int id,String task, String note, LocalDateTime startTime, LocalDateTime endTime, double spentTime) {
+
+    public Task(int id, String task, String note, LocalDateTime startTime, LocalDateTime endTime, double spentTime) {
         this.id = id;
         this.task = task;
         this.note = note;
@@ -160,26 +163,35 @@ public class Task {
     public String getEndTime() {
         return convertTime(endTime);
     }
-    
+
     public LocalDateTime getsEndTime() {
         return endTime;
     }
-    
+
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
 
     public double getSpentTime() {
-        double spentTim = spentTime;
-        return spentTim;
+            BigDecimal spentTim = new BigDecimal(spentTime / 3600);
+        MathContext m = new MathContext(1); // 4 precision 
+
+        // b1 is rounded using m 
+        BigDecimal b2 = spentTim.round(m);
+        return b2.doubleValue();
+    }
+
+    public double getRSpentTime() {
+        return spentTime;
     }
 
     public void setSpentTime(double spentTime) {
-        
+
         this.spentTime = spentTime;
     }
-public int getId() {
+
+    public int getId() {
         return id;
     }
-   
+
 }

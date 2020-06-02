@@ -219,10 +219,10 @@ public class AdminOverviewController implements Initializable {
         paneBarChart.getChildren().clear();
 
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Week Days");
+        xAxis.setLabel("Days");
 
         NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Minutes");
+        yAxis.setLabel("Hours");
 
         BarChart weekProject = new BarChart(xAxis, yAxis);
         weekProject.setTitle("Statistics");
