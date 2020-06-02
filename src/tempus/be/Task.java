@@ -5,6 +5,8 @@
  */
 package tempus.be;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -278,8 +280,16 @@ public class Task {
      * @return
      */
     public double getSpentTime() {
-        double spentTim = spentTime;
-        return spentTim;
+        BigDecimal spentTim = new BigDecimal(spentTime / 3600);
+        MathContext m = new MathContext(1); // 4 precision 
+
+        // b1 is rounded using m 
+        BigDecimal b2 = spentTim.round(m);
+        return b2.doubleValue();
+    }
+    
+    public double getRSpentTime() {
+        return spentTime;
     }
 
     /**
@@ -297,10 +307,6 @@ public class Task {
      */
     public int getId() {
         return id;
-    }
-
-    public double getRSpentTime() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
 }
