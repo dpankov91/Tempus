@@ -118,7 +118,7 @@ public class ProjectDAO {
         }
         return allProjects;
     }
-
+// method that updates the values into database
     public Project editProject(int id, String projectName, String clientName, int hourlyRate, String description) throws SQLException {
         try {
             String sql = "UPDATE [dbo].[Project] SET [projectName] = ?,[hourlyRate] = ?, [description] = ? WHERE projectID=?";

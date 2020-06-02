@@ -33,7 +33,7 @@ public class LogDAO {
     {
         provider = new DbConnectionProvider();
     }
-    
+    // method that inserts log into database
     public void insertLog(String table, int changedEntryId, String action, Date actionTime) throws SQLException
     {
         System.out.println(table+" "+changedEntryId+" "+action+" "+actionTime);
