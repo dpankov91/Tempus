@@ -39,6 +39,7 @@ public class DeleteConfirmationTaskController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         tsModel = TaskModel.getInstance();
         usModel = UserModel.getInstance();
+        lblName.setText(tsModel.getSelectedTask().getTask().trim());
     }    
 
     @FXML
