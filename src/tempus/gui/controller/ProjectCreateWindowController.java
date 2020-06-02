@@ -138,14 +138,4 @@ public class ProjectCreateWindowController implements Initializable {
     void setInfo(ManageProjectsWindowController aThis) {
     prevContrl = aThis;
     }
-
-    @FXML
-    private void btnAddClient(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/AddClient.fxml"));
-        Parent z = loader.load();
-        Scene scene = new Scene(z);
-        Stage s = new Stage();
-        s.setScene(scene);
-        s.show();
-    }
 }

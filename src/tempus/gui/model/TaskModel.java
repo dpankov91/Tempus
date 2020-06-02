@@ -234,14 +234,14 @@ public class TaskModel {
         List<Task> filteredList = new ArrayList();
 
         for (Task task : lisToFilter) {
-            Task tsk = new Task(task.getTask(), task.getNote(), task.getsStartTime(), task.getsEndTime(), task.getSpentTime());
+            Task tsk = new Task(task.getTask(), task.getNote(), task.getsStartTime(), task.getsEndTime(), task.getRSpentTime());
             if (datesStored.get(tsk.getsStartTime().toLocalDate().atStartOfDay().toString()) != null) {
 
                 for (Task taskAlreadyInList : filteredList) {
                     LocalDateTime d1 = taskAlreadyInList.getsStartTime().toLocalDate().atStartOfDay();
                     LocalDateTime d2 = tsk.getsStartTime().toLocalDate().atStartOfDay();
                     if (d1.equals(d2)) {
-                    taskAlreadyInList.setSpentTime(taskAlreadyInList.getSpentTime() + tsk.getSpentTime());
+                    taskAlreadyInList.setSpentTime(taskAlreadyInList.getRSpentTime() + tsk.getRSpentTime());
                     }
                 }
             } else {
