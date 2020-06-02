@@ -131,7 +131,7 @@ public class TaskModel {
         return bllManager.getAllTasksOverview();
     }
 
-    //method returns sum of spent hrs for list of tasks
+    //returns sum of spent hrs for list of tasks
     public List<Task> calculateTotalTime(List<Task> lisToFilter) {
         HashMap<String, String> datesStored = new HashMap<String, String>(); //key is date
 
@@ -156,20 +156,23 @@ public class TaskModel {
         return filteredList;
     }
 
+    //updates tasks table when changes are done in tableview
     public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime) {
         bllManager.editTask(id, name, startTime, endTime, note, spentTime);
     }
 
+    //saves task to db, after stop button is clicked
     public void saveStoppedTask(Project selectedProject, String taskName, String note, User loggedUser, LocalDateTime startTime, LocalDateTime endTime) {
         bllManager.saveStoppedTask(selectedProject, taskName, note, loggedUser, startTime, endTime);
     }
 
+    //refresges logged user task
     public List<Task> refreshUserTasks() {
         getAllTasksOverview();
         return getAllTasksOverviewForLoggedUser();
     }
-//returns all tasks of logged user
 
+    //returns all tasks of logged user
     public List<Task> getAllTasksOverviewForLoggedUser() {
         List<Task> allTasksLoggedUser = new ArrayList();
         for (Task alltas : alltasks) {
@@ -179,7 +182,8 @@ public class TaskModel {
         }
         return allTasksLoggedUser;
     }
-
+    
+    //filters list by projects
     public List<Task> filterByProjects(List<Task> listToFilter, Project pro) {
         List<Task> allspecProjTasks = new ArrayList();
         for (Task alltas : listToFilter) {
@@ -190,6 +194,7 @@ public class TaskModel {
         return allspecProjTasks;
     }
 
+    //filters list by user
     public List<Task> filterByUser(List<Task> listToFilter, User us) {
         List<Task> allspecUsTasks = new ArrayList();
         for (Task alltas : listToFilter) {
@@ -200,6 +205,7 @@ public class TaskModel {
         return allspecUsTasks;
     }
 
+    //filters list by dates
     public List<Task> filterByDates(List<Task> listToFilter, LocalDate from, LocalDate to) {
         List<Task> allspecProjTasks = new ArrayList();
         for (Task alltas : listToFilter) {

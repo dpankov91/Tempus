@@ -167,11 +167,9 @@ public class AdminTimeTrackerController implements Initializable {
         lbl_date.setText(dateFormat.format(date));
         lbl_date.setVisible(true);
     }
-//////    
+ 
     //Refreshes table by loading table view again 
-
     public void refreshTable() {
-//        loadTableViewAllTasks();
         loadInTaskView();
     }
 
@@ -235,8 +233,8 @@ public class AdminTimeTrackerController implements Initializable {
         );
     }
 
+    //Loads the created projects into combobox
     public void loadProjectsToComboBox() {
-        //Loads the created projects into combobox
         allProjects = projModel.getObsProjects();
 
         for (Project proj : allProjects) {
@@ -262,6 +260,7 @@ public class AdminTimeTrackerController implements Initializable {
         loadInTaskView();
     }
 
+    //load  to table tasks depends on who is logged in admin or developer.
     void loadInTaskView() {
         tbv_timetracker.getItems().clear();
         List<Task> allTasks;
