@@ -172,17 +172,17 @@ public class ManageProjectsWindowController implements Initializable {
     @FXML
     private void writeToDatabaseNumber(TableColumn.CellEditEvent<Project, Integer> event) {
         Project proj = event.getRowValue();
-        int assignedValue;
-        if (event.getNewValue() == null) {
-            assignedValue = -1;
-        } else {
-            assignedValue = event.getNewValue();
-        }
-        switch (event.getTableColumn().getText()) {
-            case "Hourly Rate":
-                projModel.editProject(proj.getId(), proj.getName(), proj.getClientName(), assignedValue, proj.getDescription());
-                proj.sethRate(assignedValue);
-                break;
-        }
+      int assignedValue;
+      if (event.getNewValue() == null) {
+         assignedValue = -1;
+       } else {
+           assignedValue = event.getNewValue();
+       }
+       switch (event.getTableColumn().getText()) {
+           case "Hourly Rate":
+               projModel.editProject(proj.getId(), proj.getName(), proj.getClientName(), assignedValue, proj.getDescription());
+               proj.sethRate(assignedValue);
+              break;
+      }
     }
 }
