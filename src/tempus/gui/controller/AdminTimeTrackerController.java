@@ -284,7 +284,7 @@ public class AdminTimeTrackerController implements Initializable {
         alert.showAndWait();
     }
 
-    @FXML
+     @FXML
     private void writeToDatabase(TableColumn.CellEditEvent<Task, String> event) {
         Task task = event.getRowValue();
         String assignedValue = event.getNewValue();
@@ -316,10 +316,6 @@ public class AdminTimeTrackerController implements Initializable {
                 tsModel.editTask(task.getId(), task.getTask(), task.getsStartTime(), endTime, task.getNote(), task.getSpentTime());
                 task.setEndTime(endTime);
                 break;
-//            case "Time Spent":
-//                tsModel.editTask(task.getId(), task.getTask(), task.getsStartTime(), task.getsEndTime(), task.getNote(), assignedValue);
-//                task.setSpentTime(assignedValue);
-//                break;
         }
 
     }
@@ -357,5 +353,4 @@ public class AdminTimeTrackerController implements Initializable {
             }
         }
     }
-
 }

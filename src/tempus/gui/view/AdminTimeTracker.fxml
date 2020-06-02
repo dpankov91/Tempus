@@ -22,8 +22,8 @@
           <TableColumn fx:id="colTask" onEditCommit="#writeToDatabase" prefWidth="235.1999969482422" text="Task" />
             <TableColumn fx:id="colNote" onEditCommit="#writeToDatabase" prefWidth="212.79998779296875" text="Note" />
             <TableColumn fx:id="colStartTime" onEditCommit="#writeToDatabase" prefWidth="172.800048828125" text="Start Time" />
-            <TableColumn fx:id="colEndTime" minWidth="7.0" onEditCommit="#writeToDatabase" prefWidth="170.40008544921875" text="End Time" />
-            <TableColumn fx:id="colHrs" onEditCommit="#writeToDatabaseNumber" prefWidth="83.2000732421875" text="Time Spent" />
+            <TableColumn fx:id="colEndTime" minWidth="7.0" onEditCommit="#writeToDatabase" prefWidth="152.7999267578125" text="End Time" />
+            <TableColumn fx:id="colHrs" onEditCommit="#writeToDatabaseNumber" prefWidth="102.4000244140625" text="Hours Spent" />
         </columns>
       </TableView>
       <ComboBox fx:id="cb_projects" layoutX="35.0" layoutY="178.0" prefWidth="150.0" promptText="Projects" />
