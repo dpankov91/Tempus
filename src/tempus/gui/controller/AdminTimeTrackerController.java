@@ -42,6 +42,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.converter.DoubleStringConverter;
 import tempus.be.Project;
 import tempus.be.Task;
 import tempus.be.User;
@@ -257,7 +258,7 @@ public class AdminTimeTrackerController implements Initializable {
         colStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         colEndTime.setCellFactory(TextFieldTableCell.forTableColumn());
         colEndTime.setCellValueFactory(new PropertyValueFactory<>("endTime"));
-        //colHrs.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        colHrs.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         colHrs.setCellValueFactory(new PropertyValueFactory<>("spentTime"));
         loadInTaskView();
     }

@@ -65,7 +65,7 @@ task.setId(id);
 
     public void editTask(int id, String name, LocalDateTime startTime, LocalDateTime endTime, String note, double spentTime) throws SQLException {
 
-        String sql = "UPDATE [dbo].[Task] SET [task] = ?, [startTime] = ?, [endTime] = ?, [note] = ? WHERE id=?";
+        String sql = "UPDATE [dbo].[Task] SET [task] = ?, [startTime] = ?, [endTime] = ?, [note] = ?, [spentTime] = ?, WHERE id=?";
 
         Connection con = connector.getConnection();
         PreparedStatement pstmt = con.prepareStatement(sql);
@@ -75,8 +75,8 @@ task.setId(id);
         Timestamp endTimeStamp = Timestamp.valueOf(endTime);
         pstmt.setTimestamp(3, endTimeStamp);
         pstmt.setString(4, note);
-
-        pstmt.setInt(5, id);
+        pstmt.setDouble(5, spentTime);
+        pstmt.setInt(6, id);
 
         pstmt.executeUpdate();
 
