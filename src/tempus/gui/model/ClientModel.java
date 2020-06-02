@@ -24,6 +24,7 @@ public class ClientModel {
     private final ObservableList<Client> clientList = FXCollections.observableArrayList();
     private Client selectedClient;
     
+    
     public static ClientModel getInstance() {
         return cmodel;
     }
