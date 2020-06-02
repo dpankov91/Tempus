@@ -298,5 +298,9 @@ public class Task {
     public int getId() {
         return id;
     }
+
+    public double getRSpentTime() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
 }
