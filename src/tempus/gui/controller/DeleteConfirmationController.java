@@ -64,7 +64,7 @@ public class DeleteConfirmationController implements Initializable {
 
     @FXML
     private void handleConfirmDeleting(ActionEvent event) {
-           model.deleteSelectedProject(); // having selected a project to delete, it's brought down to the layer down-
+           model.deleteSelectedProject(); // having selected a project to delete, it's brought down to the layer down.
            prevContrl.loadTableView();
            goBack(event);
         
