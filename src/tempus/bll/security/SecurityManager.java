@@ -20,11 +20,14 @@ import java.security.NoSuchAlgorithmException;
  */
 public class SecurityManager implements ISecurityManager {
 
-    /*We run password throw this method and it will return hash of the
+    /*We run password through this method and it will return hash of the
       password and we store it in database.
-      One way function, means you cant recreate pass from hash. When user
-      put in password, function convert it to hash and after compare with 
-      database hashpass.*/
+      One way function, means you can't recreate password from hash. When user
+      put in password, the function convert it to hash and after compare with 
+      database hashpass.
+      Hashing is used to taking data, encrypting it and creating unpredictable 
+      output.
+    */
     @Override
     public String hashPassword(String password) throws SecurityException 
     {

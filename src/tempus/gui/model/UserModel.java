@@ -173,6 +173,6 @@ public class UserModel {
      * @param pswSecond
      */
     public void newPasswordForSelectedUser(String pswSecond){
-        facade.newPasswordForSelectedUser(pswSecond, selectedUser.getId()); // Here the input from the controller is pushed another layer down, into the BLL.
+        facade.newPasswordForSelectedUser(pswSecond, selectedUser.getId()); // Here the input from the controller is pushed another layer down, into the BLL along with the user's ID.
     }
 }

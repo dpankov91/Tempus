@@ -77,7 +77,7 @@ public class SettingsWindowController implements Initializable {
         String pswSecond = pswSecondConfirm.getText().trim(); // String Method to get text from second field
     // the Trim method is used to remove whitespace.            
         if (isValid(pswFirst, pswSecond)) { // uses the convenience method to validate the password.
-            // If statements only works if there is input from the two text fields.
+            // If statement only works if there is input from the two text fields.
             User us = userModel.getloggedInUser(); // invokes the loggedInUser method to check logged in user.
             us.setPassword(pswSecond); // This method invokes the setPassword in the user model, placing the second password parameter in.
             userModel.newPassword(pswSecond); // Takes the input in the second password field and pushes it to the userModel as a method is invoked.
