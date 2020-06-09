@@ -241,8 +241,10 @@ public class DalManager implements IDalFacade {
 
     @Override
     public void newPassword(String pswSecond, int userID) {
+        // Via this method, the new hashed password is brought down here and 
+        // then brings it further down, into the user dao to bring it to the database. 
         try {
-            userDao.newPassword(pswSecond, userID); // The new hashed password is brought down here and then brings it further down, into the user dao. 
+            userDao.newPassword(pswSecond, userID); 
         } catch (SQLException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
