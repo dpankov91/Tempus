@@ -215,7 +215,9 @@ public class BllManager implements IBllFacade {
      */
     @Override
     public void newPassword(String pswSecond, int userID) {
+    // The inputted password is changed into a hash value, by using the security method from the security manager.
         String newPassword = securityManager.hashPassword(pswSecond);
+    // It takes the new password down a layer again, into the dal manager.
         facade.newPassword(newPassword, userID);
     }
 

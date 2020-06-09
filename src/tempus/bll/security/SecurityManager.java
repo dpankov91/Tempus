@@ -27,6 +27,7 @@ public class SecurityManager implements ISecurityManager {
       database hashpass.
       Hashing is used to taking data, encrypting it and creating unpredictable 
       output.
+      Same is done for a new password
     */
     @Override
     public String hashPassword(String password) throws SecurityException 
