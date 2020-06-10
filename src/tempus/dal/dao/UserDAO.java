@@ -302,13 +302,22 @@ public class UserDAO {
         // SET command is used with UPDATE statement to specify the columns and values in a table.
         // In this case, it is the UserTable in dbo database.
         // ? symbols are used to specify User, the logged in user, and the password, the new password the user chose.
+        
         Connection con = connector.getConnection(); // sets up connection to database.
-        PreparedStatement pstmt = con.prepareStatement(sql); // Creates prepared statement as the query has already been made.
+        PreparedStatement pstmt = con.prepareStatement(sql); // Creates prepared statement that stores the SQL statement.
         // The statement uses the sequence statement, which is specified in the parameters.
+        // A PreparedStatement object is for sending parameterized SQL statements to the database.
+        
         pstmt.setString(1, pswSecond); // This string goes to the first question mark, the password value
-        pstmt.setInt(2, userID); // This string goes to the second question mark, the userID value
+        //Sets the designated parameter to the given Java String value. 
+        
+        pstmt.setInt(2, userID); // This integer goes to the second question mark, the userID value
+        //Sets the designated parameter to the given Java int value. 
+        //The driver converts this to an SQL INTEGER value when it sends it to the database.
 
-        pstmt.executeUpdate(); //String is sent to the database and then updates the database with the new hashpassword.
+        pstmt.executeUpdate(); 
+        //Statement is sent to the database and then updates the database with the new hashpassword.
+        //Executes the SQL statement in this PreparedStatement object
     }
 
     /**
