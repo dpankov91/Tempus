@@ -26,19 +26,19 @@ public class SecurityManager implements ISecurityManager {
       put in password, the function convert it to hash and after compare with 
       database hashpass.
       Hashing is used to taking data, encrypting it and creating unpredictable 
-      output.
+      output, making it unreadable for humans and computers alike.
       Same is done for a new password
     */
     @Override
     public String hashPassword(String password) throws SecurityException 
     {
       try {
-            String base = password;
-            MessageDigest digest = null;
-            digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(base.getBytes(StandardCharsets.UTF_8));
+            String base = password; // Takes password and runs it through method.
+            MessageDigest digest = null; // Makes digest to take in the password
+            digest = MessageDigest.getInstance("SHA-256"); // Then the hashing algorithm or languagues is chosen
+            byte[] hash = digest.digest(base.getBytes(StandardCharsets.UTF_8)); 
             StringBuffer hexString = new StringBuffer();
-            for (int i = 0; i < hash.length; i++) {
+            for (int i = 0; i < hash.length; i++) { // Turns every character of the password into a hash value.
                 String hex = Integer.toHexString(0xff & hash[i]);
                 if (hex.length() == 1) hexString.append('0');
                 hexString.append(hex);

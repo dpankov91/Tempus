@@ -297,8 +297,14 @@ public class UserDAO {
         // In here, the new password is updated.
         String sql = "UPDATE [dbo].[User] SET [password] = ? WHERE [userID] = ?";
         // Sequence statement above updates the user from the usertable, updating the password value to something new.
-        Connection con = connector.getConnection(); // sets up connection.
-        PreparedStatement pstmt = con.prepareStatement(sql); // Creates prepared statement
+        // UPDATE statement is used to update existing data in database.
+        // WHERE statement is used to specify which records should be updated.
+        // SET command is used with UPDATE statement to specify the columns and values in a table.
+        // In this case, it is the UserTable in dbo database.
+        // ? symbols are used to specify User, the logged in user, and the password, the new password the user chose.
+        Connection con = connector.getConnection(); // sets up connection to database.
+        PreparedStatement pstmt = con.prepareStatement(sql); // Creates prepared statement as the query has already been made.
+        // The statement uses the sequence statement, which is specified in the parameters.
         pstmt.setString(1, pswSecond); // This string goes to the first question mark, the password value
         pstmt.setInt(2, userID); // This string goes to the second question mark, the userID value
 

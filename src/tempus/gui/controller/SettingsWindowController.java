@@ -104,7 +104,7 @@ public class SettingsWindowController implements Initializable {
         
         return true; 
         // True: it brings the new password down a layer.
-        // False: Nothing happens, alerts the user with a message.
+        // False: Nothing happens, alerts the user with a message to correct their mistake.
         // ! is used as the logical concept NOT.
     }
     
