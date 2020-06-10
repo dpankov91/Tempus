@@ -75,7 +75,7 @@ public class SettingsWindowController implements Initializable {
     private void onClickConfirm(ActionEvent event) {
         String pswFirst = pswFirstTime.getText().trim(); // String Method to get text from first field
         String pswSecond = pswSecondConfirm.getText().trim(); // String Method to get text from second field
-    // the Trim method is used to remove whitespace.            
+        // the Trim method is used to remove whitespace.            
         if (isValid(pswFirst, pswSecond)) { // uses the convenience method to validate the password.
             // If statement only works if there is input from the two text fields.
             User us = userModel.getloggedInUser(); // invokes the loggedInUser method to check logged in user.
@@ -88,7 +88,7 @@ public class SettingsWindowController implements Initializable {
     
     
     private boolean isValid(String firstPW, String secondPW) {        
-        //  Convenience Method for checking password fields 
+        //  Convenience Method for checking password fields inputs.
         if (firstPW.isEmpty()) { // If first textfield is empty
             setUpAlert("Passwords Error" , "Please, input new password in first field");
             return false;
@@ -97,13 +97,15 @@ public class SettingsWindowController implements Initializable {
             setUpAlert("Passwords Error" , "Please, input new password in second field");
             return false;
         }
-        if (!firstPW.equals(secondPW)) { // if first password input does not match second field
+        if (!firstPW.equals(secondPW)) { // if first password input does not match second input
              setUpAlert("Password Error" , "New passwords dont match");
              return false;
         }
+        
         return true; 
         // True: it brings the new password down a layer.
         // False: Nothing happens, alerts the user with a message.
+        // ! is used as the logical concept NOT.
     }
     
     private void setUpAlert(String title, String message) {

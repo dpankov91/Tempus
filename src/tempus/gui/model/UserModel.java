@@ -163,6 +163,9 @@ public class UserModel {
     /**
      *
      * @param pswSecond
+     * Like the entire class itself, the newPassword method is public, allowing
+     * both class and the method to be accessible for other classes. 
+     * This way the method can be seen and used by other classes.
      */
     public void newPassword(String pswSecond) {
     facade.newPassword(pswSecond, loggedInUser.getId()); 
