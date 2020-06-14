@@ -216,8 +216,8 @@ public class DalManager implements IDalFacade {
     public Client deleteClient(Client selectedClient) { //Like before, the client for deletion is sent down to the layer under, to the clientDao.
         clientDao.deleteClient(selectedClient);
         try {
-            long millis = System.currentTimeMillis();
-            java.sql.Date date = new java.sql.Date(millis);
+            long millis = System.currentTimeMillis(); // it will gett current time and store it to the variable millis
+            java.sql.Date date = new java.sql.Date(millis); // it will create date from the millis(current time)
             logDao.insertLog(LogDAO.CLIENT_TABLE, selectedClient.getId(), LogDAO.DELETE_ACTION, date);
         } catch (SQLException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
