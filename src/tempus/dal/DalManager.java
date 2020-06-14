@@ -95,8 +95,8 @@ public class DalManager implements IDalFacade {
         Project pro = projectDao.deleteProject(projectToDelete); //Brings down the project for deletion to the ProjectDAO.
         try {
             long millis = System.currentTimeMillis();
-            java.sql.Date date = new java.sql.Date(millis);
-            logDao.insertLog(LogDAO.PROJECT_TABLE, pro.getId(), LogDAO.DELETE_ACTION, date);
+            java.sql.Date date = new java.sql.Date(millis); // it will gett current time and store it to the variable millis
+            logDao.insertLog(LogDAO.PROJECT_TABLE, pro.getId(), LogDAO.DELETE_ACTION, date); // it will create date from the millis(current time)
         } catch (SQLException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
