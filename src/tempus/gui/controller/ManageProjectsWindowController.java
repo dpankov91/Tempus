@@ -64,7 +64,8 @@ public class ManageProjectsWindowController implements Initializable {
     /**
      *
      */
-    public Project selectedProject;
+    public Project selectedProject; 
+// We use an instance variable to get information from the Project BE class.
     private ProjectModel projModel;
     @FXML
     private JFXButton deleteButton;
@@ -84,9 +85,9 @@ public class ManageProjectsWindowController implements Initializable {
 
     @FXML
     private void handleDelete(ActionEvent event) throws IOException {
-
+    //SelectionModel, an abstract class, is used to return the currently selected item in the tableView
         projModel.setSelectedProject(tableViewProjects.getSelectionModel().getSelectedItem()); // A project is selected in the tableview
-        if (projModel.getSelectedProject() != null) { // if the project is selected
+        if (projModel.getSelectedProject() != null) { // if project is selected 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmation.fxml")); // Button Pressed and shows the designated FXML file
             Parent z = loader.load();
             loader.<DeleteConfirmationController>getController().setInfo(this);

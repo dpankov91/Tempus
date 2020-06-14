@@ -42,7 +42,7 @@ public class DeleteConfirmationController implements Initializable {
 
     
     
-    ProjectModel model;
+    ProjectModel model; //Instance variable to utilze BE's Project class methods.
     ManageProjectsWindowController prevContrl; // Takes information frmo the ManageProjectsWindow fxml.
     /**
      * Initializes the controller class.
@@ -64,8 +64,8 @@ public class DeleteConfirmationController implements Initializable {
 
     @FXML
     private void handleConfirmDeleting(ActionEvent event) {
-           model.deleteSelectedProject(); // having selected a project to delete, it's brought down to the layer down-
-           prevContrl.loadTableView();
+           model.deleteSelectedProject(); // having selected a project to delete, it's brought down to the layer down.
+           prevContrl.loadTableView(); // A refresh of the tableView after the deletion of the project.
            goBack(event);
         
     }
