@@ -28,12 +28,12 @@ import tempus.bll.IBllFacade;
  */
 public class ProjectModel {
     
- static ProjectModel projmodel = new ProjectModel() ;
+ static ProjectModel projmodel = new ProjectModel() ; // Uses variable for Singleton Pattern
  private final ObservableList<Project> projectList = FXCollections.observableArrayList();
  
  private final IBllFacade facade;
  
-    private Project selectedProject;
+    private Project selectedProject; // instance variables of project class, to get information from it.
     
     /**
      *
@@ -41,7 +41,7 @@ public class ProjectModel {
      */
     public static ProjectModel getInstance() 
    {
-        return projmodel;
+        return projmodel; // returns the class itself
     }
     
     /**
@@ -58,7 +58,7 @@ public class ProjectModel {
      * @return
      */
     public Project getSelectedProject() {
-        return selectedProject;
+        return selectedProject; //returns the selected project.
     }
 
     /**
@@ -66,7 +66,8 @@ public class ProjectModel {
      * @param selectedProject
      */
     public void setSelectedProject(Project selectedProject) {
-        this.selectedProject = selectedProject;
+        this.selectedProject = selectedProject; // Used to highlight and select a project.
+        
     }
 
     /**
@@ -102,7 +103,9 @@ public class ProjectModel {
      *
      */
     public void deleteSelectedProject() {
-        facade.deleteProject(selectedProject); // Brings the intended project for delettion down a layer, into the BLL.
+        facade.deleteProject(selectedProject); 
+    // Brings the intended project for deletion down a layer, into the BLL Interface first.
+    // Taking it down the stack.
     }
 
     /**

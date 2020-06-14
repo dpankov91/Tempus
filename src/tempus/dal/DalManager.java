@@ -39,7 +39,9 @@ import tempus.dal.dao.UserDAO;
  * @author Tienesh Kanagarasan
  */
 public class DalManager implements IDalFacade {
-
+//DAL manager implements DAL interface abstract methods, inheirting them, 
+//which means all methods in this class are overridden
+//Facade Pattern is used for better passage of information.    
     UserDAO userDao;
     ProjectDAO projectDao;
     ClientDAO clientDao;
@@ -242,11 +244,11 @@ public class DalManager implements IDalFacade {
     @Override
     public void newPassword(String pswSecond, int userID) {
         // Via this method, the new hashed password is brought down here and 
-        // then brings it further down, into the user dao to bring it to the database. 
+        // Then brings it further down, into the user dao to bring it to the database. 
         try {
             userDao.newPassword(pswSecond, userID); 
         } catch (SQLException ex) {
-            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex); // Log is used to make a log of this action in database
         }
     }
 

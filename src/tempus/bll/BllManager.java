@@ -26,7 +26,9 @@ import tempus.dal.IDalFacade;
  * @author dpank
  */
 public class BllManager implements IBllFacade {
-
+//BLL manager implements BLL interface abstract methods, inheirting them, 
+//which means all methods in this class are overridden
+//Facade Pattern is used for better passage of information.
     IDalFacade facade;
     ISecurityManager securityManager;
 
@@ -69,7 +71,8 @@ public class BllManager implements IBllFacade {
      */
     @Override
     public void deleteProject(Project projectToDelete) {
-        facade.deleteProject(projectToDelete); // Like before, the project for deletion is sent down to the layer under, to the dal.
+        facade.deleteProject(projectToDelete); 
+    // Like before, the project for deletion is sent down to the layer under, to the dalinterface.
     }
 
     /**
@@ -97,7 +100,8 @@ public class BllManager implements IBllFacade {
      */
     @Override
     public void deleteUser(User userToDelete) {
-        facade.deleteUser(userToDelete); // Like before, the user selected for deletion is sent down to the layer under, to the dal.
+        facade.deleteUser(userToDelete); 
+// Like before, the user selected for deletion is sent down to the layer under, to the dal.
     }
 
     /**
@@ -216,6 +220,7 @@ public class BllManager implements IBllFacade {
     @Override
     public void newPassword(String pswSecond, int userID) {
     // The inputted password is changed into a hash value, by using the hashPassword method from the security manager.
+    // Encrypting it through SHA-256 hash Algorithm.
         String newPassword = securityManager.hashPassword(pswSecond);
     // It takes the new password down a layer again, into the dal manager.
         facade.newPassword(newPassword, userID);

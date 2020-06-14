@@ -49,7 +49,8 @@ public class SettingsWindowController implements Initializable {
     private ImageView imgPhoto;
     @FXML
     private JFXButton btnEditPic;
-
+    
+    //Instance variables:
     private User user;
     private UserModel userModel;
     RootAdminController prevContrl;
@@ -75,10 +76,11 @@ public class SettingsWindowController implements Initializable {
     private void onClickConfirm(ActionEvent event) {
         String pswFirst = pswFirstTime.getText().trim(); // String Method to get text from first field
         String pswSecond = pswSecondConfirm.getText().trim(); // String Method to get text from second field
-        // the Trim method is used to remove whitespace.            
-        if (isValid(pswFirst, pswSecond)) { // uses the convenience method to validate the password.
+        // the Trim feature is used to remove whitespace.
+        // String are used to store the text
+            if (isValid(pswFirst, pswSecond)) { // uses the convenience method to validate the password.
             // If statement only works if there is input from the two text fields.
-            User us = userModel.getloggedInUser(); // invokes the loggedInUser method to check logged in user.
+            User us = userModel.getloggedInUser(); //invokes loggedInUser method to get logged in user, get their userID and gets password.
             us.setPassword(pswSecond); // This method invokes the setPassword in the user model, placing the second password parameter in.
             userModel.newPassword(pswSecond); // Takes the input in the second password field and pushes it to the userModel as a method is invoked.
             setUpAlert("Password Changed", "You have a new password");
@@ -89,6 +91,7 @@ public class SettingsWindowController implements Initializable {
     
     private boolean isValid(String firstPW, String secondPW) {        
         //  Convenience Method for checking password fields inputs.
+        //  While it's private, it's a boolean method, made to find out if an expression is true or false, with two outcomes.
         if (firstPW.isEmpty()) { // If first textfield is empty
             setUpAlert("Passwords Error" , "Please, input new password in first field");
             return false;

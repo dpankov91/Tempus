@@ -296,12 +296,12 @@ public class UserDAO {
     public void newPassword(String pswSecond, int userID) throws SQLException {
         // In here, the new password is updated.
         String sql = "UPDATE [dbo].[User] SET [password] = ? WHERE [userID] = ?";
-        // Sequence statement above updates the user from the usertable, updating the password value to something new.
+        // Sequence statement, updates the user from the usertable, updating the password value of userID to something new.
         // UPDATE statement is used to update existing data in database.
         // WHERE statement is used to specify which records should be updated.
         // SET command is used with UPDATE statement to specify the columns and values in a table.
         // In this case, it is the UserTable in dbo database.
-        // ? symbols are used to specify User, the logged in user, and the password, the new password the user chose.
+        // ? symbols are unknown values used to specify User, the logged in user's ID, and the password, the new password the user chose.
         
         Connection con = connector.getConnection(); // sets up connection to database.
         PreparedStatement pstmt = con.prepareStatement(sql); // Creates prepared statement that stores the SQL statement.
@@ -313,7 +313,7 @@ public class UserDAO {
         
         pstmt.setInt(2, userID); // This integer goes to the second question mark, the userID value
         //Sets the designated parameter to the given Java int value. 
-        //The driver converts this to an SQL INTEGER value when it sends it to the database.
+        
 
         pstmt.executeUpdate(); 
         //Statement is sent to the database and then updates the database with the new hashpassword.

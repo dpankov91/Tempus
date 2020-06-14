@@ -34,16 +34,17 @@ public class SecurityManager implements ISecurityManager {
     {
       try {
             String base = password; // Takes password and runs it through method.
-            MessageDigest digest = null; // Makes digest to take in the password
-            digest = MessageDigest.getInstance("SHA-256"); // Then the hashing algorithm or languagues is chosen
-            byte[] hash = digest.digest(base.getBytes(StandardCharsets.UTF_8)); 
-            StringBuffer hexString = new StringBuffer();
+            MessageDigest digest = null; // Encrypts password with a MessageDigest.
+            //MessageDigest are one-way hash functions and outputs a fixed-length hash value.
+            digest = MessageDigest.getInstance("SHA-256"); // Then the hashing algorithm or languagues is chosen.
+            byte[] hash = digest.digest(base.getBytes(StandardCharsets.UTF_8)); //password changed into bytes and encrypts with SHA-256.
+            StringBuffer hexString = new StringBuffer(); // new string for bytearray
             for (int i = 0; i < hash.length; i++) { // Turns every character of the password into a hash value.
-                String hex = Integer.toHexString(0xff & hash[i]);
-                if (hex.length() == 1) hexString.append('0');
-                hexString.append(hex);
+                String hex = Integer.toHexString(0xff & hash[i]); // Turns part of the byte array into a hexidacimal string.
+                if (hex.length() == 1) hexString.append('0'); // Checks the length of the hexstring if it's length is 1 and then adds 0 to end.                
+                hexString.append(hex); // Appends the current string to the stringbuffer.
             }
-            return hexString.toString();
+            return hexString.toString(); //Returning whole stringBuffer into a string value.
         } catch (NoSuchAlgorithmException e) {
             throw new SecurityException(e.getMessage());
         }
