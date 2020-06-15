@@ -69,15 +69,15 @@ public class ProjectDAO {
             pstmt.setInt(3, hRate);
             pstmt.setString(4, description);
              int id = 0;
-            int affectedRows = pstmt.executeUpdate();
+            int affectedRows = pstmt.executeUpdate(); // we execute the query
 
             if (affectedRows == 0) {
                 throw new SQLException("Creating user failed, no rows affected.");
             }
 
             try ( ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    id = (int) generatedKeys.getLong(1);
+                if (generatedKeys.next()) {  // if there is a next generated key
+                    id = (int) generatedKeys.getLong(1); //  the getLong method called on the object generated key will return an element at the given index which is 1
                 } else {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
