@@ -5,18 +5,11 @@
  */
 package tempus.dal;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-
-
 import tempus.be.Client;
-
-
-
 import tempus.be.Project;
 import tempus.be.Task;
-
 import tempus.be.User;
 
 /**

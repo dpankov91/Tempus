@@ -111,18 +111,18 @@ public class AdminOverviewController implements Initializable {
         loadProjectsToCombobox();
         loadUsersToCombobox();
         setUpTaskTableView();
-        dateFrom.valueProperty().addListener((obs, old, newest) -> {
-            taskModel.setDateFrom(newest);
-        });
-        dateTo.valueProperty().addListener((obs, old, newest) -> {
-            taskModel.setDateTo(newest);
-        });
-        cmbProjects.getSelectionModel().selectedItemProperty().addListener((obs, old, newest) -> {
-            taskModel.setSelectedProject(newest);
-        });
-        cmbUsers.getSelectionModel().selectedItemProperty().addListener((obs, old, newest) -> {
-            taskModel.setSelectedUser(newest);
-        });
+//        dateFrom.valueProperty().addListener((obs, old, newest) -> {
+//            taskModel.setDateFrom(newest);
+//        });
+//        dateTo.valueProperty().addListener((obs, old, newest) -> {
+//            taskModel.setDateTo(newest);
+//        });
+//        cmbProjects.getSelectionModel().selectedItemProperty().addListener((obs, old, newest) -> {
+//            taskModel.setSelectedProject(newest);
+//        });
+//        cmbUsers.getSelectionModel().selectedItemProperty().addListener((obs, old, newest) -> {
+//            taskModel.setSelectedUser(newest);
+//        });
         btnResetProjects.setVisible(false);
         btnResetDates.setVisible(false);
         btnResetUser.setVisible(false);
@@ -159,14 +159,15 @@ public class AdminOverviewController implements Initializable {
 
     private void loadAllTaskTableView() {
         tableProject.getItems().clear();
-        List<Task> allTasksOverview = taskModel.getAllTasksOverview();
-        ObservableList<Task> tasks = FXCollections.observableArrayList();
-        tasks.addAll(allTasksOverview);
-        tableProject.setItems(tasks);
+        List<Task> allTasksOverview = taskModel.getAllTasksOverview(); // create list where we put all tasks from databaes Table Task.
+        ObservableList<Task> tasks = FXCollections.observableArrayList(); //create new obs.list
+        tasks.addAll(allTasksOverview); // add to obs.list all tasks from list
+        tableProject.setItems(tasks); // set items to tableview
     }
 
     private void setUpTaskTableView() {
-        colName.setCellValueFactory(new PropertyValueFactory<>("projName"));
+        //what data we want to put in every column ( excactly same name like in BE class)
+        colName.setCellValueFactory(new PropertyValueFactory<>("projName")); 
         colTask.setCellValueFactory(new PropertyValueFactory<>("task"));
         colUser.setCellValueFactory(new PropertyValueFactory<>("userLastName"));
         colStartTime.setCellValueFactory(new PropertyValueFactory<>("startTime"));
@@ -176,6 +177,7 @@ public class AdminOverviewController implements Initializable {
         setSumHrsToLabel();
     }
 
+    //get number of days between picked in datePickers
     private List<LocalDate> getDifferenceDays(LocalDate fromDate, LocalDate toDate) {
             return Stream.iterate(fromDate, date -> date.plusDays(1))
                     .limit(ChronoUnit.DAYS.between(fromDate, toDate.plusDays(1)))
@@ -188,6 +190,7 @@ public class AdminOverviewController implements Initializable {
         filterEverything(cmbProjects.getSelectionModel().getSelectedItem(), cmbUsers.getSelectionModel().getSelectedItem(), dateFrom.getValue(), dateTo.getValue());
     }
 
+    
     private void filterEverything(Project pro, User us, LocalDate from, LocalDate to) {
       
         List<Task> listToFilter = taskModel.getAllTasksOverview();
@@ -234,23 +237,29 @@ public class AdminOverviewController implements Initializable {
         BarChart weekProject = new BarChart(xAxis, yAxis);
         weekProject.setTitle("Statistics");
 
+        //bars
         XYChart.Series series = new XYChart.Series();
         series.setName("Time Spent Each Day");
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
 
+        //cheking dates what need to be added
         for (LocalDate localDate : datesToIterate) {
+            // cheking tasks from filteredList
             for (Task task : filteredList) {
+                //in case they have same date we will add bar
                 if (formatter.format(localDate).equals(formatter.format(task.getsStartTime()))) {
                     series.getData().add(new XYChart.Data<>(localDate.toString(), task.getSpentTime()));
                     break;  
                 }
             }
         }
+        //add barChart in Pane
         weekProject.getData().add(series);
         paneBarChart.getChildren().add(weekProject);
     }
 
+    // add sum of hrs from Hours column
     private void setSumHrsToLabel() {
         double total = tableProject.getItems().stream().collect(Collectors.summingDouble(Task::getSpentTime));
         lblSumHrs.setText(String.valueOf(total));

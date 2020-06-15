@@ -228,6 +228,7 @@ public class TaskModel {
      * @param lisToFilter
      * @return
      */
+    //calculates amount of time from tasks whats in the list
     public List<Task> calculateTotalTime(List<Task> lisToFilter) {
         HashMap<String, String> datesStored = new HashMap<String, String>(); //key is date
 
@@ -240,6 +241,7 @@ public class TaskModel {
                 for (Task taskAlreadyInList : filteredList) {
                     LocalDateTime d1 = taskAlreadyInList.getsStartTime().toLocalDate().atStartOfDay();
                     LocalDateTime d2 = tsk.getsStartTime().toLocalDate().atStartOfDay();
+                    //if dates are equal we add hrs 
                     if (d1.equals(d2)) {
                     taskAlreadyInList.setSpentTime(taskAlreadyInList.getRSpentTime() + tsk.getRSpentTime());
                     }
@@ -320,7 +322,7 @@ public class TaskModel {
     public List<Task> filterByProjects(List<Task> listToFilter, Project pro) {
         List<Task> allspecProjTasks = new ArrayList();
         for (Task alltas : listToFilter) {
-            if (alltas.getProjName().equals(pro.getName())) {
+            if (alltas.getProjName().equals(pro.getName())) { // if names of the project from combobox equals to name of the project in database it will add proj. to list
                 allspecProjTasks.add(alltas);
             }
         }
@@ -338,7 +340,7 @@ public class TaskModel {
     public List<Task> filterByUser(List<Task> listToFilter, User us) {
         List<Task> allspecUsTasks = new ArrayList();
         for (Task alltas : listToFilter) {
-            if (alltas.getUserLastName().equals(us.getLName())) {
+            if (alltas.getUserLastName().equals(us.getLName())) {// if names of the user  from combobox equals to name of the user  in database it will add user to list
                 allspecUsTasks.add(alltas);
             }
         }
@@ -357,7 +359,7 @@ public class TaskModel {
     public List<Task> filterByDates(List<Task> listToFilter, LocalDate from, LocalDate to) {
         List<Task> allspecProjTasks = new ArrayList();
         for (Task alltas : listToFilter) {
-            
+            //if dates from datePciker and date in db match we will add project to list
             if (((alltas.getsStartTime().toLocalDate()).isAfter(from) || (alltas.getsStartTime().toLocalDate()).isEqual(from)) && ((alltas.getsStartTime().toLocalDate()).isBefore(to) || (alltas.getsStartTime().toLocalDate()).isEqual(to))) {
                 allspecProjTasks.add(alltas);
             }
