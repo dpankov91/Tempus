@@ -39,7 +39,9 @@ import tempus.dal.dao.UserDAO;
  * @author Tienesh Kanagarasan
  */
 public class DalManager implements IDalFacade {
-
+//DAL manager implements DAL interface abstract methods, inheirting them, 
+//which means all methods in this class are overridden
+//Facade Pattern is used for better passage of information.    
     UserDAO userDao;
     ProjectDAO projectDao;
     ClientDAO clientDao;
@@ -93,8 +95,8 @@ public class DalManager implements IDalFacade {
         Project pro = projectDao.deleteProject(projectToDelete); //Brings down the project for deletion to the ProjectDAO.
         try {
             long millis = System.currentTimeMillis();
-            java.sql.Date date = new java.sql.Date(millis);
-            logDao.insertLog(LogDAO.PROJECT_TABLE, pro.getId(), LogDAO.DELETE_ACTION, date);
+            java.sql.Date date = new java.sql.Date(millis); // it will gett current time and store it to the variable millis
+            logDao.insertLog(LogDAO.PROJECT_TABLE, pro.getId(), LogDAO.DELETE_ACTION, date); // it will create date from the millis(current time)
         } catch (SQLException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -216,8 +218,8 @@ public class DalManager implements IDalFacade {
     public Client deleteClient(Client selectedClient) { //Like before, the client for deletion is sent down to the layer under, to the clientDao.
         clientDao.deleteClient(selectedClient);
         try {
-            long millis = System.currentTimeMillis();
-            java.sql.Date date = new java.sql.Date(millis);
+            long millis = System.currentTimeMillis(); // it will gett current time and store it to the variable millis
+            java.sql.Date date = new java.sql.Date(millis); // it will create date from the millis(current time)
             logDao.insertLog(LogDAO.CLIENT_TABLE, selectedClient.getId(), LogDAO.DELETE_ACTION, date);
         } catch (SQLException ex) {
             Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -241,10 +243,12 @@ public class DalManager implements IDalFacade {
 
     @Override
     public void newPassword(String pswSecond, int userID) {
+        // Via this method, the new hashed password is brought down here and 
+        // Then brings it further down, into the user dao to bring it to the database. 
         try {
-            userDao.newPassword(pswSecond, userID); // The new hashed password is brought down here and then brings it further down, into the user dao. 
+            userDao.newPassword(pswSecond, userID); 
         } catch (SQLException ex) {
-            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DalManager.class.getName()).log(Level.SEVERE, null, ex); // Log is used to make a log of this action in database
         }
     }
 

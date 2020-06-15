@@ -101,14 +101,22 @@ public class ProjectDAO {
         try {
             String sql = "DELETE FROM [dbo].[Project] WHERE projectID=?"; 
         // Sequence statement above delete the selected project from the projecttable.
-
+        // DELETE statement is used to delete  existing data in database.
+        // WHERE statement is used to specify which records should be updated.
+        // ? symbols are unknown values equal to that of the selected project for deletion.
+        
             Connection con = connector.getConnection(); // sets up connection.
             PreparedStatement pstmt = con.prepareStatement(sql); // Creatss prepared statement.
-
-            pstmt.setInt(1, projectToDelete.getId()); // This string goes to the question mark, projectID value
-
+            // The statement uses the sequence statement, which is specified in the parameters.
+            // A PreparedStatement object is for sending parameterized SQL statements to the database.
+            
+            pstmt.setInt(1, projectToDelete.getId()); // This integer goes to the question mark, projectID value
+            //Sets the designated parameter to the given Java int value. 
+            
             pstmt.executeUpdate(); //String is sent to the database and then updates the database, REMOVING the selected project from it.
-            return projectToDelete;
+            //Statement is sent to the database and then deletes the selected project.
+            //Executes the SQL statement in this PreparedStatement object
+            return projectToDelete; // the  project is then returned.
         } catch (SQLException ex) {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
