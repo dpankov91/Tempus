@@ -26,7 +26,7 @@ public class SecurityManager implements ISecurityManager {
       put in password, the function convert it to hash and after compare with 
       database hashpass.
       Hashing is used to taking data, encrypting it and creating unpredictable 
-      output, making it unreadable for humans and computers alike.
+      outputs, making it unreadable for humans and computers alike.
       Same is done for a new password
     */
     @Override

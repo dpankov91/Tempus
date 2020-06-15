@@ -145,6 +145,7 @@ public class ManageProjectsWindowController implements Initializable {
     }
 
     void loadTableView() {
+        //It's not private like the other methods of this controller, making it available to other classes.
         tableViewProjects.getItems().clear();
         List<Project> allProjects = projModel.getAllProjects();
         ObservableList<Project> projects = FXCollections.observableArrayList();

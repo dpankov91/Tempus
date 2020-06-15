@@ -121,22 +121,25 @@ public class SettingsWindowController implements Initializable {
 
     @FXML
     private void onClickOpenPicSearcher(ActionEvent event) {
+        //Pressing the button, invokes this method, letting the user search through their device for a photo.
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select image files");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Images",
                 "*.png", "*.jpg", "*.gif", "*.tif", "*.bmp"));
         File selectedFile = fileChooser.showOpenDialog(null);
-        if (selectedFile != null) {
-            User us = userModel.getloggedInUser();
+        if (selectedFile != null) {//continues the statement if a photo is selected.
+            User us = userModel.getloggedInUser(); //gets the user's ID and information.
             userModel.editUser(us.getId(), us.getFName(), us.getLName(), us.getEmail(), us.getPhone(), us.getPostcode(), us.getAddress(),selectedFile.getAbsolutePath(), us.getPassword());
+            //EditUser allows a series of functions
             us.setPhotoURL(selectedFile.getAbsolutePath());
-            userModel.setUpLocalIMG(selectedFile.getAbsolutePath());
-            showImg();
+            userModel.setUpLocalIMG(selectedFile.getAbsolutePath()); //specifically the ability to get the path of a photo file.
+            showImg(); //Uses another method in the controller.
             setUpAlert("Picture is changed" , "Your new picture is set up");
         }
     }
 
     private void showImg() {
+        //Method for displaying an image on a designated area.
         User us = userModel.getloggedInUser();
         imgPhoto.setImage(us.getPhotoURL());
     }
