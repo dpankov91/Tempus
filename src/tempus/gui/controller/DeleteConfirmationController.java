@@ -24,6 +24,7 @@ import tempus.gui.model.UserModel;
 /**
  * The DeleteConfirmationController is a class. It allows the user to delete
  * a project inside the ManageProjectsWindowController
+ * Events in this class are invoked when a specific event of the type for which this handler is registered happens.
  *
  * @author Abdiqafar Mohamud Abas Ahmed
  * @author Christian Hansen
@@ -42,7 +43,7 @@ public class DeleteConfirmationController implements Initializable {
 
     
     
-    ProjectModel model;
+    ProjectModel model; //Instance variable to utilze BE's Project class methods.
     ManageProjectsWindowController prevContrl; // Takes information frmo the ManageProjectsWindow fxml.
     /**
      * Initializes the controller class.
@@ -58,15 +59,16 @@ public class DeleteConfirmationController implements Initializable {
     @FXML
     private void goBack(ActionEvent event)
     {
+        //This is used to return the previous window upon registering the event.
         Stage stage = (Stage) btnCancel.getScene().getWindow();
-        stage.close();
+        stage.close(); //Called when there is an external request to close this Window.
     }
 
     @FXML
     private void handleConfirmDeleting(ActionEvent event) {
-           model.deleteSelectedProject(); // having selected a project to delete, it's brought down to the layer down-
-           prevContrl.loadTableView();
-           goBack(event);
+           model.deleteSelectedProject(); // having selected a project to delete, it's brought down to the layer down.
+           prevContrl.loadTableView(); // A refresh of the tableView after the deletion of the project.
+           goBack(event); //Utilizes another method in the controller to return the previous screen.
         
     }
     

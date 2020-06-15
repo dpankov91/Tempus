@@ -163,9 +163,13 @@ public class UserModel {
     /**
      *
      * @param pswSecond
+     * Like the entire class itself, the newPassword method is public, allowing
+     * both class and the method to be accessible for other classes. 
+     * This way the method can be seen and used by other classes.
      */
     public void newPassword(String pswSecond) {
-        facade.newPassword(pswSecond, loggedInUser.getId());
+        facade.newPassword(pswSecond, loggedInUser.getId()); 
+    // Here the input from the controller is pushed another layer down, into the BLL along with the user's ID.
     }
     
     /**
@@ -173,6 +177,6 @@ public class UserModel {
      * @param pswSecond
      */
     public void newPasswordForSelectedUser(String pswSecond){
-        facade.newPasswordForSelectedUser(pswSecond, selectedUser.getId()); // Here the input from the controller is pushed another layer down, into the BLL.
+        facade.newPasswordForSelectedUser(pswSecond, selectedUser.getId()); // Here the input from the controller is pushed another layer down, into the BLL along with the user's ID.
     }
 }

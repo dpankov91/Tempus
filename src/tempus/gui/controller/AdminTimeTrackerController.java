@@ -102,7 +102,7 @@ public class AdminTimeTrackerController implements Initializable {
     private final IntegerProperty timeSeconds = new SimpleIntegerProperty(STARTTIME);
     private final IntegerProperty timeMinutes = new SimpleIntegerProperty(STARTTIME);
     private final IntegerProperty timeHours = new SimpleIntegerProperty(STARTTIME);
-    //Thread execturo service
+    //Thread Executor service
     private ScheduledExecutorService ThreadExecutor;
     //Time of seconds on start
     long totalSeconds = 0;
@@ -124,6 +124,7 @@ public class AdminTimeTrackerController implements Initializable {
     /**
      *
      */
+    // Takes information from the Task BE.
     public Task selectedTask;
 
     /**
@@ -150,13 +151,14 @@ public class AdminTimeTrackerController implements Initializable {
 
     @FXML
     private void handle_Play(ActionEvent event) {
-        //Plays the thread, switches to play button once started, disables the use of stop button
+        //Plays the thread switches to play button, once started, disables the use of stop button
         if (isStopped) {
             isStopped = false;
             setUpThread();
             imgView.setImage(new Image("/tempus/gui/assets/icons8-pause-button-50.png"));
             btn_stop.setDisable(false);
-            //Shows the time tracking date when begun
+            
+//Shows the time tracking date when begun
             if (now) {
                 now = true;
                 tsModel.setTimeStart(LocalDateTime.now());
@@ -200,23 +202,26 @@ public class AdminTimeTrackerController implements Initializable {
             ThreadExecutor.shutdownNow();
             imgView.setImage(new Image("/tempus/gui/assets/icons8-circled-play-50.png"));
 
-            //Save task to db
+            //Saves task to db
             Project selectedProject = cb_projects.getSelectionModel().getSelectedItem();
             String taskName = txt_task.getText();
             String note = txt_note.getText();
             User loggedUser = usModel.getloggedInUser();
             tsModel.saveStoppedTask(selectedProject, taskName, note, loggedUser, tsModel.getTimeStart(), tsModel.getTimeEnd());
+            
             //Reset fields
             cb_projects.getSelectionModel().clearSelection();
             txt_task.clear();
             txt_note.clear();
             lbl_date.setVisible(false);
+            
             //Reset time when stopped
             timeSeconds.setValue(0);
             timeMinutes.setValue(0);
             timeHours.setValue(0);
             totalSeconds = 0;
             isStopped = true;
+            
             //Disables button after stop
             btn_stop.setDisable(true);
             //Refreshes the table view
