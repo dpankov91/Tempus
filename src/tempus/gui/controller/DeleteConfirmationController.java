@@ -43,7 +43,7 @@ public class DeleteConfirmationController implements Initializable {
 
     
     
-    ProjectModel model; //Instance variable to utilze BE's Project class methods.
+    ProjectModel model; //Instance variable to utilze ProjectModel methods.
     ManageProjectsWindowController prevContrl; // Takes information frmo the ManageProjectsWindow fxml.
     /**
      * Initializes the controller class.
@@ -73,7 +73,7 @@ public class DeleteConfirmationController implements Initializable {
     }
     
      void setInfo(ManageProjectsWindowController aThis) {
-    prevContrl = aThis;
+        prevContrl = aThis;
             }
     
 }
