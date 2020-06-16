@@ -56,7 +56,7 @@ public class UserTest {
      
             //Otherwise we would need to override BE toEquals() method. 
             //This is good when we dont want to insert code into be 
-        assertEquals(usToExpect.getId(), actual.getId());
+//        assertEquals(usToExpect.getId(), actual.getId());
         assertEquals(usToExpect.getFName(), actual.getFName());
         assertEquals(usToExpect.getLName(), actual.getLName());
         assertEquals(usToExpect.getPassword(), actual.getPassword());

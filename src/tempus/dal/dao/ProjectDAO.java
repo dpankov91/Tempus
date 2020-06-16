@@ -86,9 +86,9 @@ public class ProjectDAO {
             Project newProjec = new Project(id, name, hRate, client.getId(), description);
             return newProjec;
         } catch (SQLException ex) {
-            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex); //if the passed name is null then it will throw an NullPointerException
         }
-        return null;
+        return null; // and returns null
     }
 
     /**

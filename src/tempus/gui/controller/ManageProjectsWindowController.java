@@ -78,10 +78,9 @@ public class ManageProjectsWindowController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
         projModel = ProjectModel.getInstance();
         setUpTableView();
-
     }
 // 3-layered architecture = Low Coupling and High Cohesion which is one of the virtues.
     @FXML
@@ -89,9 +88,9 @@ public class ManageProjectsWindowController implements Initializable {
     //SelectionModel, an abstract class, is used to return the currently selected item in the tableView
         projModel.setSelectedProject(tableViewProjects.getSelectionModel().getSelectedItem()); // A project is selected in the tableview
        //SelectionModel is an abstract class used by UI controls to provide a consistent API for maintaining selection.
-       // getSelectedItems returns the currently selected object (which resides in the selected index position).
-       // A client is selected in the tableview
-        if (projModel.getSelectedProject() != null) { // if project is selected shows DeleteConfirmationWindow
+       // getSelectedItems returns the currently selected object.
+       // A project is selected in the tableview
+        if (projModel.getSelectedProject() != null) { // if project is selected shows DeleteConfirmationWindow via a conditional statement
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmation.fxml")); // Button Pressed and shows the designated FXML file
             Parent z = loader.load();
             loader.<DeleteConfirmationController>getController().setInfo(this);

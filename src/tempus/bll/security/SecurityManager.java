@@ -28,15 +28,17 @@ public class SecurityManager implements ISecurityManager {
       Hashing is used to taking data, encrypting it and creating unpredictable 
       outputs, making it unreadable for humans and computers alike.
       Same is done for a new password
+      
     */
     @Override
     public String hashPassword(String password) throws SecurityException 
     {
       try {
-            String base = password; // Takes password and runs it through method.
+            String base = password; // Takes password and runs it through the method.
             MessageDigest digest = null; // Encrypts password with a MessageDigest.
             //MessageDigest are one-way hash functions and outputs a fixed-length hash value.
             digest = MessageDigest.getInstance("SHA-256"); // Then the hashing algorithm or languagues is chosen.
+            //Returns a MessageDigest object that implements the specified digest algorithm.
             byte[] hash = digest.digest(base.getBytes(StandardCharsets.UTF_8)); //password changed into bytes and encrypts with SHA-256.
             StringBuffer hexString = new StringBuffer(); // new string for bytearray
             for (int i = 0; i < hash.length; i++) { // Turns every character of the password into a hash value.
