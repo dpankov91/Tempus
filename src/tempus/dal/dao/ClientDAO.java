@@ -70,7 +70,7 @@ public class ClientDAO {
      * @return
      */
     public Client deleteClient(Client selectedClient) {
-        //In here the user is deleted from the database.
+        
         try {
             String sql = "DELETE  FROM [dbo].[Client] WHERE clientID=?";
         // Sequence statement above deletes the selected client from the clientIDTable.

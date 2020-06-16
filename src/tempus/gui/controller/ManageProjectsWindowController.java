@@ -163,17 +163,23 @@ public class ManageProjectsWindowController implements Initializable {
 
     @FXML
     private void writeToDatabase(TableColumn.CellEditEvent<Project, String> event) {
+        // we get row value
         Project proj = event.getRowValue();
+        // we create variable assignedValue where new value will be inserted
         String assignedValue = event.getNewValue();
+        // if new value is empty default value will be "None"
         if (event.getNewValue().toString().isEmpty()) {
             assignedValue = "None";
         }
+        // we get the name of the table column and compare it with cases. The case block that matches the name of the edited column will be runned
         switch (event.getTableColumn().getText()) {
             case "Project name":
+                // if "Project name" column is edited then we call edit project method with parameters from beneath. Instead of projectName we insert assignedValue (the new stuff we wrote for example runningApp)
                 projModel.editProject(proj.getId(), assignedValue, proj.getClientName(), proj.getHRate(), proj.getDescription());
                 proj.setName(assignedValue);
-                break; // int id,String projectName, String clientName, String hourlyRate, String description
+                break; 
             case "Description":
+                //if "Description" column is edited then we call edit project method with parameters from beneath. Instead of description we insert assignedValue (the new stuff we wrote for example "make a good one")
                 projModel.editProject(proj.getId(), proj.getName(), proj.getClientName(), proj.getHRate(), assignedValue);
                 proj.setDescription(assignedValue);
                 break;

@@ -79,7 +79,7 @@ public class ManageClientsWindowController implements Initializable {
         cModel.setSelectedClient(tableViewClients.getSelectionModel().getSelectedItem()); 
         //SelectionModel is an abstract class used by UI controls to provide a consistent API for maintaining selection.
         
-         // getSelectedItems returns the currently selected object (which resides in the selected index position).
+        // getSelectedItems returns the currently selected object (which resides in the selected index position).
 
          // A client is selected in the tableview
         if (cModel.getSelectedClient() != null) { //if a client is selected, the following happens.
