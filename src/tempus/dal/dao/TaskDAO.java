@@ -21,7 +21,8 @@ import java.time.LocalDateTime;
 
 /**
  *The TaskDAO is a class. It can perform CRUD operations on the database
- * 
+ * Anything CRUD related happens in here:
+ * CRUD = CREATE, READ, UPDATE & DELETE
  * @author Abdiqafar Mohamud Abas Ahmed
  * @author Christian Hansen
  * @author Dmitri Pankov
