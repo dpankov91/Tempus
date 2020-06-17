@@ -90,6 +90,7 @@ public class ManageProjectsWindowController implements Initializable {
        //SelectionModel is an abstract class used by UI controls to provide a consistent API for maintaining selection.
        // getSelectedItems returns the currently selected object.
        // A project is selected in the tableview
+       // ! is used as the logical concept NOT.
         if (projModel.getSelectedProject() != null) { // if project is selected shows DeleteConfirmationWindow via a conditional statement
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tempus/gui/view/DeleteConfirmation.fxml")); // Button Pressed and shows the designated FXML file
             Parent z = loader.load();
@@ -104,8 +105,8 @@ public class ManageProjectsWindowController implements Initializable {
     }
 
     void setUpTableView() {
-        tableViewProjects.setEditable(true);
-
+        tableViewProjects.setEditable(true); // Making the table editable, within the cells
+        //Making editable for every column.
         columnProject.setCellFactory(TextFieldTableCell.forTableColumn());
         columnProject.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnHourlyRate.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
