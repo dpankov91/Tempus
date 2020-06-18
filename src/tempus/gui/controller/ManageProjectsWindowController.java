@@ -82,7 +82,7 @@ public class ManageProjectsWindowController implements Initializable {
         projModel = ProjectModel.getInstance();
         setUpTableView();
     }
-// 3-layered architecture = Low Coupling and High Cohesion which is one of the virtues.
+    // 3-layered architecture = Low Coupling and High Cohesion which is one of the virtues.
     @FXML
     private void handleDelete(ActionEvent event) throws IOException {
     //SelectionModel, an abstract class, is used to return the currently selected item in the tableView
